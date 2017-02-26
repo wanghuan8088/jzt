@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.Company" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="artificial_person" property="artificialPerson" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="registered_capital" property="registeredCapital" jdbcType="DOUBLE" />
+    <result column="contributed_capital" property="contributedCapital" jdbcType="DOUBLE" />
+    <result column="registered_address" property="registeredAddress" jdbcType="VARCHAR" />
+    <result column="opening_date" property="openingDate" jdbcType="DATE" />
+    <result column="approved_date" property="approvedDate" jdbcType="DATE" />
+    <result column="registration_authority" property="registrationAuthority" jdbcType="VARCHAR" />
+    <result column="has_annual_report" property="hasAnnualReport" jdbcType="INTEGER" />
+    <result column="business_licence" property="businessLicence" jdbcType="VARCHAR" />
+    <result column="licence_img" property="licenceImg" jdbcType="VARCHAR" />
+    <result column="institutional_framework" property="institutionalFramework" jdbcType="VARCHAR" />
+    <result column="institutional_img" property="institutionalImg" jdbcType="VARCHAR" />
+    <result column="tax_registration_num" property="taxRegistrationNum" jdbcType="VARCHAR" />
+    <result column="tax_img" property="taxImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.CompanyWithBLOBs" extends="BaseResultMap" >
+    <result column="business_scope" property="businessScope" jdbcType="LONGVARCHAR" />
+    <result column="registered_capital_change" property="registeredCapitalChange" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, update_time, is_delete, name, artificial_person, type, registered_capital, 
+    contributed_capital, registered_address, opening_date, approved_date, registration_authority, 
+    has_annual_report, business_licence, licence_img, institutional_framework, institutional_img, 
+    tax_registration_num, tax_img
+  </sql>
+  <sql id="Blob_Column_List" >
+    business_scope, registered_capital_change
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.jzt.api.domain.CompanyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.CompanyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.CompanyExample" >
+    delete from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.CompanyWithBLOBs" >
+    insert into company (id, create_time, update_time, 
+      is_delete, name, artificial_person, 
+      type, registered_capital, contributed_capital, 
+      registered_address, opening_date, approved_date, 
+      registration_authority, has_annual_report, 
+      business_licence, licence_img, institutional_framework, 
+      institutional_img, tax_registration_num, tax_img, 
+      business_scope, registered_capital_change
+      )
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{isDelete,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{artificialPerson,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{registeredCapital,jdbcType=DOUBLE}, #{contributedCapital,jdbcType=DOUBLE}, 
+      #{registeredAddress,jdbcType=VARCHAR}, #{openingDate,jdbcType=DATE}, #{approvedDate,jdbcType=DATE}, 
+      #{registrationAuthority,jdbcType=VARCHAR}, #{hasAnnualReport,jdbcType=INTEGER}, 
+      #{businessLicence,jdbcType=VARCHAR}, #{licenceImg,jdbcType=VARCHAR}, #{institutionalFramework,jdbcType=VARCHAR}, 
+      #{institutionalImg,jdbcType=VARCHAR}, #{taxRegistrationNum,jdbcType=VARCHAR}, #{taxImg,jdbcType=VARCHAR}, 
+      #{businessScope,jdbcType=LONGVARCHAR}, #{registeredCapitalChange,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.CompanyWithBLOBs" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="artificialPerson != null" >
+        artificial_person,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="registeredCapital != null" >
+        registered_capital,
+      </if>
+      <if test="contributedCapital != null" >
+        contributed_capital,
+      </if>
+      <if test="registeredAddress != null" >
+        registered_address,
+      </if>
+      <if test="openingDate != null" >
+        opening_date,
+      </if>
+      <if test="approvedDate != null" >
+        approved_date,
+      </if>
+      <if test="registrationAuthority != null" >
+        registration_authority,
+      </if>
+      <if test="hasAnnualReport != null" >
+        has_annual_report,
+      </if>
+      <if test="businessLicence != null" >
+        business_licence,
+      </if>
+      <if test="licenceImg != null" >
+        licence_img,
+      </if>
+      <if test="institutionalFramework != null" >
+        institutional_framework,
+      </if>
+      <if test="institutionalImg != null" >
+        institutional_img,
+      </if>
+      <if test="taxRegistrationNum != null" >
+        tax_registration_num,
+      </if>
+      <if test="taxImg != null" >
+        tax_img,
+      </if>
+      <if test="businessScope != null" >
+        business_scope,
+      </if>
+      <if test="registeredCapitalChange != null" >
+        registered_capital_change,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="artificialPerson != null" >
+        #{artificialPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        #{registeredCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="contributedCapital != null" >
+        #{contributedCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="registeredAddress != null" >
+        #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="openingDate != null" >
+        #{openingDate,jdbcType=DATE},
+      </if>
+      <if test="approvedDate != null" >
+        #{approvedDate,jdbcType=DATE},
+      </if>
+      <if test="registrationAuthority != null" >
+        #{registrationAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAnnualReport != null" >
+        #{hasAnnualReport,jdbcType=INTEGER},
+      </if>
+      <if test="businessLicence != null" >
+        #{businessLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceImg != null" >
+        #{licenceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionalFramework != null" >
+        #{institutionalFramework,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionalImg != null" >
+        #{institutionalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationNum != null" >
+        #{taxRegistrationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="taxImg != null" >
+        #{taxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="registeredCapitalChange != null" >
+        #{registeredCapitalChange,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.CompanyExample" resultType="java.lang.Integer" >
+    select count(*) from company
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update company
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artificialPerson != null" >
+        artificial_person = #{record.artificialPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registeredCapital != null" >
+        registered_capital = #{record.registeredCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="record.contributedCapital != null" >
+        contributed_capital = #{record.contributedCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="record.registeredAddress != null" >
+        registered_address = #{record.registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openingDate != null" >
+        opening_date = #{record.openingDate,jdbcType=DATE},
+      </if>
+      <if test="record.approvedDate != null" >
+        approved_date = #{record.approvedDate,jdbcType=DATE},
+      </if>
+      <if test="record.registrationAuthority != null" >
+        registration_authority = #{record.registrationAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasAnnualReport != null" >
+        has_annual_report = #{record.hasAnnualReport,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessLicence != null" >
+        business_licence = #{record.businessLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenceImg != null" >
+        licence_img = #{record.licenceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institutionalFramework != null" >
+        institutional_framework = #{record.institutionalFramework,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institutionalImg != null" >
+        institutional_img = #{record.institutionalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationNum != null" >
+        tax_registration_num = #{record.taxRegistrationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxImg != null" >
+        tax_img = #{record.taxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessScope != null" >
+        business_scope = #{record.businessScope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.registeredCapitalChange != null" >
+        registered_capital_change = #{record.registeredCapitalChange,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update company
+    set id = #{record.id,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      artificial_person = #{record.artificialPerson,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      registered_capital = #{record.registeredCapital,jdbcType=DOUBLE},
+      contributed_capital = #{record.contributedCapital,jdbcType=DOUBLE},
+      registered_address = #{record.registeredAddress,jdbcType=VARCHAR},
+      opening_date = #{record.openingDate,jdbcType=DATE},
+      approved_date = #{record.approvedDate,jdbcType=DATE},
+      registration_authority = #{record.registrationAuthority,jdbcType=VARCHAR},
+      has_annual_report = #{record.hasAnnualReport,jdbcType=INTEGER},
+      business_licence = #{record.businessLicence,jdbcType=VARCHAR},
+      licence_img = #{record.licenceImg,jdbcType=VARCHAR},
+      institutional_framework = #{record.institutionalFramework,jdbcType=VARCHAR},
+      institutional_img = #{record.institutionalImg,jdbcType=VARCHAR},
+      tax_registration_num = #{record.taxRegistrationNum,jdbcType=VARCHAR},
+      tax_img = #{record.taxImg,jdbcType=VARCHAR},
+      business_scope = #{record.businessScope,jdbcType=LONGVARCHAR},
+      registered_capital_change = #{record.registeredCapitalChange,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update company
+    set id = #{record.id,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      artificial_person = #{record.artificialPerson,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      registered_capital = #{record.registeredCapital,jdbcType=DOUBLE},
+      contributed_capital = #{record.contributedCapital,jdbcType=DOUBLE},
+      registered_address = #{record.registeredAddress,jdbcType=VARCHAR},
+      opening_date = #{record.openingDate,jdbcType=DATE},
+      approved_date = #{record.approvedDate,jdbcType=DATE},
+      registration_authority = #{record.registrationAuthority,jdbcType=VARCHAR},
+      has_annual_report = #{record.hasAnnualReport,jdbcType=INTEGER},
+      business_licence = #{record.businessLicence,jdbcType=VARCHAR},
+      licence_img = #{record.licenceImg,jdbcType=VARCHAR},
+      institutional_framework = #{record.institutionalFramework,jdbcType=VARCHAR},
+      institutional_img = #{record.institutionalImg,jdbcType=VARCHAR},
+      tax_registration_num = #{record.taxRegistrationNum,jdbcType=VARCHAR},
+      tax_img = #{record.taxImg,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.CompanyWithBLOBs" >
+    update company
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="artificialPerson != null" >
+        artificial_person = #{artificialPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        registered_capital = #{registeredCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="contributedCapital != null" >
+        contributed_capital = #{contributedCapital,jdbcType=DOUBLE},
+      </if>
+      <if test="registeredAddress != null" >
+        registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="openingDate != null" >
+        opening_date = #{openingDate,jdbcType=DATE},
+      </if>
+      <if test="approvedDate != null" >
+        approved_date = #{approvedDate,jdbcType=DATE},
+      </if>
+      <if test="registrationAuthority != null" >
+        registration_authority = #{registrationAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAnnualReport != null" >
+        has_annual_report = #{hasAnnualReport,jdbcType=INTEGER},
+      </if>
+      <if test="businessLicence != null" >
+        business_licence = #{businessLicence,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceImg != null" >
+        licence_img = #{licenceImg,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionalFramework != null" >
+        institutional_framework = #{institutionalFramework,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionalImg != null" >
+        institutional_img = #{institutionalImg,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationNum != null" >
+        tax_registration_num = #{taxRegistrationNum,jdbcType=VARCHAR},
+      </if>
+      <if test="taxImg != null" >
+        tax_img = #{taxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        business_scope = #{businessScope,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="registeredCapitalChange != null" >
+        registered_capital_change = #{registeredCapitalChange,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.CompanyWithBLOBs" >
+    update company
+    set create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      artificial_person = #{artificialPerson,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      registered_capital = #{registeredCapital,jdbcType=DOUBLE},
+      contributed_capital = #{contributedCapital,jdbcType=DOUBLE},
+      registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      opening_date = #{openingDate,jdbcType=DATE},
+      approved_date = #{approvedDate,jdbcType=DATE},
+      registration_authority = #{registrationAuthority,jdbcType=VARCHAR},
+      has_annual_report = #{hasAnnualReport,jdbcType=INTEGER},
+      business_licence = #{businessLicence,jdbcType=VARCHAR},
+      licence_img = #{licenceImg,jdbcType=VARCHAR},
+      institutional_framework = #{institutionalFramework,jdbcType=VARCHAR},
+      institutional_img = #{institutionalImg,jdbcType=VARCHAR},
+      tax_registration_num = #{taxRegistrationNum,jdbcType=VARCHAR},
+      tax_img = #{taxImg,jdbcType=VARCHAR},
+      business_scope = #{businessScope,jdbcType=LONGVARCHAR},
+      registered_capital_change = #{registeredCapitalChange,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.Company" >
+    update company
+    set create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      artificial_person = #{artificialPerson,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      registered_capital = #{registeredCapital,jdbcType=DOUBLE},
+      contributed_capital = #{contributedCapital,jdbcType=DOUBLE},
+      registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      opening_date = #{openingDate,jdbcType=DATE},
+      approved_date = #{approvedDate,jdbcType=DATE},
+      registration_authority = #{registrationAuthority,jdbcType=VARCHAR},
+      has_annual_report = #{hasAnnualReport,jdbcType=INTEGER},
+      business_licence = #{businessLicence,jdbcType=VARCHAR},
+      licence_img = #{licenceImg,jdbcType=VARCHAR},
+      institutional_framework = #{institutionalFramework,jdbcType=VARCHAR},
+      institutional_img = #{institutionalImg,jdbcType=VARCHAR},
+      tax_registration_num = #{taxRegistrationNum,jdbcType=VARCHAR},
+      tax_img = #{taxImg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

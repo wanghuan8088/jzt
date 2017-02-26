@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.AppFinanceFavoriteOptionsMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.AppFinanceFavoriteOptions" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fId" property="fid" jdbcType="INTEGER" />
+    <result column="option" property="option" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, fId, option, order
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptionsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from app_finance_favorite_options
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from app_finance_favorite_options
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from app_finance_favorite_options
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptionsExample" >
+    delete from app_finance_favorite_options
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptions" >
+    insert into app_finance_favorite_options (id, fId, option, 
+      order)
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{option,jdbcType=VARCHAR}, 
+      #{order,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptions" >
+    insert into app_finance_favorite_options
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fid != null" >
+        fId,
+      </if>
+      <if test="option != null" >
+        option,
+      </if>
+      <if test="order != null" >
+        order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="option != null" >
+        #{option,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptionsExample" resultType="java.lang.Integer" >
+    select count(*) from app_finance_favorite_options
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update app_finance_favorite_options
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fid != null" >
+        fId = #{record.fid,jdbcType=INTEGER},
+      </if>
+      <if test="record.option != null" >
+        option = #{record.option,jdbcType=VARCHAR},
+      </if>
+      <if test="record.order != null" >
+        order = #{record.order,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update app_finance_favorite_options
+    set id = #{record.id,jdbcType=INTEGER},
+      fId = #{record.fid,jdbcType=INTEGER},
+      option = #{record.option,jdbcType=VARCHAR},
+      order = #{record.order,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptions" >
+    update app_finance_favorite_options
+    <set >
+      <if test="fid != null" >
+        fId = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="option != null" >
+        option = #{option,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        order = #{order,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.AppFinanceFavoriteOptions" >
+    update app_finance_favorite_options
+    set fId = #{fid,jdbcType=INTEGER},
+      option = #{option,jdbcType=VARCHAR},
+      order = #{order,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

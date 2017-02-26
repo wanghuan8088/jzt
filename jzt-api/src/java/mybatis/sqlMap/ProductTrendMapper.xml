@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.ProductTrendMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.ProductTrend" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pId" property="pid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="turnover" property="turnover" jdbcType="REAL" />
+    <result column="interest_rate" property="interestRate" jdbcType="REAL" />
+    <result column="investment_amount" property="investmentAmount" jdbcType="REAL" />
+    <result column="borrow_amount" property="borrowAmount" jdbcType="REAL" />
+    <result column="num_investment" property="numInvestment" jdbcType="INTEGER" />
+    <result column="num_borrower" property="numBorrower" jdbcType="INTEGER" />
+    <result column="average_loan_period" property="averageLoanPeriod" jdbcType="REAL" />
+    <result column="loan_bid" property="loanBid" jdbcType="INTEGER" />
+    <result column="time_for_full_bid" property="timeForFullBid" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pId, date, turnover, interest_rate, investment_amount, borrow_amount, num_investment, 
+    num_borrower, average_loan_period, loan_bid, time_for_full_bid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.ProductTrendExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product_trend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_trend
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_trend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.ProductTrendExample" >
+    delete from product_trend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.ProductTrend" >
+    insert into product_trend (id, pId, date, turnover, 
+      interest_rate, investment_amount, borrow_amount, 
+      num_investment, num_borrower, average_loan_period, 
+      loan_bid, time_for_full_bid)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{turnover,jdbcType=REAL}, 
+      #{interestRate,jdbcType=REAL}, #{investmentAmount,jdbcType=REAL}, #{borrowAmount,jdbcType=REAL}, 
+      #{numInvestment,jdbcType=INTEGER}, #{numBorrower,jdbcType=INTEGER}, #{averageLoanPeriod,jdbcType=REAL}, 
+      #{loanBid,jdbcType=INTEGER}, #{timeForFullBid,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.ProductTrend" >
+    insert into product_trend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pId,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="investmentAmount != null" >
+        investment_amount,
+      </if>
+      <if test="borrowAmount != null" >
+        borrow_amount,
+      </if>
+      <if test="numInvestment != null" >
+        num_investment,
+      </if>
+      <if test="numBorrower != null" >
+        num_borrower,
+      </if>
+      <if test="averageLoanPeriod != null" >
+        average_loan_period,
+      </if>
+      <if test="loanBid != null" >
+        loan_bid,
+      </if>
+      <if test="timeForFullBid != null" >
+        time_for_full_bid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=REAL},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=REAL},
+      </if>
+      <if test="investmentAmount != null" >
+        #{investmentAmount,jdbcType=REAL},
+      </if>
+      <if test="borrowAmount != null" >
+        #{borrowAmount,jdbcType=REAL},
+      </if>
+      <if test="numInvestment != null" >
+        #{numInvestment,jdbcType=INTEGER},
+      </if>
+      <if test="numBorrower != null" >
+        #{numBorrower,jdbcType=INTEGER},
+      </if>
+      <if test="averageLoanPeriod != null" >
+        #{averageLoanPeriod,jdbcType=REAL},
+      </if>
+      <if test="loanBid != null" >
+        #{loanBid,jdbcType=INTEGER},
+      </if>
+      <if test="timeForFullBid != null" >
+        #{timeForFullBid,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.ProductTrendExample" resultType="java.lang.Integer" >
+    select count(*) from product_trend
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update product_trend
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null" >
+        pId = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.turnover != null" >
+        turnover = #{record.turnover,jdbcType=REAL},
+      </if>
+      <if test="record.interestRate != null" >
+        interest_rate = #{record.interestRate,jdbcType=REAL},
+      </if>
+      <if test="record.investmentAmount != null" >
+        investment_amount = #{record.investmentAmount,jdbcType=REAL},
+      </if>
+      <if test="record.borrowAmount != null" >
+        borrow_amount = #{record.borrowAmount,jdbcType=REAL},
+      </if>
+      <if test="record.numInvestment != null" >
+        num_investment = #{record.numInvestment,jdbcType=INTEGER},
+      </if>
+      <if test="record.numBorrower != null" >
+        num_borrower = #{record.numBorrower,jdbcType=INTEGER},
+      </if>
+      <if test="record.averageLoanPeriod != null" >
+        average_loan_period = #{record.averageLoanPeriod,jdbcType=REAL},
+      </if>
+      <if test="record.loanBid != null" >
+        loan_bid = #{record.loanBid,jdbcType=INTEGER},
+      </if>
+      <if test="record.timeForFullBid != null" >
+        time_for_full_bid = #{record.timeForFullBid,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update product_trend
+    set id = #{record.id,jdbcType=INTEGER},
+      pId = #{record.pid,jdbcType=INTEGER},
+      date = #{record.date,jdbcType=DATE},
+      turnover = #{record.turnover,jdbcType=REAL},
+      interest_rate = #{record.interestRate,jdbcType=REAL},
+      investment_amount = #{record.investmentAmount,jdbcType=REAL},
+      borrow_amount = #{record.borrowAmount,jdbcType=REAL},
+      num_investment = #{record.numInvestment,jdbcType=INTEGER},
+      num_borrower = #{record.numBorrower,jdbcType=INTEGER},
+      average_loan_period = #{record.averageLoanPeriod,jdbcType=REAL},
+      loan_bid = #{record.loanBid,jdbcType=INTEGER},
+      time_for_full_bid = #{record.timeForFullBid,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.ProductTrend" >
+    update product_trend
+    <set >
+      <if test="pid != null" >
+        pId = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=REAL},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=REAL},
+      </if>
+      <if test="investmentAmount != null" >
+        investment_amount = #{investmentAmount,jdbcType=REAL},
+      </if>
+      <if test="borrowAmount != null" >
+        borrow_amount = #{borrowAmount,jdbcType=REAL},
+      </if>
+      <if test="numInvestment != null" >
+        num_investment = #{numInvestment,jdbcType=INTEGER},
+      </if>
+      <if test="numBorrower != null" >
+        num_borrower = #{numBorrower,jdbcType=INTEGER},
+      </if>
+      <if test="averageLoanPeriod != null" >
+        average_loan_period = #{averageLoanPeriod,jdbcType=REAL},
+      </if>
+      <if test="loanBid != null" >
+        loan_bid = #{loanBid,jdbcType=INTEGER},
+      </if>
+      <if test="timeForFullBid != null" >
+        time_for_full_bid = #{timeForFullBid,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.ProductTrend" >
+    update product_trend
+    set pId = #{pid,jdbcType=INTEGER},
+      date = #{date,jdbcType=DATE},
+      turnover = #{turnover,jdbcType=REAL},
+      interest_rate = #{interestRate,jdbcType=REAL},
+      investment_amount = #{investmentAmount,jdbcType=REAL},
+      borrow_amount = #{borrowAmount,jdbcType=REAL},
+      num_investment = #{numInvestment,jdbcType=INTEGER},
+      num_borrower = #{numBorrower,jdbcType=INTEGER},
+      average_loan_period = #{averageLoanPeriod,jdbcType=REAL},
+      loan_bid = #{loanBid,jdbcType=INTEGER},
+      time_for_full_bid = #{timeForFullBid,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

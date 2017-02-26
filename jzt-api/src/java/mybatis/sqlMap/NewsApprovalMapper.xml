@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.NewsApprovalMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.NewsApproval" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nId" property="nid" jdbcType="INTEGER" />
+    <result column="isCheck" property="ischeck" jdbcType="INTEGER" />
+    <result column="related_admin" property="relatedAdmin" jdbcType="INTEGER" />
+    <result column="polarity" property="polarity" jdbcType="INTEGER" />
+    <result column="isrecom" property="isrecom" jdbcType="INTEGER" />
+    <result column="click_times" property="clickTimes" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, nId, isCheck, related_admin, polarity, isrecom, click_times
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.NewsApprovalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from news_approval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from news_approval
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news_approval
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.NewsApprovalExample" >
+    delete from news_approval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.NewsApproval" >
+    insert into news_approval (id, nId, isCheck, 
+      related_admin, polarity, isrecom, 
+      click_times)
+    values (#{id,jdbcType=INTEGER}, #{nid,jdbcType=INTEGER}, #{ischeck,jdbcType=INTEGER}, 
+      #{relatedAdmin,jdbcType=INTEGER}, #{polarity,jdbcType=INTEGER}, #{isrecom,jdbcType=INTEGER}, 
+      #{clickTimes,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.NewsApproval" >
+    insert into news_approval
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nid != null" >
+        nId,
+      </if>
+      <if test="ischeck != null" >
+        isCheck,
+      </if>
+      <if test="relatedAdmin != null" >
+        related_admin,
+      </if>
+      <if test="polarity != null" >
+        polarity,
+      </if>
+      <if test="isrecom != null" >
+        isrecom,
+      </if>
+      <if test="clickTimes != null" >
+        click_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nid != null" >
+        #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="ischeck != null" >
+        #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="relatedAdmin != null" >
+        #{relatedAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="polarity != null" >
+        #{polarity,jdbcType=INTEGER},
+      </if>
+      <if test="isrecom != null" >
+        #{isrecom,jdbcType=INTEGER},
+      </if>
+      <if test="clickTimes != null" >
+        #{clickTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.NewsApprovalExample" resultType="java.lang.Integer" >
+    select count(*) from news_approval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update news_approval
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.nid != null" >
+        nId = #{record.nid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ischeck != null" >
+        isCheck = #{record.ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="record.relatedAdmin != null" >
+        related_admin = #{record.relatedAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.polarity != null" >
+        polarity = #{record.polarity,jdbcType=INTEGER},
+      </if>
+      <if test="record.isrecom != null" >
+        isrecom = #{record.isrecom,jdbcType=INTEGER},
+      </if>
+      <if test="record.clickTimes != null" >
+        click_times = #{record.clickTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update news_approval
+    set id = #{record.id,jdbcType=INTEGER},
+      nId = #{record.nid,jdbcType=INTEGER},
+      isCheck = #{record.ischeck,jdbcType=INTEGER},
+      related_admin = #{record.relatedAdmin,jdbcType=INTEGER},
+      polarity = #{record.polarity,jdbcType=INTEGER},
+      isrecom = #{record.isrecom,jdbcType=INTEGER},
+      click_times = #{record.clickTimes,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.NewsApproval" >
+    update news_approval
+    <set >
+      <if test="nid != null" >
+        nId = #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="ischeck != null" >
+        isCheck = #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="relatedAdmin != null" >
+        related_admin = #{relatedAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="polarity != null" >
+        polarity = #{polarity,jdbcType=INTEGER},
+      </if>
+      <if test="isrecom != null" >
+        isrecom = #{isrecom,jdbcType=INTEGER},
+      </if>
+      <if test="clickTimes != null" >
+        click_times = #{clickTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.NewsApproval" >
+    update news_approval
+    set nId = #{nid,jdbcType=INTEGER},
+      isCheck = #{ischeck,jdbcType=INTEGER},
+      related_admin = #{relatedAdmin,jdbcType=INTEGER},
+      polarity = #{polarity,jdbcType=INTEGER},
+      isrecom = #{isrecom,jdbcType=INTEGER},
+      click_times = #{clickTimes,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

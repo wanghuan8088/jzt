@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.BankEvalMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.BankEval" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="release_score" property="releaseScore" jdbcType="DOUBLE" />
+    <result column="profit_score" property="profitScore" jdbcType="DOUBLE" />
+    <result column="risk_score" property="riskScore" jdbcType="DOUBLE" />
+    <result column="product_rich_score" property="productRichScore" jdbcType="DOUBLE" />
+    <result column="info_disclosure_score" property="infoDisclosureScore" jdbcType="DOUBLE" />
+    <result column="evaluate_score" property="evaluateScore" jdbcType="DOUBLE" />
+    <result column="total_score" property="totalScore" jdbcType="DOUBLE" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, bank_id, release_score, profit_score, risk_score, product_rich_score, info_disclosure_score, 
+    evaluate_score, total_score, create_time, update_time, is_delete, start_date, end_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.BankEvalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_eval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_eval
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bank_eval
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.BankEvalExample" >
+    delete from bank_eval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.BankEval" >
+    insert into bank_eval (id, bank_id, release_score, 
+      profit_score, risk_score, product_rich_score, 
+      info_disclosure_score, evaluate_score, total_score, 
+      create_time, update_time, is_delete, 
+      start_date, end_date)
+    values (#{id,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER}, #{releaseScore,jdbcType=DOUBLE}, 
+      #{profitScore,jdbcType=DOUBLE}, #{riskScore,jdbcType=DOUBLE}, #{productRichScore,jdbcType=DOUBLE}, 
+      #{infoDisclosureScore,jdbcType=DOUBLE}, #{evaluateScore,jdbcType=DOUBLE}, #{totalScore,jdbcType=DOUBLE}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.BankEval" >
+    insert into bank_eval
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="releaseScore != null" >
+        release_score,
+      </if>
+      <if test="profitScore != null" >
+        profit_score,
+      </if>
+      <if test="riskScore != null" >
+        risk_score,
+      </if>
+      <if test="productRichScore != null" >
+        product_rich_score,
+      </if>
+      <if test="infoDisclosureScore != null" >
+        info_disclosure_score,
+      </if>
+      <if test="evaluateScore != null" >
+        evaluate_score,
+      </if>
+      <if test="totalScore != null" >
+        total_score,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="releaseScore != null" >
+        #{releaseScore,jdbcType=DOUBLE},
+      </if>
+      <if test="profitScore != null" >
+        #{profitScore,jdbcType=DOUBLE},
+      </if>
+      <if test="riskScore != null" >
+        #{riskScore,jdbcType=DOUBLE},
+      </if>
+      <if test="productRichScore != null" >
+        #{productRichScore,jdbcType=DOUBLE},
+      </if>
+      <if test="infoDisclosureScore != null" >
+        #{infoDisclosureScore,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluateScore != null" >
+        #{evaluateScore,jdbcType=DOUBLE},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.BankEvalExample" resultType="java.lang.Integer" >
+    select count(*) from bank_eval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_eval
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankId != null" >
+        bank_id = #{record.bankId,jdbcType=INTEGER},
+      </if>
+      <if test="record.releaseScore != null" >
+        release_score = #{record.releaseScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.profitScore != null" >
+        profit_score = #{record.profitScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.riskScore != null" >
+        risk_score = #{record.riskScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.productRichScore != null" >
+        product_rich_score = #{record.productRichScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.infoDisclosureScore != null" >
+        info_disclosure_score = #{record.infoDisclosureScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.evaluateScore != null" >
+        evaluate_score = #{record.evaluateScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalScore != null" >
+        total_score = #{record.totalScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=DATE},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_eval
+    set id = #{record.id,jdbcType=INTEGER},
+      bank_id = #{record.bankId,jdbcType=INTEGER},
+      release_score = #{record.releaseScore,jdbcType=DOUBLE},
+      profit_score = #{record.profitScore,jdbcType=DOUBLE},
+      risk_score = #{record.riskScore,jdbcType=DOUBLE},
+      product_rich_score = #{record.productRichScore,jdbcType=DOUBLE},
+      info_disclosure_score = #{record.infoDisclosureScore,jdbcType=DOUBLE},
+      evaluate_score = #{record.evaluateScore,jdbcType=DOUBLE},
+      total_score = #{record.totalScore,jdbcType=DOUBLE},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      start_date = #{record.startDate,jdbcType=DATE},
+      end_date = #{record.endDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.BankEval" >
+    update bank_eval
+    <set >
+      <if test="bankId != null" >
+        bank_id = #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="releaseScore != null" >
+        release_score = #{releaseScore,jdbcType=DOUBLE},
+      </if>
+      <if test="profitScore != null" >
+        profit_score = #{profitScore,jdbcType=DOUBLE},
+      </if>
+      <if test="riskScore != null" >
+        risk_score = #{riskScore,jdbcType=DOUBLE},
+      </if>
+      <if test="productRichScore != null" >
+        product_rich_score = #{productRichScore,jdbcType=DOUBLE},
+      </if>
+      <if test="infoDisclosureScore != null" >
+        info_disclosure_score = #{infoDisclosureScore,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluateScore != null" >
+        evaluate_score = #{evaluateScore,jdbcType=DOUBLE},
+      </if>
+      <if test="totalScore != null" >
+        total_score = #{totalScore,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.BankEval" >
+    update bank_eval
+    set bank_id = #{bankId,jdbcType=INTEGER},
+      release_score = #{releaseScore,jdbcType=DOUBLE},
+      profit_score = #{profitScore,jdbcType=DOUBLE},
+      risk_score = #{riskScore,jdbcType=DOUBLE},
+      product_rich_score = #{productRichScore,jdbcType=DOUBLE},
+      info_disclosure_score = #{infoDisclosureScore,jdbcType=DOUBLE},
+      evaluate_score = #{evaluateScore,jdbcType=DOUBLE},
+      total_score = #{totalScore,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

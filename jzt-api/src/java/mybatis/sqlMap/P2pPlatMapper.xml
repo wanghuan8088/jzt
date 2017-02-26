@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.P2pPlatMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pPlat" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
+    <result column="is_auto_bid" property="isAutoBid" jdbcType="INTEGER" />
+    <result column="is_equitable_assignment" property="isEquitableAssignment" jdbcType="INTEGER" />
+    <result column="manage_fee" property="manageFee" jdbcType="VARCHAR" />
+    <result column="prepaid_fee" property="prepaidFee" jdbcType="VARCHAR" />
+    <result column="cash_withdrawal_fee" property="cashWithdrawalFee" jdbcType="VARCHAR" />
+    <result column="vip_fee" property="vipFee" jdbcType="VARCHAR" />
+    <result column="transfer_fee" property="transferFee" jdbcType="VARCHAR" />
+    <result column="mode_of_payment" property="modeOfPayment" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.P2pPlatWithBLOBs" extends="BaseResultMap" >
+    <result column="manage_fee_detail" property="manageFeeDetail" jdbcType="LONGVARCHAR" />
+    <result column="prepaid_fee_detail" property="prepaidFeeDetail" jdbcType="LONGVARCHAR" />
+    <result column="cash_withdrawal_fee_detail" property="cashWithdrawalFeeDetail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, plat_id, is_auto_bid, is_equitable_assignment, manage_fee, prepaid_fee, cash_withdrawal_fee, 
+    vip_fee, transfer_fee, mode_of_payment, create_time, update_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List" >
+    manage_fee_detail, prepaid_fee_detail, cash_withdrawal_fee_detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.jzt.api.domain.P2pPlatExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from p2p_plat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pPlatExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from p2p_plat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from p2p_plat
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p2p_plat
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.P2pPlatExample" >
+    delete from p2p_plat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.P2pPlatWithBLOBs" >
+    insert into p2p_plat (id, plat_id, is_auto_bid, 
+      is_equitable_assignment, manage_fee, prepaid_fee, 
+      cash_withdrawal_fee, vip_fee, transfer_fee, 
+      mode_of_payment, create_time, update_time, 
+      is_delete, manage_fee_detail, prepaid_fee_detail, 
+      cash_withdrawal_fee_detail)
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{isAutoBid,jdbcType=INTEGER}, 
+      #{isEquitableAssignment,jdbcType=INTEGER}, #{manageFee,jdbcType=VARCHAR}, #{prepaidFee,jdbcType=VARCHAR}, 
+      #{cashWithdrawalFee,jdbcType=VARCHAR}, #{vipFee,jdbcType=VARCHAR}, #{transferFee,jdbcType=VARCHAR}, 
+      #{modeOfPayment,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{isDelete,jdbcType=INTEGER}, #{manageFeeDetail,jdbcType=LONGVARCHAR}, #{prepaidFeeDetail,jdbcType=LONGVARCHAR}, 
+      #{cashWithdrawalFeeDetail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.P2pPlatWithBLOBs" >
+    insert into p2p_plat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="platId != null" >
+        plat_id,
+      </if>
+      <if test="isAutoBid != null" >
+        is_auto_bid,
+      </if>
+      <if test="isEquitableAssignment != null" >
+        is_equitable_assignment,
+      </if>
+      <if test="manageFee != null" >
+        manage_fee,
+      </if>
+      <if test="prepaidFee != null" >
+        prepaid_fee,
+      </if>
+      <if test="cashWithdrawalFee != null" >
+        cash_withdrawal_fee,
+      </if>
+      <if test="vipFee != null" >
+        vip_fee,
+      </if>
+      <if test="transferFee != null" >
+        transfer_fee,
+      </if>
+      <if test="modeOfPayment != null" >
+        mode_of_payment,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="manageFeeDetail != null" >
+        manage_fee_detail,
+      </if>
+      <if test="prepaidFeeDetail != null" >
+        prepaid_fee_detail,
+      </if>
+      <if test="cashWithdrawalFeeDetail != null" >
+        cash_withdrawal_fee_detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
+      </if>
+      <if test="isAutoBid != null" >
+        #{isAutoBid,jdbcType=INTEGER},
+      </if>
+      <if test="isEquitableAssignment != null" >
+        #{isEquitableAssignment,jdbcType=INTEGER},
+      </if>
+      <if test="manageFee != null" >
+        #{manageFee,jdbcType=VARCHAR},
+      </if>
+      <if test="prepaidFee != null" >
+        #{prepaidFee,jdbcType=VARCHAR},
+      </if>
+      <if test="cashWithdrawalFee != null" >
+        #{cashWithdrawalFee,jdbcType=VARCHAR},
+      </if>
+      <if test="vipFee != null" >
+        #{vipFee,jdbcType=VARCHAR},
+      </if>
+      <if test="transferFee != null" >
+        #{transferFee,jdbcType=VARCHAR},
+      </if>
+      <if test="modeOfPayment != null" >
+        #{modeOfPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="manageFeeDetail != null" >
+        #{manageFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prepaidFeeDetail != null" >
+        #{prepaidFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cashWithdrawalFeeDetail != null" >
+        #{cashWithdrawalFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.P2pPlatExample" resultType="java.lang.Integer" >
+    select count(*) from p2p_plat
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update p2p_plat
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAutoBid != null" >
+        is_auto_bid = #{record.isAutoBid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isEquitableAssignment != null" >
+        is_equitable_assignment = #{record.isEquitableAssignment,jdbcType=INTEGER},
+      </if>
+      <if test="record.manageFee != null" >
+        manage_fee = #{record.manageFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prepaidFee != null" >
+        prepaid_fee = #{record.prepaidFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cashWithdrawalFee != null" >
+        cash_withdrawal_fee = #{record.cashWithdrawalFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vipFee != null" >
+        vip_fee = #{record.vipFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transferFee != null" >
+        transfer_fee = #{record.transferFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modeOfPayment != null" >
+        mode_of_payment = #{record.modeOfPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.manageFeeDetail != null" >
+        manage_fee_detail = #{record.manageFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.prepaidFeeDetail != null" >
+        prepaid_fee_detail = #{record.prepaidFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.cashWithdrawalFeeDetail != null" >
+        cash_withdrawal_fee_detail = #{record.cashWithdrawalFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update p2p_plat
+    set id = #{record.id,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
+      is_auto_bid = #{record.isAutoBid,jdbcType=INTEGER},
+      is_equitable_assignment = #{record.isEquitableAssignment,jdbcType=INTEGER},
+      manage_fee = #{record.manageFee,jdbcType=VARCHAR},
+      prepaid_fee = #{record.prepaidFee,jdbcType=VARCHAR},
+      cash_withdrawal_fee = #{record.cashWithdrawalFee,jdbcType=VARCHAR},
+      vip_fee = #{record.vipFee,jdbcType=VARCHAR},
+      transfer_fee = #{record.transferFee,jdbcType=VARCHAR},
+      mode_of_payment = #{record.modeOfPayment,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      manage_fee_detail = #{record.manageFeeDetail,jdbcType=LONGVARCHAR},
+      prepaid_fee_detail = #{record.prepaidFeeDetail,jdbcType=LONGVARCHAR},
+      cash_withdrawal_fee_detail = #{record.cashWithdrawalFeeDetail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update p2p_plat
+    set id = #{record.id,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
+      is_auto_bid = #{record.isAutoBid,jdbcType=INTEGER},
+      is_equitable_assignment = #{record.isEquitableAssignment,jdbcType=INTEGER},
+      manage_fee = #{record.manageFee,jdbcType=VARCHAR},
+      prepaid_fee = #{record.prepaidFee,jdbcType=VARCHAR},
+      cash_withdrawal_fee = #{record.cashWithdrawalFee,jdbcType=VARCHAR},
+      vip_fee = #{record.vipFee,jdbcType=VARCHAR},
+      transfer_fee = #{record.transferFee,jdbcType=VARCHAR},
+      mode_of_payment = #{record.modeOfPayment,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pPlatWithBLOBs" >
+    update p2p_plat
+    <set >
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
+      </if>
+      <if test="isAutoBid != null" >
+        is_auto_bid = #{isAutoBid,jdbcType=INTEGER},
+      </if>
+      <if test="isEquitableAssignment != null" >
+        is_equitable_assignment = #{isEquitableAssignment,jdbcType=INTEGER},
+      </if>
+      <if test="manageFee != null" >
+        manage_fee = #{manageFee,jdbcType=VARCHAR},
+      </if>
+      <if test="prepaidFee != null" >
+        prepaid_fee = #{prepaidFee,jdbcType=VARCHAR},
+      </if>
+      <if test="cashWithdrawalFee != null" >
+        cash_withdrawal_fee = #{cashWithdrawalFee,jdbcType=VARCHAR},
+      </if>
+      <if test="vipFee != null" >
+        vip_fee = #{vipFee,jdbcType=VARCHAR},
+      </if>
+      <if test="transferFee != null" >
+        transfer_fee = #{transferFee,jdbcType=VARCHAR},
+      </if>
+      <if test="modeOfPayment != null" >
+        mode_of_payment = #{modeOfPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="manageFeeDetail != null" >
+        manage_fee_detail = #{manageFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="prepaidFeeDetail != null" >
+        prepaid_fee_detail = #{prepaidFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="cashWithdrawalFeeDetail != null" >
+        cash_withdrawal_fee_detail = #{cashWithdrawalFeeDetail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.P2pPlatWithBLOBs" >
+    update p2p_plat
+    set plat_id = #{platId,jdbcType=INTEGER},
+      is_auto_bid = #{isAutoBid,jdbcType=INTEGER},
+      is_equitable_assignment = #{isEquitableAssignment,jdbcType=INTEGER},
+      manage_fee = #{manageFee,jdbcType=VARCHAR},
+      prepaid_fee = #{prepaidFee,jdbcType=VARCHAR},
+      cash_withdrawal_fee = #{cashWithdrawalFee,jdbcType=VARCHAR},
+      vip_fee = #{vipFee,jdbcType=VARCHAR},
+      transfer_fee = #{transferFee,jdbcType=VARCHAR},
+      mode_of_payment = #{modeOfPayment,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      manage_fee_detail = #{manageFeeDetail,jdbcType=LONGVARCHAR},
+      prepaid_fee_detail = #{prepaidFeeDetail,jdbcType=LONGVARCHAR},
+      cash_withdrawal_fee_detail = #{cashWithdrawalFeeDetail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pPlat" >
+    update p2p_plat
+    set plat_id = #{platId,jdbcType=INTEGER},
+      is_auto_bid = #{isAutoBid,jdbcType=INTEGER},
+      is_equitable_assignment = #{isEquitableAssignment,jdbcType=INTEGER},
+      manage_fee = #{manageFee,jdbcType=VARCHAR},
+      prepaid_fee = #{prepaidFee,jdbcType=VARCHAR},
+      cash_withdrawal_fee = #{cashWithdrawalFee,jdbcType=VARCHAR},
+      vip_fee = #{vipFee,jdbcType=VARCHAR},
+      transfer_fee = #{transferFee,jdbcType=VARCHAR},
+      mode_of_payment = #{modeOfPayment,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

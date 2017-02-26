@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.BankEvalCopyMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.BankEvalCopy" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="person_survival_scale" property="personSurvivalScale" jdbcType="DOUBLE" />
+    <result column="person_survival_scale_rate" property="personSurvivalScaleRate" jdbcType="DOUBLE" />
+    <result column="person_daily_product" property="personDailyProduct" jdbcType="DOUBLE" />
+    <result column="agency_survival_scale" property="agencySurvivalScale" jdbcType="DOUBLE" />
+    <result column="agency_survival_scale_rate" property="agencySurvivalScaleRate" jdbcType="DOUBLE" />
+    <result column="peer_survival_scale" property="peerSurvivalScale" jdbcType="DOUBLE" />
+    <result column="peer_survival_scale_rate" property="peerSurvivalScaleRate" jdbcType="DOUBLE" />
+    <result column="release_score" property="releaseScore" jdbcType="DOUBLE" />
+    <result column="person_expect" property="personExpect" jdbcType="DOUBLE" />
+    <result column="agency_expect" property="agencyExpect" jdbcType="DOUBLE" />
+    <result column="peer_expect" property="peerExpect" jdbcType="DOUBLE" />
+    <result column="value_type" property="valueType" jdbcType="DOUBLE" />
+    <result column="star_rate" property="starRate" jdbcType="DOUBLE" />
+    <result column="profit_score" property="profitScore" jdbcType="DOUBLE" />
+    <result column="profit_product" property="profitProduct" jdbcType="DOUBLE" />
+    <result column="risk_provision" property="riskProvision" jdbcType="DOUBLE" />
+    <result column="risk_manage" property="riskManage" jdbcType="DOUBLE" />
+    <result column="risk_adjust" property="riskAdjust" jdbcType="DOUBLE" />
+    <result column="risk_score" property="riskScore" jdbcType="DOUBLE" />
+    <result column="limit_type" property="limitType" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, bank_id, person_survival_scale, person_survival_scale_rate, person_daily_product, 
+    agency_survival_scale, agency_survival_scale_rate, peer_survival_scale, peer_survival_scale_rate, 
+    release_score, person_expect, agency_expect, peer_expect, value_type, star_rate, 
+    profit_score, profit_product, risk_provision, risk_manage, risk_adjust, risk_score, 
+    limit_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.BankEvalCopyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bank_eval_copy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bank_eval_copy
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bank_eval_copy
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.BankEvalCopyExample" >
+    delete from bank_eval_copy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.BankEvalCopy" >
+    insert into bank_eval_copy (id, bank_id, person_survival_scale, 
+      person_survival_scale_rate, person_daily_product, 
+      agency_survival_scale, agency_survival_scale_rate, 
+      peer_survival_scale, peer_survival_scale_rate, 
+      release_score, person_expect, agency_expect, 
+      peer_expect, value_type, star_rate, 
+      profit_score, profit_product, risk_provision, 
+      risk_manage, risk_adjust, risk_score, 
+      limit_type)
+    values (#{id,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER}, #{personSurvivalScale,jdbcType=DOUBLE}, 
+      #{personSurvivalScaleRate,jdbcType=DOUBLE}, #{personDailyProduct,jdbcType=DOUBLE}, 
+      #{agencySurvivalScale,jdbcType=DOUBLE}, #{agencySurvivalScaleRate,jdbcType=DOUBLE}, 
+      #{peerSurvivalScale,jdbcType=DOUBLE}, #{peerSurvivalScaleRate,jdbcType=DOUBLE}, 
+      #{releaseScore,jdbcType=DOUBLE}, #{personExpect,jdbcType=DOUBLE}, #{agencyExpect,jdbcType=DOUBLE}, 
+      #{peerExpect,jdbcType=DOUBLE}, #{valueType,jdbcType=DOUBLE}, #{starRate,jdbcType=DOUBLE}, 
+      #{profitScore,jdbcType=DOUBLE}, #{profitProduct,jdbcType=DOUBLE}, #{riskProvision,jdbcType=DOUBLE}, 
+      #{riskManage,jdbcType=DOUBLE}, #{riskAdjust,jdbcType=DOUBLE}, #{riskScore,jdbcType=DOUBLE}, 
+      #{limitType,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.BankEvalCopy" >
+    insert into bank_eval_copy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="personSurvivalScale != null" >
+        person_survival_scale,
+      </if>
+      <if test="personSurvivalScaleRate != null" >
+        person_survival_scale_rate,
+      </if>
+      <if test="personDailyProduct != null" >
+        person_daily_product,
+      </if>
+      <if test="agencySurvivalScale != null" >
+        agency_survival_scale,
+      </if>
+      <if test="agencySurvivalScaleRate != null" >
+        agency_survival_scale_rate,
+      </if>
+      <if test="peerSurvivalScale != null" >
+        peer_survival_scale,
+      </if>
+      <if test="peerSurvivalScaleRate != null" >
+        peer_survival_scale_rate,
+      </if>
+      <if test="releaseScore != null" >
+        release_score,
+      </if>
+      <if test="personExpect != null" >
+        person_expect,
+      </if>
+      <if test="agencyExpect != null" >
+        agency_expect,
+      </if>
+      <if test="peerExpect != null" >
+        peer_expect,
+      </if>
+      <if test="valueType != null" >
+        value_type,
+      </if>
+      <if test="starRate != null" >
+        star_rate,
+      </if>
+      <if test="profitScore != null" >
+        profit_score,
+      </if>
+      <if test="profitProduct != null" >
+        profit_product,
+      </if>
+      <if test="riskProvision != null" >
+        risk_provision,
+      </if>
+      <if test="riskManage != null" >
+        risk_manage,
+      </if>
+      <if test="riskAdjust != null" >
+        risk_adjust,
+      </if>
+      <if test="riskScore != null" >
+        risk_score,
+      </if>
+      <if test="limitType != null" >
+        limit_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="personSurvivalScale != null" >
+        #{personSurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="personSurvivalScaleRate != null" >
+        #{personSurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="personDailyProduct != null" >
+        #{personDailyProduct,jdbcType=DOUBLE},
+      </if>
+      <if test="agencySurvivalScale != null" >
+        #{agencySurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="agencySurvivalScaleRate != null" >
+        #{agencySurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="peerSurvivalScale != null" >
+        #{peerSurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="peerSurvivalScaleRate != null" >
+        #{peerSurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="releaseScore != null" >
+        #{releaseScore,jdbcType=DOUBLE},
+      </if>
+      <if test="personExpect != null" >
+        #{personExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="agencyExpect != null" >
+        #{agencyExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="peerExpect != null" >
+        #{peerExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="valueType != null" >
+        #{valueType,jdbcType=DOUBLE},
+      </if>
+      <if test="starRate != null" >
+        #{starRate,jdbcType=DOUBLE},
+      </if>
+      <if test="profitScore != null" >
+        #{profitScore,jdbcType=DOUBLE},
+      </if>
+      <if test="profitProduct != null" >
+        #{profitProduct,jdbcType=DOUBLE},
+      </if>
+      <if test="riskProvision != null" >
+        #{riskProvision,jdbcType=DOUBLE},
+      </if>
+      <if test="riskManage != null" >
+        #{riskManage,jdbcType=DOUBLE},
+      </if>
+      <if test="riskAdjust != null" >
+        #{riskAdjust,jdbcType=DOUBLE},
+      </if>
+      <if test="riskScore != null" >
+        #{riskScore,jdbcType=DOUBLE},
+      </if>
+      <if test="limitType != null" >
+        #{limitType,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.BankEvalCopyExample" resultType="java.lang.Integer" >
+    select count(*) from bank_eval_copy
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bank_eval_copy
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankId != null" >
+        bank_id = #{record.bankId,jdbcType=INTEGER},
+      </if>
+      <if test="record.personSurvivalScale != null" >
+        person_survival_scale = #{record.personSurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.personSurvivalScaleRate != null" >
+        person_survival_scale_rate = #{record.personSurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.personDailyProduct != null" >
+        person_daily_product = #{record.personDailyProduct,jdbcType=DOUBLE},
+      </if>
+      <if test="record.agencySurvivalScale != null" >
+        agency_survival_scale = #{record.agencySurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.agencySurvivalScaleRate != null" >
+        agency_survival_scale_rate = #{record.agencySurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.peerSurvivalScale != null" >
+        peer_survival_scale = #{record.peerSurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="record.peerSurvivalScaleRate != null" >
+        peer_survival_scale_rate = #{record.peerSurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.releaseScore != null" >
+        release_score = #{record.releaseScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.personExpect != null" >
+        person_expect = #{record.personExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="record.agencyExpect != null" >
+        agency_expect = #{record.agencyExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="record.peerExpect != null" >
+        peer_expect = #{record.peerExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="record.valueType != null" >
+        value_type = #{record.valueType,jdbcType=DOUBLE},
+      </if>
+      <if test="record.starRate != null" >
+        star_rate = #{record.starRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.profitScore != null" >
+        profit_score = #{record.profitScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.profitProduct != null" >
+        profit_product = #{record.profitProduct,jdbcType=DOUBLE},
+      </if>
+      <if test="record.riskProvision != null" >
+        risk_provision = #{record.riskProvision,jdbcType=DOUBLE},
+      </if>
+      <if test="record.riskManage != null" >
+        risk_manage = #{record.riskManage,jdbcType=DOUBLE},
+      </if>
+      <if test="record.riskAdjust != null" >
+        risk_adjust = #{record.riskAdjust,jdbcType=DOUBLE},
+      </if>
+      <if test="record.riskScore != null" >
+        risk_score = #{record.riskScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.limitType != null" >
+        limit_type = #{record.limitType,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bank_eval_copy
+    set id = #{record.id,jdbcType=INTEGER},
+      bank_id = #{record.bankId,jdbcType=INTEGER},
+      person_survival_scale = #{record.personSurvivalScale,jdbcType=DOUBLE},
+      person_survival_scale_rate = #{record.personSurvivalScaleRate,jdbcType=DOUBLE},
+      person_daily_product = #{record.personDailyProduct,jdbcType=DOUBLE},
+      agency_survival_scale = #{record.agencySurvivalScale,jdbcType=DOUBLE},
+      agency_survival_scale_rate = #{record.agencySurvivalScaleRate,jdbcType=DOUBLE},
+      peer_survival_scale = #{record.peerSurvivalScale,jdbcType=DOUBLE},
+      peer_survival_scale_rate = #{record.peerSurvivalScaleRate,jdbcType=DOUBLE},
+      release_score = #{record.releaseScore,jdbcType=DOUBLE},
+      person_expect = #{record.personExpect,jdbcType=DOUBLE},
+      agency_expect = #{record.agencyExpect,jdbcType=DOUBLE},
+      peer_expect = #{record.peerExpect,jdbcType=DOUBLE},
+      value_type = #{record.valueType,jdbcType=DOUBLE},
+      star_rate = #{record.starRate,jdbcType=DOUBLE},
+      profit_score = #{record.profitScore,jdbcType=DOUBLE},
+      profit_product = #{record.profitProduct,jdbcType=DOUBLE},
+      risk_provision = #{record.riskProvision,jdbcType=DOUBLE},
+      risk_manage = #{record.riskManage,jdbcType=DOUBLE},
+      risk_adjust = #{record.riskAdjust,jdbcType=DOUBLE},
+      risk_score = #{record.riskScore,jdbcType=DOUBLE},
+      limit_type = #{record.limitType,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.BankEvalCopy" >
+    update bank_eval_copy
+    <set >
+      <if test="bankId != null" >
+        bank_id = #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="personSurvivalScale != null" >
+        person_survival_scale = #{personSurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="personSurvivalScaleRate != null" >
+        person_survival_scale_rate = #{personSurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="personDailyProduct != null" >
+        person_daily_product = #{personDailyProduct,jdbcType=DOUBLE},
+      </if>
+      <if test="agencySurvivalScale != null" >
+        agency_survival_scale = #{agencySurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="agencySurvivalScaleRate != null" >
+        agency_survival_scale_rate = #{agencySurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="peerSurvivalScale != null" >
+        peer_survival_scale = #{peerSurvivalScale,jdbcType=DOUBLE},
+      </if>
+      <if test="peerSurvivalScaleRate != null" >
+        peer_survival_scale_rate = #{peerSurvivalScaleRate,jdbcType=DOUBLE},
+      </if>
+      <if test="releaseScore != null" >
+        release_score = #{releaseScore,jdbcType=DOUBLE},
+      </if>
+      <if test="personExpect != null" >
+        person_expect = #{personExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="agencyExpect != null" >
+        agency_expect = #{agencyExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="peerExpect != null" >
+        peer_expect = #{peerExpect,jdbcType=DOUBLE},
+      </if>
+      <if test="valueType != null" >
+        value_type = #{valueType,jdbcType=DOUBLE},
+      </if>
+      <if test="starRate != null" >
+        star_rate = #{starRate,jdbcType=DOUBLE},
+      </if>
+      <if test="profitScore != null" >
+        profit_score = #{profitScore,jdbcType=DOUBLE},
+      </if>
+      <if test="profitProduct != null" >
+        profit_product = #{profitProduct,jdbcType=DOUBLE},
+      </if>
+      <if test="riskProvision != null" >
+        risk_provision = #{riskProvision,jdbcType=DOUBLE},
+      </if>
+      <if test="riskManage != null" >
+        risk_manage = #{riskManage,jdbcType=DOUBLE},
+      </if>
+      <if test="riskAdjust != null" >
+        risk_adjust = #{riskAdjust,jdbcType=DOUBLE},
+      </if>
+      <if test="riskScore != null" >
+        risk_score = #{riskScore,jdbcType=DOUBLE},
+      </if>
+      <if test="limitType != null" >
+        limit_type = #{limitType,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.BankEvalCopy" >
+    update bank_eval_copy
+    set bank_id = #{bankId,jdbcType=INTEGER},
+      person_survival_scale = #{personSurvivalScale,jdbcType=DOUBLE},
+      person_survival_scale_rate = #{personSurvivalScaleRate,jdbcType=DOUBLE},
+      person_daily_product = #{personDailyProduct,jdbcType=DOUBLE},
+      agency_survival_scale = #{agencySurvivalScale,jdbcType=DOUBLE},
+      agency_survival_scale_rate = #{agencySurvivalScaleRate,jdbcType=DOUBLE},
+      peer_survival_scale = #{peerSurvivalScale,jdbcType=DOUBLE},
+      peer_survival_scale_rate = #{peerSurvivalScaleRate,jdbcType=DOUBLE},
+      release_score = #{releaseScore,jdbcType=DOUBLE},
+      person_expect = #{personExpect,jdbcType=DOUBLE},
+      agency_expect = #{agencyExpect,jdbcType=DOUBLE},
+      peer_expect = #{peerExpect,jdbcType=DOUBLE},
+      value_type = #{valueType,jdbcType=DOUBLE},
+      star_rate = #{starRate,jdbcType=DOUBLE},
+      profit_score = #{profitScore,jdbcType=DOUBLE},
+      profit_product = #{profitProduct,jdbcType=DOUBLE},
+      risk_provision = #{riskProvision,jdbcType=DOUBLE},
+      risk_manage = #{riskManage,jdbcType=DOUBLE},
+      risk_adjust = #{riskAdjust,jdbcType=DOUBLE},
+      risk_score = #{riskScore,jdbcType=DOUBLE},
+      limit_type = #{limitType,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

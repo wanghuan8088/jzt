@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.P2pLoanMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pLoan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p2p_id" property="p2pId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="INTEGER" />
+    <result column="interest_rate" property="interestRate" jdbcType="DOUBLE" />
+    <result column="start_time" property="startTime" jdbcType="DATE" />
+    <result column="limit_time" property="limitTime" jdbcType="INTEGER" />
+    <result column="schedule" property="schedule" jdbcType="DOUBLE" />
+    <result column="firstday_interest" property="firstdayInterest" jdbcType="DATE" />
+    <result column="mode_of_payment" property="modeOfPayment" jdbcType="VARCHAR" />
+    <result column="purchase_amount" property="purchaseAmount" jdbcType="INTEGER" />
+    <result column="limit_amount" property="limitAmount" jdbcType="INTEGER" />
+    <result column="dock_product" property="dockProduct" jdbcType="VARCHAR" />
+    <result column="protection_means" property="protectionMeans" jdbcType="VARCHAR" />
+    <result column="is_transfer" property="isTransfer" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="product_url" property="productUrl" jdbcType="VARCHAR" />
+    <result column="protocol" property="protocol" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.P2pLoan" extends="BaseResultMap" >
+    <result column="des" property="des" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, p2p_id, create_time, update_time, is_delete, name, amount, interest_rate, start_time, 
+    limit_time, schedule, firstday_interest, mode_of_payment, purchase_amount, limit_amount, 
+    dock_product, protection_means, is_transfer, state, product_url, protocol
+  </sql>
+  <sql id="Blob_Column_List" >
+    des
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.jzt.api.domain.P2pLoanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from p2p_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pLoanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from p2p_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from p2p_loan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p2p_loan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.P2pLoanExample" >
+    delete from p2p_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.P2pLoan" >
+    insert into p2p_loan (id, p2p_id, create_time, 
+      update_time, is_delete, name, 
+      amount, interest_rate, start_time, 
+      limit_time, schedule, firstday_interest, 
+      mode_of_payment, purchase_amount, limit_amount, 
+      dock_product, protection_means, is_transfer, 
+      state, product_url, protocol, 
+      des)
+    values (#{id,jdbcType=INTEGER}, #{p2pId,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+      #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=INTEGER}, #{interestRate,jdbcType=DOUBLE}, #{startTime,jdbcType=DATE}, 
+      #{limitTime,jdbcType=INTEGER}, #{schedule,jdbcType=DOUBLE}, #{firstdayInterest,jdbcType=DATE}, 
+      #{modeOfPayment,jdbcType=VARCHAR}, #{purchaseAmount,jdbcType=INTEGER}, #{limitAmount,jdbcType=INTEGER}, 
+      #{dockProduct,jdbcType=VARCHAR}, #{protectionMeans,jdbcType=VARCHAR}, #{isTransfer,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{productUrl,jdbcType=VARCHAR}, #{protocol,jdbcType=VARCHAR}, 
+      #{des,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.P2pLoan" >
+    insert into p2p_loan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="p2pId != null" >
+        p2p_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="interestRate != null" >
+        interest_rate,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="limitTime != null" >
+        limit_time,
+      </if>
+      <if test="schedule != null" >
+        schedule,
+      </if>
+      <if test="firstdayInterest != null" >
+        firstday_interest,
+      </if>
+      <if test="modeOfPayment != null" >
+        mode_of_payment,
+      </if>
+      <if test="purchaseAmount != null" >
+        purchase_amount,
+      </if>
+      <if test="limitAmount != null" >
+        limit_amount,
+      </if>
+      <if test="dockProduct != null" >
+        dock_product,
+      </if>
+      <if test="protectionMeans != null" >
+        protection_means,
+      </if>
+      <if test="isTransfer != null" >
+        is_transfer,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="productUrl != null" >
+        product_url,
+      </if>
+      <if test="protocol != null" >
+        protocol,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="p2pId != null" >
+        #{p2pId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null" >
+        #{interestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=DATE},
+      </if>
+      <if test="limitTime != null" >
+        #{limitTime,jdbcType=INTEGER},
+      </if>
+      <if test="schedule != null" >
+        #{schedule,jdbcType=DOUBLE},
+      </if>
+      <if test="firstdayInterest != null" >
+        #{firstdayInterest,jdbcType=DATE},
+      </if>
+      <if test="modeOfPayment != null" >
+        #{modeOfPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseAmount != null" >
+        #{purchaseAmount,jdbcType=INTEGER},
+      </if>
+      <if test="limitAmount != null" >
+        #{limitAmount,jdbcType=INTEGER},
+      </if>
+      <if test="dockProduct != null" >
+        #{dockProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="protectionMeans != null" >
+        #{protectionMeans,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransfer != null" >
+        #{isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="productUrl != null" >
+        #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null" >
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.P2pLoanExample" resultType="java.lang.Integer" >
+    select count(*) from p2p_loan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update p2p_loan
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.p2pId != null" >
+        p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=INTEGER},
+      </if>
+      <if test="record.interestRate != null" >
+        interest_rate = #{record.interestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.startTime != null" >
+        start_time = #{record.startTime,jdbcType=DATE},
+      </if>
+      <if test="record.limitTime != null" >
+        limit_time = #{record.limitTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.schedule != null" >
+        schedule = #{record.schedule,jdbcType=DOUBLE},
+      </if>
+      <if test="record.firstdayInterest != null" >
+        firstday_interest = #{record.firstdayInterest,jdbcType=DATE},
+      </if>
+      <if test="record.modeOfPayment != null" >
+        mode_of_payment = #{record.modeOfPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseAmount != null" >
+        purchase_amount = #{record.purchaseAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.limitAmount != null" >
+        limit_amount = #{record.limitAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.dockProduct != null" >
+        dock_product = #{record.dockProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protectionMeans != null" >
+        protection_means = #{record.protectionMeans,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isTransfer != null" >
+        is_transfer = #{record.isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.productUrl != null" >
+        product_url = #{record.productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocol != null" >
+        protocol = #{record.protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.des != null" >
+        des = #{record.des,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update p2p_loan
+    set id = #{record.id,jdbcType=INTEGER},
+      p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=INTEGER},
+      interest_rate = #{record.interestRate,jdbcType=DOUBLE},
+      start_time = #{record.startTime,jdbcType=DATE},
+      limit_time = #{record.limitTime,jdbcType=INTEGER},
+      schedule = #{record.schedule,jdbcType=DOUBLE},
+      firstday_interest = #{record.firstdayInterest,jdbcType=DATE},
+      mode_of_payment = #{record.modeOfPayment,jdbcType=VARCHAR},
+      purchase_amount = #{record.purchaseAmount,jdbcType=INTEGER},
+      limit_amount = #{record.limitAmount,jdbcType=INTEGER},
+      dock_product = #{record.dockProduct,jdbcType=VARCHAR},
+      protection_means = #{record.protectionMeans,jdbcType=VARCHAR},
+      is_transfer = #{record.isTransfer,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      product_url = #{record.productUrl,jdbcType=VARCHAR},
+      protocol = #{record.protocol,jdbcType=VARCHAR},
+      des = #{record.des,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update p2p_loan
+    set id = #{record.id,jdbcType=INTEGER},
+      p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=INTEGER},
+      interest_rate = #{record.interestRate,jdbcType=DOUBLE},
+      start_time = #{record.startTime,jdbcType=DATE},
+      limit_time = #{record.limitTime,jdbcType=INTEGER},
+      schedule = #{record.schedule,jdbcType=DOUBLE},
+      firstday_interest = #{record.firstdayInterest,jdbcType=DATE},
+      mode_of_payment = #{record.modeOfPayment,jdbcType=VARCHAR},
+      purchase_amount = #{record.purchaseAmount,jdbcType=INTEGER},
+      limit_amount = #{record.limitAmount,jdbcType=INTEGER},
+      dock_product = #{record.dockProduct,jdbcType=VARCHAR},
+      protection_means = #{record.protectionMeans,jdbcType=VARCHAR},
+      is_transfer = #{record.isTransfer,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      product_url = #{record.productUrl,jdbcType=VARCHAR},
+      protocol = #{record.protocol,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pLoan" >
+    update p2p_loan
+    <set >
+      <if test="p2pId != null" >
+        p2p_id = #{p2pId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="interestRate != null" >
+        interest_rate = #{interestRate,jdbcType=DOUBLE},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=DATE},
+      </if>
+      <if test="limitTime != null" >
+        limit_time = #{limitTime,jdbcType=INTEGER},
+      </if>
+      <if test="schedule != null" >
+        schedule = #{schedule,jdbcType=DOUBLE},
+      </if>
+      <if test="firstdayInterest != null" >
+        firstday_interest = #{firstdayInterest,jdbcType=DATE},
+      </if>
+      <if test="modeOfPayment != null" >
+        mode_of_payment = #{modeOfPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseAmount != null" >
+        purchase_amount = #{purchaseAmount,jdbcType=INTEGER},
+      </if>
+      <if test="limitAmount != null" >
+        limit_amount = #{limitAmount,jdbcType=INTEGER},
+      </if>
+      <if test="dockProduct != null" >
+        dock_product = #{dockProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="protectionMeans != null" >
+        protection_means = #{protectionMeans,jdbcType=VARCHAR},
+      </if>
+      <if test="isTransfer != null" >
+        is_transfer = #{isTransfer,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="productUrl != null" >
+        product_url = #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="protocol != null" >
+        protocol = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.P2pLoan" >
+    update p2p_loan
+    set p2p_id = #{p2pId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      interest_rate = #{interestRate,jdbcType=DOUBLE},
+      start_time = #{startTime,jdbcType=DATE},
+      limit_time = #{limitTime,jdbcType=INTEGER},
+      schedule = #{schedule,jdbcType=DOUBLE},
+      firstday_interest = #{firstdayInterest,jdbcType=DATE},
+      mode_of_payment = #{modeOfPayment,jdbcType=VARCHAR},
+      purchase_amount = #{purchaseAmount,jdbcType=INTEGER},
+      limit_amount = #{limitAmount,jdbcType=INTEGER},
+      dock_product = #{dockProduct,jdbcType=VARCHAR},
+      protection_means = #{protectionMeans,jdbcType=VARCHAR},
+      is_transfer = #{isTransfer,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      product_url = #{productUrl,jdbcType=VARCHAR},
+      protocol = #{protocol,jdbcType=VARCHAR},
+      des = #{des,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pLoan" >
+    update p2p_loan
+    set p2p_id = #{p2pId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      interest_rate = #{interestRate,jdbcType=DOUBLE},
+      start_time = #{startTime,jdbcType=DATE},
+      limit_time = #{limitTime,jdbcType=INTEGER},
+      schedule = #{schedule,jdbcType=DOUBLE},
+      firstday_interest = #{firstdayInterest,jdbcType=DATE},
+      mode_of_payment = #{modeOfPayment,jdbcType=VARCHAR},
+      purchase_amount = #{purchaseAmount,jdbcType=INTEGER},
+      limit_amount = #{limitAmount,jdbcType=INTEGER},
+      dock_product = #{dockProduct,jdbcType=VARCHAR},
+      protection_means = #{protectionMeans,jdbcType=VARCHAR},
+      is_transfer = #{isTransfer,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      product_url = #{productUrl,jdbcType=VARCHAR},
+      protocol = #{protocol,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
