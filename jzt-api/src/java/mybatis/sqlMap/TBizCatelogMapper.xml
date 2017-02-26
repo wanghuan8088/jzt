@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.TBizCatelogMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.TBizCatelog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="catelog" property="catelog" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="sectype" property="sectype" jdbcType="VARCHAR" />
+    <result column="biz_name" property="bizName" jdbcType="VARCHAR" />
+    <result column="biz_desc" property="bizDesc" jdbcType="VARCHAR" />
+    <result column="biz_attr" property="bizAttr" jdbcType="VARCHAR" />
+    <result column="biz_attr1" property="bizAttr1" jdbcType="VARCHAR" />
+    <result column="biz_attr2" property="bizAttr2" jdbcType="VARCHAR" />
+    <result column="biz_attr3" property="bizAttr3" jdbcType="VARCHAR" />
+    <result column="biz_pic" property="bizPic" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, owner_id, catelog, type, sectype, biz_name, biz_desc, biz_attr, biz_attr1, biz_attr2, 
+    biz_attr3, biz_pic, createtime, updatetime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.TBizCatelogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_biz_catelog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_biz_catelog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_biz_catelog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.TBizCatelogExample" >
+    delete from t_biz_catelog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.TBizCatelog" >
+    insert into t_biz_catelog (id, owner_id, catelog, 
+      type, sectype, biz_name, 
+      biz_desc, biz_attr, biz_attr1, 
+      biz_attr2, biz_attr3, biz_pic, 
+      createtime, updatetime)
+    values (#{id,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, #{catelog,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{sectype,jdbcType=VARCHAR}, #{bizName,jdbcType=VARCHAR}, 
+      #{bizDesc,jdbcType=VARCHAR}, #{bizAttr,jdbcType=VARCHAR}, #{bizAttr1,jdbcType=VARCHAR}, 
+      #{bizAttr2,jdbcType=VARCHAR}, #{bizAttr3,jdbcType=VARCHAR}, #{bizPic,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.TBizCatelog" >
+    insert into t_biz_catelog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="catelog != null" >
+        catelog,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="sectype != null" >
+        sectype,
+      </if>
+      <if test="bizName != null" >
+        biz_name,
+      </if>
+      <if test="bizDesc != null" >
+        biz_desc,
+      </if>
+      <if test="bizAttr != null" >
+        biz_attr,
+      </if>
+      <if test="bizAttr1 != null" >
+        biz_attr1,
+      </if>
+      <if test="bizAttr2 != null" >
+        biz_attr2,
+      </if>
+      <if test="bizAttr3 != null" >
+        biz_attr3,
+      </if>
+      <if test="bizPic != null" >
+        biz_pic,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="updatetime != null" >
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="catelog != null" >
+        #{catelog,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sectype != null" >
+        #{sectype,jdbcType=VARCHAR},
+      </if>
+      <if test="bizName != null" >
+        #{bizName,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDesc != null" >
+        #{bizDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr != null" >
+        #{bizAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr1 != null" >
+        #{bizAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr2 != null" >
+        #{bizAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr3 != null" >
+        #{bizAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="bizPic != null" >
+        #{bizPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.TBizCatelogExample" resultType="java.lang.Integer" >
+    select count(*) from t_biz_catelog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_biz_catelog
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ownerId != null" >
+        owner_id = #{record.ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.catelog != null" >
+        catelog = #{record.catelog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sectype != null" >
+        sectype = #{record.sectype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizName != null" >
+        biz_name = #{record.bizName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizDesc != null" >
+        biz_desc = #{record.bizDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizAttr != null" >
+        biz_attr = #{record.bizAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizAttr1 != null" >
+        biz_attr1 = #{record.bizAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizAttr2 != null" >
+        biz_attr2 = #{record.bizAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizAttr3 != null" >
+        biz_attr3 = #{record.bizAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bizPic != null" >
+        biz_pic = #{record.bizPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_biz_catelog
+    set id = #{record.id,jdbcType=INTEGER},
+      owner_id = #{record.ownerId,jdbcType=INTEGER},
+      catelog = #{record.catelog,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      sectype = #{record.sectype,jdbcType=VARCHAR},
+      biz_name = #{record.bizName,jdbcType=VARCHAR},
+      biz_desc = #{record.bizDesc,jdbcType=VARCHAR},
+      biz_attr = #{record.bizAttr,jdbcType=VARCHAR},
+      biz_attr1 = #{record.bizAttr1,jdbcType=VARCHAR},
+      biz_attr2 = #{record.bizAttr2,jdbcType=VARCHAR},
+      biz_attr3 = #{record.bizAttr3,jdbcType=VARCHAR},
+      biz_pic = #{record.bizPic,jdbcType=VARCHAR},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      updatetime = #{record.updatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.TBizCatelog" >
+    update t_biz_catelog
+    <set >
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="catelog != null" >
+        catelog = #{catelog,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sectype != null" >
+        sectype = #{sectype,jdbcType=VARCHAR},
+      </if>
+      <if test="bizName != null" >
+        biz_name = #{bizName,jdbcType=VARCHAR},
+      </if>
+      <if test="bizDesc != null" >
+        biz_desc = #{bizDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr != null" >
+        biz_attr = #{bizAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr1 != null" >
+        biz_attr1 = #{bizAttr1,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr2 != null" >
+        biz_attr2 = #{bizAttr2,jdbcType=VARCHAR},
+      </if>
+      <if test="bizAttr3 != null" >
+        biz_attr3 = #{bizAttr3,jdbcType=VARCHAR},
+      </if>
+      <if test="bizPic != null" >
+        biz_pic = #{bizPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.TBizCatelog" >
+    update t_biz_catelog
+    set owner_id = #{ownerId,jdbcType=INTEGER},
+      catelog = #{catelog,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      sectype = #{sectype,jdbcType=VARCHAR},
+      biz_name = #{bizName,jdbcType=VARCHAR},
+      biz_desc = #{bizDesc,jdbcType=VARCHAR},
+      biz_attr = #{bizAttr,jdbcType=VARCHAR},
+      biz_attr1 = #{bizAttr1,jdbcType=VARCHAR},
+      biz_attr2 = #{bizAttr2,jdbcType=VARCHAR},
+      biz_attr3 = #{bizAttr3,jdbcType=VARCHAR},
+      biz_pic = #{bizPic,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
