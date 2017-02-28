@@ -8,7 +8,6 @@
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="source_site" property="sourceSite" jdbcType="VARCHAR" />
-    <result column="indexed" property="indexed" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.NewsWithBLOBs" extends="BaseResultMap" >
     <result column="abstracts" property="abstracts" jdbcType="LONGVARCHAR" />
@@ -73,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    nId, title, author, category_id, create_date, source_site, indexed
+    nId, title, author, category_id, create_date, source_site
   </sql>
   <sql id="Blob_Column_List" >
     abstracts, content
@@ -129,12 +128,10 @@
   <insert id="insert" parameterType="com.jzt.api.domain.NewsWithBLOBs" >
     insert into news (nId, title, author, 
       category_id, create_date, source_site, 
-      indexed, abstracts, content
-      )
+      abstracts, content)
     values (#{nid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{categoryId,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{sourceSite,jdbcType=VARCHAR}, 
-      #{indexed,jdbcType=INTEGER}, #{abstracts,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{abstracts,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.NewsWithBLOBs" >
     insert into news
@@ -156,9 +153,6 @@
       </if>
       <if test="sourceSite != null" >
         source_site,
-      </if>
-      <if test="indexed != null" >
-        indexed,
       </if>
       <if test="abstracts != null" >
         abstracts,
@@ -185,9 +179,6 @@
       </if>
       <if test="sourceSite != null" >
         #{sourceSite,jdbcType=VARCHAR},
-      </if>
-      <if test="indexed != null" >
-        #{indexed,jdbcType=INTEGER},
       </if>
       <if test="abstracts != null" >
         #{abstracts,jdbcType=LONGVARCHAR},
@@ -224,9 +215,6 @@
       <if test="record.sourceSite != null" >
         source_site = #{record.sourceSite,jdbcType=VARCHAR},
       </if>
-      <if test="record.indexed != null" >
-        indexed = #{record.indexed,jdbcType=INTEGER},
-      </if>
       <if test="record.abstracts != null" >
         abstracts = #{record.abstracts,jdbcType=LONGVARCHAR},
       </if>
@@ -246,7 +234,6 @@
       category_id = #{record.categoryId,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       source_site = #{record.sourceSite,jdbcType=VARCHAR},
-      indexed = #{record.indexed,jdbcType=INTEGER},
       abstracts = #{record.abstracts,jdbcType=LONGVARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -260,8 +247,7 @@
       author = #{record.author,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      source_site = #{record.sourceSite,jdbcType=VARCHAR},
-      indexed = #{record.indexed,jdbcType=INTEGER}
+      source_site = #{record.sourceSite,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -284,9 +270,6 @@
       <if test="sourceSite != null" >
         source_site = #{sourceSite,jdbcType=VARCHAR},
       </if>
-      <if test="indexed != null" >
-        indexed = #{indexed,jdbcType=INTEGER},
-      </if>
       <if test="abstracts != null" >
         abstracts = #{abstracts,jdbcType=LONGVARCHAR},
       </if>
@@ -303,7 +286,6 @@
       category_id = #{categoryId,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       source_site = #{sourceSite,jdbcType=VARCHAR},
-      indexed = #{indexed,jdbcType=INTEGER},
       abstracts = #{abstracts,jdbcType=LONGVARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where nId = #{nid,jdbcType=INTEGER}
@@ -314,8 +296,7 @@
       author = #{author,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
-      source_site = #{sourceSite,jdbcType=VARCHAR},
-      indexed = #{indexed,jdbcType=INTEGER}
+      source_site = #{sourceSite,jdbcType=VARCHAR}
     where nId = #{nid,jdbcType=INTEGER}
   </update>
 </mapper>

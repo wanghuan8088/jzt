@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.P2pThirdEvalMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pThirdEval" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pId" property="pid" jdbcType="INTEGER" />
+    <result column="development_rate" property="developmentRate" jdbcType="REAL" />
+    <result column="mobility" property="mobility" jdbcType="REAL" />
+    <result column="turnover" property="turnover" jdbcType="REAL" />
+    <result column="benefit" property="benefit" jdbcType="REAL" />
+    <result column="dispersion" property="dispersion" jdbcType="REAL" />
+    <result column="update_date" property="updateDate" jdbcType="DATE" />
+    <result column="popularity" property="popularity" jdbcType="REAL" />
+    <result column="transparency" property="transparency" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pId, development_rate, mobility, turnover, benefit, dispersion, update_date, 
+    popularity, transparency
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pThirdEvalExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from p2p_third_eval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_third_eval
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p2p_third_eval
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.P2pThirdEvalExample" >
+    delete from p2p_third_eval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.P2pThirdEval" >
+    insert into p2p_third_eval (id, pId, development_rate, 
+      mobility, turnover, benefit, 
+      dispersion, update_date, popularity, 
+      transparency)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{developmentRate,jdbcType=REAL}, 
+      #{mobility,jdbcType=REAL}, #{turnover,jdbcType=REAL}, #{benefit,jdbcType=REAL}, 
+      #{dispersion,jdbcType=REAL}, #{updateDate,jdbcType=DATE}, #{popularity,jdbcType=REAL}, 
+      #{transparency,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.P2pThirdEval" >
+    insert into p2p_third_eval
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pId,
+      </if>
+      <if test="developmentRate != null" >
+        development_rate,
+      </if>
+      <if test="mobility != null" >
+        mobility,
+      </if>
+      <if test="turnover != null" >
+        turnover,
+      </if>
+      <if test="benefit != null" >
+        benefit,
+      </if>
+      <if test="dispersion != null" >
+        dispersion,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="popularity != null" >
+        popularity,
+      </if>
+      <if test="transparency != null" >
+        transparency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="developmentRate != null" >
+        #{developmentRate,jdbcType=REAL},
+      </if>
+      <if test="mobility != null" >
+        #{mobility,jdbcType=REAL},
+      </if>
+      <if test="turnover != null" >
+        #{turnover,jdbcType=REAL},
+      </if>
+      <if test="benefit != null" >
+        #{benefit,jdbcType=REAL},
+      </if>
+      <if test="dispersion != null" >
+        #{dispersion,jdbcType=REAL},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="popularity != null" >
+        #{popularity,jdbcType=REAL},
+      </if>
+      <if test="transparency != null" >
+        #{transparency,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.P2pThirdEvalExample" resultType="java.lang.Integer" >
+    select count(*) from p2p_third_eval
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update p2p_third_eval
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null" >
+        pId = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.developmentRate != null" >
+        development_rate = #{record.developmentRate,jdbcType=REAL},
+      </if>
+      <if test="record.mobility != null" >
+        mobility = #{record.mobility,jdbcType=REAL},
+      </if>
+      <if test="record.turnover != null" >
+        turnover = #{record.turnover,jdbcType=REAL},
+      </if>
+      <if test="record.benefit != null" >
+        benefit = #{record.benefit,jdbcType=REAL},
+      </if>
+      <if test="record.dispersion != null" >
+        dispersion = #{record.dispersion,jdbcType=REAL},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=DATE},
+      </if>
+      <if test="record.popularity != null" >
+        popularity = #{record.popularity,jdbcType=REAL},
+      </if>
+      <if test="record.transparency != null" >
+        transparency = #{record.transparency,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update p2p_third_eval
+    set id = #{record.id,jdbcType=INTEGER},
+      pId = #{record.pid,jdbcType=INTEGER},
+      development_rate = #{record.developmentRate,jdbcType=REAL},
+      mobility = #{record.mobility,jdbcType=REAL},
+      turnover = #{record.turnover,jdbcType=REAL},
+      benefit = #{record.benefit,jdbcType=REAL},
+      dispersion = #{record.dispersion,jdbcType=REAL},
+      update_date = #{record.updateDate,jdbcType=DATE},
+      popularity = #{record.popularity,jdbcType=REAL},
+      transparency = #{record.transparency,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pThirdEval" >
+    update p2p_third_eval
+    <set >
+      <if test="pid != null" >
+        pId = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="developmentRate != null" >
+        development_rate = #{developmentRate,jdbcType=REAL},
+      </if>
+      <if test="mobility != null" >
+        mobility = #{mobility,jdbcType=REAL},
+      </if>
+      <if test="turnover != null" >
+        turnover = #{turnover,jdbcType=REAL},
+      </if>
+      <if test="benefit != null" >
+        benefit = #{benefit,jdbcType=REAL},
+      </if>
+      <if test="dispersion != null" >
+        dispersion = #{dispersion,jdbcType=REAL},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="popularity != null" >
+        popularity = #{popularity,jdbcType=REAL},
+      </if>
+      <if test="transparency != null" >
+        transparency = #{transparency,jdbcType=REAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pThirdEval" >
+    update p2p_third_eval
+    set pId = #{pid,jdbcType=INTEGER},
+      development_rate = #{developmentRate,jdbcType=REAL},
+      mobility = #{mobility,jdbcType=REAL},
+      turnover = #{turnover,jdbcType=REAL},
+      benefit = #{benefit,jdbcType=REAL},
+      dispersion = #{dispersion,jdbcType=REAL},
+      update_date = #{updateDate,jdbcType=DATE},
+      popularity = #{popularity,jdbcType=REAL},
+      transparency = #{transparency,jdbcType=REAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

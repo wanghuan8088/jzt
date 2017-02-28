@@ -11,6 +11,8 @@ public class BankPlat {
 
     private Integer isListed;
 
+    private String code;
+
     private Date createTime;
 
     private Date updateTime;
@@ -47,6 +49,14 @@ public class BankPlat {
 
     public void setIsListed(Integer isListed) {
         this.isListed = isListed;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Date getCreateTime() {

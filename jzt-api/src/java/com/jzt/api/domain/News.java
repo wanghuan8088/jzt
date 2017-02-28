@@ -15,8 +15,6 @@ public class News {
 
     private String sourceSite;
 
-    private Integer indexed;
-
     public Integer getNid() {
         return nid;
     }
@@ -63,13 +61,5 @@ public class News {
 
     public void setSourceSite(String sourceSite) {
         this.sourceSite = sourceSite;
-    }
-
-    public Integer getIndexed() {
-        return indexed;
-    }
-
-    public void setIndexed(Integer indexed) {
-        this.indexed = indexed;
     }
 }

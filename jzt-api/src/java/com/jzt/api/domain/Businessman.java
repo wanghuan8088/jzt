@@ -5,7 +5,7 @@ import java.util.Date;
 public class Businessman {
     private Integer id;
 
-    private Integer comStruId;
+    private Integer cid;
 
     private String name;
 
@@ -59,12 +59,12 @@ public class Businessman {
         this.id = id;
     }
 
-    public Integer getComStruId() {
-        return comStruId;
+    public Integer getCid() {
+        return cid;
     }
 
-    public void setComStruId(Integer comStruId) {
-        this.comStruId = comStruId;
+    public void setCid(Integer cid) {
+        this.cid = cid;
     }
 
     public String getName() {

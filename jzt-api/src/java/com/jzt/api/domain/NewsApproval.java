@@ -15,6 +15,8 @@ public class NewsApproval {
 
     private Integer clickTimes;
 
+    private Integer indexed;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class NewsApproval {
 
     public void setClickTimes(Integer clickTimes) {
         this.clickTimes = clickTimes;
+    }
+
+    public Integer getIndexed() {
+        return indexed;
+    }
+
+    public void setIndexed(Integer indexed) {
+        this.indexed = indexed;
     }
 }

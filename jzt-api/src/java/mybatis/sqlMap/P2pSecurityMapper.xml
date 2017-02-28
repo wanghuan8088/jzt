@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jzt.api.dao.P2pSecurityMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pSecurity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p2p_id" property="p2pId" jdbcType="INTEGER" />
+    <result column="tender_security" property="tenderSecurity" jdbcType="VARCHAR" />
+    <result column="security_mode" property="securityMode" jdbcType="VARCHAR" />
+    <result column="security_mode_url" property="securityModeUrl" jdbcType="VARCHAR" />
+    <result column="guarantee_institutions" property="guaranteeInstitutions" jdbcType="VARCHAR" />
+    <result column="risk_reserve_init" property="riskReserveInit" jdbcType="DOUBLE" />
+    <result column="trust_funds" property="trustFunds" jdbcType="VARCHAR" />
+    <result column="custodian_institution" property="custodianInstitution" jdbcType="VARCHAR" />
+    <result column="trust_funds_tuo" property="trustFundsTuo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.P2pSecurityWithBLOBs" extends="BaseResultMap" >
+    <result column="emergency_funds" property="emergencyFunds" jdbcType="LONGVARCHAR" />
+    <result column="risk_reserve_rule" property="riskReserveRule" jdbcType="LONGVARCHAR" />
+    <result column="risk_reserve_institution" property="riskReserveInstitution" jdbcType="LONGVARCHAR" />
+    <result column="third_payment_institution" property="thirdPaymentInstitution" jdbcType="LONGVARCHAR" />
+    <result column="custodian_institution_tuo" property="custodianInstitutionTuo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, p2p_id, tender_security, security_mode, security_mode_url, guarantee_institutions, 
+    risk_reserve_init, trust_funds, custodian_institution, trust_funds_tuo, create_time, 
+    update_time, is_delete
+  </sql>
+  <sql id="Blob_Column_List" >
+    emergency_funds, risk_reserve_rule, risk_reserve_institution, third_payment_institution, 
+    custodian_institution_tuo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.jzt.api.domain.P2pSecurityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from p2p_security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pSecurityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from p2p_security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from p2p_security
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p2p_security
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.P2pSecurityExample" >
+    delete from p2p_security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
+    insert into p2p_security (id, p2p_id, tender_security, 
+      security_mode, security_mode_url, guarantee_institutions, 
+      risk_reserve_init, trust_funds, custodian_institution, 
+      trust_funds_tuo, create_time, update_time, 
+      is_delete, emergency_funds, risk_reserve_rule, 
+      risk_reserve_institution, third_payment_institution, 
+      custodian_institution_tuo)
+    values (#{id,jdbcType=INTEGER}, #{p2pId,jdbcType=INTEGER}, #{tenderSecurity,jdbcType=VARCHAR}, 
+      #{securityMode,jdbcType=VARCHAR}, #{securityModeUrl,jdbcType=VARCHAR}, #{guaranteeInstitutions,jdbcType=VARCHAR}, 
+      #{riskReserveInit,jdbcType=DOUBLE}, #{trustFunds,jdbcType=VARCHAR}, #{custodianInstitution,jdbcType=VARCHAR}, 
+      #{trustFundsTuo,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{isDelete,jdbcType=INTEGER}, #{emergencyFunds,jdbcType=LONGVARCHAR}, #{riskReserveRule,jdbcType=LONGVARCHAR}, 
+      #{riskReserveInstitution,jdbcType=LONGVARCHAR}, #{thirdPaymentInstitution,jdbcType=LONGVARCHAR}, 
+      #{custodianInstitutionTuo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
+    insert into p2p_security
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="p2pId != null" >
+        p2p_id,
+      </if>
+      <if test="tenderSecurity != null" >
+        tender_security,
+      </if>
+      <if test="securityMode != null" >
+        security_mode,
+      </if>
+      <if test="securityModeUrl != null" >
+        security_mode_url,
+      </if>
+      <if test="guaranteeInstitutions != null" >
+        guarantee_institutions,
+      </if>
+      <if test="riskReserveInit != null" >
+        risk_reserve_init,
+      </if>
+      <if test="trustFunds != null" >
+        trust_funds,
+      </if>
+      <if test="custodianInstitution != null" >
+        custodian_institution,
+      </if>
+      <if test="trustFundsTuo != null" >
+        trust_funds_tuo,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="emergencyFunds != null" >
+        emergency_funds,
+      </if>
+      <if test="riskReserveRule != null" >
+        risk_reserve_rule,
+      </if>
+      <if test="riskReserveInstitution != null" >
+        risk_reserve_institution,
+      </if>
+      <if test="thirdPaymentInstitution != null" >
+        third_payment_institution,
+      </if>
+      <if test="custodianInstitutionTuo != null" >
+        custodian_institution_tuo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="p2pId != null" >
+        #{p2pId,jdbcType=INTEGER},
+      </if>
+      <if test="tenderSecurity != null" >
+        #{tenderSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="securityMode != null" >
+        #{securityMode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityModeUrl != null" >
+        #{securityModeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeInstitutions != null" >
+        #{guaranteeInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="riskReserveInit != null" >
+        #{riskReserveInit,jdbcType=DOUBLE},
+      </if>
+      <if test="trustFunds != null" >
+        #{trustFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="custodianInstitution != null" >
+        #{custodianInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="trustFundsTuo != null" >
+        #{trustFundsTuo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyFunds != null" >
+        #{emergencyFunds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="riskReserveRule != null" >
+        #{riskReserveRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="riskReserveInstitution != null" >
+        #{riskReserveInstitution,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thirdPaymentInstitution != null" >
+        #{thirdPaymentInstitution,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="custodianInstitutionTuo != null" >
+        #{custodianInstitutionTuo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jzt.api.domain.P2pSecurityExample" resultType="java.lang.Integer" >
+    select count(*) from p2p_security
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update p2p_security
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.p2pId != null" >
+        p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tenderSecurity != null" >
+        tender_security = #{record.tenderSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityMode != null" >
+        security_mode = #{record.securityMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.securityModeUrl != null" >
+        security_mode_url = #{record.securityModeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guaranteeInstitutions != null" >
+        guarantee_institutions = #{record.guaranteeInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.riskReserveInit != null" >
+        risk_reserve_init = #{record.riskReserveInit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.trustFunds != null" >
+        trust_funds = #{record.trustFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custodianInstitution != null" >
+        custodian_institution = #{record.custodianInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trustFundsTuo != null" >
+        trust_funds_tuo = #{record.trustFundsTuo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=DATE},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.emergencyFunds != null" >
+        emergency_funds = #{record.emergencyFunds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.riskReserveRule != null" >
+        risk_reserve_rule = #{record.riskReserveRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.riskReserveInstitution != null" >
+        risk_reserve_institution = #{record.riskReserveInstitution,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.thirdPaymentInstitution != null" >
+        third_payment_institution = #{record.thirdPaymentInstitution,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.custodianInstitutionTuo != null" >
+        custodian_institution_tuo = #{record.custodianInstitutionTuo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update p2p_security
+    set id = #{record.id,jdbcType=INTEGER},
+      p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      tender_security = #{record.tenderSecurity,jdbcType=VARCHAR},
+      security_mode = #{record.securityMode,jdbcType=VARCHAR},
+      security_mode_url = #{record.securityModeUrl,jdbcType=VARCHAR},
+      guarantee_institutions = #{record.guaranteeInstitutions,jdbcType=VARCHAR},
+      risk_reserve_init = #{record.riskReserveInit,jdbcType=DOUBLE},
+      trust_funds = #{record.trustFunds,jdbcType=VARCHAR},
+      custodian_institution = #{record.custodianInstitution,jdbcType=VARCHAR},
+      trust_funds_tuo = #{record.trustFundsTuo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      emergency_funds = #{record.emergencyFunds,jdbcType=LONGVARCHAR},
+      risk_reserve_rule = #{record.riskReserveRule,jdbcType=LONGVARCHAR},
+      risk_reserve_institution = #{record.riskReserveInstitution,jdbcType=LONGVARCHAR},
+      third_payment_institution = #{record.thirdPaymentInstitution,jdbcType=LONGVARCHAR},
+      custodian_institution_tuo = #{record.custodianInstitutionTuo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update p2p_security
+    set id = #{record.id,jdbcType=INTEGER},
+      p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      tender_security = #{record.tenderSecurity,jdbcType=VARCHAR},
+      security_mode = #{record.securityMode,jdbcType=VARCHAR},
+      security_mode_url = #{record.securityModeUrl,jdbcType=VARCHAR},
+      guarantee_institutions = #{record.guaranteeInstitutions,jdbcType=VARCHAR},
+      risk_reserve_init = #{record.riskReserveInit,jdbcType=DOUBLE},
+      trust_funds = #{record.trustFunds,jdbcType=VARCHAR},
+      custodian_institution = #{record.custodianInstitution,jdbcType=VARCHAR},
+      trust_funds_tuo = #{record.trustFundsTuo,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      update_time = #{record.updateTime,jdbcType=DATE},
+      is_delete = #{record.isDelete,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
+    update p2p_security
+    <set >
+      <if test="p2pId != null" >
+        p2p_id = #{p2pId,jdbcType=INTEGER},
+      </if>
+      <if test="tenderSecurity != null" >
+        tender_security = #{tenderSecurity,jdbcType=VARCHAR},
+      </if>
+      <if test="securityMode != null" >
+        security_mode = #{securityMode,jdbcType=VARCHAR},
+      </if>
+      <if test="securityModeUrl != null" >
+        security_mode_url = #{securityModeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="guaranteeInstitutions != null" >
+        guarantee_institutions = #{guaranteeInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="riskReserveInit != null" >
+        risk_reserve_init = #{riskReserveInit,jdbcType=DOUBLE},
+      </if>
+      <if test="trustFunds != null" >
+        trust_funds = #{trustFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="custodianInstitution != null" >
+        custodian_institution = #{custodianInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="trustFundsTuo != null" >
+        trust_funds_tuo = #{trustFundsTuo,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyFunds != null" >
+        emergency_funds = #{emergencyFunds,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="riskReserveRule != null" >
+        risk_reserve_rule = #{riskReserveRule,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="riskReserveInstitution != null" >
+        risk_reserve_institution = #{riskReserveInstitution,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="thirdPaymentInstitution != null" >
+        third_payment_institution = #{thirdPaymentInstitution,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="custodianInstitutionTuo != null" >
+        custodian_institution_tuo = #{custodianInstitutionTuo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
+    update p2p_security
+    set p2p_id = #{p2pId,jdbcType=INTEGER},
+      tender_security = #{tenderSecurity,jdbcType=VARCHAR},
+      security_mode = #{securityMode,jdbcType=VARCHAR},
+      security_mode_url = #{securityModeUrl,jdbcType=VARCHAR},
+      guarantee_institutions = #{guaranteeInstitutions,jdbcType=VARCHAR},
+      risk_reserve_init = #{riskReserveInit,jdbcType=DOUBLE},
+      trust_funds = #{trustFunds,jdbcType=VARCHAR},
+      custodian_institution = #{custodianInstitution,jdbcType=VARCHAR},
+      trust_funds_tuo = #{trustFundsTuo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      emergency_funds = #{emergencyFunds,jdbcType=LONGVARCHAR},
+      risk_reserve_rule = #{riskReserveRule,jdbcType=LONGVARCHAR},
+      risk_reserve_institution = #{riskReserveInstitution,jdbcType=LONGVARCHAR},
+      third_payment_institution = #{thirdPaymentInstitution,jdbcType=LONGVARCHAR},
+      custodian_institution_tuo = #{custodianInstitutionTuo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pSecurity" >
+    update p2p_security
+    set p2p_id = #{p2pId,jdbcType=INTEGER},
+      tender_security = #{tenderSecurity,jdbcType=VARCHAR},
+      security_mode = #{securityMode,jdbcType=VARCHAR},
+      security_mode_url = #{securityModeUrl,jdbcType=VARCHAR},
+      guarantee_institutions = #{guaranteeInstitutions,jdbcType=VARCHAR},
+      risk_reserve_init = #{riskReserveInit,jdbcType=DOUBLE},
+      trust_funds = #{trustFunds,jdbcType=VARCHAR},
+      custodian_institution = #{custodianInstitution,jdbcType=VARCHAR},
+      trust_funds_tuo = #{trustFundsTuo,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

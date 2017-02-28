@@ -6,6 +6,7 @@
     <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="is_listed" property="isListed" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="DATE" />
     <result column="update_time" property="updateTime" jdbcType="DATE" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, plat_id, type, is_listed, create_time, update_time, is_delete
+    id, plat_id, type, is_listed, code, create_time, update_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.BankPlatExample" >
     select
@@ -103,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.BankPlat" >
     insert into bank_plat (id, plat_id, type, 
-      is_listed, create_time, update_time, 
-      is_delete)
+      is_listed, code, create_time, 
+      update_time, is_delete)
     values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
-      #{isListed,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
-      #{isDelete,jdbcType=INTEGER})
+      #{isListed,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.BankPlat" >
     insert into bank_plat
@@ -123,6 +124,9 @@
       </if>
       <if test="isListed != null" >
         is_listed,
+      </if>
+      <if test="code != null" >
+        code,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -146,6 +150,9 @@
       </if>
       <if test="isListed != null" >
         #{isListed,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=DATE},
@@ -179,6 +186,9 @@
       <if test="record.isListed != null" >
         is_listed = #{record.isListed,jdbcType=INTEGER},
       </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=DATE},
       </if>
@@ -199,6 +209,7 @@
       plat_id = #{record.platId,jdbcType=INTEGER},
       type = #{record.type,jdbcType=INTEGER},
       is_listed = #{record.isListed,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=DATE},
       update_time = #{record.updateTime,jdbcType=DATE},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
@@ -218,6 +229,9 @@
       <if test="isListed != null" >
         is_listed = #{isListed,jdbcType=INTEGER},
       </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=DATE},
       </if>
@@ -235,6 +249,7 @@
     set plat_id = #{platId,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
       is_listed = #{isListed,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=DATE},
       update_time = #{updateTime,jdbcType=DATE},
       is_delete = #{isDelete,jdbcType=INTEGER}

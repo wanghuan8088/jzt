@@ -192,63 +192,63 @@ public class BusinessmanExample {
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdIsNull() {
-            addCriterion("com_stru_id is null");
+        public Criteria andCidIsNull() {
+            addCriterion("cid is null");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdIsNotNull() {
-            addCriterion("com_stru_id is not null");
+        public Criteria andCidIsNotNull() {
+            addCriterion("cid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdEqualTo(Integer value) {
-            addCriterion("com_stru_id =", value, "comStruId");
+        public Criteria andCidEqualTo(Integer value) {
+            addCriterion("cid =", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdNotEqualTo(Integer value) {
-            addCriterion("com_stru_id <>", value, "comStruId");
+        public Criteria andCidNotEqualTo(Integer value) {
+            addCriterion("cid <>", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdGreaterThan(Integer value) {
-            addCriterion("com_stru_id >", value, "comStruId");
+        public Criteria andCidGreaterThan(Integer value) {
+            addCriterion("cid >", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("com_stru_id >=", value, "comStruId");
+        public Criteria andCidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cid >=", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdLessThan(Integer value) {
-            addCriterion("com_stru_id <", value, "comStruId");
+        public Criteria andCidLessThan(Integer value) {
+            addCriterion("cid <", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdLessThanOrEqualTo(Integer value) {
-            addCriterion("com_stru_id <=", value, "comStruId");
+        public Criteria andCidLessThanOrEqualTo(Integer value) {
+            addCriterion("cid <=", value, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdIn(List<Integer> values) {
-            addCriterion("com_stru_id in", values, "comStruId");
+        public Criteria andCidIn(List<Integer> values) {
+            addCriterion("cid in", values, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdNotIn(List<Integer> values) {
-            addCriterion("com_stru_id not in", values, "comStruId");
+        public Criteria andCidNotIn(List<Integer> values) {
+            addCriterion("cid not in", values, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdBetween(Integer value1, Integer value2) {
-            addCriterion("com_stru_id between", value1, value2, "comStruId");
+        public Criteria andCidBetween(Integer value1, Integer value2) {
+            addCriterion("cid between", value1, value2, "cid");
             return (Criteria) this;
         }
 
-        public Criteria andComStruIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("com_stru_id not between", value1, value2, "comStruId");
+        public Criteria andCidNotBetween(Integer value1, Integer value2) {
+            addCriterion("cid not between", value1, value2, "cid");
             return (Criteria) this;
         }
 

@@ -523,6 +523,66 @@ public class NewsApprovalExample {
             addCriterion("click_times not between", value1, value2, "clickTimes");
             return (Criteria) this;
         }
+
+        public Criteria andIndexedIsNull() {
+            addCriterion("indexed is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedIsNotNull() {
+            addCriterion("indexed is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedEqualTo(Integer value) {
+            addCriterion("indexed =", value, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedNotEqualTo(Integer value) {
+            addCriterion("indexed <>", value, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedGreaterThan(Integer value) {
+            addCriterion("indexed >", value, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("indexed >=", value, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedLessThan(Integer value) {
+            addCriterion("indexed <", value, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedLessThanOrEqualTo(Integer value) {
+            addCriterion("indexed <=", value, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedIn(List<Integer> values) {
+            addCriterion("indexed in", values, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedNotIn(List<Integer> values) {
+            addCriterion("indexed not in", values, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedBetween(Integer value1, Integer value2) {
+            addCriterion("indexed between", value1, value2, "indexed");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndexedNotBetween(Integer value1, Integer value2) {
+            addCriterion("indexed not between", value1, value2, "indexed");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

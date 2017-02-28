@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.BusinessmanMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.Businessman" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="com_stru_id" property="comStruId" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="img_dir" property="imgDir" jdbcType="VARCHAR" />
     <result column="img" property="img" jdbcType="VARCHAR" />
@@ -88,8 +88,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, com_stru_id, name, img_dir, img, post, sex, age, education, school_type, school, 
-    school_type2, school2, has_professional_certificate, professional_certificate, work_experience, 
+    id, cid, name, img_dir, img, post, sex, age, education, school_type, school, school_type2, 
+    school2, has_professional_certificate, professional_certificate, work_experience, 
     enterprise_type, enterprise_field, has_management_work, other, create_time, update_time, 
     is_delete
   </sql>
@@ -145,7 +145,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.Businessman" >
-    insert into businessman (id, com_stru_id, name, 
+    insert into businessman (id, cid, name, 
       img_dir, img, post, 
       sex, age, education, 
       school_type, school, school_type2, 
@@ -154,7 +154,7 @@
       has_management_work, other, create_time, 
       update_time, is_delete, des
       )
-    values (#{id,jdbcType=INTEGER}, #{comStruId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{imgDir,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{post,jdbcType=VARCHAR}, 
       #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{education,jdbcType=INTEGER}, 
       #{schoolType,jdbcType=INTEGER}, #{school,jdbcType=VARCHAR}, #{schoolType2,jdbcType=INTEGER}, 
@@ -170,8 +170,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="comStruId != null" >
-        com_stru_id,
+      <if test="cid != null" >
+        cid,
       </if>
       <if test="name != null" >
         name,
@@ -244,8 +244,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="comStruId != null" >
-        #{comStruId,jdbcType=INTEGER},
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -327,8 +327,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.comStruId != null" >
-        com_stru_id = #{record.comStruId,jdbcType=INTEGER},
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -404,7 +404,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update businessman
     set id = #{record.id,jdbcType=INTEGER},
-      com_stru_id = #{record.comStruId,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       img_dir = #{record.imgDir,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
@@ -434,7 +434,7 @@
   <update id="updateByExample" parameterType="map" >
     update businessman
     set id = #{record.id,jdbcType=INTEGER},
-      com_stru_id = #{record.comStruId,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       img_dir = #{record.imgDir,jdbcType=VARCHAR},
       img = #{record.img,jdbcType=VARCHAR},
@@ -463,8 +463,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.Businessman" >
     update businessman
     <set >
-      <if test="comStruId != null" >
-        com_stru_id = #{comStruId,jdbcType=INTEGER},
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -537,7 +537,7 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.Businessman" >
     update businessman
-    set com_stru_id = #{comStruId,jdbcType=INTEGER},
+    set cid = #{cid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       img_dir = #{imgDir,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
@@ -564,7 +564,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.Businessman" >
     update businessman
-    set com_stru_id = #{comStruId,jdbcType=INTEGER},
+    set cid = #{cid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       img_dir = #{imgDir,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
