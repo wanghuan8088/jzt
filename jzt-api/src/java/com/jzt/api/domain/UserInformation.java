@@ -28,8 +28,19 @@ public class UserInformation {
     private Date createtime;
 
     private Integer level;
+    
+    private String smsCode;
 
-    public Integer getUid() {
+    
+    public String getSmsCode() {
+		return smsCode;
+	}
+
+	public void setSmsCode(String smsCode) {
+		this.smsCode = smsCode;
+	}
+
+	public Integer getUid() {
         return uid;
     }
 
