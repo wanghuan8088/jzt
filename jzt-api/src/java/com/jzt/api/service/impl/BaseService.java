@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.jzt.api.common.util.BizLogger;
 import com.jzt.api.domain.BaseDomain;
-import com.jzt.api.domain.TUserExample;
+import com.jzt.api.domain.UserInformationExample;
 
 
 public class BaseService {
@@ -42,7 +42,7 @@ public class BaseService {
 	 * @param record
 	 * @param example
 	 */
-	protected void setOrderByClause(BaseDomain record, TUserExample example) {
+	protected void setOrderByClause(BaseDomain record, UserInformationExample example) {
 		String orderByClause = " id desc";
 		System.out.println(record.getPage());
 		
