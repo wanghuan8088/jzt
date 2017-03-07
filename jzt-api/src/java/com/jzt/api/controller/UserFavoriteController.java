@@ -1,22 +1,19 @@
 package com.jzt.api.controller;
 
-import com.jzt.api.controller.base.BaseController;
-import com.jzt.api.domain.AppUserFavorite;
-import com.jzt.api.domain.TUser;
-import com.jzt.api.domain.UserAttentionPlatform;
-import com.jzt.api.service.MyService;
-import com.jzt.api.service.UserService;
-import net.sf.json.JSONObject;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.AppUserFavorite;
+import com.jzt.api.domain.UserAttentionPlatform;
+import com.jzt.api.service.MyService;
 
 /**
  * Created by wanghuan on 07/03/2017.
