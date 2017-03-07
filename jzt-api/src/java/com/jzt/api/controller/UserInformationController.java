@@ -56,6 +56,7 @@ public class UserInformationController extends BaseController {
 		
 		try {
 			result = userInformationService.saveOrUpdate(record);
+			
 		} catch (Exception e) {
 			result = generateErrorResult(e);
 		}
