@@ -27,4 +27,6 @@ public interface AppUserFavoriteMapper {
     int updateByPrimaryKeySelective(AppUserFavorite record);
 
     int updateByPrimaryKey(AppUserFavorite record);
+
+    List<AppUserFavorite> selectByUserId(String userId);
 }
