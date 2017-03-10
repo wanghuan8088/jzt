@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.BankProductMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.BankProduct" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="product_num" property="productNum" jdbcType="VARCHAR" />
     <result column="period_num" property="periodNum" jdbcType="INTEGER" />
@@ -29,9 +29,24 @@
     <result column="trade" property="trade" jdbcType="VARCHAR" />
     <result column="customer_info" property="customerInfo" jdbcType="VARCHAR" />
     <result column="manual" property="manual" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="oprate_mode" property="oprateMode" jdbcType="VARCHAR" />
+    <result column="limit_type" property="limitType" jdbcType="VARCHAR" />
+    <result column="regis_code" property="regisCode" jdbcType="VARCHAR" />
+    <result column="pro_start_date" property="proStartDate" jdbcType="DATE" />
+    <result column="pro_end_date" property="proEndDate" jdbcType="DATE" />
+    <result column="days" property="days" jdbcType="INTEGER" />
+    <result column="max_profit" property="maxProfit" jdbcType="DOUBLE" />
+    <result column="min_profit" property="minProfit" jdbcType="DOUBLE" />
+    <result column="act_profit" property="actProfit" jdbcType="DOUBLE" />
+    <result column="asset_type" property="assetType" jdbcType="VARCHAR" />
+    <result column="init_worth" property="initWorth" jdbcType="VARCHAR" />
+    <result column="pro_worth" property="proWorth" jdbcType="VARCHAR" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="bus_start_date" property="busStartDate" jdbcType="DATE" />
+    <result column="bus_end_date" property="busEndDate" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -92,10 +107,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, bank_id, name, product_num, period_num, profit_type, limit_day, start_date, end_date, 
+    id, plat_id, name, product_num, period_num, profit_type, limit_day, start_date, end_date, 
     deadline, disbank, start_money, add_money, limit_money, area, channel, is_transfer, 
     customer, state, risk_rank, issue_size, expect_profit_year, pub_time, notice, trade, 
-    customer_info, manual, create_time, update_time, is_delete
+    customer_info, manual, create_time, update_time, is_delete, oprate_mode, limit_type, 
+    regis_code, pro_start_date, pro_end_date, days, max_profit, min_profit, act_profit, 
+    asset_type, init_worth, pro_worth, currency, bus_start_date, bus_end_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.BankProductExample" >
     select
@@ -128,7 +145,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.BankProduct" >
-    insert into bank_product (id, bank_id, name, 
+    insert into bank_product (id, plat_id, name, 
       product_num, period_num, profit_type, 
       limit_day, start_date, end_date, 
       deadline, disbank, start_money, 
@@ -137,9 +154,14 @@
       state, risk_rank, issue_size, 
       expect_profit_year, pub_time, notice, 
       trade, customer_info, manual, 
-      create_time, update_time, is_delete
+      create_time, update_time, is_delete, 
+      oprate_mode, limit_type, regis_code, 
+      pro_start_date, pro_end_date, days, 
+      max_profit, min_profit, act_profit, 
+      asset_type, init_worth, pro_worth, 
+      currency, bus_start_date, bus_end_date
       )
-    values (#{id,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{productNum,jdbcType=VARCHAR}, #{periodNum,jdbcType=INTEGER}, #{profitType,jdbcType=VARCHAR}, 
       #{limitDay,jdbcType=INTEGER}, #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
       #{deadline,jdbcType=DATE}, #{disbank,jdbcType=VARCHAR}, #{startMoney,jdbcType=INTEGER}, 
@@ -148,7 +170,12 @@
       #{state,jdbcType=INTEGER}, #{riskRank,jdbcType=INTEGER}, #{issueSize,jdbcType=INTEGER}, 
       #{expectProfitYear,jdbcType=DOUBLE}, #{pubTime,jdbcType=DATE}, #{notice,jdbcType=VARCHAR}, 
       #{trade,jdbcType=VARCHAR}, #{customerInfo,jdbcType=VARCHAR}, #{manual,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER}
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, 
+      #{oprateMode,jdbcType=VARCHAR}, #{limitType,jdbcType=VARCHAR}, #{regisCode,jdbcType=VARCHAR}, 
+      #{proStartDate,jdbcType=DATE}, #{proEndDate,jdbcType=DATE}, #{days,jdbcType=INTEGER}, 
+      #{maxProfit,jdbcType=DOUBLE}, #{minProfit,jdbcType=DOUBLE}, #{actProfit,jdbcType=DOUBLE}, 
+      #{assetType,jdbcType=VARCHAR}, #{initWorth,jdbcType=VARCHAR}, #{proWorth,jdbcType=VARCHAR}, 
+      #{currency,jdbcType=VARCHAR}, #{busStartDate,jdbcType=DATE}, #{busEndDate,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.BankProduct" >
@@ -157,8 +184,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="bankId != null" >
-        bank_id,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="name != null" >
         name,
@@ -244,13 +271,58 @@
       <if test="isDelete != null" >
         is_delete,
       </if>
+      <if test="oprateMode != null" >
+        oprate_mode,
+      </if>
+      <if test="limitType != null" >
+        limit_type,
+      </if>
+      <if test="regisCode != null" >
+        regis_code,
+      </if>
+      <if test="proStartDate != null" >
+        pro_start_date,
+      </if>
+      <if test="proEndDate != null" >
+        pro_end_date,
+      </if>
+      <if test="days != null" >
+        days,
+      </if>
+      <if test="maxProfit != null" >
+        max_profit,
+      </if>
+      <if test="minProfit != null" >
+        min_profit,
+      </if>
+      <if test="actProfit != null" >
+        act_profit,
+      </if>
+      <if test="assetType != null" >
+        asset_type,
+      </if>
+      <if test="initWorth != null" >
+        init_worth,
+      </if>
+      <if test="proWorth != null" >
+        pro_worth,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="busStartDate != null" >
+        bus_start_date,
+      </if>
+      <if test="busEndDate != null" >
+        bus_end_date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="bankId != null" >
-        #{bankId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -328,13 +400,58 @@
         #{manual,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="oprateMode != null" >
+        #{oprateMode,jdbcType=VARCHAR},
+      </if>
+      <if test="limitType != null" >
+        #{limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="regisCode != null" >
+        #{regisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proStartDate != null" >
+        #{proStartDate,jdbcType=DATE},
+      </if>
+      <if test="proEndDate != null" >
+        #{proEndDate,jdbcType=DATE},
+      </if>
+      <if test="days != null" >
+        #{days,jdbcType=INTEGER},
+      </if>
+      <if test="maxProfit != null" >
+        #{maxProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="minProfit != null" >
+        #{minProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="actProfit != null" >
+        #{actProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="assetType != null" >
+        #{assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="initWorth != null" >
+        #{initWorth,jdbcType=VARCHAR},
+      </if>
+      <if test="proWorth != null" >
+        #{proWorth,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="busStartDate != null" >
+        #{busStartDate,jdbcType=DATE},
+      </if>
+      <if test="busEndDate != null" >
+        #{busEndDate,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -350,8 +467,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.bankId != null" >
-        bank_id = #{record.bankId,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -429,13 +546,58 @@
         manual = #{record.manual,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.oprateMode != null" >
+        oprate_mode = #{record.oprateMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitType != null" >
+        limit_type = #{record.limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regisCode != null" >
+        regis_code = #{record.regisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proStartDate != null" >
+        pro_start_date = #{record.proStartDate,jdbcType=DATE},
+      </if>
+      <if test="record.proEndDate != null" >
+        pro_end_date = #{record.proEndDate,jdbcType=DATE},
+      </if>
+      <if test="record.days != null" >
+        days = #{record.days,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxProfit != null" >
+        max_profit = #{record.maxProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.minProfit != null" >
+        min_profit = #{record.minProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.actProfit != null" >
+        act_profit = #{record.actProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="record.assetType != null" >
+        asset_type = #{record.assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.initWorth != null" >
+        init_worth = #{record.initWorth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proWorth != null" >
+        pro_worth = #{record.proWorth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busStartDate != null" >
+        bus_start_date = #{record.busStartDate,jdbcType=DATE},
+      </if>
+      <if test="record.busEndDate != null" >
+        bus_end_date = #{record.busEndDate,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -445,7 +607,7 @@
   <update id="updateByExample" parameterType="map" >
     update bank_product
     set id = #{record.id,jdbcType=INTEGER},
-      bank_id = #{record.bankId,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       product_num = #{record.productNum,jdbcType=VARCHAR},
       period_num = #{record.periodNum,jdbcType=INTEGER},
@@ -471,9 +633,24 @@
       trade = #{record.trade,jdbcType=VARCHAR},
       customer_info = #{record.customerInfo,jdbcType=VARCHAR},
       manual = #{record.manual,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
-      is_delete = #{record.isDelete,jdbcType=INTEGER}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      oprate_mode = #{record.oprateMode,jdbcType=VARCHAR},
+      limit_type = #{record.limitType,jdbcType=VARCHAR},
+      regis_code = #{record.regisCode,jdbcType=VARCHAR},
+      pro_start_date = #{record.proStartDate,jdbcType=DATE},
+      pro_end_date = #{record.proEndDate,jdbcType=DATE},
+      days = #{record.days,jdbcType=INTEGER},
+      max_profit = #{record.maxProfit,jdbcType=DOUBLE},
+      min_profit = #{record.minProfit,jdbcType=DOUBLE},
+      act_profit = #{record.actProfit,jdbcType=DOUBLE},
+      asset_type = #{record.assetType,jdbcType=VARCHAR},
+      init_worth = #{record.initWorth,jdbcType=VARCHAR},
+      pro_worth = #{record.proWorth,jdbcType=VARCHAR},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      bus_start_date = #{record.busStartDate,jdbcType=DATE},
+      bus_end_date = #{record.busEndDate,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -481,8 +658,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.BankProduct" >
     update bank_product
     <set >
-      <if test="bankId != null" >
-        bank_id = #{bankId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -560,20 +737,65 @@
         manual = #{manual,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="oprateMode != null" >
+        oprate_mode = #{oprateMode,jdbcType=VARCHAR},
+      </if>
+      <if test="limitType != null" >
+        limit_type = #{limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="regisCode != null" >
+        regis_code = #{regisCode,jdbcType=VARCHAR},
+      </if>
+      <if test="proStartDate != null" >
+        pro_start_date = #{proStartDate,jdbcType=DATE},
+      </if>
+      <if test="proEndDate != null" >
+        pro_end_date = #{proEndDate,jdbcType=DATE},
+      </if>
+      <if test="days != null" >
+        days = #{days,jdbcType=INTEGER},
+      </if>
+      <if test="maxProfit != null" >
+        max_profit = #{maxProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="minProfit != null" >
+        min_profit = #{minProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="actProfit != null" >
+        act_profit = #{actProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="assetType != null" >
+        asset_type = #{assetType,jdbcType=VARCHAR},
+      </if>
+      <if test="initWorth != null" >
+        init_worth = #{initWorth,jdbcType=VARCHAR},
+      </if>
+      <if test="proWorth != null" >
+        pro_worth = #{proWorth,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="busStartDate != null" >
+        bus_start_date = #{busStartDate,jdbcType=DATE},
+      </if>
+      <if test="busEndDate != null" >
+        bus_end_date = #{busEndDate,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.BankProduct" >
     update bank_product
-    set bank_id = #{bankId,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       product_num = #{productNum,jdbcType=VARCHAR},
       period_num = #{periodNum,jdbcType=INTEGER},
@@ -599,9 +821,24 @@
       trade = #{trade,jdbcType=VARCHAR},
       customer_info = #{customerInfo,jdbcType=VARCHAR},
       manual = #{manual,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
-      is_delete = #{isDelete,jdbcType=INTEGER}
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      oprate_mode = #{oprateMode,jdbcType=VARCHAR},
+      limit_type = #{limitType,jdbcType=VARCHAR},
+      regis_code = #{regisCode,jdbcType=VARCHAR},
+      pro_start_date = #{proStartDate,jdbcType=DATE},
+      pro_end_date = #{proEndDate,jdbcType=DATE},
+      days = #{days,jdbcType=INTEGER},
+      max_profit = #{maxProfit,jdbcType=DOUBLE},
+      min_profit = #{minProfit,jdbcType=DOUBLE},
+      act_profit = #{actProfit,jdbcType=DOUBLE},
+      asset_type = #{assetType,jdbcType=VARCHAR},
+      init_worth = #{initWorth,jdbcType=VARCHAR},
+      pro_worth = #{proWorth,jdbcType=VARCHAR},
+      currency = #{currency,jdbcType=VARCHAR},
+      bus_start_date = #{busStartDate,jdbcType=DATE},
+      bus_end_date = #{busEndDate,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

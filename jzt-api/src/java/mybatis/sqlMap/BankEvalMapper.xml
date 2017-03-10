@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.BankEvalMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.BankEval" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="release_score" property="releaseScore" jdbcType="DOUBLE" />
     <result column="profit_score" property="profitScore" jdbcType="DOUBLE" />
     <result column="risk_score" property="riskScore" jdbcType="DOUBLE" />
@@ -11,8 +11,8 @@
     <result column="info_disclosure_score" property="infoDisclosureScore" jdbcType="DOUBLE" />
     <result column="evaluate_score" property="evaluateScore" jdbcType="DOUBLE" />
     <result column="total_score" property="totalScore" jdbcType="DOUBLE" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
     <result column="start_date" property="startDate" jdbcType="DATE" />
     <result column="end_date" property="endDate" jdbcType="DATE" />
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, bank_id, release_score, profit_score, risk_score, product_rich_score, info_disclosure_score, 
+    id, plat_id, release_score, profit_score, risk_score, product_rich_score, info_disclosure_score, 
     evaluate_score, total_score, create_time, update_time, is_delete, start_date, end_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.BankEvalExample" >
@@ -110,15 +110,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.BankEval" >
-    insert into bank_eval (id, bank_id, release_score, 
+    insert into bank_eval (id, plat_id, release_score, 
       profit_score, risk_score, product_rich_score, 
       info_disclosure_score, evaluate_score, total_score, 
       create_time, update_time, is_delete, 
       start_date, end_date)
-    values (#{id,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER}, #{releaseScore,jdbcType=DOUBLE}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{releaseScore,jdbcType=DOUBLE}, 
       #{profitScore,jdbcType=DOUBLE}, #{riskScore,jdbcType=DOUBLE}, #{productRichScore,jdbcType=DOUBLE}, 
       #{infoDisclosureScore,jdbcType=DOUBLE}, #{evaluateScore,jdbcType=DOUBLE}, #{totalScore,jdbcType=DOUBLE}, 
-      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, 
       #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.BankEval" >
@@ -127,8 +127,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="bankId != null" >
-        bank_id,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="releaseScore != null" >
         release_score,
@@ -171,8 +171,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="bankId != null" >
-        #{bankId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="releaseScore != null" >
         #{releaseScore,jdbcType=DOUBLE},
@@ -196,10 +196,10 @@
         #{totalScore,jdbcType=DOUBLE},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -224,8 +224,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.bankId != null" >
-        bank_id = #{record.bankId,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.releaseScore != null" >
         release_score = #{record.releaseScore,jdbcType=DOUBLE},
@@ -249,10 +249,10 @@
         total_score = #{record.totalScore,jdbcType=DOUBLE},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -271,7 +271,7 @@
   <update id="updateByExample" parameterType="map" >
     update bank_eval
     set id = #{record.id,jdbcType=INTEGER},
-      bank_id = #{record.bankId,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       release_score = #{record.releaseScore,jdbcType=DOUBLE},
       profit_score = #{record.profitScore,jdbcType=DOUBLE},
       risk_score = #{record.riskScore,jdbcType=DOUBLE},
@@ -279,8 +279,8 @@
       info_disclosure_score = #{record.infoDisclosureScore,jdbcType=DOUBLE},
       evaluate_score = #{record.evaluateScore,jdbcType=DOUBLE},
       total_score = #{record.totalScore,jdbcType=DOUBLE},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER},
       start_date = #{record.startDate,jdbcType=DATE},
       end_date = #{record.endDate,jdbcType=DATE}
@@ -291,8 +291,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.BankEval" >
     update bank_eval
     <set >
-      <if test="bankId != null" >
-        bank_id = #{bankId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="releaseScore != null" >
         release_score = #{releaseScore,jdbcType=DOUBLE},
@@ -316,10 +316,10 @@
         total_score = #{totalScore,jdbcType=DOUBLE},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -335,7 +335,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.BankEval" >
     update bank_eval
-    set bank_id = #{bankId,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       release_score = #{releaseScore,jdbcType=DOUBLE},
       profit_score = #{profitScore,jdbcType=DOUBLE},
       risk_score = #{riskScore,jdbcType=DOUBLE},
@@ -343,8 +343,8 @@
       info_disclosure_score = #{infoDisclosureScore,jdbcType=DOUBLE},
       evaluate_score = #{evaluateScore,jdbcType=DOUBLE},
       total_score = #{totalScore,jdbcType=DOUBLE},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER},
       start_date = #{startDate,jdbcType=DATE},
       end_date = #{endDate,jdbcType=DATE}

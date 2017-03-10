@@ -27,6 +27,4 @@ public interface UserAttentionPlatformMapper {
     int updateByPrimaryKeySelective(UserAttentionPlatform record);
 
     int updateByPrimaryKey(UserAttentionPlatform record);
-
-    List<UserAttentionPlatform> selectByUserId(String uid);
 }

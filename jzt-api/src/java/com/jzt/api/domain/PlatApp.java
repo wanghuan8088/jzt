@@ -5,6 +5,8 @@ import java.util.Date;
 public class PlatApp {
     private Integer id;
 
+    private Integer platId;
+
     private String name;
 
     private String iosAddress;
@@ -21,8 +23,6 @@ public class PlatApp {
 
     private Integer isAndroid;
 
-    private Integer platId;
-
     private Date createTime;
 
     private Date updateTime;
@@ -35,6 +35,14 @@ public class PlatApp {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getPlatId() {
+        return platId;
+    }
+
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public String getName() {
@@ -99,14 +107,6 @@ public class PlatApp {
 
     public void setIsAndroid(Integer isAndroid) {
         this.isAndroid = isAndroid;
-    }
-
-    public Integer getPlatId() {
-        return platId;
-    }
-
-    public void setPlatId(Integer platId) {
-        this.platId = platId;
     }
 
     public Date getCreateTime() {

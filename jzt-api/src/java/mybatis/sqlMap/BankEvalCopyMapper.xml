@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.BankEvalCopyMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.BankEvalCopy" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="person_survival_scale" property="personSurvivalScale" jdbcType="DOUBLE" />
     <result column="person_survival_scale_rate" property="personSurvivalScaleRate" jdbcType="DOUBLE" />
     <result column="person_daily_product" property="personDailyProduct" jdbcType="DOUBLE" />
@@ -84,7 +84,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, bank_id, person_survival_scale, person_survival_scale_rate, person_daily_product, 
+    id, plat_id, person_survival_scale, person_survival_scale_rate, person_daily_product, 
     agency_survival_scale, agency_survival_scale_rate, peer_survival_scale, peer_survival_scale_rate, 
     release_score, person_expect, agency_expect, peer_expect, value_type, star_rate, 
     profit_score, profit_product, risk_provision, risk_manage, risk_adjust, risk_score, 
@@ -121,7 +121,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.BankEvalCopy" >
-    insert into bank_eval_copy (id, bank_id, person_survival_scale, 
+    insert into bank_eval_copy (id, plat_id, person_survival_scale, 
       person_survival_scale_rate, person_daily_product, 
       agency_survival_scale, agency_survival_scale_rate, 
       peer_survival_scale, peer_survival_scale_rate, 
@@ -130,7 +130,7 @@
       profit_score, profit_product, risk_provision, 
       risk_manage, risk_adjust, risk_score, 
       limit_type)
-    values (#{id,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER}, #{personSurvivalScale,jdbcType=DOUBLE}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{personSurvivalScale,jdbcType=DOUBLE}, 
       #{personSurvivalScaleRate,jdbcType=DOUBLE}, #{personDailyProduct,jdbcType=DOUBLE}, 
       #{agencySurvivalScale,jdbcType=DOUBLE}, #{agencySurvivalScaleRate,jdbcType=DOUBLE}, 
       #{peerSurvivalScale,jdbcType=DOUBLE}, #{peerSurvivalScaleRate,jdbcType=DOUBLE}, 
@@ -146,8 +146,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="bankId != null" >
-        bank_id,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="personSurvivalScale != null" >
         person_survival_scale,
@@ -214,8 +214,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="bankId != null" >
-        #{bankId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="personSurvivalScale != null" >
         #{personSurvivalScale,jdbcType=DOUBLE},
@@ -291,8 +291,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.bankId != null" >
-        bank_id = #{record.bankId,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.personSurvivalScale != null" >
         person_survival_scale = #{record.personSurvivalScale,jdbcType=DOUBLE},
@@ -362,7 +362,7 @@
   <update id="updateByExample" parameterType="map" >
     update bank_eval_copy
     set id = #{record.id,jdbcType=INTEGER},
-      bank_id = #{record.bankId,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       person_survival_scale = #{record.personSurvivalScale,jdbcType=DOUBLE},
       person_survival_scale_rate = #{record.personSurvivalScaleRate,jdbcType=DOUBLE},
       person_daily_product = #{record.personDailyProduct,jdbcType=DOUBLE},
@@ -390,8 +390,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.BankEvalCopy" >
     update bank_eval_copy
     <set >
-      <if test="bankId != null" >
-        bank_id = #{bankId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="personSurvivalScale != null" >
         person_survival_scale = #{personSurvivalScale,jdbcType=DOUBLE},
@@ -458,7 +458,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.BankEvalCopy" >
     update bank_eval_copy
-    set bank_id = #{bankId,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       person_survival_scale = #{personSurvivalScale,jdbcType=DOUBLE},
       person_survival_scale_rate = #{personSurvivalScaleRate,jdbcType=DOUBLE},
       person_daily_product = #{personDailyProduct,jdbcType=DOUBLE},

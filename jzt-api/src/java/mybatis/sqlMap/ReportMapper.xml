@@ -6,6 +6,10 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="favorites" property="favorites" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.Report" extends="BaseResultMap" >
@@ -70,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, create_time, title, update_time, favorites
+    id, create_time, title, update_time, type, link, source, icon, favorites
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -125,11 +129,13 @@
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.Report" >
     insert into report (id, create_time, title, 
-      update_time, favorites, content
-      )
+      update_time, type, link, 
+      source, icon, favorites, 
+      content)
     values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{favorites,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{updateTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, 
+      #{source,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{favorites,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.Report" >
     insert into report
@@ -145,6 +151,18 @@
       </if>
       <if test="updateTime != null" >
         update_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="link != null" >
+        link,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="icon != null" >
+        icon,
       </if>
       <if test="favorites != null" >
         favorites,
@@ -165,6 +183,18 @@
       </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
       </if>
       <if test="favorites != null" >
         #{favorites,jdbcType=INTEGER},
@@ -195,6 +225,18 @@
       <if test="record.updateTime != null" >
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.link != null" >
+        link = #{record.link,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
       <if test="record.favorites != null" >
         favorites = #{record.favorites,jdbcType=INTEGER},
       </if>
@@ -212,6 +254,10 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       title = #{record.title,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=INTEGER},
+      link = #{record.link,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
       favorites = #{record.favorites,jdbcType=INTEGER},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
@@ -224,6 +270,10 @@
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       title = #{record.title,jdbcType=VARCHAR},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=INTEGER},
+      link = #{record.link,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
       favorites = #{record.favorites,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -241,6 +291,18 @@
       <if test="updateTime != null" >
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
       <if test="favorites != null" >
         favorites = #{favorites,jdbcType=INTEGER},
       </if>
@@ -255,6 +317,10 @@
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
       favorites = #{favorites,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -264,6 +330,10 @@
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
       favorites = #{favorites,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

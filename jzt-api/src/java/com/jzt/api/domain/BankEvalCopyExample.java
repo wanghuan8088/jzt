@@ -164,63 +164,63 @@ public class BankEvalCopyExample {
             return (Criteria) this;
         }
 
-        public Criteria andBankIdIsNull() {
-            addCriterion("bank_id is null");
+        public Criteria andPlatIdIsNull() {
+            addCriterion("plat_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdIsNotNull() {
-            addCriterion("bank_id is not null");
+        public Criteria andPlatIdIsNotNull() {
+            addCriterion("plat_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdEqualTo(Integer value) {
-            addCriterion("bank_id =", value, "bankId");
+        public Criteria andPlatIdEqualTo(Integer value) {
+            addCriterion("plat_id =", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdNotEqualTo(Integer value) {
-            addCriterion("bank_id <>", value, "bankId");
+        public Criteria andPlatIdNotEqualTo(Integer value) {
+            addCriterion("plat_id <>", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdGreaterThan(Integer value) {
-            addCriterion("bank_id >", value, "bankId");
+        public Criteria andPlatIdGreaterThan(Integer value) {
+            addCriterion("plat_id >", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("bank_id >=", value, "bankId");
+        public Criteria andPlatIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("plat_id >=", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdLessThan(Integer value) {
-            addCriterion("bank_id <", value, "bankId");
+        public Criteria andPlatIdLessThan(Integer value) {
+            addCriterion("plat_id <", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdLessThanOrEqualTo(Integer value) {
-            addCriterion("bank_id <=", value, "bankId");
+        public Criteria andPlatIdLessThanOrEqualTo(Integer value) {
+            addCriterion("plat_id <=", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdIn(List<Integer> values) {
-            addCriterion("bank_id in", values, "bankId");
+        public Criteria andPlatIdIn(List<Integer> values) {
+            addCriterion("plat_id in", values, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdNotIn(List<Integer> values) {
-            addCriterion("bank_id not in", values, "bankId");
+        public Criteria andPlatIdNotIn(List<Integer> values) {
+            addCriterion("plat_id not in", values, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdBetween(Integer value1, Integer value2) {
-            addCriterion("bank_id between", value1, value2, "bankId");
+        public Criteria andPlatIdBetween(Integer value1, Integer value2) {
+            addCriterion("plat_id between", value1, value2, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andBankIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("bank_id not between", value1, value2, "bankId");
+        public Criteria andPlatIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("plat_id not between", value1, value2, "platId");
             return (Criteria) this;
         }
 

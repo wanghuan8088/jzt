@@ -5,7 +5,7 @@ import java.util.Date;
 public class BankInfo {
     private Integer id;
 
-    private Integer bankId;
+    private Integer platId;
 
     private Date startDate;
 
@@ -53,12 +53,12 @@ public class BankInfo {
         this.id = id;
     }
 
-    public Integer getBankId() {
-        return bankId;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setBankId(Integer bankId) {
-        this.bankId = bankId;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public Date getStartDate() {

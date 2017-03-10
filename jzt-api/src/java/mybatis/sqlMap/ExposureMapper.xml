@@ -6,6 +6,8 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="product_name" property="productName" jdbcType="VARCHAR" />
     <result column="product_url" property="productUrl" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="agree_cnt" property="agreeCnt" jdbcType="INTEGER" />
     <result column="comment_cnt" property="commentCnt" jdbcType="INTEGER" />
     <result column="click_cnt" property="clickCnt" jdbcType="INTEGER" />
@@ -81,9 +83,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    eid, title, product_name, product_url, agree_cnt, comment_cnt, click_cnt, created_date, 
-    last_update, last_comment_editor, last_comment, checked_date, author_id, admin_id, 
-    state, hot_value
+    eid, title, product_name, product_url, type, icon, agree_cnt, comment_cnt, click_cnt, 
+    created_date, last_update, last_comment_editor, last_comment, checked_date, author_id, 
+    admin_id, state, hot_value
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -138,17 +140,19 @@
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.Exposure" >
     insert into exposure (eid, title, product_name, 
-      product_url, agree_cnt, comment_cnt, 
-      click_cnt, created_date, last_update, 
-      last_comment_editor, last_comment, checked_date, 
-      author_id, admin_id, state, 
-      hot_value, content)
+      product_url, type, icon, 
+      agree_cnt, comment_cnt, click_cnt, 
+      created_date, last_update, last_comment_editor, 
+      last_comment, checked_date, author_id, 
+      admin_id, state, hot_value, 
+      content)
     values (#{eid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
-      #{productUrl,jdbcType=VARCHAR}, #{agreeCnt,jdbcType=INTEGER}, #{commentCnt,jdbcType=INTEGER}, 
-      #{clickCnt,jdbcType=INTEGER}, #{createdDate,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, 
-      #{lastCommentEditor,jdbcType=VARCHAR}, #{lastComment,jdbcType=TIMESTAMP}, #{checkedDate,jdbcType=TIMESTAMP}, 
-      #{authorId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
-      #{hotValue,jdbcType=DOUBLE}, #{content,jdbcType=LONGVARCHAR})
+      #{productUrl,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, 
+      #{agreeCnt,jdbcType=INTEGER}, #{commentCnt,jdbcType=INTEGER}, #{clickCnt,jdbcType=INTEGER}, 
+      #{createdDate,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, #{lastCommentEditor,jdbcType=VARCHAR}, 
+      #{lastComment,jdbcType=TIMESTAMP}, #{checkedDate,jdbcType=TIMESTAMP}, #{authorId,jdbcType=INTEGER}, 
+      #{adminId,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{hotValue,jdbcType=DOUBLE}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.Exposure" >
     insert into exposure
@@ -164,6 +168,12 @@
       </if>
       <if test="productUrl != null" >
         product_url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="icon != null" >
+        icon,
       </if>
       <if test="agreeCnt != null" >
         agree_cnt,
@@ -217,6 +227,12 @@
       </if>
       <if test="productUrl != null" >
         #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
       </if>
       <if test="agreeCnt != null" >
         #{agreeCnt,jdbcType=INTEGER},
@@ -280,6 +296,12 @@
       <if test="record.productUrl != null" >
         product_url = #{record.productUrl,jdbcType=VARCHAR},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.icon != null" >
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
       <if test="record.agreeCnt != null" >
         agree_cnt = #{record.agreeCnt,jdbcType=INTEGER},
       </if>
@@ -330,6 +352,8 @@
       title = #{record.title,jdbcType=VARCHAR},
       product_name = #{record.productName,jdbcType=VARCHAR},
       product_url = #{record.productUrl,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
       agree_cnt = #{record.agreeCnt,jdbcType=INTEGER},
       comment_cnt = #{record.commentCnt,jdbcType=INTEGER},
       click_cnt = #{record.clickCnt,jdbcType=INTEGER},
@@ -353,6 +377,8 @@
       title = #{record.title,jdbcType=VARCHAR},
       product_name = #{record.productName,jdbcType=VARCHAR},
       product_url = #{record.productUrl,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
       agree_cnt = #{record.agreeCnt,jdbcType=INTEGER},
       comment_cnt = #{record.commentCnt,jdbcType=INTEGER},
       click_cnt = #{record.clickCnt,jdbcType=INTEGER},
@@ -380,6 +406,12 @@
       </if>
       <if test="productUrl != null" >
         product_url = #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
       </if>
       <if test="agreeCnt != null" >
         agree_cnt = #{agreeCnt,jdbcType=INTEGER},
@@ -428,6 +460,8 @@
     set title = #{title,jdbcType=VARCHAR},
       product_name = #{productName,jdbcType=VARCHAR},
       product_url = #{productUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
       agree_cnt = #{agreeCnt,jdbcType=INTEGER},
       comment_cnt = #{commentCnt,jdbcType=INTEGER},
       click_cnt = #{clickCnt,jdbcType=INTEGER},
@@ -448,6 +482,8 @@
     set title = #{title,jdbcType=VARCHAR},
       product_name = #{productName,jdbcType=VARCHAR},
       product_url = #{productUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
       agree_cnt = #{agreeCnt,jdbcType=INTEGER},
       comment_cnt = #{commentCnt,jdbcType=INTEGER},
       click_cnt = #{clickCnt,jdbcType=INTEGER},

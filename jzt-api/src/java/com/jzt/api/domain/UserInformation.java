@@ -28,9 +28,12 @@ public class UserInformation {
     private Date createtime;
 
     private Integer level;
+
+    private String accesstoken;
+
+    private String openid;
     
     private String smsCode;
-
     
     public String getSmsCode() {
 		return smsCode;
@@ -142,5 +145,21 @@ public class UserInformation {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public String getAccesstoken() {
+        return accesstoken;
+    }
+
+    public void setAccesstoken(String accesstoken) {
+        this.accesstoken = accesstoken;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 }

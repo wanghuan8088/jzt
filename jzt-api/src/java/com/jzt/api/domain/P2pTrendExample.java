@@ -192,63 +192,63 @@ public class P2pTrendExample {
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNull() {
-            addCriterion("pId is null");
+        public Criteria andPlatIdIsNull() {
+            addCriterion("plat_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andPidIsNotNull() {
-            addCriterion("pId is not null");
+        public Criteria andPlatIdIsNotNull() {
+            addCriterion("plat_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPidEqualTo(Integer value) {
-            addCriterion("pId =", value, "pid");
+        public Criteria andPlatIdEqualTo(Integer value) {
+            addCriterion("plat_id =", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotEqualTo(Integer value) {
-            addCriterion("pId <>", value, "pid");
+        public Criteria andPlatIdNotEqualTo(Integer value) {
+            addCriterion("plat_id <>", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThan(Integer value) {
-            addCriterion("pId >", value, "pid");
+        public Criteria andPlatIdGreaterThan(Integer value) {
+            addCriterion("plat_id >", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("pId >=", value, "pid");
+        public Criteria andPlatIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("plat_id >=", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThan(Integer value) {
-            addCriterion("pId <", value, "pid");
+        public Criteria andPlatIdLessThan(Integer value) {
+            addCriterion("plat_id <", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidLessThanOrEqualTo(Integer value) {
-            addCriterion("pId <=", value, "pid");
+        public Criteria andPlatIdLessThanOrEqualTo(Integer value) {
+            addCriterion("plat_id <=", value, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidIn(List<Integer> values) {
-            addCriterion("pId in", values, "pid");
+        public Criteria andPlatIdIn(List<Integer> values) {
+            addCriterion("plat_id in", values, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotIn(List<Integer> values) {
-            addCriterion("pId not in", values, "pid");
+        public Criteria andPlatIdNotIn(List<Integer> values) {
+            addCriterion("plat_id not in", values, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidBetween(Integer value1, Integer value2) {
-            addCriterion("pId between", value1, value2, "pid");
+        public Criteria andPlatIdBetween(Integer value1, Integer value2) {
+            addCriterion("plat_id between", value1, value2, "platId");
             return (Criteria) this;
         }
 
-        public Criteria andPidNotBetween(Integer value1, Integer value2) {
-            addCriterion("pId not between", value1, value2, "pid");
+        public Criteria andPlatIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("plat_id not between", value1, value2, "platId");
             return (Criteria) this;
         }
 

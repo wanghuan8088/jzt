@@ -981,6 +981,146 @@ public class UserInformationExample {
             addCriterion("level not between", value1, value2, "level");
             return (Criteria) this;
         }
+
+        public Criteria andAccesstokenIsNull() {
+            addCriterion("accesstoken is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenIsNotNull() {
+            addCriterion("accesstoken is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenEqualTo(String value) {
+            addCriterion("accesstoken =", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenNotEqualTo(String value) {
+            addCriterion("accesstoken <>", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenGreaterThan(String value) {
+            addCriterion("accesstoken >", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenGreaterThanOrEqualTo(String value) {
+            addCriterion("accesstoken >=", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenLessThan(String value) {
+            addCriterion("accesstoken <", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenLessThanOrEqualTo(String value) {
+            addCriterion("accesstoken <=", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenLike(String value) {
+            addCriterion("accesstoken like", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenNotLike(String value) {
+            addCriterion("accesstoken not like", value, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenIn(List<String> values) {
+            addCriterion("accesstoken in", values, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenNotIn(List<String> values) {
+            addCriterion("accesstoken not in", values, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenBetween(String value1, String value2) {
+            addCriterion("accesstoken between", value1, value2, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccesstokenNotBetween(String value1, String value2) {
+            addCriterion("accesstoken not between", value1, value2, "accesstoken");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidIsNull() {
+            addCriterion("openid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidIsNotNull() {
+            addCriterion("openid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidEqualTo(String value) {
+            addCriterion("openid =", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidNotEqualTo(String value) {
+            addCriterion("openid <>", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidGreaterThan(String value) {
+            addCriterion("openid >", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidGreaterThanOrEqualTo(String value) {
+            addCriterion("openid >=", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidLessThan(String value) {
+            addCriterion("openid <", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidLessThanOrEqualTo(String value) {
+            addCriterion("openid <=", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidLike(String value) {
+            addCriterion("openid like", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidNotLike(String value) {
+            addCriterion("openid not like", value, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidIn(List<String> values) {
+            addCriterion("openid in", values, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidNotIn(List<String> values) {
+            addCriterion("openid not in", values, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidBetween(String value1, String value2) {
+            addCriterion("openid between", value1, value2, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenidNotBetween(String value1, String value2) {
+            addCriterion("openid not between", value1, value2, "openid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

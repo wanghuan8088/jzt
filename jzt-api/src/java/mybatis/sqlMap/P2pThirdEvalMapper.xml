@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.P2pThirdEvalMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pThirdEval" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="pId" property="pid" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="development_rate" property="developmentRate" jdbcType="REAL" />
     <result column="mobility" property="mobility" jdbcType="REAL" />
     <result column="turnover" property="turnover" jdbcType="REAL" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pId, development_rate, mobility, turnover, benefit, dispersion, update_date, 
+    id, plat_id, development_rate, mobility, turnover, benefit, dispersion, update_date, 
     popularity, transparency
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pThirdEvalExample" >
@@ -106,11 +106,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.P2pThirdEval" >
-    insert into p2p_third_eval (id, pId, development_rate, 
+    insert into p2p_third_eval (id, plat_id, development_rate, 
       mobility, turnover, benefit, 
       dispersion, update_date, popularity, 
       transparency)
-    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{developmentRate,jdbcType=REAL}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{developmentRate,jdbcType=REAL}, 
       #{mobility,jdbcType=REAL}, #{turnover,jdbcType=REAL}, #{benefit,jdbcType=REAL}, 
       #{dispersion,jdbcType=REAL}, #{updateDate,jdbcType=DATE}, #{popularity,jdbcType=REAL}, 
       #{transparency,jdbcType=REAL})
@@ -121,8 +121,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="pid != null" >
-        pId,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="developmentRate != null" >
         development_rate,
@@ -153,8 +153,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="developmentRate != null" >
         #{developmentRate,jdbcType=REAL},
@@ -194,8 +194,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.pid != null" >
-        pId = #{record.pid,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.developmentRate != null" >
         development_rate = #{record.developmentRate,jdbcType=REAL},
@@ -229,7 +229,7 @@
   <update id="updateByExample" parameterType="map" >
     update p2p_third_eval
     set id = #{record.id,jdbcType=INTEGER},
-      pId = #{record.pid,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       development_rate = #{record.developmentRate,jdbcType=REAL},
       mobility = #{record.mobility,jdbcType=REAL},
       turnover = #{record.turnover,jdbcType=REAL},
@@ -245,8 +245,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pThirdEval" >
     update p2p_third_eval
     <set >
-      <if test="pid != null" >
-        pId = #{pid,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="developmentRate != null" >
         development_rate = #{developmentRate,jdbcType=REAL},
@@ -277,7 +277,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pThirdEval" >
     update p2p_third_eval
-    set pId = #{pid,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       development_rate = #{developmentRate,jdbcType=REAL},
       mobility = #{mobility,jdbcType=REAL},
       turnover = #{turnover,jdbcType=REAL},

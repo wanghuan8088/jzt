@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jzt.api.dao.ExposureRelProductMapper" >
-  <resultMap id="BaseResultMap" type="com.jzt.api.domain.ExposureRelProduct" >
+<mapper namespace="com.jzt.api.dao.ExposureImageMapper" >
+  <resultMap id="BaseResultMap" type="com.jzt.api.domain.ExposureImage" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="pid" property="pid" jdbcType="INTEGER" />
     <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="date_date" property="dateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pid, eid
+    id, eid, url, create_date, date_date
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.ExposureRelProductExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.ExposureImageExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from exposure_rel_product
+    from exposure_image
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,65 +86,85 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from exposure_rel_product
+    from exposure_image
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from exposure_rel_product
+    delete from exposure_image
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jzt.api.domain.ExposureRelProductExample" >
-    delete from exposure_rel_product
+  <delete id="deleteByExample" parameterType="com.jzt.api.domain.ExposureImageExample" >
+    delete from exposure_image
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jzt.api.domain.ExposureRelProduct" >
-    insert into exposure_rel_product (id, pid, eid)
-    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.jzt.api.domain.ExposureImage" >
+    insert into exposure_image (id, eid, url, 
+      create_date, date_date)
+    values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{url,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{dateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.jzt.api.domain.ExposureRelProduct" >
-    insert into exposure_rel_product
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.ExposureImage" >
+    insert into exposure_image
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="pid != null" >
-        pid,
-      </if>
       <if test="eid != null" >
         eid,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="dateDate != null" >
+        date_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=INTEGER},
-      </if>
       <if test="eid != null" >
         #{eid,jdbcType=INTEGER},
       </if>
+      <if test="url != null" >
+        #{url,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateDate != null" >
+        #{dateDate,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jzt.api.domain.ExposureRelProductExample" resultType="java.lang.Integer" >
-    select count(*) from exposure_rel_product
+  <select id="countByExample" parameterType="com.jzt.api.domain.ExposureImageExample" resultType="java.lang.Integer" >
+    select count(*) from exposure_image
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update exposure_rel_product
+    update exposure_image
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.pid != null" >
-        pid = #{record.pid,jdbcType=INTEGER},
-      </if>
       <if test="record.eid != null" >
         eid = #{record.eid,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dateDate != null" >
+        date_date = #{record.dateDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -150,30 +172,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update exposure_rel_product
+    update exposure_image
     set id = #{record.id,jdbcType=INTEGER},
-      pid = #{record.pid,jdbcType=INTEGER},
-      eid = #{record.eid,jdbcType=INTEGER}
+      eid = #{record.eid,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      date_date = #{record.dateDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.ExposureRelProduct" >
-    update exposure_rel_product
+  <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.ExposureImage" >
+    update exposure_image
     <set >
-      <if test="pid != null" >
-        pid = #{pid,jdbcType=INTEGER},
-      </if>
       <if test="eid != null" >
         eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dateDate != null" >
+        date_date = #{dateDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.ExposureRelProduct" >
-    update exposure_rel_product
-    set pid = #{pid,jdbcType=INTEGER},
-      eid = #{eid,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.ExposureImage" >
+    update exposure_image
+    set eid = #{eid,jdbcType=INTEGER},
+      url = #{url,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      date_date = #{dateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

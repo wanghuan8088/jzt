@@ -11,6 +11,10 @@ public class Exposure {
 
     private String productUrl;
 
+    private Integer type;
+
+    private String icon;
+
     private Integer agreeCnt;
 
     private Integer commentCnt;
@@ -67,6 +71,22 @@ public class Exposure {
 
     public void setProductUrl(String productUrl) {
         this.productUrl = productUrl;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public Integer getAgreeCnt() {

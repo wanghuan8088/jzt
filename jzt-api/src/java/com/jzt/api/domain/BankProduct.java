@@ -5,7 +5,7 @@ import java.util.Date;
 public class BankProduct {
     private Integer id;
 
-    private Integer bankId;
+    private Integer platId;
 
     private String name;
 
@@ -63,6 +63,36 @@ public class BankProduct {
 
     private Integer isDelete;
 
+    private String oprateMode;
+
+    private String limitType;
+
+    private String regisCode;
+
+    private Date proStartDate;
+
+    private Date proEndDate;
+
+    private Integer days;
+
+    private Double maxProfit;
+
+    private Double minProfit;
+
+    private Double actProfit;
+
+    private String assetType;
+
+    private String initWorth;
+
+    private String proWorth;
+
+    private String currency;
+
+    private Date busStartDate;
+
+    private Date busEndDate;
+
     public Integer getId() {
         return id;
     }
@@ -71,12 +101,12 @@ public class BankProduct {
         this.id = id;
     }
 
-    public Integer getBankId() {
-        return bankId;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setBankId(Integer bankId) {
-        this.bankId = bankId;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public String getName() {
@@ -301,5 +331,125 @@ public class BankProduct {
 
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getOprateMode() {
+        return oprateMode;
+    }
+
+    public void setOprateMode(String oprateMode) {
+        this.oprateMode = oprateMode;
+    }
+
+    public String getLimitType() {
+        return limitType;
+    }
+
+    public void setLimitType(String limitType) {
+        this.limitType = limitType;
+    }
+
+    public String getRegisCode() {
+        return regisCode;
+    }
+
+    public void setRegisCode(String regisCode) {
+        this.regisCode = regisCode;
+    }
+
+    public Date getProStartDate() {
+        return proStartDate;
+    }
+
+    public void setProStartDate(Date proStartDate) {
+        this.proStartDate = proStartDate;
+    }
+
+    public Date getProEndDate() {
+        return proEndDate;
+    }
+
+    public void setProEndDate(Date proEndDate) {
+        this.proEndDate = proEndDate;
+    }
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
+    }
+
+    public Double getMaxProfit() {
+        return maxProfit;
+    }
+
+    public void setMaxProfit(Double maxProfit) {
+        this.maxProfit = maxProfit;
+    }
+
+    public Double getMinProfit() {
+        return minProfit;
+    }
+
+    public void setMinProfit(Double minProfit) {
+        this.minProfit = minProfit;
+    }
+
+    public Double getActProfit() {
+        return actProfit;
+    }
+
+    public void setActProfit(Double actProfit) {
+        this.actProfit = actProfit;
+    }
+
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
+    }
+
+    public String getInitWorth() {
+        return initWorth;
+    }
+
+    public void setInitWorth(String initWorth) {
+        this.initWorth = initWorth;
+    }
+
+    public String getProWorth() {
+        return proWorth;
+    }
+
+    public void setProWorth(String proWorth) {
+        this.proWorth = proWorth;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public Date getBusStartDate() {
+        return busStartDate;
+    }
+
+    public void setBusStartDate(Date busStartDate) {
+        this.busStartDate = busStartDate;
+    }
+
+    public Date getBusEndDate() {
+        return busEndDate;
+    }
+
+    public void setBusEndDate(Date busEndDate) {
+        this.busEndDate = busEndDate;
     }
 }

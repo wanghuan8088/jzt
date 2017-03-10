@@ -5,7 +5,7 @@ import java.util.Date;
 public class P2pTrend {
     private Integer id;
 
-    private Integer pid;
+    private Integer platId;
 
     private Date date;
 
@@ -35,12 +35,12 @@ public class P2pTrend {
         this.id = id;
     }
 
-    public Integer getPid() {
-        return pid;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public Date getDate() {

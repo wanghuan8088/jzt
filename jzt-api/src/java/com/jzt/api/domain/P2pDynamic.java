@@ -5,7 +5,7 @@ import java.util.Date;
 public class P2pDynamic {
     private Integer id;
 
-    private Integer pid;
+    private Integer platId;
 
     private Float totalTurnover;
 
@@ -111,12 +111,12 @@ public class P2pDynamic {
         this.id = id;
     }
 
-    public Integer getPid() {
-        return pid;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public Float getTotalTurnover() {
