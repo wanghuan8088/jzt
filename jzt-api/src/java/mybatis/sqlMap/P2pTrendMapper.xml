@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.P2pTrendMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pTrend" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="pId" property="pid" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="date" property="date" jdbcType="DATE" />
     <result column="turnover" property="turnover" jdbcType="REAL" />
     <result column="interest_rate" property="interestRate" jdbcType="REAL" />
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pId, date, turnover, interest_rate, investment_amount, borrow_amount, num_investment, 
+    id, plat_id, date, turnover, interest_rate, investment_amount, borrow_amount, num_investment, 
     num_borrower, average_loan_period, loan_bid, time_for_full_bid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pTrendExample" >
@@ -108,14 +108,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.P2pTrend" >
-    insert into p2p_trend (id, pId, date, turnover, 
-      interest_rate, investment_amount, borrow_amount, 
-      num_investment, num_borrower, average_loan_period, 
-      loan_bid, time_for_full_bid)
-    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{turnover,jdbcType=REAL}, 
-      #{interestRate,jdbcType=REAL}, #{investmentAmount,jdbcType=REAL}, #{borrowAmount,jdbcType=REAL}, 
-      #{numInvestment,jdbcType=INTEGER}, #{numBorrower,jdbcType=INTEGER}, #{averageLoanPeriod,jdbcType=REAL}, 
-      #{loanBid,jdbcType=INTEGER}, #{timeForFullBid,jdbcType=REAL})
+    insert into p2p_trend (id, plat_id, date, 
+      turnover, interest_rate, investment_amount, 
+      borrow_amount, num_investment, num_borrower, 
+      average_loan_period, loan_bid, time_for_full_bid
+      )
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{date,jdbcType=DATE}, 
+      #{turnover,jdbcType=REAL}, #{interestRate,jdbcType=REAL}, #{investmentAmount,jdbcType=REAL}, 
+      #{borrowAmount,jdbcType=REAL}, #{numInvestment,jdbcType=INTEGER}, #{numBorrower,jdbcType=INTEGER}, 
+      #{averageLoanPeriod,jdbcType=REAL}, #{loanBid,jdbcType=INTEGER}, #{timeForFullBid,jdbcType=REAL}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.P2pTrend" >
     insert into p2p_trend
@@ -123,8 +125,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="pid != null" >
-        pId,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="date != null" >
         date,
@@ -161,8 +163,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},
@@ -208,8 +210,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.pid != null" >
-        pId = #{record.pid,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.date != null" >
         date = #{record.date,jdbcType=DATE},
@@ -249,7 +251,7 @@
   <update id="updateByExample" parameterType="map" >
     update p2p_trend
     set id = #{record.id,jdbcType=INTEGER},
-      pId = #{record.pid,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       date = #{record.date,jdbcType=DATE},
       turnover = #{record.turnover,jdbcType=REAL},
       interest_rate = #{record.interestRate,jdbcType=REAL},
@@ -267,8 +269,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pTrend" >
     update p2p_trend
     <set >
-      <if test="pid != null" >
-        pId = #{pid,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="date != null" >
         date = #{date,jdbcType=DATE},
@@ -305,7 +307,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pTrend" >
     update p2p_trend
-    set pId = #{pid,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       date = #{date,jdbcType=DATE},
       turnover = #{turnover,jdbcType=REAL},
       interest_rate = #{interestRate,jdbcType=REAL},

@@ -5,7 +5,7 @@ import java.util.Date;
 public class P2pSecurity {
     private Integer id;
 
-    private Integer p2pId;
+    private Integer platId;
 
     private String tenderSecurity;
 
@@ -37,12 +37,12 @@ public class P2pSecurity {
         this.id = id;
     }
 
-    public Integer getP2pId() {
-        return p2pId;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setP2pId(Integer p2pId) {
-        this.p2pId = p2pId;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public String getTenderSecurity() {

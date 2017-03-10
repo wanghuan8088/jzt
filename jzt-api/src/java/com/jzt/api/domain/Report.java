@@ -11,6 +11,14 @@ public class Report {
 
     private Date updateTime;
 
+    private Integer type;
+
+    private String link;
+
+    private Integer source;
+
+    private String icon;
+
     private Integer favorites;
 
     private String content;
@@ -45,6 +53,38 @@ public class Report {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public Integer getFavorites() {

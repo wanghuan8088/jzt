@@ -5,7 +5,7 @@ import java.util.Date;
 public class P2pLoan {
     private Integer id;
 
-    private Integer p2pId;
+    private Integer platId;
 
     private Date createTime;
 
@@ -55,12 +55,12 @@ public class P2pLoan {
         this.id = id;
     }
 
-    public Integer getP2pId() {
-        return p2pId;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setP2pId(Integer p2pId) {
-        this.p2pId = p2pId;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public Date getCreateTime() {

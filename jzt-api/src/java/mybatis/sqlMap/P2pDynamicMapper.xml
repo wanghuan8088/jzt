@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.P2pDynamicMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pDynamic" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="pId" property="pid" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="total_turnover" property="totalTurnover" jdbcType="REAL" />
     <result column="total_turnover_day" property="totalTurnoverDay" jdbcType="REAL" />
     <result column="total_turnover_week" property="totalTurnoverWeek" jdbcType="REAL" />
@@ -112,7 +112,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, pId, total_turnover, total_turnover_day, total_turnover_week, total_turnover_month, 
+    id, plat_id, total_turnover, total_turnover_day, total_turnover_week, total_turnover_month, 
     total_unrepay_amount, avg_interest_rate, avg_interest_rate_day, avg_interest_rate_week, 
     avg_interest_rate_month, total_investment, total_investment_day, total_investment_week, 
     total_investment_month, total_borrower, total_borrower_day, total_borrower_week, 
@@ -156,7 +156,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.P2pDynamic" >
-    insert into p2p_dynamic (id, pId, total_turnover, 
+    insert into p2p_dynamic (id, plat_id, total_turnover, 
       total_turnover_day, total_turnover_week, total_turnover_month, 
       total_unrepay_amount, avg_interest_rate, avg_interest_rate_day, 
       avg_interest_rate_week, avg_interest_rate_month, total_investment, 
@@ -175,7 +175,7 @@
       time_for_full_bid_day, time_for_full_bid_week, time_for_full_bid_month, 
       month_net_income, accounted_revenue_in_60_days, capital_lever, 
       service_time, update_date)
-    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{totalTurnover,jdbcType=REAL}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{totalTurnover,jdbcType=REAL}, 
       #{totalTurnoverDay,jdbcType=REAL}, #{totalTurnoverWeek,jdbcType=REAL}, #{totalTurnoverMonth,jdbcType=REAL}, 
       #{totalUnrepayAmount,jdbcType=REAL}, #{avgInterestRate,jdbcType=REAL}, #{avgInterestRateDay,jdbcType=REAL}, 
       #{avgInterestRateWeek,jdbcType=REAL}, #{avgInterestRateMonth,jdbcType=REAL}, #{totalInvestment,jdbcType=INTEGER}, 
@@ -201,8 +201,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="pid != null" >
-        pId,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="totalTurnover != null" >
         total_turnover,
@@ -353,8 +353,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="pid != null" >
-        #{pid,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="totalTurnover != null" >
         #{totalTurnover,jdbcType=REAL},
@@ -514,8 +514,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.pid != null" >
-        pId = #{record.pid,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.totalTurnover != null" >
         total_turnover = #{record.totalTurnover,jdbcType=REAL},
@@ -669,7 +669,7 @@
   <update id="updateByExample" parameterType="map" >
     update p2p_dynamic
     set id = #{record.id,jdbcType=INTEGER},
-      pId = #{record.pid,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       total_turnover = #{record.totalTurnover,jdbcType=REAL},
       total_turnover_day = #{record.totalTurnoverDay,jdbcType=REAL},
       total_turnover_week = #{record.totalTurnoverWeek,jdbcType=REAL},
@@ -725,8 +725,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pDynamic" >
     update p2p_dynamic
     <set >
-      <if test="pid != null" >
-        pId = #{pid,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="totalTurnover != null" >
         total_turnover = #{totalTurnover,jdbcType=REAL},
@@ -877,7 +877,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pDynamic" >
     update p2p_dynamic
-    set pId = #{pid,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       total_turnover = #{totalTurnover,jdbcType=REAL},
       total_turnover_day = #{totalTurnoverDay,jdbcType=REAL},
       total_turnover_week = #{totalTurnoverWeek,jdbcType=REAL},

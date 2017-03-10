@@ -3,6 +3,7 @@
 <mapper namespace="com.jzt.api.dao.PlatAppMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.PlatApp" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="ios_address" property="iosAddress" jdbcType="VARCHAR" />
     <result column="android_address" property="androidAddress" jdbcType="VARCHAR" />
@@ -11,9 +12,8 @@
     <result column="logo" property="logo" jdbcType="VARCHAR" />
     <result column="is_ios" property="isIos" jdbcType="INTEGER" />
     <result column="is_android" property="isAndroid" jdbcType="INTEGER" />
-    <result column="plat_id" property="platId" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -75,8 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, ios_address, android_address, ios_code_url, android_code_url, logo, is_ios, 
-    is_android, plat_id, create_time, update_time, is_delete
+    id, plat_id, name, ios_address, android_address, ios_code_url, android_code_url, 
+    logo, is_ios, is_android, create_time, update_time, is_delete
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.PlatAppExample" >
     select
@@ -109,15 +109,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.PlatApp" >
-    insert into plat_app (id, name, ios_address, 
-      android_address, ios_code_url, android_code_url, 
-      logo, is_ios, is_android, 
-      plat_id, create_time, update_time, 
+    insert into plat_app (id, plat_id, name, 
+      ios_address, android_address, ios_code_url, 
+      android_code_url, logo, is_ios, 
+      is_android, create_time, update_time, 
       is_delete)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{iosAddress,jdbcType=VARCHAR}, 
-      #{androidAddress,jdbcType=VARCHAR}, #{iosCodeUrl,jdbcType=VARCHAR}, #{androidCodeUrl,jdbcType=VARCHAR}, 
-      #{logo,jdbcType=VARCHAR}, #{isIos,jdbcType=INTEGER}, #{isAndroid,jdbcType=INTEGER}, 
-      #{platId,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{iosAddress,jdbcType=VARCHAR}, #{androidAddress,jdbcType=VARCHAR}, #{iosCodeUrl,jdbcType=VARCHAR}, 
+      #{androidCodeUrl,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{isIos,jdbcType=INTEGER}, 
+      #{isAndroid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.PlatApp" >
@@ -125,6 +125,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="name != null" >
         name,
@@ -150,9 +153,6 @@
       <if test="isAndroid != null" >
         is_android,
       </if>
-      <if test="platId != null" >
-        plat_id,
-      </if>
       <if test="createTime != null" >
         create_time,
       </if>
@@ -166,6 +166,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -191,14 +194,11 @@
       <if test="isAndroid != null" >
         #{isAndroid,jdbcType=INTEGER},
       </if>
-      <if test="platId != null" >
-        #{platId,jdbcType=INTEGER},
-      </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -216,6 +216,9 @@
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -241,14 +244,11 @@
       <if test="record.isAndroid != null" >
         is_android = #{record.isAndroid,jdbcType=INTEGER},
       </if>
-      <if test="record.platId != null" >
-        plat_id = #{record.platId,jdbcType=INTEGER},
-      </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -261,6 +261,7 @@
   <update id="updateByExample" parameterType="map" >
     update plat_app
     set id = #{record.id,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       ios_address = #{record.iosAddress,jdbcType=VARCHAR},
       android_address = #{record.androidAddress,jdbcType=VARCHAR},
@@ -269,9 +270,8 @@
       logo = #{record.logo,jdbcType=VARCHAR},
       is_ios = #{record.isIos,jdbcType=INTEGER},
       is_android = #{record.isAndroid,jdbcType=INTEGER},
-      plat_id = #{record.platId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -280,6 +280,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.PlatApp" >
     update plat_app
     <set >
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
+      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -304,14 +307,11 @@
       <if test="isAndroid != null" >
         is_android = #{isAndroid,jdbcType=INTEGER},
       </if>
-      <if test="platId != null" >
-        plat_id = #{platId,jdbcType=INTEGER},
-      </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -321,7 +321,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.PlatApp" >
     update plat_app
-    set name = #{name,jdbcType=VARCHAR},
+    set plat_id = #{platId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
       ios_address = #{iosAddress,jdbcType=VARCHAR},
       android_address = #{androidAddress,jdbcType=VARCHAR},
       ios_code_url = #{iosCodeUrl,jdbcType=VARCHAR},
@@ -329,9 +330,8 @@
       logo = #{logo,jdbcType=VARCHAR},
       is_ios = #{isIos,jdbcType=INTEGER},
       is_android = #{isAndroid,jdbcType=INTEGER},
-      plat_id = #{platId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

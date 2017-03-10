@@ -5,7 +5,7 @@ import java.util.Date;
 public class BankEval {
     private Integer id;
 
-    private Integer bankId;
+    private Integer platId;
 
     private Double releaseScore;
 
@@ -39,12 +39,12 @@ public class BankEval {
         this.id = id;
     }
 
-    public Integer getBankId() {
-        return bankId;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setBankId(Integer bankId) {
-        this.bankId = bankId;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public Double getReleaseScore() {

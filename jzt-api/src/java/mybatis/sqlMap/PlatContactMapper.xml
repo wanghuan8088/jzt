@@ -11,8 +11,8 @@
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="weibo" property="weibo" jdbcType="VARCHAR" />
     <result column="wechat" property="wechat" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -116,7 +116,7 @@
     values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
       #{phone400,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{weibo,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER}
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.PlatContact" >
@@ -188,10 +188,10 @@
         #{wechat,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -235,10 +235,10 @@
         wechat = #{record.wechat,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -259,8 +259,8 @@
       email = #{record.email,jdbcType=VARCHAR},
       weibo = #{record.weibo,jdbcType=VARCHAR},
       wechat = #{record.wechat,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -294,10 +294,10 @@
         wechat = #{wechat,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -315,8 +315,8 @@
       email = #{email,jdbcType=VARCHAR},
       weibo = #{weibo,jdbcType=VARCHAR},
       wechat = #{wechat,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

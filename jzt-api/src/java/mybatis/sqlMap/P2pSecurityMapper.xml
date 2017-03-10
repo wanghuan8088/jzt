@@ -3,7 +3,7 @@
 <mapper namespace="com.jzt.api.dao.P2pSecurityMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pSecurity" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="p2p_id" property="p2pId" jdbcType="INTEGER" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
     <result column="tender_security" property="tenderSecurity" jdbcType="VARCHAR" />
     <result column="security_mode" property="securityMode" jdbcType="VARCHAR" />
     <result column="security_mode_url" property="securityModeUrl" jdbcType="VARCHAR" />
@@ -12,8 +12,8 @@
     <result column="trust_funds" property="trustFunds" jdbcType="VARCHAR" />
     <result column="custodian_institution" property="custodianInstitution" jdbcType="VARCHAR" />
     <result column="trust_funds_tuo" property="trustFundsTuo" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.P2pSecurityWithBLOBs" extends="BaseResultMap" >
@@ -82,7 +82,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, p2p_id, tender_security, security_mode, security_mode_url, guarantee_institutions, 
+    id, plat_id, tender_security, security_mode, security_mode_url, guarantee_institutions, 
     risk_reserve_init, trust_funds, custodian_institution, trust_funds_tuo, create_time, 
     update_time, is_delete
   </sql>
@@ -139,17 +139,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
-    insert into p2p_security (id, p2p_id, tender_security, 
+    insert into p2p_security (id, plat_id, tender_security, 
       security_mode, security_mode_url, guarantee_institutions, 
       risk_reserve_init, trust_funds, custodian_institution, 
       trust_funds_tuo, create_time, update_time, 
       is_delete, emergency_funds, risk_reserve_rule, 
       risk_reserve_institution, third_payment_institution, 
       custodian_institution_tuo)
-    values (#{id,jdbcType=INTEGER}, #{p2pId,jdbcType=INTEGER}, #{tenderSecurity,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{tenderSecurity,jdbcType=VARCHAR}, 
       #{securityMode,jdbcType=VARCHAR}, #{securityModeUrl,jdbcType=VARCHAR}, #{guaranteeInstitutions,jdbcType=VARCHAR}, 
       #{riskReserveInit,jdbcType=DOUBLE}, #{trustFunds,jdbcType=VARCHAR}, #{custodianInstitution,jdbcType=VARCHAR}, 
-      #{trustFundsTuo,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE}, 
+      #{trustFundsTuo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=INTEGER}, #{emergencyFunds,jdbcType=LONGVARCHAR}, #{riskReserveRule,jdbcType=LONGVARCHAR}, 
       #{riskReserveInstitution,jdbcType=LONGVARCHAR}, #{thirdPaymentInstitution,jdbcType=LONGVARCHAR}, 
       #{custodianInstitutionTuo,jdbcType=LONGVARCHAR})
@@ -160,8 +160,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="p2pId != null" >
-        p2p_id,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="tenderSecurity != null" >
         tender_security,
@@ -216,8 +216,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="p2pId != null" >
-        #{p2pId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="tenderSecurity != null" >
         #{tenderSecurity,jdbcType=VARCHAR},
@@ -244,10 +244,10 @@
         #{trustFundsTuo,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -281,8 +281,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.p2pId != null" >
-        p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.tenderSecurity != null" >
         tender_security = #{record.tenderSecurity,jdbcType=VARCHAR},
@@ -309,10 +309,10 @@
         trust_funds_tuo = #{record.trustFundsTuo,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -340,7 +340,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update p2p_security
     set id = #{record.id,jdbcType=INTEGER},
-      p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       tender_security = #{record.tenderSecurity,jdbcType=VARCHAR},
       security_mode = #{record.securityMode,jdbcType=VARCHAR},
       security_mode_url = #{record.securityModeUrl,jdbcType=VARCHAR},
@@ -349,8 +349,8 @@
       trust_funds = #{record.trustFunds,jdbcType=VARCHAR},
       custodian_institution = #{record.custodianInstitution,jdbcType=VARCHAR},
       trust_funds_tuo = #{record.trustFundsTuo,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER},
       emergency_funds = #{record.emergencyFunds,jdbcType=LONGVARCHAR},
       risk_reserve_rule = #{record.riskReserveRule,jdbcType=LONGVARCHAR},
@@ -364,7 +364,7 @@
   <update id="updateByExample" parameterType="map" >
     update p2p_security
     set id = #{record.id,jdbcType=INTEGER},
-      p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      plat_id = #{record.platId,jdbcType=INTEGER},
       tender_security = #{record.tenderSecurity,jdbcType=VARCHAR},
       security_mode = #{record.securityMode,jdbcType=VARCHAR},
       security_mode_url = #{record.securityModeUrl,jdbcType=VARCHAR},
@@ -373,8 +373,8 @@
       trust_funds = #{record.trustFunds,jdbcType=VARCHAR},
       custodian_institution = #{record.custodianInstitution,jdbcType=VARCHAR},
       trust_funds_tuo = #{record.trustFundsTuo,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -383,8 +383,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
     update p2p_security
     <set >
-      <if test="p2pId != null" >
-        p2p_id = #{p2pId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="tenderSecurity != null" >
         tender_security = #{tenderSecurity,jdbcType=VARCHAR},
@@ -411,10 +411,10 @@
         trust_funds_tuo = #{trustFundsTuo,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -439,7 +439,7 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.P2pSecurityWithBLOBs" >
     update p2p_security
-    set p2p_id = #{p2pId,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       tender_security = #{tenderSecurity,jdbcType=VARCHAR},
       security_mode = #{securityMode,jdbcType=VARCHAR},
       security_mode_url = #{securityModeUrl,jdbcType=VARCHAR},
@@ -448,8 +448,8 @@
       trust_funds = #{trustFunds,jdbcType=VARCHAR},
       custodian_institution = #{custodianInstitution,jdbcType=VARCHAR},
       trust_funds_tuo = #{trustFundsTuo,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER},
       emergency_funds = #{emergencyFunds,jdbcType=LONGVARCHAR},
       risk_reserve_rule = #{riskReserveRule,jdbcType=LONGVARCHAR},
@@ -460,7 +460,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pSecurity" >
     update p2p_security
-    set p2p_id = #{p2pId,jdbcType=INTEGER},
+    set plat_id = #{platId,jdbcType=INTEGER},
       tender_security = #{tenderSecurity,jdbcType=VARCHAR},
       security_mode = #{securityMode,jdbcType=VARCHAR},
       security_mode_url = #{securityModeUrl,jdbcType=VARCHAR},
@@ -469,8 +469,8 @@
       trust_funds = #{trustFunds,jdbcType=VARCHAR},
       custodian_institution = #{custodianInstitution,jdbcType=VARCHAR},
       trust_funds_tuo = #{trustFundsTuo,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

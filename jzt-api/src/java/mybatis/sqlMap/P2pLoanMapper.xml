@@ -3,9 +3,9 @@
 <mapper namespace="com.jzt.api.dao.P2pLoanMapper" >
   <resultMap id="BaseResultMap" type="com.jzt.api.domain.P2pLoan" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="p2p_id" property="p2pId" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="plat_id" property="platId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="INTEGER" />
@@ -86,7 +86,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, p2p_id, create_time, update_time, is_delete, name, amount, interest_rate, start_time, 
+    id, plat_id, create_time, update_time, is_delete, name, amount, interest_rate, start_time, 
     limit_time, schedule, firstday_interest, mode_of_payment, purchase_amount, limit_amount, 
     dock_product, protection_means, is_transfer, state, product_url, protocol
   </sql>
@@ -142,7 +142,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.jzt.api.domain.P2pLoan" >
-    insert into p2p_loan (id, p2p_id, create_time, 
+    insert into p2p_loan (id, plat_id, create_time, 
       update_time, is_delete, name, 
       amount, interest_rate, start_time, 
       limit_time, schedule, firstday_interest, 
@@ -150,8 +150,8 @@
       dock_product, protection_means, is_transfer, 
       state, product_url, protocol, 
       des)
-    values (#{id,jdbcType=INTEGER}, #{p2pId,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
-      #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{amount,jdbcType=INTEGER}, #{interestRate,jdbcType=DOUBLE}, #{startTime,jdbcType=DATE}, 
       #{limitTime,jdbcType=INTEGER}, #{schedule,jdbcType=DOUBLE}, #{firstdayInterest,jdbcType=DATE}, 
       #{modeOfPayment,jdbcType=VARCHAR}, #{purchaseAmount,jdbcType=INTEGER}, #{limitAmount,jdbcType=INTEGER}, 
@@ -165,8 +165,8 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="p2pId != null" >
-        p2p_id,
+      <if test="platId != null" >
+        plat_id,
       </if>
       <if test="createTime != null" >
         create_time,
@@ -233,14 +233,14 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="p2pId != null" >
-        #{p2pId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        #{platId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -310,14 +310,14 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.p2pId != null" >
-        p2p_id = #{record.p2pId,jdbcType=INTEGER},
+      <if test="record.platId != null" >
+        plat_id = #{record.platId,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -381,9 +381,9 @@
   <update id="updateByExampleWithBLOBs" parameterType="map" >
     update p2p_loan
     set id = #{record.id,jdbcType=INTEGER},
-      p2p_id = #{record.p2pId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      plat_id = #{record.platId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=INTEGER},
@@ -409,9 +409,9 @@
   <update id="updateByExample" parameterType="map" >
     update p2p_loan
     set id = #{record.id,jdbcType=INTEGER},
-      p2p_id = #{record.p2pId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      plat_id = #{record.platId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=INTEGER},
@@ -436,14 +436,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.jzt.api.domain.P2pLoan" >
     update p2p_loan
     <set >
-      <if test="p2pId != null" >
-        p2p_id = #{p2pId,jdbcType=INTEGER},
+      <if test="platId != null" >
+        plat_id = #{platId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -504,9 +504,9 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jzt.api.domain.P2pLoan" >
     update p2p_loan
-    set p2p_id = #{p2pId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+    set plat_id = #{platId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=INTEGER},
@@ -529,9 +529,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jzt.api.domain.P2pLoan" >
     update p2p_loan
-    set p2p_id = #{p2pId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+    set plat_id = #{platId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=INTEGER},

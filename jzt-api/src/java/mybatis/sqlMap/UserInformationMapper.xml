@@ -15,6 +15,8 @@
     <result column="imgPath" property="imgpath" jdbcType="VARCHAR" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="accesstoken" property="accesstoken" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List" >
     uId, user_name, password, user_dsp_name, sex, birthday, phone, email, status, user_type, 
-    imgPath, createtime, level
+    imgPath, createtime, level, accesstoken, openid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.UserInformationExample" >
     select
@@ -113,12 +115,14 @@
       user_dsp_name, sex, birthday, 
       phone, email, status, 
       user_type, imgPath, createtime, 
-      level)
+      level, accesstoken, openid
+      )
     values (#{uid,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userDspName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{userType,jdbcType=INTEGER}, #{imgpath,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{level,jdbcType=INTEGER})
+      #{level,jdbcType=INTEGER}, #{accesstoken,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.UserInformation" >
     insert into user_information
@@ -162,6 +166,12 @@
       <if test="level != null" >
         level,
       </if>
+      <if test="accesstoken != null" >
+        accesstoken,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
@@ -202,6 +212,12 @@
       </if>
       <if test="level != null" >
         #{level,jdbcType=INTEGER},
+      </if>
+      <if test="accesstoken != null" >
+        #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -253,6 +269,12 @@
       <if test="record.level != null" >
         level = #{record.level,jdbcType=INTEGER},
       </if>
+      <if test="record.accesstoken != null" >
+        accesstoken = #{record.accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null" >
+        openid = #{record.openid,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,7 +294,9 @@
       user_type = #{record.userType,jdbcType=INTEGER},
       imgPath = #{record.imgpath,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      level = #{record.level,jdbcType=INTEGER}
+      level = #{record.level,jdbcType=INTEGER},
+      accesstoken = #{record.accesstoken,jdbcType=VARCHAR},
+      openid = #{record.openid,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -316,6 +340,12 @@
       <if test="level != null" >
         level = #{level,jdbcType=INTEGER},
       </if>
+      <if test="accesstoken != null" >
+        accesstoken = #{accesstoken,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
     </set>
     where uId = #{uid,jdbcType=INTEGER}
   </update>
@@ -332,7 +362,9 @@
       user_type = #{userType,jdbcType=INTEGER},
       imgPath = #{imgpath,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      level = #{level,jdbcType=INTEGER}
+      level = #{level,jdbcType=INTEGER},
+      accesstoken = #{accesstoken,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR}
     where uId = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

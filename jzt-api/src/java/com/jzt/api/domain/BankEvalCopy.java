@@ -3,7 +3,7 @@ package com.jzt.api.domain;
 public class BankEvalCopy {
     private Integer id;
 
-    private Integer bankId;
+    private Integer platId;
 
     private Double personSurvivalScale;
 
@@ -53,12 +53,12 @@ public class BankEvalCopy {
         this.id = id;
     }
 
-    public Integer getBankId() {
-        return bankId;
+    public Integer getPlatId() {
+        return platId;
     }
 
-    public void setBankId(Integer bankId) {
-        this.bankId = bankId;
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
     }
 
     public Double getPersonSurvivalScale() {

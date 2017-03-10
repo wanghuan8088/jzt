@@ -7,8 +7,8 @@
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="is_listed" property="isListed" jdbcType="INTEGER" />
     <result column="code" property="code" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="DATE" />
-    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -107,8 +107,8 @@
       is_listed, code, create_time, 
       update_time, is_delete)
     values (#{id,jdbcType=INTEGER}, #{platId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
-      #{isListed,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
-      #{updateTime,jdbcType=DATE}, #{isDelete,jdbcType=INTEGER})
+      #{isListed,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.BankPlat" >
     insert into bank_plat
@@ -155,10 +155,10 @@
         #{code,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=DATE},
+        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         #{isDelete,jdbcType=INTEGER},
@@ -190,10 +190,10 @@
         code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=DATE},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null" >
         is_delete = #{record.isDelete,jdbcType=INTEGER},
@@ -210,8 +210,8 @@
       type = #{record.type,jdbcType=INTEGER},
       is_listed = #{record.isListed,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=DATE},
-      update_time = #{record.updateTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -233,10 +233,10 @@
         code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=DATE},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null" >
         is_delete = #{isDelete,jdbcType=INTEGER},
@@ -250,8 +250,8 @@
       type = #{type,jdbcType=INTEGER},
       is_listed = #{isListed,jdbcType=INTEGER},
       code = #{code,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      update_time = #{updateTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
