@@ -2,9 +2,7 @@ package com.jzt.api.service;
 
 import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.annotations.Param;
-
 import com.jzt.api.domain.Province;
 import com.jzt.api.domain.ProvinceExample;
 
@@ -16,14 +14,54 @@ import com.jzt.api.domain.ProvinceExample;
  */
 public interface ProvinceService {
 
+	/**  
+	* @Title: save  
+	* @Description: save 
+	* @param @param record
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
 	Map<String, Object> save(Province record);
 
+	/**  
+	* @Title: delete  
+	* @Description: delete 
+	* @param @param record
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
 	Map<String, Object> delete(Province record);
 
+	/**  
+	* @Title: selectOneByPrimaryKey  
+	* @Description: selectOneByPrimaryKey 
+	* @param @param id
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
 	Map<String, Object> selectOneByPrimaryKey(Integer id);
 
+	/**  
+	* @Title: saveOrUpdate  
+	* @Description: saveOrUpdate 
+	* @param @param record
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
 	Map<String, Object> saveOrUpdate(Province record);
 	
+	/**  
+	* @Title: queryListByPage  
+	* @Description: queryListByPage 
+	* @param @param record
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
 	Map<String, Object> queryListByPage(Province record);
 	
 	

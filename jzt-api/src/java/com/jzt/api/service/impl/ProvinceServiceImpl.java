@@ -1,8 +1,8 @@
 package com.jzt.api.service.impl;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +13,27 @@ import com.jzt.api.domain.Province;
 import com.jzt.api.domain.ProvinceExample;
 import com.jzt.api.service.ProvinceService;
 
-/**
- * Desc: ProvinceServiceImpl class
- * 
- * @author Kavin
- * @since  2017-Mar-6 
- */
+
+/** 
+* @ClassName: ProvinceServiceImpl 
+* @Description: ProvinceServiceImpl class
+* @author  Kavin
+* @date 2017年3月10日 上午9:35:55 
+*  
+*/
 @Service
 public class ProvinceServiceImpl extends BaseService implements ProvinceService {
 
 	@Autowired
 	private ProvinceMapper provinceMapper;
 	
+	/* (非 Javadoc)  
+	* <p>Title: save</p>  
+	* <p>Description: </p>  
+	* @param record
+	* @return  
+	* @see com.jzt.api.service.ProvinceService#save(com.jzt.api.domain.Province)  
+	*/
 	@Override
 	public Map<String, Object> save(Province record) {
 		
@@ -38,6 +47,13 @@ public class ProvinceServiceImpl extends BaseService implements ProvinceService 
 		return result;
 	}
 
+	/* (非 Javadoc)  
+	* <p>Title: delete</p>  
+	* <p>Description: </p>  
+	* @param record
+	* @return  
+	* @see com.jzt.api.service.ProvinceService#delete(com.jzt.api.domain.Province)  
+	*/
 	@Override
 	public Map<String, Object> delete(Province record) {
 		
@@ -53,6 +69,13 @@ public class ProvinceServiceImpl extends BaseService implements ProvinceService 
 
 	
 
+	/* (非 Javadoc)  
+	* <p>Title: selectOneByPrimaryKey</p>  
+	* <p>Description: </p>  
+	* @param id
+	* @return  
+	* @see com.jzt.api.service.ProvinceService#selectOneByPrimaryKey(java.lang.Integer)  
+	*/
 	@Override
 	public Map<String, Object> selectOneByPrimaryKey(Integer id) {
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -68,6 +91,13 @@ public class ProvinceServiceImpl extends BaseService implements ProvinceService 
 		return result;
 	}
 
+	/* (非 Javadoc)  
+	* <p>Title: saveOrUpdate</p>  
+	* <p>Description: </p>  
+	* @param record
+	* @return  
+	* @see com.jzt.api.service.ProvinceService#saveOrUpdate(com.jzt.api.domain.Province)  
+	*/
 	@Override
 	public Map<String, Object> saveOrUpdate(Province record) {
 		
@@ -95,6 +125,13 @@ public class ProvinceServiceImpl extends BaseService implements ProvinceService 
 		return result;
 	}
 	
+	/* (非 Javadoc)  
+	* <p>Title: queryListByPage</p>  
+	* <p>Description: </p>  
+	* @param record
+	* @return  
+	* @see com.jzt.api.service.ProvinceService#queryListByPage(com.jzt.api.domain.Province)  
+	*/
 	@Override
 	public Map<String, Object> queryListByPage(Province record) {
 		Map<String, Object> result = new HashMap<String, Object>();
