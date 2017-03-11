@@ -24,11 +24,11 @@ public class MyServiceImpl implements MyService {
 
     @Override
     public List<AppUserFavorite> favoriteList(String userId) {
-        return appUserFavoriteMapper.selectByUserId(userId);
+        return appUserFavoriteMapper.selectByExample(null);
     }
 
     @Override
     public List<UserAttentionPlatform> bankList(String uid) {
-        return userAttentionPlatformMapper.selectByUserId(uid);
+        return userAttentionPlatformMapper.selectByExample(null);
     }
 }
