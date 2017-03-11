@@ -19,6 +19,8 @@ public interface ReportMapper {
     List<Report> selectByExampleWithBLOBs(ReportExample example);
 
     List<Report> selectByExample(ReportExample example);
+    
+    List<Report> selectReportsByUid(Integer uid);
 
     Report selectByPrimaryKey(Integer id);
 
