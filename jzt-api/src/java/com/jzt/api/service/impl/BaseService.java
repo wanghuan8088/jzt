@@ -27,6 +27,20 @@ public class BaseService {
 	}
 
 	/**
+	 * @param record
+	 * @param data
+	 */
+	public Map<String, Object> generateNomalResult(Object record,String msg) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("record", record);
+		result.put("data", data );
+		result.put("res", "0");
+		result.put("message", msg);
+		return result;
+	}
+
+	/**
 	 * @param e
 	 */
 	public Map<String, Object> generateErrorResult(Exception e) {
