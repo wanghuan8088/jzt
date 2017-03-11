@@ -13,9 +13,14 @@
     <result column="message" property="message" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="orderno" property="orderno" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="VARCHAR" />
+    <result column="paid" property="paid" jdbcType="VARCHAR" />
+    <result column="refunded" property="refunded" jdbcType="VARCHAR" />
     <result column="appid" property="appid" jdbcType="VARCHAR" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
+    <result column="timeexpire" property="timeexpire" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,7 +82,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, chargeid, subject, channel, body, clientip, amount, currency, message, address, 
-    orderno, appid, createtime, modifytime
+    orderno, created, paid, refunded, appid, createtime, modifytime, timeexpire, description
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.ChargeExample" >
     select
@@ -113,13 +118,17 @@
     insert into charge (id, chargeid, subject, 
       channel, body, clientip, 
       amount, currency, message, 
-      address, orderno, appid, 
-      createtime, modifytime)
+      address, orderno, created, 
+      paid, refunded, appid, 
+      createtime, modifytime, timeexpire, 
+      description)
     values (#{id,jdbcType=INTEGER}, #{chargeid,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR}, 
       #{channel,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR}, #{clientip,jdbcType=VARCHAR}, 
       #{amount,jdbcType=INTEGER}, #{currency,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP})
+      #{address,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{created,jdbcType=VARCHAR}, 
+      #{paid,jdbcType=VARCHAR}, #{refunded,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP}, #{timeexpire,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.jzt.api.domain.Charge" >
     insert into charge
@@ -157,6 +166,15 @@
       <if test="orderno != null" >
         orderno,
       </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="paid != null" >
+        paid,
+      </if>
+      <if test="refunded != null" >
+        refunded,
+      </if>
       <if test="appid != null" >
         appid,
       </if>
@@ -165,6 +183,12 @@
       </if>
       <if test="modifytime != null" >
         modifytime,
+      </if>
+      <if test="timeexpire != null" >
+        timeexpire,
+      </if>
+      <if test="description != null" >
+        description,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -201,6 +225,15 @@
       <if test="orderno != null" >
         #{orderno,jdbcType=VARCHAR},
       </if>
+      <if test="created != null" >
+        #{created,jdbcType=VARCHAR},
+      </if>
+      <if test="paid != null" >
+        #{paid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunded != null" >
+        #{refunded,jdbcType=VARCHAR},
+      </if>
       <if test="appid != null" >
         #{appid,jdbcType=VARCHAR},
       </if>
@@ -209,6 +242,12 @@
       </if>
       <if test="modifytime != null" >
         #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeexpire != null" >
+        #{timeexpire,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -254,6 +293,15 @@
       <if test="record.orderno != null" >
         orderno = #{record.orderno,jdbcType=VARCHAR},
       </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paid != null" >
+        paid = #{record.paid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refunded != null" >
+        refunded = #{record.refunded,jdbcType=VARCHAR},
+      </if>
       <if test="record.appid != null" >
         appid = #{record.appid,jdbcType=VARCHAR},
       </if>
@@ -262,6 +310,12 @@
       </if>
       <if test="record.modifytime != null" >
         modifytime = #{record.modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.timeexpire != null" >
+        timeexpire = #{record.timeexpire,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -281,9 +335,14 @@
       message = #{record.message,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
       orderno = #{record.orderno,jdbcType=VARCHAR},
+      created = #{record.created,jdbcType=VARCHAR},
+      paid = #{record.paid,jdbcType=VARCHAR},
+      refunded = #{record.refunded,jdbcType=VARCHAR},
       appid = #{record.appid,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      modifytime = #{record.modifytime,jdbcType=TIMESTAMP}
+      modifytime = #{record.modifytime,jdbcType=TIMESTAMP},
+      timeexpire = #{record.timeexpire,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -321,6 +380,15 @@
       <if test="orderno != null" >
         orderno = #{orderno,jdbcType=VARCHAR},
       </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=VARCHAR},
+      </if>
+      <if test="paid != null" >
+        paid = #{paid,jdbcType=VARCHAR},
+      </if>
+      <if test="refunded != null" >
+        refunded = #{refunded,jdbcType=VARCHAR},
+      </if>
       <if test="appid != null" >
         appid = #{appid,jdbcType=VARCHAR},
       </if>
@@ -329,6 +397,12 @@
       </if>
       <if test="modifytime != null" >
         modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="timeexpire != null" >
+        timeexpire = #{timeexpire,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -345,9 +419,14 @@
       message = #{message,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
       orderno = #{orderno,jdbcType=VARCHAR},
+      created = #{created,jdbcType=VARCHAR},
+      paid = #{paid,jdbcType=VARCHAR},
+      refunded = #{refunded,jdbcType=VARCHAR},
       appid = #{appid,jdbcType=VARCHAR},
       createtime = #{createtime,jdbcType=TIMESTAMP},
-      modifytime = #{modifytime,jdbcType=TIMESTAMP}
+      modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      timeexpire = #{timeexpire,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

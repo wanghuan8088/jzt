@@ -25,11 +25,21 @@ public class Charge {
 
     private String orderno;
 
+    private String created;
+
+    private String paid;
+
+    private String refunded;
+
     private String appid;
 
     private Date createtime;
 
     private Date modifytime;
+
+    private String timeexpire;
+
+    private String description;
 
     public Integer getId() {
         return id;
@@ -119,6 +129,30 @@ public class Charge {
         this.orderno = orderno;
     }
 
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public String getPaid() {
+        return paid;
+    }
+
+    public void setPaid(String paid) {
+        this.paid = paid;
+    }
+
+    public String getRefunded() {
+        return refunded;
+    }
+
+    public void setRefunded(String refunded) {
+        this.refunded = refunded;
+    }
+
     public String getAppid() {
         return appid;
     }
@@ -141,5 +175,21 @@ public class Charge {
 
     public void setModifytime(Date modifytime) {
         this.modifytime = modifytime;
+    }
+
+    public String getTimeexpire() {
+        return timeexpire;
+    }
+
+    public void setTimeexpire(String timeexpire) {
+        this.timeexpire = timeexpire;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
