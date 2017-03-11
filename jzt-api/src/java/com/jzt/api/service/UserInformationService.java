@@ -32,5 +32,7 @@ public interface UserInformationService {
 			UserInformationExample example);
 
 	Map<String, Object> checkLogin(UserInformation dto);
+
+	Map<String, Object> resetPswd(UserInformation record);
 	
 }

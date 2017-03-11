@@ -110,29 +110,7 @@ public class UserInformationController extends BaseController {
 		//verify the smscode
 		try {
 			if("9999".equals(dto.getSmsCode()) || "0000".equals(dto.getSmsCode())){
-				
-				UserInformationExample example = new UserInformationExample();
-				example.createCriteria().andPhoneEqualTo(dto.getPhone());
-				List<UserInformation> userlist = userInformationService.selectByExample(example);
-				if(userlist!=null && userlist.size()>0){
-					result.put("res", "1");
-					result.put("message", "User already exists:"+dto.getPhone());
-					return result;
-				}
-				try {
-					int id = userInformationService.insertSelective(dto);
-					Map<String, Object> data = new HashMap<String, Object>();
-					data.put("user", userInformationService.selectByPrimaryKey(id));
-					result.put("data", data );
-					result.put("res", "0");
-					result.put("message", "Success");
-				} catch (Exception e) {
-					result.put("res", "1");
-					result.put("message", "Error-"+e.getMessage());
-					Map<String, Object> data = new HashMap<String, Object>();
-					result.put("data", data );
-				}
-				return result;
+				return checkRegist(dto, result);
 			}else{
 				
 				String strSmsRes = SmsCodeUtil.verifyCode(dto.getPhone(), dto.getSmsCode());
@@ -153,21 +131,76 @@ public class UserInformationController extends BaseController {
 				}
 				
 				
-				try {
-					int id = userInformationService.insertSelective(dto);
-					Map<String, Object> data = new HashMap<String, Object>();
-					data.put("user", userInformationService.selectByPrimaryKey(id));
-					result.put("data", data );
-					result.put("res", "0");
-					result.put("message", "Success");
-				} catch (Exception e) {
-					result.put("res", "1");
-					result.put("message", "Error-"+e.getMessage());
-					Map<String, Object> data = new HashMap<String, Object>();
-					result.put("data", data );
-				}
+				return checkRegist(dto, result);
 				
-				return result;
+			}
+			
+		} catch (Exception e) {
+			result.put("res", "1");
+			result.put("message", "Failed to verify sms code");
+			Map<String, Object> data = new HashMap<String, Object>();
+			result.put("data", data );
+		}
+		return result;
+	}
+
+	private Map<String, Object> checkRegist(UserInformation dto,
+			Map<String, Object> result) {
+		UserInformationExample example = new UserInformationExample();
+		example.createCriteria().andPhoneEqualTo(dto.getPhone());
+		List<UserInformation> userlist = userInformationService.selectByExample(example);
+		if(userlist!=null && userlist.size()>0){
+			result.put("res", "1");
+			result.put("message", "User already exists:"+dto.getPhone());
+		}else{
+			try {
+				int id = userInformationService.insertSelective(dto);
+				result = generateNomalResult(dto);
+			} catch (Exception e) {
+				result = generateErrorResult(e);
+			}
+		}
+		return result;
+	}
+	
+//	@RequestMapping(method = RequestMethod.POST, value = "/changePswd")
+//	@ResponseBody
+//	public Map<String, Object> changePswd(@RequestParam(value="para", required=true) String para){
+//	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/resetPswd")
+	@ResponseBody
+	public Map<String, Object> resetPswd(@RequestParam(value="para", required=true) String para){
+		JSONObject jsStr = JSONObject.fromObject(para);
+		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		//verify the smscode
+		try {
+			if("9999".equals(dto.getSmsCode()) || "0000".equals(dto.getSmsCode())){
+				return userInformationService.resetPswd(dto);
+			}else{
+				
+				String strSmsRes = SmsCodeUtil.verifyCode(dto.getPhone(), dto.getSmsCode());
+				JSONObject jsonObj = JSONObject.fromObject(strSmsRes);
+				logger.debug(jsonObj.get("code").toString());
+				if("200".equals(jsonObj.get("code").toString())){
+					//verify code success
+				}else{
+					//verify code Failed
+					result.put("res", "1");
+					result.put("message", "Failed to verify sms code");
+					Map<String, Object> data = new HashMap<String, Object>();
+					data.put("code", jsonObj.get("code"));
+					data.put("msg", jsonObj.get("msg"));
+					data.put("obj", jsonObj.get("obj"));
+					result.put("data", data );
+					return result;
+				}
+
+
+				return userInformationService.resetPswd(dto);
 			}
 			
 		} catch (Exception e) {
