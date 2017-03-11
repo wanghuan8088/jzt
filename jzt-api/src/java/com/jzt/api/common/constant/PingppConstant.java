@@ -1,7 +1,5 @@
 package com.jzt.api.common.constant;
 
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -46,23 +44,5 @@ public class PingppConstant {
     	System.out.println(pathStr);
     	System.out.println(pathStr + filePath);
     	return pathStr + filePath;
-    	/**
-        FileInputStream in = new FileInputStream(pathStr + filePath);
-        InputStreamReader inReader = new InputStreamReader(in, "UTF-8");
-        BufferedReader bf = new BufferedReader(inReader);
-        StringBuilder sb = new StringBuilder();
-        String line;
-        do {
-            line = bf.readLine();
-            if (line != null) {
-                if (sb.length() != 0) {
-                    sb.append("\n");
-                }
-                sb.append(line);
-            }
-        } while (line != null);
-
-        return sb.toString();
-        **/
     }
 }
