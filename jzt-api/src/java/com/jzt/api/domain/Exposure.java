@@ -5,6 +5,8 @@ import java.util.Date;
 public class Exposure {
     private Integer eid;
 
+    private Integer platId;
+
     private String title;
 
     private String productName;
@@ -40,6 +42,34 @@ public class Exposure {
     private Double hotValue;
 
     private String content;
+
+    protected int startRow;
+
+    protected int pageSize;
+
+    public Integer getPlatId() {
+        return platId;
+    }
+
+    public void setPlatId(Integer platId) {
+        this.platId = platId;
+    }
+
+    public int getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(int startRow) {
+        this.startRow = startRow;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public Integer getEid() {
         return eid;

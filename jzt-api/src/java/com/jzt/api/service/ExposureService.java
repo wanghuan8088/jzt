@@ -5,8 +5,9 @@ import com.jzt.api.domain.Exposure;
 import java.util.List;
 
 /**
- * Created by wanghuan on 10/03/2017.
+ *  曝光平台业务接口
  */
 public interface ExposureService {
     List<Exposure> list(Exposure exposure);
+    List<Exposure> listByPlatform(Exposure exposure);
 }

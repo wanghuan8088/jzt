@@ -11,8 +11,8 @@
     <result column="agree_cnt" property="agreeCnt" jdbcType="INTEGER" />
     <result column="comment_cnt" property="commentCnt" jdbcType="INTEGER" />
     <result column="click_cnt" property="clickCnt" jdbcType="INTEGER" />
-    <result column="created_date" property="createdDate" jdbcType="TIMESTAMP" />
-    <result column="last_update" property="lastUpdate" jdbcType="TIMESTAMP" />
+    <result column="created_date" property="createdDate" jdbcType="DATE" />
+    <result column="last_update" property="lastUpdate" jdbcType="DATE" />
     <result column="last_comment_editor" property="lastCommentEditor" jdbcType="VARCHAR" />
     <result column="last_comment" property="lastComment" jdbcType="TIMESTAMP" />
     <result column="checked_date" property="checkedDate" jdbcType="TIMESTAMP" />
@@ -118,6 +118,9 @@
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >

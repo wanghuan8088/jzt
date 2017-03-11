@@ -12,6 +12,8 @@ public class AppKeywordsTrendExample {
 
     protected int startRow;
 
+    protected int pageSize;
+
     public int getStartRow() {
         return startRow;
     }
@@ -27,11 +29,6 @@ public class AppKeywordsTrendExample {
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
-
-    protected int pageSize;
-
-
-
 
     public AppKeywordsTrendExample() {
         oredCriteria = new ArrayList<Criteria>();

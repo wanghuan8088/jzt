@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by wanghuan on 10/03/2017.
+ * 曝光平台
  */
 
 @Controller
@@ -24,17 +24,47 @@ public class ExposureController extends BaseController {
     @Autowired
     private ExposureService exposureService;
 
-
-    @RequestMapping(value = "/list/")
+    @RequestMapping(value = "/list/{startRow}/{pageSize}")
     @ResponseBody
-    public Map<String, Object> list(@PathVariable String id){
+    public Map<String, Object> list(@PathVariable(value="startRow") int startRow,
+                                    @PathVariable(value="pageSize") int pageSize){
 
         Map<String, Object> result = new HashMap<String, Object>();
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
             Exposure exposure = new Exposure();
+            exposure.setStartRow(startRow);
+            exposure.setPageSize(pageSize);
             List<Exposure> list = exposureService.list(exposure);
+
+            data.put("exposure", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
+    @RequestMapping(value = "/list/{id}/{startRow}/{pageSize}")
+    @ResponseBody
+    public Map<String, Object> listByPlatform(@PathVariable(value="id") int id,
+                                              @PathVariable(value="startRow") int startRow,
+                                              @PathVariable(value="pageSize") int pageSize){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Exposure exposure = new Exposure();
+            exposure.setStartRow(startRow);
+            exposure.setPageSize(pageSize);
+            exposure.setPlatId(id);
+            List<Exposure> list = exposureService.listByPlatform(exposure);
 
             data.put("exposure", list);
             result.put("data", data );
