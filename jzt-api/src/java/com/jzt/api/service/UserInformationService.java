@@ -30,5 +30,7 @@ public interface UserInformationService {
 
 	void updateByExampleSelective(UserInformation record,
 			UserInformationExample example);
+
+	Map<String, Object> checkLogin(UserInformation dto);
 	
 }

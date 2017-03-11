@@ -26,7 +26,7 @@ import com.jzt.api.service.UserInformationService;
  * @since  2016-Sep-7 
  */
 @Controller
-@RequestMapping("userinformation")
+@RequestMapping("/rest/{version}/userinformation")
 public class UserInformationController extends BaseController {
 	
 	@Autowired
@@ -337,93 +337,12 @@ public class UserInformationController extends BaseController {
 	public Map<String, Object> login(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
 		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
-		
+
 		Map<String, Object> result = new HashMap<String, Object>();
 		
-		//verify the smscode
-		try {
-			if("9999".equals(dto.getSmsCode()) || "0000".equals(dto.getSmsCode())){
-				result = checkLogin(dto);
-				return result;
-			}else{
-				
-				String strSmsRes = SmsCodeUtil.verifyCode(dto.getPhone(), dto.getSmsCode());
-				JSONObject jsonObj = JSONObject.fromObject(strSmsRes);
-				logger.debug(jsonObj.get("code").toString());
-				if("200".equals(jsonObj.get("code").toString())){
-					//verify code success
-				}else{
-					//verify code Failed
-					result.put("res", "1");
-					result.put("message", "Failed to verify sms code");
-					Map<String, Object> data = new HashMap<String, Object>();
-					data.put("code", jsonObj.get("code"));
-					data.put("msg", jsonObj.get("msg"));
-					data.put("obj", jsonObj.get("obj"));
-					result.put("data", data );
-					return result;
-				}
-				
-				
-				result = checkLogin(dto);
-				
-				return result;
-			}
-			
-		} catch (Exception e) {
-			result.put("res", "1");
-			result.put("message", "Failed to verify sms code");
-			Map<String, Object> data = new HashMap<String, Object>();
-			result.put("data", data );
-		}
+		result = userInformationService.checkLogin(dto);
 		return result;
 	}
 
-	/**
-	 * @param dto
-	 * @param result
-	 */
-	private Map<String, Object> checkLogin(UserInformation dto) {
-		Map<String, Object> result = new HashMap<String, Object>();
-		try {
-			UserInformationExample example = new UserInformationExample();
-			example.createCriteria().andPhoneEqualTo(dto.getPhone());
-			List<UserInformation> userlist = userInformationService.selectByExample(example);
-			if(userlist==null || userlist.size()<1){
-				//if user does NOT exist, then regist -> insert user into DB
-				
-				try {
-					userInformationService.insertSelective(dto);
-					Map<String, Object> data = new HashMap<String, Object>();
-					data.put("user", userInformationService.selectByPrimaryKey(dto.getUid()));
-					result.put("data", data );
-					result.put("res", "0");
-					result.put("message", "Success");
-				} catch (Exception e) {
-					result.put("res", "1");
-					result.put("message", "Error-"+e.getMessage());
-					Map<String, Object> data = new HashMap<String, Object>();
-					result.put("data", data );
-				}
-				return result;
-				
-				
-				
-			}else{
-				Map<String, Object> data = new HashMap<String, Object>();
-				data.put("user", userlist.get(0));
-				result.put("data", data );
-				result.put("res", "0");
-				result.put("message", "Success");
-			}
-		} catch (Exception e) {
-			result.put("res", "1");
-			result.put("message", "Error-"+e.getMessage());
-			Map<String, Object> data = new HashMap<String, Object>();
-			result.put("data", data );
-		}
-		return result;
-	}
-	
 
 }
