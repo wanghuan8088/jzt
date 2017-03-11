@@ -53,6 +53,18 @@ public class BaseService {
 	}
 	
 	/**
+	 * @param e
+	 */
+	public Map<String, Object> generateErrorResult(String msg) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> data = new HashMap<String, Object>();
+		result.put("data", data );
+		result.put("res", "1");
+		result.put("message", msg);
+		return result;
+	}
+	
+	/**
 	 * @param record
 	 * @param example
 	 */
