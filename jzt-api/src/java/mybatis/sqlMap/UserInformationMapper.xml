@@ -110,7 +110,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jzt.api.domain.UserInformation" >
+  <insert id="insert" parameterType="com.jzt.api.domain.UserInformation" useGeneratedKeys="true" keyProperty="uid" >
     insert into user_information (uId, user_name, password, 
       user_dsp_name, sex, birthday, 
       phone, email, status, 
@@ -124,7 +124,7 @@
       #{level,jdbcType=INTEGER}, #{accesstoken,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jzt.api.domain.UserInformation" >
+  <insert id="insertSelective" parameterType="com.jzt.api.domain.UserInformation" useGeneratedKeys="true" keyProperty="uid" >
     insert into user_information
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
