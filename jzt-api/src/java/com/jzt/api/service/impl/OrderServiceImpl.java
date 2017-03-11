@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.jzt.api.dao.OrderMapper;
 import com.jzt.api.domain.Order;
@@ -17,6 +18,7 @@ import com.jzt.api.service.OrderService;
  * @author hzlihonglin
  *
  */
+@Service
 public class OrderServiceImpl extends BaseService implements OrderService {
 
 	@Autowired

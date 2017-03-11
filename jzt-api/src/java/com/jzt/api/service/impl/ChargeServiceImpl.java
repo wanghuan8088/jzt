@@ -40,9 +40,9 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 			com.pingplusplus.model.Charge charge=createCharge(dto);
 			
 			dto.setChargeid(charge.getId());
-			//dto.setCreated(charge.getCreated().toString());
-			//dto.setPaid(charge.getPaid().toString());
-			//dto.setRefunded(charge.getRefunded().toString());
+			dto.setCreated(charge.getCreated().toString());
+			dto.setPaid(charge.getPaid().toString());
+			dto.setRefunded(charge.getRefunded().toString());
 			
 			//save to charge table
 			chargeMapper.insertSelective(dto);
@@ -75,9 +75,9 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 			
 			//charge resultֵ
 			dto.setChargeid(charge.getId());
-			//dto.setCreated(charge.getCreated().toString());
-			//dto.setPaid(charge.getPaid().toString());
-			//dto.setRefunded(charge.getRefunded().toString());
+			dto.setCreated(charge.getCreated().toString());
+			dto.setPaid(charge.getPaid().toString());
+			dto.setRefunded(charge.getRefunded().toString());
 			
 			//insert charge table
 			chargeMapper.insertSelective(dto);
@@ -98,7 +98,7 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 
 		Charge dto = new Charge();
 		dto.setChargeid(chargeId);
-		//dto.setPaid(paid);
+		dto.setPaid(paid);
 
 		// update charge table
 		chargeMapper.updateByPrimaryKeySelective(dto);
