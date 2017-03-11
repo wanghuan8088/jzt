@@ -11,6 +11,26 @@ public class ExposureExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected int startRow;
+
+    protected int pageSize;
+
+    public int getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(int startRow) {
+        this.startRow = startRow;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
     public ExposureExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -162,6 +182,66 @@ public class ExposureExample {
 
         public Criteria andEidNotBetween(Integer value1, Integer value2) {
             addCriterion("eid not between", value1, value2, "eid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdIsNull() {
+            addCriterion("plat_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdIsNotNull() {
+            addCriterion("plat_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdEqualTo(Integer value) {
+            addCriterion("plat_id =", value, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdNotEqualTo(Integer value) {
+            addCriterion("plat_id <>", value, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdGreaterThan(Integer value) {
+            addCriterion("plat_id >", value, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("plat_id >=", value, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdLessThan(Integer value) {
+            addCriterion("plat_id <", value, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdLessThanOrEqualTo(Integer value) {
+            addCriterion("plat_id <=", value, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdIn(List<Integer> values) {
+            addCriterion("plat_id in", values, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdNotIn(List<Integer> values) {
+            addCriterion("plat_id not in", values, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdBetween(Integer value1, Integer value2) {
+            addCriterion("plat_id between", value1, value2, "platId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlatIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("plat_id not between", value1, value2, "platId");
             return (Criteria) this;
         }
 
