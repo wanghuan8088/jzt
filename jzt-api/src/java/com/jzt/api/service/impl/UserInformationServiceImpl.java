@@ -86,6 +86,36 @@ public class UserInformationServiceImpl extends BaseService implements UserInfor
 	}
 	
 	
+	/**
+	 * @param dto
+	 * @param result
+	 */
+	@Override
+	public Map<String, Object> changePswd(UserInformation record) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			UserInformationExample example = new UserInformationExample();
+			example.createCriteria().andPhoneEqualTo(record.getPhone()).andPasswordEqualTo(record.getPassword());
+			List<UserInformation> userlist = userInformationMapper.selectByExample(example);
+			if(userlist==null || userlist.size()<1){
+				//if user does NOT exist, then remind that no user for this phone
+				result = generateErrorResult(record,"There is no such user on the phone of "+record.getPhone());
+			}else{
+				record.setPassword(record.getNewpassword());
+				userInformationMapper.updateByExampleSelective(record, example);
+				
+				example.clear();
+				example.createCriteria().andPhoneEqualTo(record.getPhone());
+				userlist = userInformationMapper.selectByExample(example);
+				result = generateNomalResult(userlist.get(0));
+			}
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		return result;
+	}
+	
+	
 	@Override
 	public Map<String, Object> save(UserInformation record) {
 		

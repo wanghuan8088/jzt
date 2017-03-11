@@ -163,10 +163,16 @@ public class UserInformationController extends BaseController {
 		return result;
 	}
 	
-//	@RequestMapping(method = RequestMethod.POST, value = "/changePswd")
-//	@ResponseBody
-//	public Map<String, Object> changePswd(@RequestParam(value="para", required=true) String para){
-//	
+	@RequestMapping(method = RequestMethod.POST, value = "/changePswd")
+	@ResponseBody
+	public Map<String, Object> changePswd(@RequestParam(value="para", required=true) String para){
+		JSONObject jsStr = JSONObject.fromObject(para);
+		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
+		
+		return userInformationService.changePswd(dto);
+	}
+	
+		
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/resetPswd")
 	@ResponseBody

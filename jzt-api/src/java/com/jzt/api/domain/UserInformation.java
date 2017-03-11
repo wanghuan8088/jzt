@@ -35,7 +35,25 @@ public class UserInformation {
     
     private String smsCode;
     
-    public String getSmsCode() {
+    private String newpassword;
+    
+    
+    
+    /**
+	 * @return the newpassword
+	 */
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	/**
+	 * @param newpassword the newpassword to set
+	 */
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+	public String getSmsCode() {
 		return smsCode;
 	}
 
