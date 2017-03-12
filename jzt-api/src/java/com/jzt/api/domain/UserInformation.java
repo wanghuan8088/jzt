@@ -153,9 +153,28 @@ public class UserInformation {
     */ 
     private String smsCode;
     
+    /** 
+    * @Fields newpassword : 
+    */ 
+    private String newpassword;
+    
     
     
     /**
+	 * @return the newpassword
+	 */
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	/**
+	 * @param newpassword the newpassword to set
+	 */
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+	/**
 	 * @return the smsCode
 	 */
 	public String getSmsCode() {
