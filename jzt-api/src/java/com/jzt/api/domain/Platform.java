@@ -450,4 +450,25 @@ public class Platform {
     public void setCompany(Integer company) {
         this.company = company;
     }
+
+    private int startRow;
+
+    private int pageSize;
+
+    public int getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(int startRow) {
+        this.startRow = startRow;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
 }

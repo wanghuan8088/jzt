@@ -38,7 +38,7 @@ public class SearchServiceImpl implements SearchService {
 
         PlatformExample example = new PlatformExample();
         example.createCriteria().andNameLike("%" + platform.getName() + "%");
-        example.setOrderByClause("start_time");
+        example.setOrderByClause("start_time");// 综合指数来排序
         example.setStartRow(0);
         example.setPageSize(platform.getPageSize());
         List<Platform> result = platformMapper.selectByExample(example);
