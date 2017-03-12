@@ -2,6 +2,7 @@ package com.jzt.api.service;
 
 import com.jzt.api.domain.BankProduct;
 import com.jzt.api.domain.Company;
+import com.jzt.api.domain.P2pLoan;
 import com.jzt.api.domain.Platform;
 
 import java.util.List;
@@ -14,29 +15,29 @@ public interface SearchService {
 
     /**
      * 搜索平台
-     * @param keyWord
+     * @param platform
      * @return
      */
-    List<Platform> platform(String keyWord);
+    List<Platform> platform(Platform platform);
 
     /**
      * 搜索银行标的(产品)
-     * @param keyWord
+     * @param bankProduct
      * @return
      */
-    List<Platform> bankProduct(String keyWord);
+    List<BankProduct> bankProduct(BankProduct bankProduct);
 
     /**
      * 搜索p2p标的(产品)
-     * @param keyWord
+     * @param p2pLoan
      * @return
      */
-    List<BankProduct> p2pLoan(String keyWord);
+    List<P2pLoan> p2pLoan(P2pLoan p2pLoan);
 
     /**
      * 搜索公司
-     * @param keyWord
+     * @param company
      * @return
      */
-    List<Company> company(String keyWord);
+    List<Company> company(Company company);
 }

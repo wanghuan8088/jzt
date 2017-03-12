@@ -1,16 +1,13 @@
 package com.jzt.api.controller;
 
 import com.jzt.api.controller.base.BaseController;
-import com.jzt.api.domain.AppKeywordsTrend;
-import com.jzt.api.domain.Company;
-import com.jzt.api.domain.Platform;
+import com.jzt.api.domain.*;
 import com.jzt.api.service.KeywordsTrendService;
 import com.jzt.api.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,46 +31,39 @@ public class SearchController extends BaseController {
     @RequestMapping(method = RequestMethod.POST, value = "/")
     @ResponseBody
     public Map<String, Object> search(@RequestParam(value="keyword") String keyword,
-                                      @RequestParam(value="platformCount", required=false) String platformCount,
-                                      @RequestParam(value="companyCount", required=false) String companyCount){
+                                      @RequestParam(value="platformCount", required=false) int platformCount,
+                                      @RequestParam(value="companyCount", required=false) int companyCount,
+                                      @RequestParam(value="bankProductCount", required=false) int bankProductCount,
+                                      @RequestParam(value="p2pProductCount", required=false) int p2pProductCount){
 
         Map<String, Object> result = new HashMap<String, Object>();
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
-            if (platformCount !=null && !"".equals(platformCount)) {
-                List<Platform> platformList = searchService.platform(keyword);
 
-                int size = 0;
-                if (platformList.size() < Integer.valueOf(platformCount)) {
-                    size = platformList.size();
-                } else {
-                    size = Integer.valueOf(platformCount);
-                }
+            Platform platform = new Platform();
+            platform.setName(keyword);
+            platform.setPageSize(platformCount);
+            List<Platform> platformList = searchService.platform(platform);
+            data.put("platform", platformList);
 
-                List<Platform> list = new ArrayList();
-                for (int i = 0; i < size; i++) {
-                    list.add(platformList.get(i));
-                }
-                data.put("platform", list);
-            }
+            Company company = new Company();
+            company.setName(keyword);
+            company.setPageSize(companyCount);
+            List<Company> companyList = searchService.company(company);
+            data.put("company", companyList);
 
-            if (companyCount !=null && !"".equals(companyCount)) {
-                List<Company> companyList = searchService.company(keyword);
+            BankProduct bankProduct = new BankProduct();
+            bankProduct.setName(keyword);
+            bankProduct.setPageSize(bankProductCount);
+            List<BankProduct> bankProductList = searchService.bankProduct(bankProduct);
+            data.put("bankProduct", bankProductList);
 
-                int size = 0;
-                if (companyList.size() < Integer.valueOf(companyCount)) {
-                    size = companyList.size();
-                } else {
-                    size = Integer.valueOf(companyCount);
-                }
-
-                List<Company> list = new ArrayList();
-                for (int i = 0; i < size; i++) {
-                    list.add(companyList.get(i));
-                }
-                data.put("company", list);
-            }
+            P2pLoan p2pLoan = new P2pLoan();
+            p2pLoan.setName(keyword);
+            p2pLoan.setPageSize(p2pProductCount);
+            List<P2pLoan> p2pLoanList = searchService.p2pLoan(p2pLoan);
+            data.put("p2pProduct", p2pLoanList);
 
             result.put("data", data );
             result.put("res", "0");
