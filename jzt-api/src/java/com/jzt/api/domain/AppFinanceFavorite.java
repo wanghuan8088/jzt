@@ -1,6 +1,7 @@
 package com.jzt.api.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class AppFinanceFavorite {
     /**
