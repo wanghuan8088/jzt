@@ -47,6 +47,14 @@ public class UserInformationController extends BaseController {
 		return result;
 	}
 	
+	/**  
+	* @Title: saveOrUpdate  
+	* @Description: saveOrUpdate 保存用户信息，传哪些，保存哪些
+	* @param @param para
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
 	@RequestMapping(value = "/saveOrUpdate")
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(@RequestParam(value="para", required=true) String para){
