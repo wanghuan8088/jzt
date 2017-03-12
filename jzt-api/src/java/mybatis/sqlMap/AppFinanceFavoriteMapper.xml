@@ -24,6 +24,7 @@
 	    <result column="option" property="option" jdbcType="VARCHAR" />
 	    <result column="order" property="order" jdbcType="VARCHAR" />
     </collection>  
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
       WARNING - @mbggenerated
