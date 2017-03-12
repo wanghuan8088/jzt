@@ -117,4 +117,6 @@ public interface ReportMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(Report record);
+	
+	List<Report> selectReportsByUid(Integer uid);
 }
