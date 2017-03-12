@@ -1,6 +1,7 @@
 package com.jzt.api.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.sf.json.JSONObject;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jzt.api.controller.base.BaseController;
 import com.jzt.api.domain.AppFinanceFavorite;
+import com.jzt.api.domain.AppFinanceFavoriteExample;
 import com.jzt.api.service.AppFinanceFavoriteService;
 
 /**
@@ -113,7 +115,11 @@ public class AppFinanceFavoriteController extends BaseController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
-			result = appFinanceFavoriteService.selectOneByPrimaryKey(record.getId());
+			
+			AppFinanceFavoriteExample example = new AppFinanceFavoriteExample();
+			example.createCriteria();
+			List<AppFinanceFavorite>  appFinanceFavoriteList = appFinanceFavoriteService.selectByExample(example);
+			result = generateNomalResult(appFinanceFavoriteList);
 		} catch (Exception e) {
 			result = generateErrorResult(e);
 		}
