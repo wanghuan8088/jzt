@@ -1,7 +1,9 @@
 package com.jzt.api.controller;
 
+import com.jzt.api.controller.base.BaseController;
+
 /**
- * Created by wanghuan on 10/03/2017.
+ *  金融新榜
  */
-public class RankController {
+public class RankController extends BaseController{
 }

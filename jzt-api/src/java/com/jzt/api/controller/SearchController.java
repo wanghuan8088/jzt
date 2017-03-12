@@ -20,14 +20,21 @@ import java.util.Map;
 @RequestMapping("/rest/{version}/search")
 public class SearchController extends BaseController {
 
-
     @Autowired
     private SearchService searchService;
 
     @Autowired
     private KeywordsTrendService keywordsTrendService;
 
-
+    /***
+     * 搜索关键字
+     * @param keyword  关键字
+     * @param platformCount   搜索结果平台个数
+     * @param companyCount    搜索公司平台个数
+     * @param bankProductCount    搜索结果银行标的个数
+     * @param p2pProductCount     搜索结果p2p标的个数
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/")
     @ResponseBody
     public Map<String, Object> search(@RequestParam(value="keyword") String keyword,
@@ -41,24 +48,28 @@ public class SearchController extends BaseController {
         try {
             Map<String, Object> data = new HashMap<String, Object>();
 
+            // 搜索平台
             Platform platform = new Platform();
             platform.setName(keyword);
             platform.setPageSize(platformCount);
             List<Platform> platformList = searchService.platform(platform);
             data.put("platform", platformList);
 
+            // 搜索公司
             Company company = new Company();
             company.setName(keyword);
             company.setPageSize(companyCount);
             List<Company> companyList = searchService.company(company);
             data.put("company", companyList);
 
+            // 搜索银行标的
             BankProduct bankProduct = new BankProduct();
             bankProduct.setName(keyword);
             bankProduct.setPageSize(bankProductCount);
             List<BankProduct> bankProductList = searchService.bankProduct(bankProduct);
             data.put("bankProduct", bankProductList);
 
+            // 搜索p2p标的
             P2pLoan p2pLoan = new P2pLoan();
             p2pLoan.setName(keyword);
             p2pLoan.setPageSize(p2pProductCount);
@@ -77,6 +88,11 @@ public class SearchController extends BaseController {
     }
 
 
+    /***
+     * 最常用关键字
+     * @param count 结果集大小
+     * @return
+     */
     @RequestMapping(value = "/hotkeyword/{count}")
     @ResponseBody
     public Map<String, Object> hotkeyword(@PathVariable int count){
