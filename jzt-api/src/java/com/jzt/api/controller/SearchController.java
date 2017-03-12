@@ -49,32 +49,40 @@ public class SearchController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
 
             // 搜索平台
-            Platform platform = new Platform();
-            platform.setName(keyword);
-            platform.setPageSize(platformCount);
-            List<Platform> platformList = searchService.platform(platform);
-            data.put("platform", platformList);
+            if (platformCount > 0) {
+                Platform platform = new Platform();
+                platform.setName(keyword);
+                platform.setPageSize(platformCount);
+                List<Platform> platformList = searchService.platform(platform);
+                data.put("platform", platformList);
+            }
 
             // 搜索公司
-            Company company = new Company();
-            company.setName(keyword);
-            company.setPageSize(companyCount);
-            List<Company> companyList = searchService.company(company);
-            data.put("company", companyList);
+            if (companyCount > 0) {
+                Company company = new Company();
+                company.setName(keyword);
+                company.setPageSize(companyCount);
+                List<Company> companyList = searchService.company(company);
+                data.put("company", companyList);
+            }
 
             // 搜索银行标的
-            BankProduct bankProduct = new BankProduct();
-            bankProduct.setName(keyword);
-            bankProduct.setPageSize(bankProductCount);
-            List<BankProduct> bankProductList = searchService.bankProduct(bankProduct);
-            data.put("bankProduct", bankProductList);
+            if (bankProductCount > 0) {
+                BankProduct bankProduct = new BankProduct();
+                bankProduct.setName(keyword);
+                bankProduct.setPageSize(bankProductCount);
+                List<BankProduct> bankProductList = searchService.bankProduct(bankProduct);
+                data.put("bankProduct", bankProductList);
+            }
 
             // 搜索p2p标的
-            P2pLoan p2pLoan = new P2pLoan();
-            p2pLoan.setName(keyword);
-            p2pLoan.setPageSize(p2pProductCount);
-            List<P2pLoan> p2pLoanList = searchService.p2pLoan(p2pLoan);
-            data.put("p2pProduct", p2pLoanList);
+            if (p2pProductCount > 0) {
+                P2pLoan p2pLoan = new P2pLoan();
+                p2pLoan.setName(keyword);
+                p2pLoan.setPageSize(p2pProductCount);
+                List<P2pLoan> p2pLoanList = searchService.p2pLoan(p2pLoan);
+                data.put("p2pProduct", p2pLoanList);
+            }
 
             result.put("data", data );
             result.put("res", "0");

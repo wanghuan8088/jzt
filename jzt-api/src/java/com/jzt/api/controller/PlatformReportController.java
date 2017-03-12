@@ -24,6 +24,12 @@ public class PlatformReportController extends BaseController {
     @Autowired
     private PlatformReportService platformReportService;
 
+    /**
+     * 列出所有行业报告
+     * @param startRow   起始页码
+     * @param pageSize   显示多少结果
+     * @return
+     */
     @RequestMapping(value = "/list/{startRow}/{pageSize}")
     @ResponseBody
     public Map<String, Object> list(@PathVariable(value="startRow") int startRow,
@@ -51,6 +57,11 @@ public class PlatformReportController extends BaseController {
     }
 
 
+    /**
+     * 行业报告明细
+     * @param id   报告id
+     * @return
+     */
     @RequestMapping(value = "/{id}")
     @ResponseBody
     public Map<String, Object> detail(@PathVariable(value="id") int id){
