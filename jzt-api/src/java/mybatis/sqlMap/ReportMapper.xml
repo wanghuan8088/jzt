@@ -101,6 +101,9 @@
     -->
     id, title, type, link, source, icon, favorites, create_time, update_time
   </sql>
+  <sql id="Base_Joined_Column_List" >
+    r.id, r.create_time, r.title, r.update_time, r.type, r.link, r.source, r.icon, r.favorites
+  </sql>
   <sql id="Blob_Column_List" >
     <!--
       WARNING - @mbggenerated
@@ -148,6 +151,17 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectReportsByUid" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Joined_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from report r join app_user_favorite uf on r.id = uf.rId
+	and uf.uId=#{uid,jdbcType=INTEGER}
   </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     <!--
