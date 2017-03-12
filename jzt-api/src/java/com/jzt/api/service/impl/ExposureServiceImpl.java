@@ -39,4 +39,9 @@ public class ExposureServiceImpl implements ExposureService {
 
         return exposureMapper.selectByExample(example);
     }
+
+    @Override
+    public Exposure detail(Exposure exposure) {
+        return exposureMapper.selectByPrimaryKey(exposure.getEid());
+    }
 }

@@ -79,6 +79,28 @@ public class ExposureController extends BaseController {
     }
 
 
+    @RequestMapping(value = "/{id}")
+    @ResponseBody
+    public Map<String, Object> detail(@PathVariable(value="id") int id){
 
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Exposure exposure = new Exposure();
+            exposure.setEid(id);
+            Exposure detail = exposureService.detail(exposure);
+
+            data.put("exposure", detail);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 
 }
