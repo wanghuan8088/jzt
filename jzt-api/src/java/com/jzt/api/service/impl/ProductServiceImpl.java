@@ -24,14 +24,6 @@ public class ProductServiceImpl extends BaseService implements ProductService {
 	@Autowired
 	private ProductMapper productMapper;
 
-	@Override
-	public List<Product> list(Product product) {
-		ProductExample example = new ProductExample();
-		example.setStartRow(product.getStartRow());
-		example.setPageSize(product.getPageSize());
-
-		return productMapper.selectByExample(example);
-	}
 
 	@Override
 	public Product detail(Product product) {

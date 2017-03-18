@@ -10,8 +10,6 @@ import com.jzt.api.domain.Product;
  */
 public interface ProductService {
 
-	public List<Product> list(Product product);
-
 	public Product detail(Product product);
 	
 	public List<Product> list();

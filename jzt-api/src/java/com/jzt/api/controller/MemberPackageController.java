@@ -30,42 +30,6 @@ public class MemberPackageController extends BaseController {
 	/**
 	 * 列出所有会员套餐列表
 	 * 
-	 * @param startRow
-	 *            起始页码
-	 * @param pageSize
-	 *            显示多少结果
-	 * @return
-	 */
-	@RequestMapping(value = "/list/{startRow}/{pageSize}")
-	public Map<String, Object> list(
-			@PathVariable(value = "startRow") int startRow,
-			@PathVariable(value = "pageSize") int pageSize) {
-
-		Map<String, Object> result = new HashMap<String, Object>();
-		try {
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			Product product = new Product();
-			product.setStartRow(startRow);
-			product.setPageSize(pageSize);
-			List<Product> list = productService.list(product);
-
-			data.put("memberPackage", list);
-			result.put("data", data);
-			result.put("res", "0");
-			result.put("message", "Success");
-		} catch (Exception e) {
-			result.put("res", "1");
-			result.put("message", "Error-" + e.getMessage());
-		}
-
-		return result;
-
-	}
-	
-	/**
-	 * 列出所有会员套餐列表
-	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
