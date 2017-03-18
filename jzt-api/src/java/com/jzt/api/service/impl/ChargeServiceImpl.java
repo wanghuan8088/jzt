@@ -43,6 +43,7 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 			dto.setCreated(charge.getCreated().toString());
 			dto.setPaid(charge.getPaid().toString());
 			dto.setRefunded(charge.getRefunded().toString());
+			dto.setCurrency("cny");
 			
 			//save to charge table
 			chargeMapper.insertSelective(dto);
@@ -50,8 +51,12 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 			// save to order table 
 			Orders order=new Orders();
 			order.setOrderId(CommonUtil.initialSequenceId("JY"));
-			//order.setProductId(Integer.valueOf(dto.getTaskid()));
+			order.setProductId(Integer.valueOf(dto.getProductid()));
 			order.setChargeId(charge.getId());
+			order.setAmount(charge.getAmount());
+			order.setStatus(1);
+			order.setUserId(Integer.valueOf(dto.getUserId()));
+			
 			orderMapper.insertSelective(order);
 			
 			result.put("message", "Success");

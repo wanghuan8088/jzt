@@ -642,4 +642,18 @@ public class Charge {
     public void setModifytime(Date modifytime) {
         this.modifytime = modifytime;
     }
+    
+    private String userId;//用户id
+    
+     public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	
+     
+     
 }

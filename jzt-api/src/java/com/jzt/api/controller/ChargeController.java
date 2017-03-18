@@ -28,7 +28,7 @@ import com.pingplusplus.Pingpp;
  */
 
 @Controller
-@RequestMapping("charge")
+@RequestMapping("/rest/{version}/charge")
 public class ChargeController extends BaseController {
 
 	@Autowired
