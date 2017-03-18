@@ -927,7 +927,7 @@
     customer_info, manual, is_delete, oprate_mode, limit_type, regis_code, pro_start_date, 
     pro_end_date, days, max_profit, min_profit, act_profit, asset_type, init_worth, pro_worth, 
     currency, bus_start_date, bus_end_date, bank_product.create_time, bank_product.update_time
-    from bank_product, user_attention_product where bank_product.id = user_attention_product.pId and user_attention_product.uId = #{uId,jdbcType=INTEGER}
+    from bank_product, user_attention_product where bank_product.id = user_attention_product.pId and user_attention_product.uId = #{uId,jdbcType=INTEGER} and user_attention_product.type = 1
     
      
     <if test="startRow != null and pageSize != null and pageSize != 0" >
