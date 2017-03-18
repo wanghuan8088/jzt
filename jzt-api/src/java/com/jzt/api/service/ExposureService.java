@@ -5,10 +5,12 @@ import com.jzt.api.domain.Exposure;
 import java.util.List;
 
 /**
- *  曝光平台业务接口
+ * 曝光平台业务接口
  */
 public interface ExposureService {
-    public List<Exposure> list(Exposure exposure);
-    public List<Exposure> listByPlatform(Exposure exposure);
-    public Exposure detail(Exposure exposure);
+    List<Exposure> list(Exposure exposure);
+
+    List<Exposure> listByPlatform(Exposure exposure);
+
+    Exposure detail(Exposure exposure);
 }
