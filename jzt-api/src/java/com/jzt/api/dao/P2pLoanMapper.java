@@ -2,7 +2,9 @@ package com.jzt.api.dao;
 
 import com.jzt.api.domain.P2pLoan;
 import com.jzt.api.domain.P2pLoanExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface P2pLoanMapper {
@@ -117,4 +119,6 @@ public interface P2pLoanMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(P2pLoan record);
+    
+    List<P2pLoan> selectByUserId(@Param("uId")Integer uId, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
 }

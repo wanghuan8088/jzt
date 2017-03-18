@@ -93,4 +93,6 @@ public interface BankProductMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(BankProduct record);
+    
+    List<BankProduct> selectByUserId(Integer uId, Integer startRow, Integer pageSize);
 }

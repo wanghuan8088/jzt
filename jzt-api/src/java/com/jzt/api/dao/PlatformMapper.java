@@ -2,7 +2,9 @@ package com.jzt.api.dao;
 
 import com.jzt.api.domain.Platform;
 import com.jzt.api.domain.PlatformExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface PlatformMapper {
@@ -93,4 +95,6 @@ public interface PlatformMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(Platform record);
+    
+    List<Platform> selectByUserId(@Param("uId")Integer uId, @Param("type")Integer type, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
 }

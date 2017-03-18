@@ -654,4 +654,17 @@
       protocol = #{protocol,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select p2p_loan.id, plat_id, p2p_loan.create_time, p2p_loan.update_time, p2p_loan.is_delete, name, amount, interest_rate, start_time, 
+    limit_time, schedule, firstday_interest, mode_of_payment, purchase_amount, limit_amount, 
+    dock_product, protection_means, is_transfer, state, product_url, protocol
+    from p2p_loan, user_attention_product where p2p_loan.id = user_attention_product.pId and user_attention_product.uId = #{uId,jdbcType=INTEGER}
+    
+    
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+    
+  </select>
 </mapper>

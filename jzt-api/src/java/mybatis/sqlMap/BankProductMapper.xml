@@ -919,4 +919,19 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  	select  bank_product.id, plat_id, name, product_num, period_num, profit_type, limit_day, start_date, end_date, 
+    deadline, disbank, start_money, add_money, limit_money, area, channel, is_transfer, 
+    customer, state, risk_rank, issue_size, expect_profit_year, pub_time, notice, trade, 
+    customer_info, manual, is_delete, oprate_mode, limit_type, regis_code, pro_start_date, 
+    pro_end_date, days, max_profit, min_profit, act_profit, asset_type, init_worth, pro_worth, 
+    currency, bus_start_date, bus_end_date, bank_product.create_time, bank_product.update_time
+    from bank_product, user_attention_product where bank_product.id = user_attention_product.pId and user_attention_product.uId = #{uId,jdbcType=INTEGER}
+    
+     
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
 </mapper>
