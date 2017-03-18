@@ -7,14 +7,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jzt.api.dao.OrderMapper;
-import com.jzt.api.domain.Order;
-import com.jzt.api.domain.OrderExample;
+import com.jzt.api.dao.OrdersMapper;
+import com.jzt.api.domain.Orders;
+import com.jzt.api.domain.OrdersExample;
 import com.jzt.api.service.OrderService;
 
 /**
- * 订单实现类
  * 
+ * 订单接口实现类
  * @author hzlihonglin
  *
  */
@@ -22,10 +22,10 @@ import com.jzt.api.service.OrderService;
 public class OrderServiceImpl extends BaseService implements OrderService {
 
 	@Autowired
-	private OrderMapper orderMapper;
+	private OrdersMapper orderMapper;
 
 	@Override
-	public Map<String, Object> submit(Order order) {
+	public Map<String, Object> submit(Orders order) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			orderMapper.insertSelective(order);
@@ -37,13 +37,13 @@ public class OrderServiceImpl extends BaseService implements OrderService {
 	}
 
 	@Override
-	public Map<String, Object> queryOrderList(Order dto) {
+	public Map<String, Object> queryOrderList(Orders dto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Map<String, Object> deleteOrder(Order dto) {
+	public Map<String, Object> deleteOrder(Orders dto) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			orderMapper.deleteByPrimaryKey(dto.getId());
@@ -58,9 +58,9 @@ public class OrderServiceImpl extends BaseService implements OrderService {
 	public Map<String, Object> selecOrderById(Integer id) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
-			OrderExample example = new OrderExample();
+			OrdersExample example = new OrdersExample();
 			example.createCriteria().andIdEqualTo(id);
-			List<Order> list = orderMapper.selectByExample(example);
+			List<Orders> list = orderMapper.selectByExample(example);
 			if (list != null) {
 				Map<String, Object> data = new HashMap<String, Object>();
 				data.put("list", list);

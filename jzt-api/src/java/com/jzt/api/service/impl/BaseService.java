@@ -76,22 +76,22 @@ public class BaseService {
 		result.put("message", msg);
 		return result;
 	}
-	
+
 	/**
 	 * @param record
 	 * @param example
 	 */
+	/**
 	protected void setOrderByClause(BaseDomain record, UserInformationExample example) {
 		String orderByClause = " id desc";
 		System.out.println(record.getPage());
 		
-		int page = record.getPage()-1;//第几页
-		int rows = record.getRows();//
+		int page = record.getPage()-1;
 		int ifrom = page*rows;
 		if(record.getPage()>0 && record.getRows()>0){
 			orderByClause += " limit "+ ifrom + ", "+rows;
 		}
 		example.setOrderByClause(orderByClause);;
 	}
-
+**/
 }

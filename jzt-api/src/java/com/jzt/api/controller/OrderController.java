@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jzt.api.common.util.CommonUtil;
 import com.jzt.api.controller.base.BaseController;
-import com.jzt.api.domain.Order;
+import com.jzt.api.domain.Orders;
 import com.jzt.api.service.OrderService;
 
 /**
@@ -40,7 +40,7 @@ public class OrderController extends BaseController {
 	public Map<String, Object> submit(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
 		Map<String, Class> classMap = new HashMap<String, Class>();
-		Order dto = (Order) JSONObject.toBean(jsStr, Order.class, classMap);
+		Orders dto = (Orders) JSONObject.toBean(jsStr, Orders.class, classMap);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 	
@@ -60,7 +60,7 @@ public class OrderController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> orderList(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
-		Order dto = (Order) JSONObject.toBean(jsStr, Order.class);
+		Orders dto = (Orders) JSONObject.toBean(jsStr, Orders.class);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result = orderService.queryOrderList(dto);
@@ -76,7 +76,7 @@ public class OrderController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> deleteOrder(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
-		Order dto = (Order) JSONObject.toBean(jsStr, Order.class);
+		Orders dto = (Orders) JSONObject.toBean(jsStr, Orders.class);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result = orderService.deleteOrder(dto);
@@ -87,7 +87,7 @@ public class OrderController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> selecTaskByServId(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
-		Order record = (Order) JSONObject.toBean(jsStr, Order.class);
+		Orders record = (Orders) JSONObject.toBean(jsStr, Orders.class);
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
