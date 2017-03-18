@@ -2,6 +2,7 @@ package com.jzt.api.dao;
 
 import com.jzt.api.domain.Platform;
 import com.jzt.api.domain.PlatformExample;
+import com.jzt.api.domain.ProblemPlat;
 
 import java.util.List;
 
@@ -97,4 +98,11 @@ public interface PlatformMapper {
     int updateByPrimaryKey(Platform record);
     
     List<Platform> selectByUserId(@Param("uId")Integer uId, @Param("type")Integer type, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
+    
+    
+    /**
+     * liaokaihong 20170318
+     */
+    List<ProblemPlat> selectProblemPlatByType(@Param("type")Integer type);
+    
 }
