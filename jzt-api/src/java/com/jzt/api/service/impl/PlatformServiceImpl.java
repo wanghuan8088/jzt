@@ -133,4 +133,19 @@ public class PlatformServiceImpl implements PlatformService {
     public News newsDetail(News news) {
         return newsMapper.selectByPrimaryKey(news.getNid());
     }
+
+    /**
+     * 相似名称的平台信息
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public List<Platform> likeName(Platform platform) {
+
+        PlatformExample example = new PlatformExample();
+        example.createCriteria().andNameLike("%" + platform.getName() + "%");
+        List<Platform> result = platformMapper.selectByExample(example);
+        return result;
+    }
 }

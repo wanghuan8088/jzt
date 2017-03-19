@@ -45,4 +45,11 @@ public interface PlatformService {
      * @return
      */
     News newsDetail(News news);
+
+    /**
+     * 相似名称的平台信息
+     * @param platform
+     * @return
+     */
+    List<Platform> likeName(Platform platform);
 }

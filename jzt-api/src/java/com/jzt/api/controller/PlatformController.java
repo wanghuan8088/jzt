@@ -124,4 +124,35 @@ public class PlatformController extends BaseController {
 
         return result;
     }
+
+    /***
+     * 相似名称的平台信息
+     * @param name   平台name
+     * @return
+     */
+    @RequestMapping(value = "/likeName/{name}")
+    @ResponseBody
+    public Map<String, Object> likeName(@PathVariable(value="name") String name){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Platform platform = new Platform();
+            platform.setName(name);
+            List<Platform> list = platformService.likeName(platform);
+
+            data.put("platform", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
+
 }
