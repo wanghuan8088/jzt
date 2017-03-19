@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,46 @@ public class PlatformController extends BaseController {
 
         return result;
     }
+
+    /***
+     * 平台对比
+     * @param pid1   平台id
+     * @param pid2   平台id
+     * @return
+     */
+    @RequestMapping(value = "/compare/{pid1}/{pid2}")
+    @ResponseBody
+    public Map<String, Object> compare(@PathVariable(value="pid1") int pid1, @PathVariable(value="pid2") int pid2){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+
+            Platform platform1 = new Platform();
+            platform1.setId(pid1);
+            Platform detail1 = platformService.detail(platform1);
+
+            Platform platform2 = new Platform();
+            platform2.setId(pid2);
+            Platform detail2 = platformService.detail(platform2);
+
+            List list = new ArrayList();
+            list.add(detail1);
+            list.add(detail2);
+
+            data.put("platform", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
 
     /***
      * 平台高管信息
