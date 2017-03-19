@@ -1,8 +1,6 @@
 package com.jzt.api.service.impl;
 
-import com.jzt.api.dao.BusinessmanMapper;
-import com.jzt.api.dao.NewsMapper;
-import com.jzt.api.dao.PlatformMapper;
+import com.jzt.api.dao.*;
 import com.jzt.api.domain.*;
 import com.jzt.api.service.PlatformService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,13 @@ public class PlatformServiceImpl implements PlatformService {
     @Autowired
     private NewsMapper newsMapper;
 
+    @Autowired
+    private BankProductMapper bankProductMapper;
+
+    @Autowired
+    private P2pLoanMapper p2pLoanMapper;
+
+
     /**
      * 平台详细信息
      *
@@ -45,6 +50,38 @@ public class PlatformServiceImpl implements PlatformService {
      */
     @Override
     public Platform product(Platform platform) {
+
+
+        Platform plat = platformMapper.selectByPrimaryKey(platform.getId());
+
+        // 平台类型（0-p2p,1-银行理财,基金,保险……）
+
+
+        // 银行
+        if (plat.getType() == 1) {
+
+            BankProductExample example = new BankProductExample();
+            example.createCriteria().andPlatIdEqualTo(plat.getId());
+            example.setOrderByClause("expect_profit_year desc");// 预期年化收益降序排序
+            example.setStartRow(0);
+            example.setPageSize(platform.getPageSize());
+
+            List<BankProduct> result = bankProductMapper.selectByExample(example);
+        }
+
+        // p2p
+        if (plat.getType() == 0) {
+
+            P2pLoanExample example = new P2pLoanExample();
+            example.createCriteria().andPlatIdEqualTo(plat.getId());
+            example.setOrderByClause("interest_rate desc");// 年化收益降序排序
+            example.setStartRow(0);
+            example.setPageSize(platform.getPageSize());
+
+            List<P2pLoan> result = p2pLoanMapper.selectByExample(example);
+
+        }
+
         return null;
     }
 
@@ -84,5 +121,16 @@ public class PlatformServiceImpl implements PlatformService {
         example.setPageSize(platform.getPageSize());
         List<News> result = newsMapper.selectByExample(example);
         return result;
+    }
+
+    /**
+     * 新闻详细信息
+     *
+     * @param news
+     * @return
+     */
+    @Override
+    public News newsDetail(News news) {
+        return newsMapper.selectByPrimaryKey(news.getNid());
     }
 }

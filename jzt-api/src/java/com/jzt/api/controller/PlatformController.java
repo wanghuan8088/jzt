@@ -95,4 +95,33 @@ public class PlatformController extends BaseController {
         return result;
     }
 
+
+    /***
+     * 新闻详细信息
+     * @param id   新闻id
+     * @return
+     */
+    @RequestMapping(value = "/news/detail/{id}")
+    @ResponseBody
+    public Map<String, Object> news(@PathVariable(value="id") int id){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            News news = new News();
+            news.setNid(id);
+            News newsResult = platformService.newsDetail(news);
+
+            data.put("news", newsResult);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 }

@@ -1,6 +1,7 @@
 package com.jzt.api.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Exposure {
     /**
@@ -663,4 +664,13 @@ public class Exposure {
         this.pageSize = pageSize;
     }
 
+    private List<ExposureImage> exposureImage;
+
+    public List<ExposureImage> getExposureImage() {
+        return exposureImage;
+    }
+
+    public void setExposureImage(List<ExposureImage> exposureImage) {
+        this.exposureImage = exposureImage;
+    }
 }

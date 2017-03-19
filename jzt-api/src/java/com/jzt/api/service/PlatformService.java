@@ -38,4 +38,11 @@ public interface PlatformService {
      * @return
      */
     List<News> news(Platform platform);
+
+    /**
+     * 新闻详细信息
+     * @param news
+     * @return
+     */
+    News newsDetail(News news);
 }

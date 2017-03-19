@@ -1,8 +1,10 @@
 package com.jzt.api.service.impl;
 
+import com.jzt.api.dao.ExposureImageMapper;
 import com.jzt.api.dao.ExposureMapper;
 import com.jzt.api.domain.Exposure;
 import com.jzt.api.domain.ExposureExample;
+import com.jzt.api.domain.ExposureImage;
 import com.jzt.api.service.ExposureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,9 @@ public class ExposureServiceImpl implements ExposureService {
 
     @Autowired
     private ExposureMapper exposureMapper;
+
+    @Autowired
+    private ExposureImageMapper exposureImageMapper;
 
     @Override
     public List<Exposure> list(Exposure exposure) {
@@ -43,5 +48,19 @@ public class ExposureServiceImpl implements ExposureService {
     @Override
     public Exposure detail(Exposure exposure) {
         return exposureMapper.selectByPrimaryKey(exposure.getEid());
+    }
+
+    @Override
+    public Exposure platform(Exposure exposure) {
+
+        exposureMapper.insert(exposure);
+
+        List<ExposureImage> list = exposure.getExposureImage();
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setEid(exposure.getEid());
+            exposureImageMapper.insert(list.get(i));
+        }
+
+        return exposure;
     }
 }
