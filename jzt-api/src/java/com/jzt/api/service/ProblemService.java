@@ -5,10 +5,8 @@ import com.jzt.api.domain.ProblemPlat;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 /**
- * Created by wanghuan on 10/03/2017.
+ *  问题平台接口
  */
 public interface ProblemService {
     List<Platform> list(Platform report);

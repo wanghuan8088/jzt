@@ -4,15 +4,13 @@ import com.jzt.api.dao.PlatformMapper;
 import com.jzt.api.domain.Platform;
 import com.jzt.api.domain.ProblemPlat;
 import com.jzt.api.service.ProblemService;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
- * Created by wanghuan on 10/03/2017.
+ *  问题平台接口实现
  */
 
 @Service

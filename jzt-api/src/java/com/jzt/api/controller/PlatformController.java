@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -24,6 +25,35 @@ public class PlatformController extends BaseController {
 
     @Autowired
     private PlatformService platformService;
+
+    /***
+     * 平台详细信息
+     * @param id   平台id
+     * @return
+     */
+    @RequestMapping(value = "/{id}")
+    @ResponseBody
+    public Map<String, Object> detail(@PathVariable(value="id") int id){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Platform platform = new Platform();
+            platform.setId(id);
+            Platform detail = platformService.detail(platform);
+
+            data.put("platform", detail);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 
     /***
      * 平台高管信息
@@ -130,7 +160,7 @@ public class PlatformController extends BaseController {
      * @param name   平台name
      * @return
      */
-    @RequestMapping(value = "/likeName/{name}")
+    @RequestMapping(method = RequestMethod.POST, value = "/likeName/{name}")
     @ResponseBody
     public Map<String, Object> likeName(@PathVariable(value="name") String name){
 
