@@ -28,9 +28,21 @@ public class ProblemServiceImpl implements ProblemService {
      * liaokaihong 20170318
      */
     @Override
-    public List<ProblemPlat> selectProblemPlatByType(Integer type)
+    public List<ProblemPlat> selectProblemPlatByState(Integer state)
     {
-    	return platformMapper.selectProblemPlatByType(type);
+    	return platformMapper.selectProblemPlatByState(state);
+    }
+    
+    @Override
+    public List<ProblemPlat> selectAllProblemPlat()
+    {
+    	return platformMapper.selectAllProblemPlat();
+    }
+    
+    @Override
+    public List<ProblemPlat> selectProblemPlatByName(String name)
+    {
+    	return platformMapper.selectProblemPlatByName(name);
     }
 
 }

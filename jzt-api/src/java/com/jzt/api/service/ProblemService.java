@@ -14,6 +14,8 @@ public interface ProblemService {
     /**
      * liaokaihong 20170318
      */
-    List<ProblemPlat> selectProblemPlatByType(Integer type);
+    List<ProblemPlat> selectProblemPlatByState(Integer state);
+    List<ProblemPlat> selectAllProblemPlat();
+    List<ProblemPlat> selectProblemPlatByName(String name);
     
 }

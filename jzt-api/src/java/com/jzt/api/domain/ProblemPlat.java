@@ -8,6 +8,7 @@ public class ProblemPlat {
 
 	private Integer id;
 	private String name;
+	private String icon;
 	private String artificial_person;
 	private Double registered_capital;
 	private String company;
@@ -31,6 +32,16 @@ public class ProblemPlat {
 	public void setName(String name)
 	{
 		this.name = name;
+	}
+	
+	public String getIcon()
+	{
+		return this.icon;
+	}
+	
+	public void setIcon(String icon)
+	{
+		this.icon = icon;
 	}
 	
 	public String getArtificial_person()

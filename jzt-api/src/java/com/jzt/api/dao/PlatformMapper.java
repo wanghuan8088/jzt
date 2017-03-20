@@ -103,6 +103,8 @@ public interface PlatformMapper {
     /**
      * liaokaihong 20170318
      */
-    List<ProblemPlat> selectProblemPlatByType(@Param("type")Integer type);
+    List<ProblemPlat> selectProblemPlatByState(@Param("state")Integer state);
+    List<ProblemPlat> selectAllProblemPlat();
+    List<ProblemPlat> selectProblemPlatByName(@Param("name")String name );
     
 }

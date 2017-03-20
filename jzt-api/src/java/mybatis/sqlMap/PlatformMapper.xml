@@ -446,13 +446,35 @@
   <!--
   liaokaihong 20170318
     -->
-  <select id="selectProblemPlatByType" resultMap="ProblemPlatResultMap" parameterType="java.lang.Integer" >
-  select p.id , p.name ,c.artificial_person ,c.registered_capital,c.name as company_name,s.description as state
+  <select id="selectProblemPlatByState" resultMap="ProblemPlatResultMap" parameterType="java.lang.Integer" >
+  select p.id , p.name ,p.icon , c.artificial_person ,c.registered_capital,c.name as company_name,s.description as state
   from platform p 
   left join company c on p.company = c.id
   left join plat_state s on p.state = s.id
-  where p.type = #{type,jdbcType=INTEGER} and p.state !=1
+  where p.state = #{state,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectAllProblemPlat" resultMap="ProblemPlatResultMap" >
+  select p.id , p.name ,p.icon , c.artificial_person ,c.registered_capital,c.name as company_name,s.description as state
+  from platform p 
+  left join company c on p.company = c.id
+  left join plat_state s on p.state = s.id
+  where p.state !=1
+  </select>
+  
+  <select id="selectProblemPlatByName" resultMap="ProblemPlatResultMap" parameterType="java.lang.String">
+  select p.id , p.name ,p.icon , c.artificial_person ,c.registered_capital,c.name as company_name,s.description as state
+  from platform p 
+  left join company c on p.company = c.id
+  left join plat_state s on p.state = s.id
+  where p.state !=1 and 
+  (
+  p.name like CONCAT('%',#{name},'%')  or 
+  p.name_before like CONCAT('%',#{name},'%') or 
+  c.name like CONCAT('%',#{name},'%')
+  )
+  </select>
+  
   
   <!--
   liaokaihong 20170318
@@ -460,6 +482,7 @@
   <resultMap id="ProblemPlatResultMap" type="com.jzt.api.domain.ProblemPlat" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="artificial_person" property="artificial_person" jdbcType="VARCHAR" />
     <result column="registered_capital" property="registered_capital" jdbcType="DOUBLE" />
     <result column="company_name" property="company" jdbcType="VARCHAR" />
