@@ -435,6 +435,7 @@ public class UserInformationController extends BaseController {
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		
+		dto.setMyInviteCode(ShareCodeUtil.toSerialCode(System.currentTimeMillis()));
 		result = userInformationService.checkLogin(dto);
 		return result;
 	}
@@ -451,7 +452,7 @@ public class UserInformationController extends BaseController {
 		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
 
 		Map<String, Object> result = new HashMap<String, Object>();
-		
+		dto.setMyInviteCode(ShareCodeUtil.toSerialCode(System.currentTimeMillis()));
 		result = userInformationService.checkLoginThird(dto);
 		return result;
 	}

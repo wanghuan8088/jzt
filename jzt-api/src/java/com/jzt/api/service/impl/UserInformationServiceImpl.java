@@ -69,8 +69,12 @@ public class UserInformationServiceImpl extends BaseService implements UserInfor
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			UserInformationExample example = new UserInformationExample();
-			example.or().andAccesstokenEqualTo(record.getAccesstoken());
-			example.or().andOpenidEqualTo(record.getOpenid());
+			if(record.getOpenid() != null && !"".equals(record.getOpenid())){
+				example.or().andOpenidEqualTo(record.getOpenid());
+			}
+			if(record.getAccesstoken() != null && !"".equals(record.getAccesstoken())){
+				example.or().andAccesstokenEqualTo(record.getAccesstoken());
+			}
 			List<UserInformation> userlist = userInformationMapper.selectByExample(example);
 			if(userlist==null || userlist.size()<1){
 				//if user does NOT exist, then regist -> insert user into DB
