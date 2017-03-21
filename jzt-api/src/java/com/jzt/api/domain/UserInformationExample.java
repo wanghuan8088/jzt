@@ -1532,6 +1532,66 @@ public class UserInformationExample {
             return (Criteria) this;
         }
 
+        public Criteria andRegistermodeIsNull() {
+            addCriterion("registermode is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeIsNotNull() {
+            addCriterion("registermode is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeEqualTo(Integer value) {
+            addCriterion("registermode =", value, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeNotEqualTo(Integer value) {
+            addCriterion("registermode <>", value, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeGreaterThan(Integer value) {
+            addCriterion("registermode >", value, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("registermode >=", value, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeLessThan(Integer value) {
+            addCriterion("registermode <", value, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeLessThanOrEqualTo(Integer value) {
+            addCriterion("registermode <=", value, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeIn(List<Integer> values) {
+            addCriterion("registermode in", values, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeNotIn(List<Integer> values) {
+            addCriterion("registermode not in", values, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeBetween(Integer value1, Integer value2) {
+            addCriterion("registermode between", value1, value2, "registermode");
+            return (Criteria) this;
+        }
+
+        public Criteria andRegistermodeNotBetween(Integer value1, Integer value2) {
+            addCriterion("registermode not between", value1, value2, "registermode");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;

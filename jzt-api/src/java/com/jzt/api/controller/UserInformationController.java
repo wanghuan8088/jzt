@@ -174,6 +174,51 @@ public class UserInformationController extends BaseController {
 		return result;
 	}
 	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/registThird")
+	@ResponseBody
+	public Map<String, Object> registThird(@RequestParam(value="para", required=true) String para){
+		JSONObject jsStr = JSONObject.fromObject(para);
+		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		try {
+				
+				return checkRegistThird(dto, result);
+				
+			
+		} catch (Exception e) {
+			result.put("res", "1");
+			result.put("message", "Failed to verify sms code");
+			Map<String, Object> data = new HashMap<String, Object>();
+			result.put("data", data );
+		}
+		return result;
+	}
+
+	private Map<String, Object> checkRegistThird(UserInformation dto,
+			Map<String, Object> result) {
+		UserInformationExample example = new UserInformationExample();
+		example.or().andAccesstokenEqualTo(dto.getAccesstoken());
+		example.or().andOpenidEqualTo(dto.getOpenid());
+		List<UserInformation> userlist = userInformationService.selectByExample(example);
+		if(userlist!=null && userlist.size()>0){
+			result.put("res", "1");
+			result.put("message", "User already exists:"+dto.getPhone());
+		}else{
+			try {
+				dto.setMyInviteCode(ShareCodeUtil.toSerialCode(System.currentTimeMillis()));
+				int id = userInformationService.insertSelective(dto);
+				result = generateNomalResult(dto);
+			} catch (Exception e) {
+				result = generateErrorResult(e);
+			}
+		}
+		return result;
+	}
+	
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/changePswd")
 	@ResponseBody
 	public Map<String, Object> changePswd(@RequestParam(value="para", required=true) String para){
