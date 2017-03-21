@@ -29,7 +29,7 @@ public class RankBankController extends BaseController {
      */
     @RequestMapping(value = "/bank/{type}/{order}/{startRow}/{pageSize}")
     @ResponseBody
-    public Map<String, Object> turnover(@PathVariable(value="type") int type,
+    public Map<String, Object> rank(@PathVariable(value="type") int type,
                                         @PathVariable(value="order") int order,
                                         @PathVariable(value="startRow") int startRow,
                                         @PathVariable(value="pageSize") int pageSize){

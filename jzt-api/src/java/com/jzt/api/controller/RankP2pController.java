@@ -1,6 +1,7 @@
 package com.jzt.api.controller;
 
 import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.P2pDynamic;
 import com.jzt.api.service.RankP2pService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,10 +42,12 @@ public class RankP2pController extends BaseController {
         try {
             Map<String, Object> data = new HashMap<String, Object>();
 
-            // rankP2pService.turnover();
-            // TODO: 19/03/2017
+            P2pDynamic p2pDynamic = new P2pDynamic();
+            p2pDynamic.setStartRow(startRow);
+            p2pDynamic.setPageSize(pageSize);
+            List<P2pDynamic> list = rankP2pService.turnover(p2pDynamic);
 
-            //data.put("report", list);
+            data.put("turnover", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

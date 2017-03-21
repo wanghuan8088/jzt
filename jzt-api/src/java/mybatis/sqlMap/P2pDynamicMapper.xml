@@ -167,6 +167,18 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <select id="selectByTurnover" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pDynamicExample" >
+
+    select * from p2p_dynamic a where create_time=(select max(create_time) from p2p_dynamic b where b.plat_id=a.plat_id)
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
