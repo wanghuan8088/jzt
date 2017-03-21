@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jzt.api.common.util.ShareCodeUtil;
 import com.jzt.api.common.util.SmsCodeUtil;
 import com.jzt.api.controller.base.BaseController;
 import com.jzt.api.domain.UserInformation;
@@ -40,6 +41,7 @@ public class UserInformationController extends BaseController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
+			record.setMyInviteCode(ShareCodeUtil.toSerialCode(System.currentTimeMillis()));
 			result = userInformationService.save(record);
 		} catch (Exception e) {
 			result = generateErrorResult(e);
@@ -162,6 +164,7 @@ public class UserInformationController extends BaseController {
 			result.put("message", "User already exists:"+dto.getPhone());
 		}else{
 			try {
+				dto.setMyInviteCode(ShareCodeUtil.toSerialCode(System.currentTimeMillis()));
 				int id = userInformationService.insertSelective(dto);
 				result = generateNomalResult(dto);
 			} catch (Exception e) {
