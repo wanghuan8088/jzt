@@ -1,8 +1,12 @@
 package com.jzt.api.controller;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
@@ -109,9 +113,7 @@ public class AppFinanceFavoriteController extends BaseController {
 	*/
 	@RequestMapping(value = "/query")
 	@ResponseBody
-	public Map<String, Object> query(@RequestParam(value="para", required=true) String para){
-		JSONObject jsStr = JSONObject.fromObject(para);
-		AppFinanceFavorite record = (AppFinanceFavorite) JSONObject.toBean(jsStr, AppFinanceFavorite.class);
+	public Map<String, Object> query(){
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
@@ -123,6 +125,23 @@ public class AppFinanceFavoriteController extends BaseController {
 		} catch (Exception e) {
 			result = generateErrorResult(e);
 		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/queryTest")
+	@ResponseBody
+	public Map<String, Object> queryTest(HttpServletRequest request, HttpServletResponse response){
+		System.out.println("---------------Start");
+		System.out.println(request);
+		
+		Enumeration headerNames = request.getHeaderNames();
+	    while (headerNames.hasMoreElements()) {
+	        String key = (String) headerNames.nextElement();
+	        String value = request.getHeader(key);
+	        System.out.println(key+"=+++++++++++++++++++++="+value);
+	    }
+		Map<String, Object> result = new HashMap<String, Object>();
+		
 		return result;
 	}
 	
