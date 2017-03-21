@@ -37,4 +37,6 @@ public interface UserInformationService {
 
 	Map<String, Object> changePswd(UserInformation record);
 
+	Map<String, Object> checkLoginThird(UserInformation record);
+
 }

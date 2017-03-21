@@ -393,6 +393,24 @@ public class UserInformationController extends BaseController {
 		result = userInformationService.checkLogin(dto);
 		return result;
 	}
+	
+	/**
+	 * login
+	 * @param UserDTO
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST, value = "/loginThird")
+	@ResponseBody
+	public Map<String, Object> loginThird(@RequestParam(value="para", required=true) String para){
+		JSONObject jsStr = JSONObject.fromObject(para);
+		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
+
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		result = userInformationService.checkLoginThird(dto);
+		return result;
+	}
+
 
 
 }
