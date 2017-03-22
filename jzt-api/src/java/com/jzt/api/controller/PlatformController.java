@@ -5,12 +5,10 @@ import com.jzt.api.domain.Businessman;
 import com.jzt.api.domain.News;
 import com.jzt.api.domain.Platform;
 import com.jzt.api.service.PlatformService;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -198,19 +196,21 @@ public class PlatformController extends BaseController {
 
     /***
      * 相似名称的平台信息
-     * @param name   平台name
+     * @param  para  平台name
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/likeName/{name}")
+    @RequestMapping(method = RequestMethod.POST, value = "/likeName")
     @ResponseBody
-    public Map<String, Object> likeName(@PathVariable(value="name") String name){
+    public Map<String, Object> likeName(@RequestParam(value = "para", required = true) String para) {
+        JSONObject jsStr = JSONObject.fromObject(para);
+        Platform dto = (Platform) JSONObject.toBean(jsStr, Platform.class);
 
         Map<String, Object> result = new HashMap<String, Object>();
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
             Platform platform = new Platform();
-            platform.setName(name);
+            platform.setName(dto.getName());
             List<Platform> list = platformService.likeName(platform);
 
             data.put("platform", list);

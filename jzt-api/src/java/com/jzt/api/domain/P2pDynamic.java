@@ -1671,6 +1671,16 @@ public class P2pDynamic {
 
     private int pageSize;
 
+    private int tagType;
+
+    public int getTagType() {
+        return tagType;
+    }
+
+    public void setTagType(int tagType) {
+        this.tagType = tagType;
+    }
+
     public int getStartRow() {
         return startRow;
     }

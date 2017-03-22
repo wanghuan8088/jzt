@@ -1,5 +1,6 @@
 package com.jzt.api.controller;
 
+import com.jzt.api.common.constant.GeneralConstant;
 import com.jzt.api.controller.base.BaseController;
 import com.jzt.api.domain.P2pDynamic;
 import com.jzt.api.service.RankP2pService;
@@ -43,6 +44,8 @@ public class RankP2pController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
 
             P2pDynamic p2pDynamic = new P2pDynamic();
+
+            p2pDynamic.setTagType(GeneralConstant.P2PTAG.get(type));
             p2pDynamic.setStartRow(startRow);
             p2pDynamic.setPageSize(pageSize);
             List<P2pDynamic> list = rankP2pService.turnover(p2pDynamic);
