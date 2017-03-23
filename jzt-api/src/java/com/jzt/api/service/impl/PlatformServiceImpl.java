@@ -63,7 +63,7 @@ public class PlatformServiceImpl implements PlatformService {
             BankProductExample example = new BankProductExample();
             example.createCriteria().andPlatIdEqualTo(plat.getId());
             example.setOrderByClause("expect_profit_year desc");// 预期年化收益降序排序
-            example.setStartRow(0);
+            example.setStartRow(platform.getStartRow() * platform.getPageSize());
             example.setPageSize(platform.getPageSize());
 
             List<BankProduct> result = bankProductMapper.selectByExample(example);
@@ -75,7 +75,7 @@ public class PlatformServiceImpl implements PlatformService {
             P2pLoanExample example = new P2pLoanExample();
             example.createCriteria().andPlatIdEqualTo(plat.getId());
             example.setOrderByClause("interest_rate desc");// 年化收益降序排序
-            example.setStartRow(0);
+            example.setStartRow(platform.getStartRow() * platform.getPageSize());
             example.setPageSize(platform.getPageSize());
 
             List<P2pLoan> result = p2pLoanMapper.selectByExample(example);
@@ -99,7 +99,7 @@ public class PlatformServiceImpl implements PlatformService {
         BusinessmanExample example = new BusinessmanExample();
         example.createCriteria().andCidEqualTo(plat.getCompany());
         example.setOrderByClause("work_experience desc");// 工作年限来排序
-        example.setStartRow(0);
+        example.setStartRow(platform.getStartRow() * platform.getPageSize());
         example.setPageSize(platform.getPageSize());
         List<Businessman> result = businessmanMapper.selectByExample(example);
         return result;
@@ -117,7 +117,7 @@ public class PlatformServiceImpl implements PlatformService {
         NewsExample example = new NewsExample();
         example.createCriteria().andPlatIdEqualTo(platform.getId());
         example.setOrderByClause("create_time desc");// 创建时间排序
-        example.setStartRow(0);
+        example.setStartRow(platform.getStartRow() * platform.getPageSize());
         example.setPageSize(platform.getPageSize());
         List<News> result = newsMapper.selectByExample(example);
         return result;
@@ -145,6 +145,8 @@ public class PlatformServiceImpl implements PlatformService {
 
         PlatformExample example = new PlatformExample();
         example.createCriteria().andNameLike("%" + platform.getName() + "%");
+        example.setStartRow(platform.getStartRow() * platform.getPageSize());
+        example.setPageSize(platform.getPageSize());
         List<Platform> result = platformMapper.selectByExample(example);
         return result;
     }

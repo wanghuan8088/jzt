@@ -209,9 +209,7 @@ public class PlatformController extends BaseController {
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
-            Platform platform = new Platform();
-            platform.setName(dto.getName());
-            List<Platform> list = platformService.likeName(platform);
+            List<Platform> list = platformService.likeName(dto);
 
             data.put("platform", list);
             result.put("data", data );

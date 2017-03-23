@@ -23,8 +23,9 @@ public class PlatformReportServiceImpl implements PlatformReportService {
     public List<Report> list(Report report) {
 
         ReportExample example = new ReportExample();
-        example.setStartRow(report.getStartRow());
+        example.setStartRow(report.getStartRow() * report.getPageSize());
         example.setPageSize(report.getPageSize());
+
         example.setOrderByClause("favorites desc");
 
         return reportMapper.selectByExample(example);

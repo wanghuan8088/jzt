@@ -9,31 +9,29 @@ package com.jzt.api.domain;
  *
  */
 public class BaseDomain {
-	
-	private Integer page = 0;
-	
-	private Integer rows =0;
-	
+
+	private int startRow;
+
+	private int pageSize;
+
 	private String sort;
-	
+
 	private String order;
 
-	
-
-	public Integer getPage() {
-		return page;
+	public int getStartRow() {
+		return startRow;
 	}
 
-	public void setPage(Integer page) {
-		this.page = page;
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
 	}
 
-	public Integer getRows() {
-		return rows;
+	public int getPageSize() {
+		return pageSize;
 	}
 
-	public void setRows(Integer rows) {
-		this.rows = rows;
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 
 	public String getSort() {

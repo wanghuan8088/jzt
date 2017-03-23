@@ -27,7 +27,7 @@ public class ExposureServiceImpl implements ExposureService {
     @Override
     public List<Exposure> list(Exposure exposure) {
         ExposureExample example = new ExposureExample();
-        example.setStartRow(exposure.getStartRow());
+        example.setStartRow(exposure.getStartRow() * exposure.getPageSize());
         example.setPageSize(exposure.getPageSize());
         example.setOrderByClause("created_date desc");
 
@@ -38,7 +38,7 @@ public class ExposureServiceImpl implements ExposureService {
     public List<Exposure> listByPlatform(Exposure exposure) {
         ExposureExample example = new ExposureExample();
         example.createCriteria().andPlatIdEqualTo(exposure.getPlatId());
-        example.setStartRow(exposure.getStartRow());
+        example.setStartRow(exposure.getStartRow() * exposure.getPageSize());
         example.setPageSize(exposure.getPageSize());
         example.setOrderByClause("created_date desc");
 

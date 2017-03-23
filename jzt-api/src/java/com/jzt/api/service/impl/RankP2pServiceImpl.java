@@ -37,7 +37,7 @@ public class RankP2pServiceImpl implements RankP2pService {
         P2pDynamicExample example = new P2pDynamicExample();
         example.setTagType(p2pDynamic.getTagType());
         example.setOrderByClause("total_turnover desc");
-        example.setStartRow(p2pDynamic.getStartRow());
+        example.setStartRow(p2pDynamic.getStartRow() * p2pDynamic.getPageSize());
         example.setPageSize(p2pDynamic.getPageSize());
         List<P2pDynamic> result = p2pDynamicMapper.selectByTurnover(example);
         return result;
