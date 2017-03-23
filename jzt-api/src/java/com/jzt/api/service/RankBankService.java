@@ -1,6 +1,7 @@
 package com.jzt.api.service;
 
 import com.jzt.api.domain.BankEval;
+import com.jzt.api.domain.RankBankData;
 
 import java.util.List;
 
@@ -16,4 +17,9 @@ public interface RankBankService {
      * @return
      */
     List<BankEval> turnover(BankEval bankEval);
+    
+    /**
+     * liaokaihong 20170323
+     */
+    public List<RankBankData> selectRankBankByType(Integer type,String order_field,Integer startRow,Integer pageSize); 
 }

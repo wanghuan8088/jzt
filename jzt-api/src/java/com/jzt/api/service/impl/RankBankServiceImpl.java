@@ -2,7 +2,9 @@ package com.jzt.api.service.impl;
 
 import com.jzt.api.dao.BankEvalMapper;
 import com.jzt.api.domain.BankEval;
+import com.jzt.api.domain.RankBankData;
 import com.jzt.api.service.RankBankService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +30,16 @@ public class RankBankServiceImpl implements RankBankService {
         // TODO: 20/03/2017
         return null;
     }
+    
+    
+    /**
+     * liaokaihong 20170323
+     */
+    @Override
+	public List<RankBankData> selectRankBankByType(Integer type,String order_field,Integer startRow,Integer pageSize)
+	{
+    	return bankEvalMapper.selectRankBankByType(type, order_field, startRow, pageSize);
+	}
+    
+    
 }

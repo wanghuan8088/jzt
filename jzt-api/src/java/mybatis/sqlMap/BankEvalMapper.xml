@@ -425,4 +425,44 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  
+   
+  <!--
+  liaokaihong 20170323
+  -->
+  
+  <select id="selectRankBankByType" resultMap="RankBankResultMap" >
+  select p.id , p.name ,p.icon , 
+  e.release_score , e.profit_score , e.risk_score , 
+  e.product_rich_score , e.info_disclosure_score , e.evaluate_score , e.total_score 
+  from platform p 
+  left join bank_plat b on p.id = b.plat_id
+  left join bank_eval e on p.id = e.plat_id
+  where p.type=1 and p.state = 1 and b.type = #{type,jdbcType=INTEGER}
+  order by ${order_field} desc
+  limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
+  
+  <!--
+  liaokaihong 20170323
+    -->
+  <resultMap id="RankBankResultMap" type="com.jzt.api.domain.RankBankData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="release_score" property="release_score" jdbcType="DOUBLE" />
+    <result column="profit_score" property="profit_score" jdbcType="DOUBLE" />
+    <result column="risk_score" property="risk_score" jdbcType="DOUBLE" />
+	<result column="product_rich_score" property="product_rich_score" jdbcType="DOUBLE" />
+	<result column="info_disclosure_score" property="info_disclosure_score" jdbcType="DOUBLE" />
+	<result column="evaluate_score" property="evaluate_score" jdbcType="DOUBLE" />
+	<result column="total_score" property="total_score" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  
+  
+  
+  
 </mapper>

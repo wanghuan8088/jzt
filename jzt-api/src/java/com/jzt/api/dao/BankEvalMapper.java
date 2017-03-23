@@ -2,7 +2,10 @@ package com.jzt.api.dao;
 
 import com.jzt.api.domain.BankEval;
 import com.jzt.api.domain.BankEvalExample;
+import com.jzt.api.domain.RankBankData;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface BankEvalMapper {
@@ -93,4 +96,12 @@ public interface BankEvalMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(BankEval record);
+    
+    
+    /**
+     * liaokaihong 20170323
+     */
+     List<RankBankData> selectRankBankByType(@Param("type")Integer type,@Param("order_field")String order_field, @Param("startRow")Integer startRow,@Param("pageSize")Integer pageSize);   
+     
+     
 }
