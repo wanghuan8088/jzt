@@ -93,6 +93,35 @@ public class PlatformController extends BaseController {
         return result;
     }
 
+    /***
+     * 平台理财产品信息
+     * @param pid   平台id
+     * @return
+     */
+    @RequestMapping(value = "/product/{pid}")
+    @ResponseBody
+    public Map<String, Object> product(@PathVariable(value="pid") int pid){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+
+            Platform platform = new Platform();
+            platform.setId(pid);
+            List<Object> list = platformService.product(platform);
+
+            data.put("platform", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 
     /***
      * 平台高管信息

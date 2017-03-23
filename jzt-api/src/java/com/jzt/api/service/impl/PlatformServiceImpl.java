@@ -6,6 +6,7 @@ import com.jzt.api.service.PlatformService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,13 +50,13 @@ public class PlatformServiceImpl implements PlatformService {
      * @return
      */
     @Override
-    public Platform product(Platform platform) {
-
+    public List<Object> product(Platform platform) {
 
         Platform plat = platformMapper.selectByPrimaryKey(platform.getId());
 
         // 平台类型（0-p2p,1-银行理财,基金,保险……）
 
+        List<Object> list = new ArrayList();
 
         // 银行
         if (plat.getType() == 1) {
@@ -67,6 +68,7 @@ public class PlatformServiceImpl implements PlatformService {
             example.setPageSize(platform.getPageSize());
 
             List<BankProduct> result = bankProductMapper.selectByExample(example);
+            list.add(result);
         }
 
         // p2p
@@ -79,10 +81,10 @@ public class PlatformServiceImpl implements PlatformService {
             example.setPageSize(platform.getPageSize());
 
             List<P2pLoan> result = p2pLoanMapper.selectByExample(example);
-
+            list.add(result);
         }
 
-        return null;
+        return list;
     }
 
     /**

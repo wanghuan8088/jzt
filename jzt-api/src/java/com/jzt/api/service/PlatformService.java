@@ -23,7 +23,7 @@ public interface PlatformService {
      * @param platform
      * @return
      */
-    Platform product(Platform platform);
+    List<Object> product(Platform platform);
 
     /**
      * 平台高管信息
