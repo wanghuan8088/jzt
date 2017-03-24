@@ -97,6 +97,8 @@ public interface PlatformMapper {
      */
     int updateByPrimaryKey(Platform record);
     
+    List<Platform> selectByRegisteredCapital(@Param("tagType")Integer tagType, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
+    
     List<Platform> selectByUserId(@Param("uId")Integer uId, @Param("type")Integer type, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
     
     

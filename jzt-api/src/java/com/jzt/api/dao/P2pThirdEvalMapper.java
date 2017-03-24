@@ -93,4 +93,6 @@ public interface P2pThirdEvalMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(P2pThirdEval record);
+    
+    List<P2pThirdEval> selectBypopularity(P2pThirdEvalExample example);
 }

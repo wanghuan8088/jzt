@@ -3,8 +3,10 @@ package com.jzt.api.service.impl;
 import com.jzt.api.dao.CompanyMapper;
 import com.jzt.api.dao.P2pDynamicMapper;
 import com.jzt.api.dao.P2pThirdEvalMapper;
+import com.jzt.api.dao.PlatformMapper;
 import com.jzt.api.domain.*;
 import com.jzt.api.service.RankP2pService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,9 @@ public class RankP2pServiceImpl implements RankP2pService {
 
     @Autowired
     private CompanyMapper companyMapper;
+    
+    @Autowired
+    private PlatformMapper platformMapper;
 
     /**
      * 总成交量排行
@@ -51,7 +56,13 @@ public class RankP2pServiceImpl implements RankP2pService {
     @Override
     public List<P2pThirdEval> popularity(P2pThirdEval p2pThirdEval) {
         // TODO: 19/03/2017
-        return null;
+    	P2pThirdEvalExample example = new P2pThirdEvalExample();
+    	example.setTagType(p2pThirdEval.getTagType());
+    	example.setOrderByClause("popularity desc");
+    	example.setStartRow(p2pThirdEval.getStartRow() * p2pThirdEval.getPageSize());
+    	example.setPageSize(p2pThirdEval.getPageSize());
+    	List<P2pThirdEval> result = p2pThirdEvalMapper.selectBypopularity(example);
+        return result;
     }
 
     /**
@@ -71,9 +82,10 @@ public class RankP2pServiceImpl implements RankP2pService {
      * @return
      */
     @Override
-    public List<Company> registeredCapital(Company company) {
+    public List<Platform> registeredCapital(Platform platform) {
         // TODO: 19/03/2017
-        return null;
+    	List<Platform> result = platformMapper.selectByRegisteredCapital(platform.getTagType(), platform.getStartRow() * platform.getPageSize(), platform.getPageSize());
+        return result;
     }
 
     /**

@@ -70,12 +70,12 @@ public class UserAttentionServiceImpl extends BaseService implements UserAttenti
 	}
 
 	@Override
-	public Map<String, Object> deleteAttenPlat(UserAttentionPlatform record) {
+	public Map<String, Object> deleteAttenPlat(UserAttentionPlatformExample record) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try{
-			userAttentionPlatformMapper.deleteByPrimaryKey(record.getId());
-			result = generateNomalResult(record);
+			userAttentionPlatformMapper.deleteByExample(record);
+			result = generateNomalResult(null);
 		}catch (Exception e) {
 			result = generateErrorResult(e);
 		}
@@ -84,12 +84,12 @@ public class UserAttentionServiceImpl extends BaseService implements UserAttenti
 	}
 
 	@Override
-	public Map<String, Object> deleteAttenPro(UserAttentionProduct record) {
+	public Map<String, Object> deleteAttenPro(UserAttentionProductExample record) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try{
-			userAttentionProductMapper.deleteByPrimaryKey(record.getId());
-			result = generateNomalResult(record);
+			userAttentionProductMapper.deleteByExample(record);
+			result = generateNomalResult(null);
 		}catch (Exception e) {
 			result = generateErrorResult(e);
 		}
@@ -103,8 +103,8 @@ public class UserAttentionServiceImpl extends BaseService implements UserAttenti
 		
 		UserAttentionPlatformExample example = new UserAttentionPlatformExample();
 		example.createCriteria().andPidEqualTo(record.getPid());
-		example.createCriteria().andUidEqualTo(record.getUid());
-		List<UserAttentionPlatform> result = userAttentionPlatformMapper.selectByExample(example);
+		example.or().andUidEqualTo(record.getUid());
+		List<UserAttentionPlatform> result = userAttentionPlatformMapper.selectByAndExample(example);
 		return result;
 	}
 
@@ -113,9 +113,9 @@ public class UserAttentionServiceImpl extends BaseService implements UserAttenti
 			UserAttentionProduct record) {
 		UserAttentionProductExample example = new UserAttentionProductExample();
 		example.createCriteria().andPidEqualTo(record.getPid());
-		example.createCriteria().andUidEqualTo(record.getUid());
-		example.createCriteria().andTypeEqualTo(record.getType());
-		List<UserAttentionProduct> result = userAttentionProductMapper.selectByExample(example);
+		example.or().andUidEqualTo(record.getUid());
+		example.or().andTypeEqualTo(record.getType());
+		List<UserAttentionProduct> result = userAttentionProductMapper.selectByAndExample(example);
 		return result;
 	}
 

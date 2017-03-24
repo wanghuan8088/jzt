@@ -454,6 +454,8 @@ public class Platform {
     private int startRow;
 
     private int pageSize;
+    
+    private int tagType;
 
     public int getStartRow() {
         return startRow;
@@ -470,5 +472,13 @@ public class Platform {
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
     }
+
+	public int getTagType() {
+		return tagType;
+	}
+
+	public void setTagType(int tagType) {
+		this.tagType = tagType;
+	}
 
 }

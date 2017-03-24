@@ -1,8 +1,8 @@
 package com.jzt.api.service;
 
-import com.jzt.api.domain.Company;
 import com.jzt.api.domain.P2pDynamic;
 import com.jzt.api.domain.P2pThirdEval;
+import com.jzt.api.domain.Platform;
 
 import java.util.List;
 
@@ -38,7 +38,7 @@ public interface RankP2pService {
      * @param company
      * @return
      */
-    List<Company> registeredCapital(Company company);
+    List<Platform> registeredCapital(Platform platform);
 
     /**
      * 运营时间排行

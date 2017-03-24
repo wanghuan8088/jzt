@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.jzt.api.domain.UserAttentionPlatform;
+import com.jzt.api.domain.UserAttentionPlatformExample;
 import com.jzt.api.domain.UserAttentionProduct;
+import com.jzt.api.domain.UserAttentionProductExample;
 
 /**
  *user:lsl
@@ -17,9 +19,9 @@ public interface UserAttentionService {
 	
 	Map<String, Object> saveAttenPro(UserAttentionProduct record);
 	
-	Map<String, Object> deleteAttenPlat(UserAttentionPlatform record);
+	Map<String, Object> deleteAttenPlat(UserAttentionPlatformExample record);
 	
-	Map<String, Object> deleteAttenPro(UserAttentionProduct record);
+	Map<String, Object> deleteAttenPro(UserAttentionProductExample record);
 	
 	List<UserAttentionPlatform> findUserPlatform(UserAttentionPlatform record);
 	

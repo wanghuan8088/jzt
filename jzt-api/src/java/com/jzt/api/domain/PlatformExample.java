@@ -10,6 +10,16 @@ public class PlatformExample {
     protected int startRow;
 
     protected int pageSize;
+    
+    protected int tagType;
+
+    public int getTagType() {
+        return tagType;
+    }
+
+    public void setTagType(int tagType) {
+        this.tagType = tagType;
+    }
 
     public int getStartRow() {
         return startRow;

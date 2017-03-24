@@ -3,7 +3,10 @@ package com.jzt.api.controller;
 import com.jzt.api.common.constant.GeneralConstant;
 import com.jzt.api.controller.base.BaseController;
 import com.jzt.api.domain.P2pDynamic;
+import com.jzt.api.domain.P2pThirdEval;
+import com.jzt.api.domain.Platform;
 import com.jzt.api.service.RankP2pService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,9 +83,13 @@ public class RankP2pController extends BaseController {
         try {
             Map<String, Object> data = new HashMap<String, Object>();
 
-            // TODO: 19/03/2017
+            P2pThirdEval p2pThirdEval = new P2pThirdEval();
+            p2pThirdEval.setTagType(GeneralConstant.P2PTAG.get(type));
+            p2pThirdEval.setStartRow(startRow);
+            p2pThirdEval.setPageSize(pageSize);
+            List<P2pThirdEval> list = rankP2pService.popularity(p2pThirdEval);
 
-            //data.put("report", list);
+            data.put("report", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");
@@ -111,9 +118,7 @@ public class RankP2pController extends BaseController {
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
-
-            // TODO: 19/03/2017
-
+            
             //data.put("report", list);
             result.put("data", data );
             result.put("res", "0");
@@ -145,8 +150,13 @@ public class RankP2pController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
 
             // TODO: 19/03/2017
-
-            //data.put("report", list);
+            Platform platform = new Platform();
+            platform.setTagType(GeneralConstant.P2PTAG.get(type));
+            platform.setStartRow(startRow);
+            platform.setPageSize(pageSize);
+            // TODO: 19/03/2017
+            List<Platform> list = rankP2pService.registeredCapital(platform);
+            data.put("report", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

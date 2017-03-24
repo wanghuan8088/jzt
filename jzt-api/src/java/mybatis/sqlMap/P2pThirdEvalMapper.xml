@@ -395,4 +395,22 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id = "selectBypopularity" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pThirdEvalExample">
+  
+   select t.plat_id, t.popularity from (
+    select t1.* from p2p_third_eval t1, plat_rel_tag t2 where t2.tag_id=#{tagType,jdbcType=INTEGER} and t1.plat_id=t2.plat_id
+    ) t where t.create_time=(select max(tt.create_time) from p2p_third_eval tt where t.plat_id=tt.plat_id)
+  
+<!--    select p2p_third_eval.id, p2p_third_eval.plat_id, development_rate, mobility, turnover, benefit, dispersion, update_date, 
+    popularity, transparency, p2p_third_eval.create_time, p2p_third_eval.update_time
+    from p2p_third_eval, plat_rel_tag where p2p_third_eval.plat_id = plat_rel_tag.plat_id and plat_rel_tag.tag_id=#{tagType,jdbcType=INTEGER} -->
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  
+  </select>
 </mapper>

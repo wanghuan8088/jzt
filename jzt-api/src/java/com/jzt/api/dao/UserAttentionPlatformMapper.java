@@ -93,4 +93,6 @@ public interface UserAttentionPlatformMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(UserAttentionPlatform record);
+    
+    List<UserAttentionPlatform> selectByAndExample(UserAttentionPlatformExample example);
 }

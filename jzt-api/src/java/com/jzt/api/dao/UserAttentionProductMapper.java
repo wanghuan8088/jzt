@@ -93,4 +93,6 @@ public interface UserAttentionProductMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(UserAttentionProduct record);
+    
+    List<UserAttentionProduct> selectByAndExample(UserAttentionProductExample example);
 }
