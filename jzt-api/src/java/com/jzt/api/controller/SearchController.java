@@ -58,6 +58,11 @@ public class SearchController extends BaseController {
         try {
             Map<String, Object> data = new HashMap<String, Object>();
 
+            // 记录搜索关键字
+            Platform plat = new Platform();
+            plat.setName(keyword);
+            searchService.insert(plat);
+
             // 搜索平台
             if (platformCount > 0) {
                 Platform platform = new Platform();

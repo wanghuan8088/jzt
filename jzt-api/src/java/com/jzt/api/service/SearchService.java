@@ -14,6 +14,13 @@ import java.util.List;
 public interface SearchService {
 
     /**
+     * 记录搜索关键字
+     * @param platform
+     * @return
+     */
+    void insert(Platform platform);
+
+    /**
      * 搜索平台
      * @param platform
      * @return

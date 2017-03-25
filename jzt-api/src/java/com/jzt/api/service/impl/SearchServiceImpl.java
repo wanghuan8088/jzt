@@ -1,9 +1,6 @@
 package com.jzt.api.service.impl;
 
-import com.jzt.api.dao.BankProductMapper;
-import com.jzt.api.dao.CompanyMapper;
-import com.jzt.api.dao.P2pLoanMapper;
-import com.jzt.api.dao.PlatformMapper;
+import com.jzt.api.dao.*;
 import com.jzt.api.domain.*;
 import com.jzt.api.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +23,39 @@ public class SearchServiceImpl implements SearchService {
     private P2pLoanMapper p2pLoanMapper;
     @Autowired
     private CompanyMapper companyMapper;
+    @Autowired
+    private AppKeywordsTrendMapper appKeywordsTrendMapper;
+
+
+
+    /**
+     * 记录搜索关键字
+     * @param platform
+     */
+    @Override
+    public void insert(Platform platform) {
+
+        String keyword = platform.getName();
+        AppKeywordsTrendExample example = new AppKeywordsTrendExample();
+        example.createCriteria().andKeywordEqualTo(keyword);
+        List<AppKeywordsTrend> result = appKeywordsTrendMapper.selectByExample(example);
+
+
+        if (result != null && result.size() > 0) {
+            AppKeywordsTrend record = result.get(0);
+            record.setTimes(record.getTimes() + 1);
+            appKeywordsTrendMapper.updateByPrimaryKey(record);
+        } else {
+            AppKeywordsTrend record = new AppKeywordsTrend();
+            record.setKeyword(keyword);
+            record.setTimes(1);
+            appKeywordsTrendMapper.insert(record);
+        }
+
+    }
 
     /**
      * 搜索平台
-     *
      * @param platform
      * @return
      */
