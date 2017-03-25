@@ -25,8 +25,10 @@ public class SearchServiceImpl implements SearchService {
     private CompanyMapper companyMapper;
     @Autowired
     private AppKeywordsTrendMapper appKeywordsTrendMapper;
-
-
+	@Autowired
+	private BusinessmanMapper businessmanMapper;
+	@Autowired
+	private StockholderMapper stockholderMapper;
 
     /**
      * 记录搜索关键字
@@ -124,4 +126,33 @@ public class SearchServiceImpl implements SearchService {
         List<Company> result = companyMapper.selectByExample(example);
         return result;
     }
+    
+    /**
+     * 搜索法人
+     */
+	@Override
+	public List<Businessman> businessman(Businessman businessman) {
+		BusinessmanExample example=new BusinessmanExample();
+		example.createCriteria().andNameLike("%"+businessman.getName()+"%");
+		example.setOrderByClause("create_time desc");
+		example.setStartRow(0);
+		example.setPageSize(businessman.getPageSize());
+		List<Businessman> result=businessmanMapper.selectByExample(example);
+		return result;
+	}
+
+	/**
+	 * 搜索股东
+	 */
+	@Override
+	public List<Stockholder> stockholder(Stockholder stockholder) {
+		StockholderExample example=new StockholderExample();
+		example.createCriteria().andNameLike("%"+stockholder.getName()+"%");
+		example.setOrderByClause("occupies_compared desc");
+		example.setStartRow(0);
+		example.setPageSize(stockholder.getPageSize());
+		List<Stockholder> result=stockholderMapper.selectByExample(example);
+		return result;
+	}
+
 }

@@ -1,9 +1,11 @@
 package com.jzt.api.service;
 
 import com.jzt.api.domain.BankProduct;
+import com.jzt.api.domain.Businessman;
 import com.jzt.api.domain.Company;
 import com.jzt.api.domain.P2pLoan;
 import com.jzt.api.domain.Platform;
+import com.jzt.api.domain.Stockholder;
 
 import java.util.List;
 
@@ -47,4 +49,19 @@ public interface SearchService {
      * @return
      */
     List<Company> company(Company company);
+    
+    /**
+     * 搜索法人
+     * @param businessman
+     * @return
+     */
+    List<Businessman> businessman(Businessman businessman);
+    
+    /**
+     * 搜索股东
+     * @param stockholder
+     * @return
+     */
+    List<Stockholder> stockholder(Stockholder stockholder);
+	
 }
