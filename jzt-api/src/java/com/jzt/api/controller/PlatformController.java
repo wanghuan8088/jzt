@@ -1,6 +1,7 @@
 package com.jzt.api.controller;
 
 import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.AdverContentNow;
 import com.jzt.api.domain.Businessman;
 import com.jzt.api.domain.News;
 import com.jzt.api.domain.Platform;
@@ -242,6 +243,36 @@ public class PlatformController extends BaseController {
             List<News> list = platformService.newsIndex(platform);
 
             data.put("news", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
+    /***
+     * 首页滚动新闻
+     * @return
+     */
+    @RequestMapping(value = "/ads/{startRow}/{pageSize}")
+    @ResponseBody
+    public Map<String, Object> adsIndex(@PathVariable(value="startRow") int startRow,
+                                         @PathVariable(value="pageSize") int pageSize){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Platform platform = new Platform();
+            platform.setStartRow(startRow);
+            platform.setPageSize(pageSize);
+            List<AdverContentNow> list = platformService.adsIndex(platform);
+
+            data.put("ads", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

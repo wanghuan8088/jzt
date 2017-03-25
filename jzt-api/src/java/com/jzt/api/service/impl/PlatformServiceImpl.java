@@ -31,6 +31,8 @@ public class PlatformServiceImpl implements PlatformService {
     @Autowired
     private P2pLoanMapper p2pLoanMapper;
 
+    @Autowired
+    private AdverContentNowMapper adverContentNowMapper;
 
     /**
      * 平台详细信息
@@ -140,6 +142,23 @@ public class PlatformServiceImpl implements PlatformService {
         example.setStartRow(platform.getStartRow() * platform.getPageSize());
         example.setPageSize(platform.getPageSize());
         List<News> result = newsMapper.selectByExample(example);
+        return result;
+    }
+
+    /**
+     * 首页滚动广告
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public List<AdverContentNow> adsIndex(Platform platform) {
+
+        AdverContentNowExample example = new AdverContentNowExample();
+        example.setOrderByClause("create_time desc");// 创建时间排序
+        example.setStartRow(platform.getStartRow() * platform.getPageSize());
+        example.setPageSize(platform.getPageSize());
+        List<AdverContentNow> result = adverContentNowMapper.selectByExample(example);
         return result;
     }
 

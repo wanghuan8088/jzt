@@ -1,5 +1,6 @@
 package com.jzt.api.service;
 
+import com.jzt.api.domain.AdverContentNow;
 import com.jzt.api.domain.Businessman;
 import com.jzt.api.domain.News;
 import com.jzt.api.domain.Platform;
@@ -45,6 +46,13 @@ public interface PlatformService {
      * @return
      */
     List<News> newsIndex(Platform platform);
+
+    /**
+     * 首页滚动广告
+     * @param platform
+     * @return
+     */
+    List<AdverContentNow> adsIndex(Platform platform);
 
     /**
      * 新闻详细信息
