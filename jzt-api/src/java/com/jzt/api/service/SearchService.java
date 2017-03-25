@@ -51,7 +51,7 @@ public interface SearchService {
     List<Company> company(Company company);
     
     /**
-     * 搜索法人
+     * 搜索高管
      * @param businessman
      * @return
      */
@@ -63,5 +63,12 @@ public interface SearchService {
      * @return
      */
     List<Stockholder> stockholder(Stockholder stockholder);
+
+    /**
+     * 搜索法人
+     * @param company
+     * @return
+     */
+	List<Company> artificialperson(Company company);
 	
 }

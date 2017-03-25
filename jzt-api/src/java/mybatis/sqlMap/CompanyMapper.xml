@@ -655,4 +655,11 @@
       tax_img = #{taxImg,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <select id="selectCompanyByartificialperson" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where  artificial_person = #{artificialPerson,jdbcType=VARCHAR}
+  </select>
 </mapper>

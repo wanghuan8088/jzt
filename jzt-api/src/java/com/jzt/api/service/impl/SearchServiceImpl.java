@@ -128,7 +128,7 @@ public class SearchServiceImpl implements SearchService {
     }
     
     /**
-     * 搜索法人
+     * 搜索高管
      */
 	@Override
 	public List<Businessman> businessman(Businessman businessman) {
@@ -155,4 +155,21 @@ public class SearchServiceImpl implements SearchService {
 		return result;
 	}
 
+	  /**
+     * 搜索法人
+     *
+     * @param company
+     * @return
+     */
+    @Override
+    public List<Company> artificialperson(Company company) {
+
+        CompanyExample example = new CompanyExample();
+        example.createCriteria().andNameLike("%" + company.getArtificialPerson() + "%");
+        example.setOrderByClause("opening_date desc");
+        example.setStartRow(0);
+        example.setPageSize(company.getPageSize());
+        List<Company> result = companyMapper.selectByExample(example);
+        return result;
+    }
 }

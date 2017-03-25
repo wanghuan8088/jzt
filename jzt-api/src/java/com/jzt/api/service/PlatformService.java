@@ -67,4 +67,11 @@ public interface PlatformService {
      * @return
      */
     List<Platform> likeName(Platform platform);
+
+    /**
+     * 根据平台名字查找平台信息
+     * @param platform
+     * @return
+     */
+	Platform platformName(Platform platform);
 }

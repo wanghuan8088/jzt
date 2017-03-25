@@ -118,4 +118,11 @@ public interface CompanyMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(Company record);
+    
+    /**
+     * 根据公司法人取公司信息
+     * @param artificialperson
+     * @return
+     */
+    Company selectCompanyByartificialperson(@Param("artificialperson")String artificialperson);
 }

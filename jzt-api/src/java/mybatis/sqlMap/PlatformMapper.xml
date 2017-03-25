@@ -475,6 +475,12 @@
   )
   </select>
   
+   <select id="selectPlatformByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from platform
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
   
   <!--
   liaokaihong 20170318

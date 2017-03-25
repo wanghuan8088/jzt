@@ -109,4 +109,9 @@ public interface PlatformMapper {
     List<ProblemPlat> selectAllProblemPlat();
     List<ProblemPlat> selectProblemPlatByName(@Param("name")String name );
     
+    /**
+     * 根据平台名查找平台信息
+     */
+    Platform selectPlatformByName(@Param("name")String name);
+    
 }

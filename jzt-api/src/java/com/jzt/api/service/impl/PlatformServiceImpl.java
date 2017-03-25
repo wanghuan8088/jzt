@@ -189,4 +189,13 @@ public class PlatformServiceImpl implements PlatformService {
         List<Platform> result = platformMapper.selectByExample(example);
         return result;
     }
+    
+    /**
+     * 根据平台具体名字找找平台信息
+     */
+	@Override
+	public Platform platformName(Platform platform) {
+		return platformMapper.selectPlatformByName(platform.getName());
+
+	}
 }

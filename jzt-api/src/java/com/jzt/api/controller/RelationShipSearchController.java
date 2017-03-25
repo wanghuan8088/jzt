@@ -7,6 +7,7 @@ import java.util.Map;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,8 @@ import com.jzt.api.domain.P2pLoan;
 import com.jzt.api.domain.Platform;
 import com.jzt.api.domain.Search;
 import com.jzt.api.domain.Stockholder;
+import com.jzt.api.service.CompanyService;
+import com.jzt.api.service.PlatformService;
 import com.jzt.api.service.SearchService;
 
 /**
@@ -36,6 +39,10 @@ public class RelationShipSearchController extends BaseController {
 
     @Autowired
     private SearchService searchService;
+    @Autowired
+    private PlatformService platformService;
+    @Autowired
+    private CompanyService companyService;
     
     
     /**
@@ -52,18 +59,7 @@ public class RelationShipSearchController extends BaseController {
         Search dto = (Search) JSONObject.toBean(jsStr, Search.class);
 
         String keyword = dto.getKeyword();
-        /**
-      //判断一下编码方式，处理url中中文参数的编码问题
-		try {
-			if( keyword.equals( new String(keyword.getBytes("iso-8859-1"),"iso-8859-1") )  )
-			{
-				keyword = new String(keyword.getBytes("iso-8859-1"),"utf-8");
-			}
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-        **/
+      
         Integer platformCount = dto.getPlatformCount();
         Integer companyCount = dto.getCompanyCount();
         Integer stockholderCount = dto.getStockholderCount();
@@ -105,9 +101,9 @@ public class RelationShipSearchController extends BaseController {
             // 搜索法人company表
             if (companyCount > 0) {
                 Company company = new Company();
-                company.setName(keyword);
+                company.setArtificialPerson(keyword);//公司法人
                 company.setPageSize(companyCount);
-                List<Company> companyList = searchService.company(company);
+                List<Company> companyList = searchService.artificialperson(company);
                 data.put("company", companyList);
             }
 
@@ -124,20 +120,42 @@ public class RelationShipSearchController extends BaseController {
     
     /**
      * 关系搜索 -关联关系
+     * 人 VS 人，人 VS 平台， 平台 VS 平台
      * @param pid1
      * @param pid2
      * @return
      */
-    @RequestMapping(value = "/relationship/{rs1}/{rs2}")
+    @RequestMapping(value = "/relationship/{rsa}/{rsb}")
     @ResponseBody
-    public Map<String, Object> relationship(@PathVariable(value="rs1") int rs1, @PathVariable(value="rs2") int rs2){
+    public Map<String, Object> relationship(@PathVariable(value="rsa") String rsa, @PathVariable(value="rsb") String rsb){
 
         Map<String, Object> result = new HashMap<String, Object>();
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
-            //TODO 
-           //人 VS 人，人 VS 平台， 平台 VS 平台
+            //第一步先进行A平台查询
+			Platform pa = new Platform();
+			pa.setName(rsa);
+			Platform platformA = platformService.platformName(pa);
+			if(platformA!=null){
+				 data.put("platformA", platformA);
+			}
+            //对第二个关键字进行平台查询
+			Platform pb = new Platform();
+			pb.setName(rsb);
+			Platform platformB = platformService.platformName(pb);
+			if(platformB!=null){
+				 data.put("platformB", platformB);
+			}else{
+				//如果平台为null,则无平台信息;分别遍历公司法人，股东和高管信息
+				//step1 获取公司法人信息
+				Company cb = new Company();
+				cb.setArtificialPerson(rsb);
+				Company companyB = companyService.companyByartificialperson(cb);
+				data.put("companyB", companyB);
+			}
+         
+            
 
             result.put("data", data );
             result.put("res", "0");
