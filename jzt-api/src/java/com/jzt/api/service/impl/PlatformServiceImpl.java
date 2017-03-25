@@ -126,6 +126,24 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     /**
+     * 首页滚动新闻
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public List<News> newsIndex(Platform platform) {
+
+        NewsExample example = new NewsExample();
+        example.createCriteria().andCategoryIdEqualTo(9); // 9-首页滚动新闻
+        example.setOrderByClause("create_time desc");// 创建时间排序
+        example.setStartRow(platform.getStartRow() * platform.getPageSize());
+        example.setPageSize(platform.getPageSize());
+        List<News> result = newsMapper.selectByExample(example);
+        return result;
+    }
+
+    /**
      * 新闻详细信息
      *
      * @param news

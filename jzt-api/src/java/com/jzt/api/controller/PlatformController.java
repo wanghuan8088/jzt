@@ -201,7 +201,7 @@ public class PlatformController extends BaseController {
      */
     @RequestMapping(value = "/news/detail/{id}")
     @ResponseBody
-    public Map<String, Object> news(@PathVariable(value="id") int id){
+    public Map<String, Object> newsDetail(@PathVariable(value="id") int id){
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -212,6 +212,36 @@ public class PlatformController extends BaseController {
             News newsResult = platformService.newsDetail(news);
 
             data.put("news", newsResult);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
+    /***
+     * 首页滚动新闻
+     * @return
+     */
+    @RequestMapping(value = "/news/{startRow}/{pageSize}")
+    @ResponseBody
+    public Map<String, Object> newsIndex(@PathVariable(value="startRow") int startRow,
+                                    @PathVariable(value="pageSize") int pageSize){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Platform platform = new Platform();
+            platform.setStartRow(startRow);
+            platform.setPageSize(pageSize);
+            List<News> list = platformService.newsIndex(platform);
+
+            data.put("news", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

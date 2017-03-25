@@ -40,6 +40,13 @@ public interface PlatformService {
     List<News> news(Platform platform);
 
     /**
+     * 首页滚动新闻
+     * @param platform
+     * @return
+     */
+    List<News> newsIndex(Platform platform);
+
+    /**
      * 新闻详细信息
      * @param news
      * @return
