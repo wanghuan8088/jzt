@@ -20,6 +20,13 @@ public interface PlatformService {
     Platform detail(Platform platform);
 
     /**
+     * 平台详细信息(更多)
+     * @param platform
+     * @return
+     */
+    Object detailMore(Platform platform);
+
+    /**
      * 平台理财产品信息
      * @param platform
      * @return

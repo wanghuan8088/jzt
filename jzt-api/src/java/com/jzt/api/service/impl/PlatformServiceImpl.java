@@ -46,6 +46,17 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     /**
+     * 平台详细信息(更多)
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public Object detailMore(Platform platform) {
+        return platformMapper.selectMoreByPrimaryKey(platform.getId());
+    }
+
+    /**
      * 平台理财产品信息
      *
      * @param platform

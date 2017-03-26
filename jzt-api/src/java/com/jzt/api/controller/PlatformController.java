@@ -72,11 +72,14 @@ public class PlatformController extends BaseController {
 
             Platform platform1 = new Platform();
             platform1.setId(pid1);
-            Platform detail1 = platformService.detail(platform1);
+            // Platform detail1 = platformService.detail(platform1);
+            Object detail1 = platformService.detailMore(platform1);
+
 
             Platform platform2 = new Platform();
             platform2.setId(pid2);
-            Platform detail2 = platformService.detail(platform2);
+            // Platform detail2 = platformService.detail(platform2);
+            Object detail2 = platformService.detailMore(platform1);
 
             List list = new ArrayList();
             list.add(detail1);

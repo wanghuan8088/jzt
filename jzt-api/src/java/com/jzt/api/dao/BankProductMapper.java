@@ -2,7 +2,9 @@ package com.jzt.api.dao;
 
 import com.jzt.api.domain.BankProduct;
 import com.jzt.api.domain.BankProductExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface BankProductMapper {
@@ -94,5 +96,5 @@ public interface BankProductMapper {
      */
     int updateByPrimaryKey(BankProduct record);
     
-    List<BankProduct> selectByUserId(Integer uId, Integer startRow, Integer pageSize);
+    List<BankProduct> selectByUserId(@Param("uId")Integer uId, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
 }
