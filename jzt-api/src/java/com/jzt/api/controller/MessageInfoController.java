@@ -141,8 +141,9 @@ public class MessageInfoController extends BaseController {
 			
 			MessageInfoExample example = new MessageInfoExample();
 			example.createCriteria().andUserIdEqualTo(record.getUserId());
-			List<MessageInfo> recordList = messageInfoService.selectByExample(example);
-			result = generateNomalResult(recordList);
+//			List<MessageInfo> recordList = messageInfoService.selectByExample(example);
+//			result = generateNomalResult(recordList);
+			result = messageInfoService.queryListByPage(record);
 		} catch (Exception e) {
 			result = generateErrorResult(e);
 		}

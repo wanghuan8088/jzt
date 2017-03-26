@@ -137,7 +137,9 @@ public class MessageInfoServiceImpl extends BaseService implements MessageInfoSe
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {
 			MessageInfoExample example = new MessageInfoExample();
-//			setOrderByClause(record, example);
+			if(record.getPageSize()>0 && record.getStartPage()>0){
+				setOrderByClause(record, example);
+			}
 			List<MessageInfo> list = messageInfoMapper.selectByExample(example);
 			if(list!=null ){
 				result = generateNomalResult(list);
@@ -177,6 +179,7 @@ public class MessageInfoServiceImpl extends BaseService implements MessageInfoSe
 
 	@Override
 	public List<MessageInfo> selectByExample(MessageInfoExample example) {
+		
 		return messageInfoMapper.selectByExample(example);
 	}
 

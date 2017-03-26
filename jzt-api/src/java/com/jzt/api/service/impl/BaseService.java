@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.jzt.api.common.util.BizLogger;
 import com.jzt.api.domain.BaseDomain;
+import com.jzt.api.domain.BaseExample;
 import com.jzt.api.domain.UserInformationExample;
 
 
@@ -81,17 +82,36 @@ public class BaseService {
 	 * @param record
 	 * @param example
 	 */
-	/**
-	protected void setOrderByClause(BaseDomain record, UserInformationExample example) {
+	protected void setOrderByClause(BaseDomain record, BaseExample example) {
 		String orderByClause = " id desc";
-		System.out.println(record.getPage());
-		
-		int page = record.getPage()-1;
-		int ifrom = page*rows;
-		if(record.getPage()>0 && record.getRows()>0){
-			orderByClause += " limit "+ ifrom + ", "+rows;
-		}
-		example.setOrderByClause(orderByClause);;
+		setLimit(record, example, orderByClause);
 	}
-**/
+
+	/**  
+	* @Title: setLimit  
+	* @Description: setLimit 
+	* @param @param record
+	* @param @param example
+	* @param @param orderByClause    设定文件  
+	* @return void    返回类型  
+	* @throws  
+	*/
+	private void setLimit(BaseDomain record, BaseExample example,
+			String orderByClause) {
+		System.out.println(record.getStartPage());
+		
+		if(record.getPageSize()>0 && record.getStartPage()>0){
+			orderByClause += " limit "+ (record.getStartPage()-1)*record.getPageSize() + ", "+record.getPageSize();
+		}
+		example.setOrderByClause(orderByClause);
+	}
+	
+	/**
+	 * @param record
+	 * @param example
+	 */
+	protected void setOrderByClause(BaseDomain record, BaseExample example, String orderByClause) {
+		setLimit(record, example, orderByClause);
+	}
+	
 }
