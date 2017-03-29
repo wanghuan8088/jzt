@@ -15,4 +15,11 @@ public interface CompanyService {
 	 * @return
 	 */
 	Company companyByartificialperson(Company company);
+
+	/**
+	 * 獲取公司詳情
+	 * @param company
+	 * @return
+	 */
+	Company detail(Company company);
 }

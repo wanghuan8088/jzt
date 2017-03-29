@@ -116,6 +116,7 @@ public class UserInformationServiceImpl extends BaseService implements UserInfor
 				//if user does NOT exist, then remind that no user for this phone
 				result = generateErrorResult(record,"There is no such user on the phone of "+record.getPhone());
 			}else{
+				
 				userInformationMapper.updateByExampleSelective(record, example);
 				userlist = userInformationMapper.selectByExample(example);
 				result = generateNomalResult(userlist.get(0));
