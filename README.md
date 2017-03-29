@@ -1,1 +1,1 @@
-#jzt-web
+#jzt
