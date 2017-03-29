@@ -24,5 +24,15 @@ public class CompanyServiceImpl  extends BaseService implements CompanyService {
 	public Company companyByartificialperson(Company company) {
 		return companyMapper.selectCompanyByartificialperson(company.getArtificialPerson());
 	}
+	
+	/**
+	 * 獲取公司詳情
+	 * @param company
+	 * @return
+	 */
+	@Override
+	public Company detail(Company company){
+		return companyMapper.selectByPrimaryKey(company.getId());
+	} 
 
 }
