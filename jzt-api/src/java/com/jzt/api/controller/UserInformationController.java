@@ -6,6 +6,7 @@ import java.util.Map;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jzt.api.common.util.PrivacyEncryptionUtil;
 import com.jzt.api.common.util.ShareCodeUtil;
 import com.jzt.api.common.util.SmsCodeUtil;
 import com.jzt.api.controller.base.BaseController;
@@ -65,6 +67,12 @@ public class UserInformationController extends BaseController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		try {
+			//密码进行加密处理
+			String password=record.getPassword();
+			if(StringUtils.isNotBlank(record.getPassword())){
+				String md5password=PrivacyEncryptionUtil.generateIndex(password);
+				record.setPassword(md5password);
+			}
 			result = userInformationService.saveOrUpdate(record);
 			
 		} catch (Exception e) {
@@ -165,6 +173,12 @@ public class UserInformationController extends BaseController {
 		}else{
 			try {
 				dto.setMyInviteCode(ShareCodeUtil.toSerialCode(System.currentTimeMillis()));
+				//密码进行加密处理
+				String password=dto.getPassword();
+				if(StringUtils.isNotBlank(dto.getPassword())){
+					String md5password=PrivacyEncryptionUtil.generateIndex(password);
+					dto.setPassword(md5password);
+				}
 				int id = userInformationService.insertSelective(dto);
 				result = generateNomalResult(dto);
 			} catch (Exception e) {
@@ -224,6 +238,12 @@ public class UserInformationController extends BaseController {
 	public Map<String, Object> changePswd(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
 		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
+		//密码进行加密处理
+		String password=dto.getPassword();
+		if(StringUtils.isNotBlank(dto.getPassword())){
+			String md5password=PrivacyEncryptionUtil.generateIndex(password);
+			dto.setPassword(md5password);
+		}
 		
 		return userInformationService.changePswd(dto);
 	}
@@ -235,12 +255,18 @@ public class UserInformationController extends BaseController {
 	public Map<String, Object> resetPswd(@RequestParam(value="para", required=true) String para){
 		JSONObject jsStr = JSONObject.fromObject(para);
 		UserInformation dto = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
-		
+		//密码进行加密处理
+		String password=dto.getPassword();
+		if(StringUtils.isNotBlank(dto.getPassword())){
+			String md5password=PrivacyEncryptionUtil.generateIndex(password);
+			dto.setPassword(md5password);
+		}
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		//verify the smscode
 		try {
 			if("9999".equals(dto.getSmsCode()) || "0000".equals(dto.getSmsCode())){
+				
 				return userInformationService.resetPswd(dto);
 			}else{
 				

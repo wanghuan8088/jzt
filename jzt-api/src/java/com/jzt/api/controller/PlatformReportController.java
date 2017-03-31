@@ -34,7 +34,6 @@ public class PlatformReportController extends BaseController {
     @ResponseBody
     public Map<String, Object> list(@PathVariable(value="startRow") int startRow,
                                     @PathVariable(value="pageSize") int pageSize){
-
         Map<String, Object> result = new HashMap<String, Object>();
 
         try {

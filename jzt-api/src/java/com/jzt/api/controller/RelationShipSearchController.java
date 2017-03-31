@@ -125,9 +125,9 @@ public class RelationShipSearchController extends BaseController {
      * @param pid2
      * @return
      */
-    @RequestMapping(value = "/relationship/{rsa}/{rsb}")
+    @RequestMapping(value = "/relationship/{rs1}/{rs2}")
     @ResponseBody
-    public Map<String, Object> relationship(@PathVariable(value="rsa") String rsa, @PathVariable(value="rsb") String rsb){
+    public Map<String, Object> relationship(@PathVariable(value="rs1") Integer rs1, @PathVariable(value="rs2") Integer rs2){
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -135,24 +135,27 @@ public class RelationShipSearchController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
             //第一步先进行A平台查询
 			Platform pa = new Platform();
-			pa.setName(rsa);
-			Platform platformA = platformService.platformName(pa);
+			pa.setId(rs1);
+			Platform platformA = platformService.detail(pa);
 			if(platformA!=null){
 				 data.put("platformA", platformA);
 			}
             //对第二个关键字进行平台查询
 			Platform pb = new Platform();
-			pb.setName(rsb);
-			Platform platformB = platformService.platformName(pb);
+			pb.setId(rs2);
+			Platform platformB = platformService.detail(pb);
 			if(platformB!=null){
 				 data.put("platformB", platformB);
 			}else{
 				//如果平台为null,则无平台信息;分别遍历公司法人，股东和高管信息
 				//step1 获取公司法人信息
 				Company cb = new Company();
-				cb.setArtificialPerson(rsb);
-				Company companyB = companyService.companyByartificialperson(cb);
-				data.put("companyB", companyB);
+				cb.setId(rs2);
+				Company companyB = companyService.detail(cb);
+				if(companyB!=null){
+					data.put("companyB", companyB);
+				}
+				
 			}
          
             
