@@ -67,7 +67,7 @@ public class SearchServiceImpl implements SearchService {
         PlatformExample example = new PlatformExample();
         example.createCriteria().andNameLike("%" + platform.getName() + "%");
         example.setOrderByClause("start_time");// 综合指数来排序
-        example.setStartRow(0);
+        example.setStartRow(platform.getStartRow());
         example.setPageSize(platform.getPageSize());
         List<Platform> result = platformMapper.selectByExample(example);
         return result;
@@ -85,7 +85,7 @@ public class SearchServiceImpl implements SearchService {
         BankProductExample example = new BankProductExample();
         example.createCriteria().andNameLike("%" + bankProduct.getName() + "%");
         example.setOrderByClause("expect_profit_year desc");
-        example.setStartRow(0);
+        example.setStartRow(bankProduct.getStartRow());
         example.setPageSize(bankProduct.getPageSize());
         List<BankProduct> result = bankProductMapper.selectByExample(example);
         return result;
@@ -103,7 +103,7 @@ public class SearchServiceImpl implements SearchService {
         P2pLoanExample example = new P2pLoanExample();
         example.createCriteria().andNameLike("%" + p2pLoan.getName() + "%");
         example.setOrderByClause("interest_rate desc");
-        example.setStartRow(0);
+        example.setStartRow(p2pLoan.getStartRow());
         example.setPageSize(p2pLoan.getPageSize());
         List<P2pLoan> result = p2pLoanMapper.selectByExample(example);
         return result;
@@ -121,7 +121,7 @@ public class SearchServiceImpl implements SearchService {
         CompanyExample example = new CompanyExample();
         example.createCriteria().andNameLike("%" + company.getName() + "%");
         example.setOrderByClause("registered_capital desc");
-        example.setStartRow(0);
+        example.setStartRow(company.getStartRow());
         example.setPageSize(company.getPageSize());
         List<Company> result = companyMapper.selectByExample(example);
         return result;

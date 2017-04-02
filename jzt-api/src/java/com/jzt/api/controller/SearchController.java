@@ -48,10 +48,19 @@ public class SearchController extends BaseController {
         Search dto = (Search) JSONObject.toBean(jsStr, Search.class);
 
         String keyword = dto.getKeyword();
-        Integer platformCount = dto.getPlatformCount();
-        Integer companyCount = dto.getCompanyCount();
-        Integer bankProductCount = dto.getBankProductCount();
-        Integer p2pProductCount = dto.getP2pProductCount();
+
+        Integer platformStartRow = dto.getPlatformStartRow();
+        Integer platformPageSize = dto.getPlatformPageSize();
+
+        Integer companyStartRow = dto.getCompanyStartRow();
+        Integer companyPageSize = dto.getCompanyPageSize();
+
+        Integer bankProductStartRow = dto.getBankProductStartRow();
+        Integer bankProductPageSize = dto.getBankProductPageSize();
+
+        Integer p2pProductStartRow = dto.getP2pProductStartRow();
+        Integer p2pProductPageSize = dto.getP2pProductPageSize();
+
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -64,37 +73,41 @@ public class SearchController extends BaseController {
             searchService.insert(plat);
 
             // 搜索平台
-            if (platformCount > 0) {
+            if (platformPageSize != null && platformPageSize > 0) {
                 Platform platform = new Platform();
                 platform.setName(keyword);
-                platform.setPageSize(platformCount);
+                platform.setStartRow(platformStartRow);
+                platform.setPageSize(platformPageSize);
                 List<Platform> platformList = searchService.platform(platform);
                 data.put("platform", platformList);
             }
 
             // 搜索公司
-            if (companyCount > 0) {
+            if (companyPageSize != null && companyPageSize > 0) {
                 Company company = new Company();
                 company.setName(keyword);
-                company.setPageSize(companyCount);
+                company.setStartRow(companyStartRow);
+                company.setPageSize(companyPageSize);
                 List<Company> companyList = searchService.company(company);
                 data.put("company", companyList);
             }
 
             // 搜索银行标的
-            if (bankProductCount > 0) {
+            if (bankProductPageSize != null && bankProductPageSize > 0) {
                 BankProduct bankProduct = new BankProduct();
                 bankProduct.setName(keyword);
-                bankProduct.setPageSize(bankProductCount);
+                bankProduct.setStartRow(bankProductStartRow);
+                bankProduct.setPageSize(bankProductPageSize);
                 List<BankProduct> bankProductList = searchService.bankProduct(bankProduct);
                 data.put("bankProduct", bankProductList);
             }
 
             // 搜索p2p标的
-            if (p2pProductCount > 0) {
+            if (p2pProductPageSize != null && p2pProductPageSize > 0) {
                 P2pLoan p2pLoan = new P2pLoan();
                 p2pLoan.setName(keyword);
-                p2pLoan.setPageSize(p2pProductCount);
+                p2pLoan.setStartRow(p2pProductStartRow);
+                p2pLoan.setPageSize(p2pProductPageSize);
                 List<P2pLoan> p2pLoanList = searchService.p2pLoan(p2pLoan);
                 data.put("p2pProduct", p2pLoanList);
             }
