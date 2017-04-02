@@ -1,18 +1,17 @@
 package com.jzt.api.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.Product;
+import com.jzt.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jzt.api.controller.base.BaseController;
-import com.jzt.api.domain.Product;
-import com.jzt.api.service.ProductService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 会员套餐
@@ -33,6 +32,7 @@ public class MemberPackageController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list")
+	@ResponseBody
 	public Map<String, Object> list() {
 
 		Map<String, Object> result = new HashMap<String, Object>();
