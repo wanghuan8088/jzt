@@ -31,9 +31,10 @@ public class PlatformController extends BaseController {
      * @param id   平台id
      * @return
      */
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/{id}/{uid}")
     @ResponseBody
-    public Map<String, Object> detail(@PathVariable(value="id") int id){
+    public Map<String, Object> detail(@PathVariable(value="id") int id,
+                                      @PathVariable(value="uid") int uid){
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -41,7 +42,8 @@ public class PlatformController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
             Platform platform = new Platform();
             platform.setId(id);
-            Platform detail = platformService.detail(platform);
+            platform.setUserId(uid);
+            Map detail = platformService.detailMoreTable(platform);
 
             data.put("platform", detail);
             result.put("data", data );

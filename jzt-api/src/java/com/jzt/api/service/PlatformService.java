@@ -6,6 +6,7 @@ import com.jzt.api.domain.News;
 import com.jzt.api.domain.Platform;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  平台业务层接口
@@ -18,6 +19,13 @@ public interface PlatformService {
      * @return
      */
     Platform detail(Platform platform);
+
+    /**
+     * 平台详细信息关联更多表(更多)
+     * @param platform
+     * @return
+     */
+    Map detailMoreTable(Platform platform);
 
     /**
      * 平台详细信息(更多)

@@ -6,6 +6,7 @@ import com.jzt.api.domain.ProblemPlat;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PlatformMapper {
     /**
@@ -63,6 +64,8 @@ public interface PlatformMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     Platform selectByPrimaryKey(Integer id);
+
+    Map selectMoreTableByPrimaryKey(Platform record);
 
     Object selectMoreByPrimaryKey(Integer id);
 

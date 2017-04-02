@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  平台业务层接口实现
@@ -43,6 +44,17 @@ public class PlatformServiceImpl implements PlatformService {
     @Override
     public Platform detail(Platform platform) {
         return platformMapper.selectByPrimaryKey(platform.getId());
+    }
+
+    /**
+     * 平台详细信息关联更多表(更多)
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public Map detailMoreTable(Platform platform) {
+        return platformMapper.selectMoreTableByPrimaryKey(platform);
     }
 
     /**
