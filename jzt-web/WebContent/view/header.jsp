@@ -31,10 +31,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <style> 
-	table td{white-space:nowrap;overflow:hidden; text-overflow:ellipsis;} 
-	table {table-layout:fixed;} 
-	</style> 
+
+
+  <style>
+	table td{white-space:nowrap;overflow:hidden; text-overflow:ellipsis;}
+	table {table-layout:fixed;}
+	</style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
