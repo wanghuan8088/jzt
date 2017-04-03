@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,22 +71,14 @@ public class PlatformController extends BaseController {
         try {
             Map<String, Object> data = new HashMap<String, Object>();
 
-            Platform platform1 = new Platform();
-            platform1.setId(pid1);
-            // Platform detail1 = platformService.detail(platform1);
-            Object detail1 = platformService.detailMore(platform1);
+            List list = platformService.compare(pid1, pid2);
+            if (list.get(2) == 1) {
+                data.put("bank", list);
+            }
+            if (list.get(2) == 0) {
+                data.put("p2p", list);
+            }
 
-
-            Platform platform2 = new Platform();
-            platform2.setId(pid2);
-            // Platform detail2 = platformService.detail(platform2);
-            Object detail2 = platformService.detailMore(platform1);
-
-            List list = new ArrayList();
-            list.add(detail1);
-            list.add(detail2);
-
-            data.put("platform", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

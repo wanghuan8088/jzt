@@ -21,6 +21,13 @@ public interface PlatformService {
     Platform detail(Platform platform);
 
     /**
+     * 平台对比
+     * @param pid1,pid2
+     * @return
+     */
+    List compare(int pid1, int pid2);
+
+    /**
      * 平台详细信息关联更多表(更多)
      * @param platform
      * @return
@@ -28,18 +35,25 @@ public interface PlatformService {
     Map detailMoreTable(Platform platform);
 
     /**
-     * 平台详细信息(更多)
+     * 银行平台详细信息更多
      * @param platform
      * @return
      */
-    Object detailMore(Platform platform);
+    Map detailMoreForBank(Platform platform);
+
+    /**
+     * 互金平台详细信息更多
+     * @param platform
+     * @return
+     */
+    Map detailMoreForP2p(Platform platform);
 
     /**
      * 平台理财产品信息
      * @param platform
      * @return
      */
-    List<Object> product(Platform platform);
+    List product(Platform platform);
 
     /**
      * 平台高管信息

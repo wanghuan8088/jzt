@@ -196,11 +196,20 @@
         group by platform_name, company_name, province_name, city_name
       </select>
 
-      <select id="selectMoreByPrimaryKey" resultMap="BankInfoResultMap" parameterType="java.lang.Integer" >
-        select
-        t2.*
-        from platform t1, bank_info t2
-        where t1.id = #{id,jdbcType=INTEGER} and t1.id = t2.plat_id
+      <select id="selectMoreForBank" resultType="map" parameterType="java.lang.Integer" >
+        select t1.name, t1.icon, t2.is_listed, t3.total_asset,t3.total_deposit,t3.total_other,t3.total_profit,t3.total_equity,
+        t3.income,t3.interest_income,t3.commission,t3.bad_asset,t3.bad_loan_rate,t3.total_provision,t3.bad_loan_rate, count(*) product_count
+        from platform t1, bank_plat t2, bank_info t3, bank_product t4
+        where t1.id=#{id,jdbcType=INTEGER} and t1.id=t2.plat_id and t1.id=t3.plat_id and t1.id=t4.plat_id
+        group by t1.id
+      </select>
+
+      <select id="selectMoreForP2p" resultType="map" parameterType="java.lang.Integer" >
+        select t1.name, t1.icon,t2.total_turnover,t2.total_unrepay_amount,t2.avg_interest_rate,t2.total_investment,
+        t2.total_borrower,t2.avg_repay_period,t2.borrow_amount,t2.month_net_income,t2.ivestment_amount_per_person,t3.development_rate
+        from platform t1, p2p_dynamic t2, p2p_third_eval t3
+        where t1.id=#{id,jdbcType=INTEGER} and t1.id=t2.plat_id and t1.id=t3.plat_id
+        and t2.create_time=(select max(tt.create_time) from p2p_dynamic tt where tt.plat_id=#{id,jdbcType=INTEGER})
       </select>
 
       <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

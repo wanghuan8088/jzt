@@ -47,6 +47,51 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     /**
+     * 平台对比
+     *
+     * @param pid1
+     * @param pid2
+     * @return
+     */
+    @Override
+    public List compare(int pid1, int pid2) {
+
+        Platform plat = platformMapper.selectByPrimaryKey(pid1);
+
+        // 平台类型（0-p2p,1-银行理财,基金,保险……）
+
+        List list = new ArrayList();
+
+        // 银行
+        if (plat.getType() == 1) {
+            Platform platform1 = new Platform();
+            platform1.setId(pid1);
+            Platform platform2 = new Platform();
+            platform2.setId(pid2);
+            Map map1 = detailMoreForBank(platform1);
+            Map map2 = detailMoreForBank(platform2);
+            list.add(map1);
+            list.add(map2);
+            list.add(1);
+        }
+
+        // p2p
+        if (plat.getType() == 0) {
+            Platform platform1 = new Platform();
+            platform1.setId(pid1);
+            Platform platform2 = new Platform();
+            platform2.setId(pid2);
+            Map map1 = detailMoreForP2p(platform1);
+            Map map2 = detailMoreForP2p(platform2);
+            list.add(map1);
+            list.add(map2);
+            list.add(0);
+        }
+
+        return list;
+    }
+
+    /**
      * 平台详细信息关联更多表(更多)
      *
      * @param platform
@@ -58,14 +103,25 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     /**
-     * 平台详细信息(更多)
+     * 银行平台详细信息更多
      *
      * @param platform
      * @return
      */
     @Override
-    public Object detailMore(Platform platform) {
-        return platformMapper.selectMoreByPrimaryKey(platform.getId());
+    public Map detailMoreForBank(Platform platform) {
+        return platformMapper.selectMoreForBank(platform.getId());
+    }
+
+    /**
+     * 互金平台详细信息更多
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public Map detailMoreForP2p(Platform platform) {
+        return platformMapper.selectMoreForP2p(platform.getId());
     }
 
     /**
@@ -75,13 +131,13 @@ public class PlatformServiceImpl implements PlatformService {
      * @return
      */
     @Override
-    public List<Object> product(Platform platform) {
+    public List product(Platform platform) {
 
         Platform plat = platformMapper.selectByPrimaryKey(platform.getId());
 
         // 平台类型（0-p2p,1-银行理财,基金,保险……）
 
-        List<Object> list = new ArrayList();
+        List list = new ArrayList();
 
         // 银行
         if (plat.getType() == 1) {
@@ -93,7 +149,7 @@ public class PlatformServiceImpl implements PlatformService {
             example.setPageSize(platform.getPageSize());
 
             List<BankProduct> result = bankProductMapper.selectByExample(example);
-            list.add(result);
+            list = result;
         }
 
         // p2p
@@ -106,7 +162,7 @@ public class PlatformServiceImpl implements PlatformService {
             example.setPageSize(platform.getPageSize());
 
             List<P2pLoan> result = p2pLoanMapper.selectByExample(example);
-            list.add(result);
+            list = result;
         }
 
         return list;
