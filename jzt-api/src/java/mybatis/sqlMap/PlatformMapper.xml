@@ -166,7 +166,9 @@
 
   <select id="selectMoreTableByPrimaryKey" resultType="map" parameterType="java.lang.Integer" >
     select
+    IFNULL(t1.id,'') as platform_id,
     IFNULL(t1.name,'') as platform_name,
+    IFNULL(t1.start_time,'') as start_time,
     IFNULL(t1.icon,'') as icon,
     IFNULL(t3.name,'') as company_name,
     IFNULL(t3.registered_capital,'') as registered_capital,

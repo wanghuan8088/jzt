@@ -6,11 +6,11 @@ import com.jzt.api.dao.P2pThirdEvalMapper;
 import com.jzt.api.dao.PlatformMapper;
 import com.jzt.api.domain.*;
 import com.jzt.api.service.RankP2pService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 金融新榜-互金系平台业务层接口实现
@@ -37,14 +37,14 @@ public class RankP2pServiceImpl implements RankP2pService {
      * @return
      */
     @Override
-    public List<P2pDynamic> turnover(P2pDynamic p2pDynamic) {
+    public List<Map> turnover(P2pDynamic p2pDynamic) {
         // TODO: 19/03/2017
         P2pDynamicExample example = new P2pDynamicExample();
         example.setTagType(p2pDynamic.getTagType());
         example.setOrderByClause("total_turnover desc");
         example.setStartRow(p2pDynamic.getStartRow() * p2pDynamic.getPageSize());
         example.setPageSize(p2pDynamic.getPageSize());
-        List<P2pDynamic> result = p2pDynamicMapper.selectByTurnover(example);
+        List<Map> result = p2pDynamicMapper.selectByTurnover(example);
         return result;
     }
 

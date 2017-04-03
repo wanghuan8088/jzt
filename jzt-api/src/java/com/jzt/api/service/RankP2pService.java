@@ -5,6 +5,7 @@ import com.jzt.api.domain.P2pThirdEval;
 import com.jzt.api.domain.Platform;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *  金融新榜-互金系平台业务层接口
@@ -17,7 +18,7 @@ public interface RankP2pService {
      * @param p2pDynamic
      * @return
      */
-    List<P2pDynamic> turnover(P2pDynamic p2pDynamic);
+    List<Map> turnover(P2pDynamic p2pDynamic);
 
     /**
      * 人气排行

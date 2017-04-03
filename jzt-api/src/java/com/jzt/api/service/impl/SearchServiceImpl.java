@@ -29,6 +29,8 @@ public class SearchServiceImpl implements SearchService {
 	private BusinessmanMapper businessmanMapper;
 	@Autowired
 	private StockholderMapper stockholderMapper;
+    @Autowired
+    private NewsMapper newsMapper;
 
     /**
      * 记录搜索关键字
@@ -170,6 +172,23 @@ public class SearchServiceImpl implements SearchService {
         example.setStartRow(0);
         example.setPageSize(company.getPageSize());
         List<Company> result = companyMapper.selectByExample(example);
+        return result;
+    }
+
+    /**
+     * 搜索新闻
+     *
+     * @param news
+     * @return
+     */
+    @Override
+    public List<News> news(News news) {
+        NewsExample example = new NewsExample();
+        example.createCriteria().andTitleLike("%" + news.getTitle() + "%");
+        example.setOrderByClause("create_time desc");
+        example.setStartRow(news.getStartRow());
+        example.setPageSize(news.getPageSize());
+        List<News> result = newsMapper.selectByExample(example);
         return result;
     }
 }

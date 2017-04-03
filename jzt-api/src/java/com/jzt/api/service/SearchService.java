@@ -1,11 +1,6 @@
 package com.jzt.api.service;
 
-import com.jzt.api.domain.BankProduct;
-import com.jzt.api.domain.Businessman;
-import com.jzt.api.domain.Company;
-import com.jzt.api.domain.P2pLoan;
-import com.jzt.api.domain.Platform;
-import com.jzt.api.domain.Stockholder;
+import com.jzt.api.domain.*;
 
 import java.util.List;
 
@@ -70,5 +65,12 @@ public interface SearchService {
      * @return
      */
 	List<Company> artificialperson(Company company);
+
+    /**
+     * 搜索新闻
+     * @param news
+     * @return
+     */
+    List<News> news(News news);
 	
 }

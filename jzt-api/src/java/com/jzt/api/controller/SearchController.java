@@ -61,6 +61,9 @@ public class SearchController extends BaseController {
         Integer p2pProductStartRow = dto.getP2pProductStartRow();
         Integer p2pProductPageSize = dto.getP2pProductPageSize();
 
+        Integer newsStartRow = dto.getNewsStartRow();
+        Integer newsPageSize = dto.getNewsPageSize();
+
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -110,6 +113,16 @@ public class SearchController extends BaseController {
                 p2pLoan.setPageSize(p2pProductPageSize);
                 List<P2pLoan> p2pLoanList = searchService.p2pLoan(p2pLoan);
                 data.put("p2pProduct", p2pLoanList);
+            }
+
+            // 搜索p2p标的
+            if (newsPageSize != null && newsPageSize > 0) {
+                News news = new News();
+                news.setTitle(keyword);
+                news.setStartRow(newsStartRow);
+                news.setPageSize(newsPageSize);
+                List<News> newsList = searchService.news(news);
+                data.put("news", newsList);
             }
 
             result.put("data", data);

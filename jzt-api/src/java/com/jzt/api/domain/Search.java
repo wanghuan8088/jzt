@@ -32,6 +32,27 @@ public class Search {
     private Integer businessmanStartRow;
     private Integer businessmanPageSize;
 
+    private Integer newsStartRow;
+
+    private Integer newsPageSize;
+
+    public Integer getNewsStartRow() {
+        return newsStartRow;
+    }
+
+    public void setNewsStartRow(Integer newsStartRow) {
+        this.newsStartRow = newsStartRow;
+    }
+
+    public Integer getNewsPageSize() {
+        return newsPageSize;
+    }
+
+    public void setNewsPageSize(Integer newsPageSize) {
+        this.newsPageSize = newsPageSize;
+    }
+
+
     public String getKeyword() {
         return keyword;
     }

@@ -16,7 +16,4 @@ public class GeneralConstant {
         }
     };
 
-    public static void main(String[] args) {
-
-    }
 }

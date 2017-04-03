@@ -51,7 +51,7 @@ public class RankP2pController extends BaseController {
             p2pDynamic.setTagType(GeneralConstant.P2PTAG.get(type));
             p2pDynamic.setStartRow(startRow);
             p2pDynamic.setPageSize(pageSize);
-            List<P2pDynamic> list = rankP2pService.turnover(p2pDynamic);
+            List<Map> list = rankP2pService.turnover(p2pDynamic);
 
             data.put("turnover", list);
             result.put("data", data );

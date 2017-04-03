@@ -168,10 +168,10 @@
     </if>
   </select>
 
-  <select id="selectByTurnover" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pDynamicExample" >
+  <select id="selectByTurnover" resultType="map" parameterType="com.jzt.api.domain.P2pDynamicExample" >
 
-    select t.plat_id, t.total_turnover from (
-    select t1.* from p2p_dynamic t1, plat_rel_tag t2 where t2.tag_id=#{tagType,jdbcType=INTEGER} and t1.plat_id=t2.plat_id
+    select t.plat_id, t.name, t.total_turnover from (
+    select t1.*,t3.name from p2p_dynamic t1, plat_rel_tag t2, platform t3 where t2.tag_id=#{tagType,jdbcType=INTEGER} and t1.plat_id=t2.plat_id and t3.id=t1.plat_id
     ) t where t.create_time=(select max(tt.create_time) from p2p_dynamic tt where t.plat_id=tt.plat_id)
 
    <!-- select * from p2p_dynamic a where create_time=(select max(create_time) from p2p_dynamic b where b.plat_id=a.plat_id) -->
