@@ -57,10 +57,17 @@ public class PlatformServiceImpl implements PlatformService {
     public List compare(int pid1, int pid2) {
 
         Platform plat = platformMapper.selectByPrimaryKey(pid1);
+        Platform plat2 = platformMapper.selectByPrimaryKey(pid2);
 
         // 平台类型（0-p2p,1-银行理财,基金,保险……）
 
         List list = new ArrayList();
+
+        if (plat.getType() != plat2.getType()) {
+            list.add(0);
+            list.add(0);
+            list.add(2, 2);
+        }
 
         // 银行
         if (plat.getType() == 1) {

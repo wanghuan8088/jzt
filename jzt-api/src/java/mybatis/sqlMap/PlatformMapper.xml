@@ -9,6 +9,7 @@
     -->
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
+      <result column="typeName" property="typeName" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="name_before" property="nameBefore" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
@@ -165,27 +166,29 @@
   </select>
 
   <select id="selectMoreTableByPrimaryKey" resultType="map" parameterType="java.lang.Integer" >
-    select
-    IFNULL(t1.id,'') as platform_id,
-    IFNULL(t1.name,'') as platform_name,
-    IFNULL(t1.start_time,'') as start_time,
-    IFNULL(t1.icon,'') as icon,
-    IFNULL(t3.name,'') as company_name,
-    IFNULL(t3.registered_capital,'') as registered_capital,
-    IFNULL(t4.name,'') as province_name,
-    IFNULL(t8.name,'') as city_name,
-    IFNULL(t5.address,'') as address,
-    IFNULL(t5.phone_400,'') as phone_400,
-    IFNULL(t5.email,'') as email,
-    IFNULL(group_concat(t6.name Separator ','),'') as tag_name,
-    IF (t9.uid=#{userId,jdbcType=INTEGER}, false, true) as attention
 
-
-    <!--    t1.name platform_name, t1.icon, t3.name company_name,t3.registered_capital registered_capital,t4.name province_name,t8.name city_name,
-       t5.address, t5.phone_400, t5.email, group_concat(t6.name Separator ',')  tag_name, t9.uid user_id
-       -->
+        select
+        IFNULL(t1.id,'') as id,
+        IFNULL(t1.name,'') as name,
+        IFNULL(t1.start_time,'') as start_time,
+        IFNULL(t1.icon,'') as icon,
+        IFNULL(t3.name,'') as company_name,
+        IFNULL(t3.registered_capital,'') as registered_capital,
+        IFNULL(t4.name,'') as province_name,
+        IFNULL(t8.name,'') as city_name,
+        IFNULL(t5.address,'') as address,
+        IFNULL(t5.phone_400,'') as phone_400,
+        IFNULL(t5.email,'') as email,
+        IFNULL(group_concat(t6.name Separator ','),'') as tag_name,
+        IF (t9.uid=#{userId,jdbcType=INTEGER}, false, true) as attention,
+        tt1.development_rate,
+        tt2.avg_interest_rate
         from
-        platform t1 LEFT JOIN company t3 ON t1.company=t3.id
+        platform t1
+        LEFT JOIN p2p_dynamic tt2 ON t1.id=tt2.plat_id
+        and tt2.create_time=(select max(create_time) from p2p_dynamic where plat_id=#{id,jdbcType=INTEGER})
+        LEFT JOIN p2p_third_eval tt1 ON t1.id=tt1.plat_id
+        LEFT JOIN company t3 ON t1.company=t3.id
         LEFT JOIN province t4 ON t1.province=t4.id
         LEFT JOIN city t8 ON t1.city=t8.id
         LEFT JOIN plat_contact t5 ON t5.plat_id=t1.id
@@ -193,7 +196,7 @@
         LEFT JOIN plat_rel_tag t7 ON t7.plat_id=t1.id
         LEFT JOIN tag t6 ON t7.tag_id=t6.id
         where t1.id=#{id,jdbcType=INTEGER}
-        group by platform_name, company_name, province_name, city_name
+        group by id, name, company_name, province_name, city_name
       </select>
 
       <select id="selectMoreForBank" resultType="map" parameterType="java.lang.Integer" >
@@ -512,11 +515,19 @@
   
   
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-  select platform.id, type, name, name_before, state, icon, start_time, end_time, province, city, platform.create_time, 
-    platform.update_time, is_delete, company
-   from platform, user_attention_platform where platform.id = user_attention_platform.pId and user_attention_platform.uId = #{uId,jdbcType=INTEGER} and platform.type = #{type,jdbcType=INTEGER}
-   
-    <if test="startRow != null and pageSize != null and pageSize != 0" >
+  select platform.id, platform.type, platform.name, name_before, icon, start_time, end_time, province, city, platform.create_time,
+    platform.update_time, company, bank_eval.total_score totalScore, bank_info.total_asset totalAsset, bank_type.name typeName, plat_state.description stateName
+   from platform, user_attention_platform, bank_eval, bank_info, bank_plat, bank_type, plat_state
+   where platform.id = user_attention_platform.pId
+      and user_attention_platform.uId = #{uId,jdbcType=INTEGER}
+      and platform.type = #{type,jdbcType=INTEGER}
+      and platform.id = bank_eval.plat_id
+      and platform.id = bank_info.plat_id
+      and platform.id = bank_plat.plat_id
+      and bank_plat.type = bank_type.id
+      and platform.state = plat_state.id
+
+      <if test="startRow != null and pageSize != null and pageSize != 0" >
       limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </if>
   </select>

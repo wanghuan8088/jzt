@@ -78,8 +78,11 @@ public class PlatformController extends BaseController {
             if (list.get(2) == 0) {
                 data.put("p2p", list);
             }
-
-            result.put("data", data );
+            if (list.get(2) == 2) {
+                data.put("info", "银行系和互金系平台不能对比, 请输入其他平台名称");
+            }
+            list.remove(2);
+            result.put("data", data);
             result.put("res", "0");
             result.put("message", "Success");
         } catch (Exception e) {
