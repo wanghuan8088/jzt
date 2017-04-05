@@ -110,8 +110,10 @@
   <script src="/page/plugins/slimScroll/jquery.slimscroll.min.js"></script>
   <!-- ChartJS 1.0.1 -->
   <script src="/page/plugins/chartjs/Chart.min.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="/page/dist/js/pages/dashboard2.js"></script>
+
+  <!-- AdminLTE dashboard demo (This is only for demo purposes)
+  <script src="/page/dist/js/pages/dashboard2.js"></script> -->
+
   <!-- AdminLTE for demo purposes -->
   <script src="/page/dist/js/demo.js"></script>
   <script src="/page/dist/js/showTip.js"></script>

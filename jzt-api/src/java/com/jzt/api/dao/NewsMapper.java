@@ -3,8 +3,9 @@ package com.jzt.api.dao;
 import com.jzt.api.domain.News;
 import com.jzt.api.domain.NewsExample;
 import com.jzt.api.domain.NewsWithBLOBs;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface NewsMapper {
     /**
@@ -118,4 +119,7 @@ public interface NewsMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(News record);
+
+    int removeByPrimaryKey(News record);
+
 }

@@ -46,7 +46,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 新闻</a></li>
+            <li class="active"><a href="/view/news/newsList.jsp"><i class="fa fa-circle-o"></i> 新闻</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 新闻类别管理</a></li>
         </ul>
     </li>

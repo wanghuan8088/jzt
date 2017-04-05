@@ -15,6 +15,7 @@
     <result column="source_site" property="sourceSite" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.jzt.api.domain.NewsWithBLOBs" extends="BaseResultMap" >
     <!--
@@ -435,7 +436,15 @@
       create_date = #{createDate,jdbcType=TIMESTAMP},
       source_site = #{sourceSite,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      is_delete = #{isDelete,jdbcType=INTEGER}
     where nId = #{nid,jdbcType=INTEGER}
   </update>
+
+  <update id="removeByPrimaryKey" parameterType="com.jzt.api.domain.News" >
+    update news
+    set is_delete = #{isDelete,jdbcType=INTEGER}
+    where nId = #{nid,jdbcType=INTEGER}
+  </update>
+
 </mapper>
