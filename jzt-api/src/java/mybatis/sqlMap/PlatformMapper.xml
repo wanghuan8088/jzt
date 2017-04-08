@@ -10,6 +10,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
       <result column="typeName" property="typeName" jdbcType="VARCHAR" />
+    <result column="rank" property="rank" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="name_before" property="nameBefore" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
@@ -515,24 +516,59 @@
   
   
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-  select platform.id, platform.type, platform.name, name_before, icon, start_time, end_time, province, city, platform.create_time,
-    platform.update_time, company, bank_eval.total_score totalScore, bank_info.total_asset totalAsset, bank_type.name typeName, plat_state.description stateName
-   from platform, user_attention_platform, bank_eval, bank_info, bank_plat, bank_type, plat_state
-   where platform.id = user_attention_platform.pId
-      and user_attention_platform.uId = #{uId,jdbcType=INTEGER}
-      and platform.type = #{type,jdbcType=INTEGER}
-      and platform.id = bank_eval.plat_id
-      and platform.id = bank_info.plat_id
-      and platform.id = bank_plat.plat_id
-      and bank_plat.type = bank_type.id
-      and platform.state = plat_state.id
+
+    select b.rank,a.id, a.type, a.name, a.name_before, a.icon, a.start_time, a.end_time, a.province, a.city, a.create_time,
+        a.update_time, a.company, a.totalScore, a.totalAsset, a.typeName, a.stateName
+    from
+    (
+    select platform.id, platform.type, platform.name, name_before, icon, start_time, end_time, province, city, platform.create_time,
+    platform.update_time, company, bank_eval.total_score totalScore, bank_info.total_asset totalAsset, bank_type.id as typeId, bank_type.name typeName, plat_state.description stateName
+    from platform, user_attention_platform, bank_eval, bank_info, bank_plat, bank_type, plat_state
+    where platform.id = user_attention_platform.pId
+    and user_attention_platform.uId = #{uId,jdbcType=INTEGER}
+    and platform.type = #{type,jdbcType=INTEGER}
+    and platform.id = bank_eval.plat_id
+    and platform.id = bank_info.plat_id
+    and platform.id = bank_plat.plat_id
+    and bank_plat.type = bank_type.id
+    and platform.state = plat_state.id
+    ) a,
+    (
+    select t.*,
+    case when @tid = t.typeId then @row:=@row+1 else @row:=1 end rank,
+    @tid:=t.typeId
+    from (
+    select t1.plat_id,t3.id typeId, t2.total_score
+    from bank_plat t1, bank_eval t2, bank_type t3
+    where
+    t1.plat_id=t2.plat_id
+    and t1.type=t3.id
+    order by typeId desc,total_score desc
+    ) t,(SELECT @row:=0) r
+
+    ) b
+    where a.id=b.plat_id
 
       <if test="startRow != null and pageSize != null and pageSize != 0" >
       limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </if>
   </select>
-  
-  
+
+  <select id="selectByUserIdForP2p" resultType="map" parameterType="java.lang.Integer" >
+
+    select platform.id, platform.name,platform.icon,p2p_third_eval.development_rate,p2p_third_eval.turnover,p2p_third_eval.benefit,
+    platform.start_time,company.registered_capital
+    from platform, user_attention_platform, p2p_third_eval, company
+    where platform.id = user_attention_platform.pId
+    and user_attention_platform.uId = #{uId,jdbcType=INTEGER}
+    and platform.type = #{type,jdbcType=INTEGER}
+    and platform.id = p2p_third_eval.plat_id
+    and platform.company = company.id
+
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
   
   <!--
   liaokaihong 20170318

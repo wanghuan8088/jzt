@@ -1,21 +1,20 @@
 package com.jzt.api.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.jzt.api.controller.base.BaseController;
 import com.jzt.api.domain.UserAttentionPlatform;
 import com.jzt.api.domain.UserAttentionPlatformExample;
 import com.jzt.api.domain.UserAttentionProduct;
 import com.jzt.api.domain.UserAttentionProductExample;
 import com.jzt.api.service.UserAttentionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *user:lsl
@@ -108,7 +107,7 @@ public class UserAttentionController extends BaseController{
 	public Map<String, Object> p2pList(@PathVariable(value = "uid")Integer uid, @PathVariable(value = "startRow")Integer startRow, @PathVariable(value = "pageSize")Integer pageSize){
 		Map<String, Object> result = new HashMap<String, Object>();
 		try{
-			result = userAttentionService.findPlatformByUser(uid, 0, startRow * pageSize , pageSize);
+			result = userAttentionService.findPlatformByUserP2p(uid, 0, startRow * pageSize , pageSize);
 		}catch (Exception e) {
             result.put("res", "1");
             result.put("message", "Error-"+e.getMessage());

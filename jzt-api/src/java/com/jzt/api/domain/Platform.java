@@ -33,6 +33,17 @@ public class Platform {
 
     private String totalScore;
 
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    private String rank;
+
+
     public String getTotalScore() {
         return totalScore;
     }

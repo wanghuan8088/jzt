@@ -167,6 +167,16 @@
     from bank_product
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+  <select id="selectMapByPrimaryKey" resultType="map" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from bank_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

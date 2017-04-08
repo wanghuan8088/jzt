@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jzt.api.common.constant.GeneralConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -133,6 +134,20 @@ public class UserAttentionServiceImpl extends BaseService implements UserAttenti
 		return result;
 	}
 
+
+	@Override
+	public Map<String, Object> findPlatformByUserP2p(Integer uId, Integer type, Integer startRow, Integer pageSize) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		try{
+			List<Map> plats = platformMapper.selectByUserIdForP2p(uId, type, startRow, pageSize);
+			result = generateNomalResult(plats);
+		}catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+
+		return result;
+	}
+
 	@Override
 	public Map<String, Object> findP2pLoanByUser(Integer uId, Integer startRow,
 			Integer pageSize) {
@@ -153,12 +168,16 @@ public class UserAttentionServiceImpl extends BaseService implements UserAttenti
 		Map<String, Object> result = new HashMap<String, Object>();
 		try{
 			List<BankProduct> records = bankProductMapper.selectByUserId(uId, startRow, pageSize);
+			for (BankProduct bankProduct:records) {
+				bankProduct.setRiskRankValue(GeneralConstant.RISKRANK.get(bankProduct.getRiskRank()));
+			}
 			result = generateNomalResult(records);
 		}
 		catch (Exception e) {
 			result = generateErrorResult(e);
 		}
 		return result;
+
 	}
 
 	

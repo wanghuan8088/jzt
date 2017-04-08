@@ -1,12 +1,12 @@
 package com.jzt.api.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.jzt.api.domain.UserAttentionPlatform;
 import com.jzt.api.domain.UserAttentionPlatformExample;
 import com.jzt.api.domain.UserAttentionProduct;
 import com.jzt.api.domain.UserAttentionProductExample;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  *user:lsl
@@ -28,6 +28,8 @@ public interface UserAttentionService {
 	List<UserAttentionProduct> findUserProduct(UserAttentionProduct record);
 	
 	Map<String, Object> findPlatformByUser(Integer uId, Integer type, Integer startRow, Integer pageSize);
+
+	Map<String, Object> findPlatformByUserP2p(Integer uId, Integer type,Integer startRow, Integer pageSize);
 	
 	Map<String, Object> findP2pLoanByUser(Integer uId, Integer startRow, Integer pageSize);
 	

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -313,4 +314,85 @@ public class PlatformController extends BaseController {
     }
 
 
+    /***
+     * 互金系筛选
+     * @param  para
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/filter/p2p/")
+    @ResponseBody
+    public Map<String, Object> filterP2p(@RequestParam(value = "para", required = true) String para) {
+        JSONObject jsStr = JSONObject.fromObject(para);
+        Platform dto = (Platform) JSONObject.toBean(jsStr, Platform.class);
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            List list = new ArrayList<>();
+            Map map = new HashMap();
+            map.put("name", "e融宝");
+            map.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
+            map.put("rate", "30");
+            Map map1 = new HashMap();
+            map1.put("name", "e融宝2");
+            map1.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
+            map1.put("rate", "40");
+
+            list.add(map);
+            list.add(map1);
+
+            data.put("platform", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
+
+    /***
+     * 银行系筛选
+     * @param  para
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/filter/bank/")
+    @ResponseBody
+    public Map<String, Object> filterBank(@RequestParam(value = "para", required = true) String para)
+    {
+        JSONObject jsStr = JSONObject.fromObject(para);
+        Platform dto = (Platform) JSONObject.toBean(jsStr, Platform.class);
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            List list = new ArrayList<>();
+            Map map = new HashMap();
+            map.put("name", "e融宝3");
+            map.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
+            map.put("rate", "50");
+            Map map1 = new HashMap();
+            map1.put("name", "e融宝4");
+            map1.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
+            map1.put("rate", "60");
+
+            list.add(map);
+            list.add(map1);
+
+            data.put("platform", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 }

@@ -106,8 +106,9 @@ public interface PlatformMapper {
     List<Platform> selectByRegisteredCapital(@Param("tagType")Integer tagType, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
     
     List<Platform> selectByUserId(@Param("uId")Integer uId, @Param("type")Integer type, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
-    
-    
+
+    List<Map> selectByUserIdForP2p(@Param("uId")Integer uId, @Param("type")Integer type, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
+
     /**
      * liaokaihong 20170318
      */
