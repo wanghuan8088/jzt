@@ -1,5 +1,6 @@
 package com.jzt.api.controller;
 
+import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -10,16 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONObject;
 
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import sun.misc.BASE64Decoder;
+
 import com.jzt.api.controller.base.BaseController;
 import com.jzt.api.domain.AppFinanceFavorite;
 import com.jzt.api.domain.AppFinanceFavoriteExample;
 import com.jzt.api.service.AppFinanceFavoriteService;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 /**
  * Desc: AppFinanceFavoriteController
@@ -134,15 +141,49 @@ public class AppFinanceFavoriteController extends BaseController {
 		System.out.println("---------------Start");
 		System.out.println(request);
 		
+		System.out.println("---------------Heders----------------------");
 		Enumeration headerNames = request.getHeaderNames();
 	    while (headerNames.hasMoreElements()) {
 	        String key = (String) headerNames.nextElement();
 	        String value = request.getHeader(key);
-	        System.out.println(key+"=+++++++++++++++++++++="+value);
+	        System.out.println(key+"="+value);
 	    }
-		Map<String, Object> result = new HashMap<String, Object>();
+	    System.out.println("---------------Heders----------------------");
+		
+	    String jwtHeader = request.getHeader("x-jwt-assertion");
+	    System.out.println("---------------Heders x-jwt-assertion----------------------");
+	    System.out.println(jwtHeader);
+	    try {
+	    	
+	    	String[] jwtArray = jwtHeader.split("\\.");
+			if(jwtArray.length>1){
+				System.out.println("----------JWT Header ---------");
+				System.out.println( new String( new BASE64Decoder().decodeBuffer(jwtArray[0])) );
+				System.out.println("----------JWT Payload jsonheader ---------");
+				String jwtPayload  = new String( new BASE64Decoder().decodeBuffer(jwtArray[1]) );
+				System.out.println(jwtPayload);
+				
+				//get API context from header
+				String strAPIContext = getAPIContextFromHeader(jwtPayload);
+				System.out.println("The API context in header is:"+strAPIContext);
+			}
+				
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    
+	    Map<String, Object> result = new HashMap<String, Object>();
 		
 		return result;
+	}
+	
+	private static String getAPIContextFromHeader(String jwtPayload)
+			throws IOException, JsonParseException, JsonMappingException {
+		String strAPIContext = null;
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap map = mapper.readValue(jwtPayload, HashMap.class);
+		strAPIContext = (String) map.get("http://wso2.org/claims/apicontext");
+		return strAPIContext;
 	}
 	
 	
