@@ -53,7 +53,7 @@ public class RankP2pController extends BaseController {
             p2pDynamic.setPageSize(pageSize);
             List<Map> list = rankP2pService.turnover(p2pDynamic);
 
-            data.put("turnover", list);
+            data.put("record", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");
@@ -89,7 +89,7 @@ public class RankP2pController extends BaseController {
             p2pThirdEval.setPageSize(pageSize);
             List<P2pThirdEval> list = rankP2pService.popularity(p2pThirdEval);
 
-            data.put("report", list);
+            data.put("record", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");
@@ -127,7 +127,7 @@ public class RankP2pController extends BaseController {
             p2pDynamic.setPageSize(pageSize);
             List<Map> list = rankP2pService.avgInterestRate(p2pDynamic);
 
-            data.put("avgInterestRate", list);
+            data.put("record", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");
@@ -164,7 +164,7 @@ public class RankP2pController extends BaseController {
             platform.setPageSize(pageSize);
             // TODO: 19/03/2017
             List<Platform> list = rankP2pService.registeredCapital(platform);
-            data.put("report", list);
+            data.put("record", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");
@@ -196,7 +196,14 @@ public class RankP2pController extends BaseController {
 
             // TODO: 19/03/2017
 
-            //data.put("report", list);
+            P2pDynamic p2pDynamic = new P2pDynamic();
+
+            p2pDynamic.setTagType(GeneralConstant.P2PTAG.get(type));
+            p2pDynamic.setStartRow(startRow);
+            p2pDynamic.setPageSize(pageSize);
+            List<Map> list = rankP2pService.serviceTime(p2pDynamic);
+
+            data.put("record", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

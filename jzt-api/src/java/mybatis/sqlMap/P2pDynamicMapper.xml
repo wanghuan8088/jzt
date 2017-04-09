@@ -208,6 +208,26 @@
     </if>
   </select>
 
+  <select id="selectByServiceTime" resultType="map" parameterType="com.jzt.api.domain.P2pDynamicExample" >
+
+    select t.plat_id, t.name, t.service_time
+    from (
+    select t1.*,t3.name
+    from p2p_dynamic t1, plat_rel_tag t2, platform t3
+    where t2.tag_id=#{tagType,jdbcType=INTEGER}
+    and t1.plat_id=t2.plat_id
+    and t3.id=t1.plat_id
+    ) t
+    where t.create_time=(select max(tt.create_time) from p2p_dynamic tt where t.plat_id=tt.plat_id)
+
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+
 
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     <!--

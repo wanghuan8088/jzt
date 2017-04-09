@@ -46,5 +46,5 @@ public interface RankP2pService {
      * @param p2pDynamic
      * @return
      */
-    List<P2pDynamic> serviceTime(P2pDynamic p2pDynamic);
+    List<Map> serviceTime(P2pDynamic p2pDynamic);
 }
