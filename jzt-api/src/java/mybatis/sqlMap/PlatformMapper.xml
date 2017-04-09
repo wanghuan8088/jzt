@@ -602,6 +602,33 @@
   c.name like CONCAT('%',#{name},'%')
   )
   </select>
+
+
+
+  <select id="selectProblemPlat" resultMap="ProblemPlatResultMap" parameterType="com.jzt.api.domain.Platform" >
+    select p.id , p.name ,p.icon , c.artificial_person ,c.registered_capital,c.name as company_name,s.description as state
+    from platform p
+    left join company c on p.company = c.id
+    left join plat_state s on p.state = s.id
+    where p.state !=1
+
+    <if test="state != null" >
+      and p.state = #{state,jdbcType=INTEGER}
+    </if>
+
+    <if test="name != null" >
+      and
+      (
+      p.name like CONCAT('%',#{name},'%')  or
+      p.name_before like CONCAT('%',#{name},'%') or
+      c.name like CONCAT('%',#{name},'%')
+      )
+    </if>
+
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
   
    <select id="selectPlatformByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

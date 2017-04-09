@@ -115,6 +115,7 @@ public interface PlatformMapper {
     List<ProblemPlat> selectProblemPlatByState(@Param("state")Integer state);
     List<ProblemPlat> selectAllProblemPlat();
     List<ProblemPlat> selectProblemPlatByName(@Param("name")String name );
+    List<ProblemPlat> selectProblemPlat(Platform record);
     
     /**
      * 根据平台名查找平台信息

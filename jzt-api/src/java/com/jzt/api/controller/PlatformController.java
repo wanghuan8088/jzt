@@ -373,10 +373,13 @@ public class PlatformController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
             List list = new ArrayList<>();
             Map map = new HashMap();
+            map.put("id", "4");
             map.put("name", "e融宝3");
             map.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
             map.put("rate", "50");
+
             Map map1 = new HashMap();
+            map.put("id", "5");
             map1.put("name", "e融宝4");
             map1.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
             map1.put("rate", "60");
