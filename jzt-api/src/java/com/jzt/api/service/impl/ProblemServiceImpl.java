@@ -45,4 +45,10 @@ public class ProblemServiceImpl implements ProblemService {
     	return platformMapper.selectProblemPlatByName(name);
     }
 
+    @Override
+    public List<ProblemPlat> selectProblemPlat(Platform platform) {
+        platform.setStartRow(platform.getStartRow() * platform.getPageSize());
+        return platformMapper.selectProblemPlat(platform);
+    }
+
 }

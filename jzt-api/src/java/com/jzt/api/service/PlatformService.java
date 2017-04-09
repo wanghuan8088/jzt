@@ -104,5 +104,20 @@ public interface PlatformService {
      */
 	Platform platformName(Platform platform);
 
+	/**
+	 * 
+	* @Title: queryBanks  
+	* @Description: queryBanks 
+	* @param @param platform
+	* @param @return    设定文件  
+	* @return List<Platform>    返回类型  
+	* @throws
+	 */
 	List<Platform> queryBanks(Platform platform);
+    /**
+     * 平台简介
+     * @param platform
+     * @return
+     */
+    Map description(Platform platform);
 }

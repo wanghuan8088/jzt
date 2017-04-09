@@ -174,6 +174,9 @@ public class PlatformServiceImpl implements PlatformService {
             example.setPageSize(platform.getPageSize());
 
             List<BankProduct> result = bankProductMapper.selectByExample(example);
+            for (BankProduct product : result) {
+                product.setType("bank");
+            }
             list = result;
         }
 
@@ -187,6 +190,9 @@ public class PlatformServiceImpl implements PlatformService {
             example.setPageSize(platform.getPageSize());
 
             List<P2pLoan> result = p2pLoanMapper.selectByExample(example);
+            for (P2pLoan product : result) {
+                product.setType("p2p");
+            }
             list = result;
         }
 
@@ -332,4 +338,15 @@ public class PlatformServiceImpl implements PlatformService {
 		return platformMapper.selectPlatformByName(platform.getName());
 
 	}
+
+    /**
+     * 平台简介
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public Map description(Platform platform) {
+        return platformMapper.description(platform.getId());
+    }
 }

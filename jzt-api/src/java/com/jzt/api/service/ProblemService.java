@@ -17,5 +17,5 @@ public interface ProblemService {
     List<ProblemPlat> selectProblemPlatByState(Integer state);
     List<ProblemPlat> selectAllProblemPlat();
     List<ProblemPlat> selectProblemPlatByName(String name);
-    
+    List<ProblemPlat> selectProblemPlat(Platform platform);
 }

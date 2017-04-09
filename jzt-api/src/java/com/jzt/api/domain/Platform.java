@@ -80,7 +80,15 @@ public class Platform {
 
     private String totalAsset;
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    private String description;
 
     public String getStateName() {
         return stateName;

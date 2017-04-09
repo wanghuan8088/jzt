@@ -1,10 +1,11 @@
 package com.jzt.api.service;
 
-import java.util.List;
-import java.util.Map;
-import org.apache.ibatis.annotations.Param;
 import com.jzt.api.domain.Report;
 import com.jzt.api.domain.ReportExample;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Desc: ReportService
@@ -74,7 +75,8 @@ public interface ReportService {
 	* @throws  
 	*/
 	Map<String, Object> selectReportsByUid(int uid);
-	
+
+	Map<String, Object> favorite(int userId, int reportId);
 	
 	int countByExample(ReportExample example);
 

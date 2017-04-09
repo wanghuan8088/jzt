@@ -181,6 +181,22 @@
   </select>
   
 
+  <select id="description" resultType="map" parameterType="java.lang.Integer" >
+    select
+        platform.id as id,
+        platform.name as name,
+        platform.start_time as start_time,
+        platform.icon as icon,
+        province.name as province_name,
+        city.name as city_name,
+        plat_web.description as description
+    from platform
+    LEFT JOIN plat_web ON platform.id=plat_web.plat_id
+    LEFT JOIN province ON platform.province=province.id
+    LEFT JOIN city ON platform.city=city.id
+    where platform.id = #{id,jdbcType=INTEGER}
+  </select>
+
   <select id="selectMoreTableByPrimaryKey" resultType="map" parameterType="java.lang.Integer" >
 
         select
@@ -196,9 +212,10 @@
         IFNULL(t5.phone_400,'') as phone_400,
         IFNULL(t5.email,'') as email,
         IFNULL(group_concat(t6.name Separator ','),'') as tag_name,
-        IF (t9.uid=#{userId,jdbcType=INTEGER}, false, true) as attention,
+        IF (t9.uid is null, 'false', 'true') as attention,
         tt1.development_rate,
-        tt2.avg_interest_rate
+        tt2.avg_interest_rate,
+        t1.type
         from
         platform t1
         LEFT JOIN p2p_dynamic tt2 ON t1.id=tt2.plat_id
@@ -615,6 +632,33 @@
   p.name_before like CONCAT('%',#{name},'%') or 
   c.name like CONCAT('%',#{name},'%')
   )
+  </select>
+
+
+
+  <select id="selectProblemPlat" resultMap="ProblemPlatResultMap" parameterType="com.jzt.api.domain.Platform" >
+    select p.id , p.name ,p.icon , c.artificial_person ,c.registered_capital,c.name as company_name,s.description as state
+    from platform p
+    left join company c on p.company = c.id
+    left join plat_state s on p.state = s.id
+    where p.state !=1
+
+    <if test="state != null" >
+      and p.state = #{state,jdbcType=INTEGER}
+    </if>
+
+    <if test="name != null" >
+      and
+      (
+      p.name like CONCAT('%',#{name},'%')  or
+      p.name_before like CONCAT('%',#{name},'%') or
+      c.name like CONCAT('%',#{name},'%')
+      )
+    </if>
+
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
   </select>
   
    <select id="selectPlatformByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
