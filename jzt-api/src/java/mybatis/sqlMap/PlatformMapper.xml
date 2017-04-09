@@ -23,6 +23,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
     <result column="company" property="company" jdbcType="INTEGER" />
+    <result column="registered_capital" property="registeredCapital" jdbcType="DOUBLE" />
   </resultMap>
 
   <resultMap id="BankInfoResultMap" type="com.jzt.api.domain.BankInfo" >
@@ -667,9 +668,15 @@
   </resultMap>
   
   <select id="selectByRegisteredCapital" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-  select platform.id, platform.type, platform.name, name_before, state, icon, start_time, end_time, province, city, platform.create_time, 
-    platform.update_time, platform.is_delete, company
-   from platform, company, plat_rel_tag where platform.company = company.id and platform.type = 0 and plat_rel_tag.plat_id = platform.id and plat_rel_tag.tag_id=#{tagType,jdbcType=INTEGER} order by company.registered_capital desc
+  select platform.id, platform.type, platform.name, name_before, state, icon,
+    start_time, end_time, province, city, platform.create_time,
+    platform.update_time, platform.is_delete, company.registered_capital as registeredCapital
+   from platform, company, plat_rel_tag
+    where platform.company = company.id
+    and platform.type = 0
+    and plat_rel_tag.plat_id = platform.id
+    and plat_rel_tag.tag_id=#{tagType,jdbcType=INTEGER}
+    order by company.registered_capital desc
    <if test="startRow != null and pageSize != null and pageSize != 0" >
       limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
     </if>

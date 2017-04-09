@@ -118,8 +118,16 @@ public class RankP2pController extends BaseController {
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
-            
-            //data.put("report", list);
+
+
+            P2pDynamic p2pDynamic = new P2pDynamic();
+
+            p2pDynamic.setTagType(GeneralConstant.P2PTAG.get(type));
+            p2pDynamic.setStartRow(startRow);
+            p2pDynamic.setPageSize(pageSize);
+            List<Map> list = rankP2pService.avgInterestRate(p2pDynamic);
+
+            data.put("avgInterestRate", list);
             result.put("data", data );
             result.put("res", "0");
             result.put("message", "Success");

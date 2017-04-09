@@ -398,9 +398,16 @@
   
   <select id = "selectBypopularity" resultMap="BaseResultMap" parameterType="com.jzt.api.domain.P2pThirdEvalExample">
   
-   select t.plat_id, t.popularity from (
-    select t1.* from p2p_third_eval t1, plat_rel_tag t2 where t2.tag_id=#{tagType,jdbcType=INTEGER} and t1.plat_id=t2.plat_id
-    ) t where t.create_time=(select max(tt.create_time) from p2p_third_eval tt where t.plat_id=tt.plat_id)
+   select t.plat_id, t.name, t.popularity
+    from (
+    select t1.* , t3.name
+    from p2p_third_eval t1, plat_rel_tag t2, platform t3
+    where t2.tag_id=#{tagType,jdbcType=INTEGER}
+    and t1.plat_id=t2.plat_id
+    and t3.id=t1.plat_id
+    ) t
+
+    where t.create_time=(select max(tt.create_time) from p2p_third_eval tt where t.plat_id=tt.plat_id)
   
 <!--    select p2p_third_eval.id, p2p_third_eval.plat_id, development_rate, mobility, turnover, benefit, dispersion, update_date, 
     popularity, transparency, p2p_third_eval.create_time, p2p_third_eval.update_time

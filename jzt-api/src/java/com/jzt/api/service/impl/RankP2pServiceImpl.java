@@ -71,14 +71,20 @@ public class RankP2pServiceImpl implements RankP2pService {
      * @return
      */
     @Override
-    public List<P2pDynamic> avgInterestRate(P2pDynamic p2pDynamic) {
+    public List<Map> avgInterestRate(P2pDynamic p2pDynamic) {
         // TODO: 19/03/2017
-        return null;
+        P2pDynamicExample example = new P2pDynamicExample();
+        example.setTagType(p2pDynamic.getTagType());
+        example.setOrderByClause("avg_interest_rate desc");
+        example.setStartRow(p2pDynamic.getStartRow() * p2pDynamic.getPageSize());
+        example.setPageSize(p2pDynamic.getPageSize());
+        List<Map> result = p2pDynamicMapper.selectByAvgInterestRate(example);
+        return result;
     }
 
     /**
      * 注册资本排行
-     * @param company
+     * @param platform
      * @return
      */
     @Override

@@ -32,11 +32,11 @@ public interface RankP2pService {
      * @param p2pDynamic
      * @return
      */
-    List<P2pDynamic> avgInterestRate(P2pDynamic p2pDynamic);
+    List<Map> avgInterestRate(P2pDynamic p2pDynamic);
 
     /**
      * 注册资本排行
-     * @param company
+     * @param platform
      * @return
      */
     List<Platform> registeredCapital(Platform platform);

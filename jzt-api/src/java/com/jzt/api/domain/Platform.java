@@ -43,6 +43,16 @@ public class Platform {
 
     private String rank;
 
+    public String getRegisteredCapital() {
+        return registeredCapital;
+    }
+
+    public void setRegisteredCapital(String registeredCapital) {
+        this.registeredCapital = registeredCapital;
+    }
+
+    private String registeredCapital;
+
 
     public String getTotalScore() {
         return totalScore;
