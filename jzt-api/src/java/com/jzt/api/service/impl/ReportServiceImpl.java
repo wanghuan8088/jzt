@@ -1,17 +1,18 @@
 package com.jzt.api.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.jzt.api.dao.AppUserFavoriteMapper;
+import com.jzt.api.dao.ReportMapper;
+import com.jzt.api.domain.AppUserFavorite;
+import com.jzt.api.domain.Report;
+import com.jzt.api.domain.ReportExample;
+import com.jzt.api.service.ReportService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.jzt.api.dao.ReportMapper;
-import com.jzt.api.domain.Report;
-import com.jzt.api.domain.ReportExample;
-import com.jzt.api.service.ReportService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /** 
@@ -26,6 +27,9 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 
 	@Autowired
 	private ReportMapper reportMapper;
+
+	@Autowired
+	private AppUserFavoriteMapper appUserFavoriteMapper;
 	
 	/* (非 Javadoc)  
 	* <p>Title: save</p>  
@@ -227,5 +231,16 @@ public class ReportServiceImpl extends BaseService implements ReportService {
 		
 		return result;
 	}
-	
+
+	@Override
+	public Map<String, Object> favorite(int userId, int reportId) {
+
+		AppUserFavorite record = new AppUserFavorite();
+		record.setRid(reportId);
+		record.setUid(userId);
+		appUserFavoriteMapper.insert(record);
+
+		return null;
+	}
+
 }
