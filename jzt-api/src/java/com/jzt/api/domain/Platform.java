@@ -33,7 +33,25 @@ public class Platform {
 
     private String totalScore;
 
-    public String getRank() {
+    private String types;
+    
+    
+
+    /**
+	 * @return the types
+	 */
+	public String getTypes() {
+		return types;
+	}
+
+	/**
+	 * @param types the types to set
+	 */
+	public void setTypes(String types) {
+		this.types = types;
+	}
+
+	public String getRank() {
         return rank;
     }
 

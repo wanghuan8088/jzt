@@ -1,14 +1,32 @@
 package com.jzt.api.service.impl;
 
-import com.jzt.api.dao.*;
-import com.jzt.api.domain.*;
-import com.jzt.api.service.PlatformService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import com.jzt.api.dao.AdverContentNowMapper;
+import com.jzt.api.dao.BankProductMapper;
+import com.jzt.api.dao.BusinessmanMapper;
+import com.jzt.api.dao.NewsMapper;
+import com.jzt.api.dao.P2pLoanMapper;
+import com.jzt.api.dao.PlatformMapper;
+import com.jzt.api.domain.AdverContentNow;
+import com.jzt.api.domain.AdverContentNowExample;
+import com.jzt.api.domain.BankProduct;
+import com.jzt.api.domain.BankProductExample;
+import com.jzt.api.domain.Businessman;
+import com.jzt.api.domain.BusinessmanExample;
+import com.jzt.api.domain.News;
+import com.jzt.api.domain.NewsExample;
+import com.jzt.api.domain.P2pLoan;
+import com.jzt.api.domain.P2pLoanExample;
+import com.jzt.api.domain.Platform;
+import com.jzt.api.domain.PlatformExample;
+import com.jzt.api.service.PlatformService;
 
 /**
  *  平台业务层接口实现
@@ -279,6 +297,40 @@ public class PlatformServiceImpl implements PlatformService {
         example.setStartRow(platform.getStartRow() * platform.getPageSize());
         example.setPageSize(platform.getPageSize());
         List<Platform> result = platformMapper.selectByExample(example);
+        return result;
+    }
+    
+    /**
+     * 筛选银行系
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public List<Platform> queryBanks(Platform platform) {
+
+        PlatformExample example = new PlatformExample();
+        String strTypes = platform.getTypes();
+        
+        List<Integer> list = new ArrayList<Integer>();
+        if(strTypes!=null && !"".equals(strTypes)){
+        	String[] typesarray = strTypes.split(",");
+        	for (int i = 0; i < typesarray.length; i++) {
+        		String tmpType = typesarray[i];
+        		list.add(Integer.valueOf(tmpType.trim()));
+			}
+        }
+        HashMap<String,Object> param = new HashMap<String,Object>();
+
+        param.put("list",list);
+        param.put("types",platform.getTypes());
+        
+        param.put("startRow",platform.getStartRow() * platform.getPageSize());
+        param.put("pageSize",platform.getPageSize());
+        
+
+        
+        List result = platformMapper.queryBanks(strTypes,list,platform.getStartRow() * platform.getPageSize(),platform.getPageSize());
         return result;
     }
     

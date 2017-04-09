@@ -117,6 +117,8 @@ public interface PlatformMapper {
     List<ProblemPlat> selectProblemPlatByName(@Param("name")String name );
     List<ProblemPlat> selectProblemPlat(Platform record);
     
+    List<Platform> queryBanks(@Param("types")String types, @Param("list")List list, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
+    
     /**
      * 根据平台名查找平台信息
      */

@@ -14,6 +14,7 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="name_before" property="nameBefore" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="total_score" property="totalScore" jdbcType="DOUBLE" />
     <result column="icon" property="icon" jdbcType="VARCHAR" />
     <result column="start_time" property="startTime" jdbcType="DATE" />
     <result column="end_time" property="endTime" jdbcType="DATE" />
@@ -166,6 +167,23 @@
     from platform
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <select id="queryBanks" resultMap="BaseResultMap" >
+  	select p.id as id,p.type as type,p.name as name,p.icon as icon,(select total_score from bank_eval where plat_id=p.id) as total_score
+	FROM platform p , bank_plat b
+	where  p.type=1 and p.id = b.plat_id 
+	<if test="types !=null and types !=''">
+	and b.type in 
+		<foreach item="item" index="index" collection="list" open="("
+            separator="," close=")">
+            #{item}  
+         </foreach>
+	</if>
+	<if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  
 
   <select id="description" resultType="map" parameterType="java.lang.Integer" >
     select
