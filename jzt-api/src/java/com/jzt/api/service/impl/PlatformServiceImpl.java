@@ -324,9 +324,13 @@ public class PlatformServiceImpl implements PlatformService {
 
         param.put("list",list);
         param.put("types",platform.getTypes());
+        
+        param.put("startRow",platform.getStartRow() * platform.getPageSize());
+        param.put("pageSize",platform.getPageSize());
+        
 
         
-        List result = platformMapper.queryBanks(strTypes,list);
+        List result = platformMapper.queryBanks(strTypes,list,platform.getStartRow() * platform.getPageSize(),platform.getPageSize());
         return result;
     }
     
