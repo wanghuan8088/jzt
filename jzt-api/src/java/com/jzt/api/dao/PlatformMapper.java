@@ -121,5 +121,10 @@ public interface PlatformMapper {
      * 根据平台名查找平台信息
      */
     Platform selectPlatformByName(@Param("name")String name);
+
+    /**
+     * 平台简介
+     */
+    Map description(Integer id);
     
 }

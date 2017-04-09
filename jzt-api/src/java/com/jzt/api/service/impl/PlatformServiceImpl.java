@@ -290,4 +290,15 @@ public class PlatformServiceImpl implements PlatformService {
 		return platformMapper.selectPlatformByName(platform.getName());
 
 	}
+
+    /**
+     * 平台简介
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public Map description(Platform platform) {
+        return platformMapper.description(platform.getId());
+    }
 }

@@ -166,6 +166,22 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="description" resultType="map" parameterType="java.lang.Integer" >
+    select
+        platform.id as id,
+        platform.name as name,
+        platform.start_time as start_time,
+        platform.icon as icon,
+        province.name as province_name,
+        city.name as city_name,
+        plat_web.description as description
+    from platform
+    LEFT JOIN plat_web ON platform.id=plat_web.plat_id
+    LEFT JOIN province ON platform.province=province.id
+    LEFT JOIN city ON platform.city=city.id
+    where platform.id = #{id,jdbcType=INTEGER}
+  </select>
+
   <select id="selectMoreTableByPrimaryKey" resultType="map" parameterType="java.lang.Integer" >
 
         select

@@ -398,4 +398,34 @@ public class PlatformController extends BaseController {
 
         return result;
     }
+
+
+    /***
+     * 平台简介
+     * @param id   平台id
+     * @return
+     */
+    @RequestMapping(value = "/description/{id}")
+    @ResponseBody
+    public Map<String, Object> description(@PathVariable(value="id") int id){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Platform platform = new Platform();
+            platform.setId(id);
+            Map description = platformService.description(platform);
+
+            data.put("platform", description);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 }

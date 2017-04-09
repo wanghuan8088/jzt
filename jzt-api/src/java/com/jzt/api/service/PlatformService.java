@@ -103,4 +103,11 @@ public interface PlatformService {
      * @return
      */
 	Platform platformName(Platform platform);
+
+    /**
+     * 平台简介
+     * @param platform
+     * @return
+     */
+    Map description(Platform platform);
 }
