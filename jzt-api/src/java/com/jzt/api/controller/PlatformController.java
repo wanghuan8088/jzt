@@ -371,19 +371,7 @@ public class PlatformController extends BaseController {
 
         try {
             Map<String, Object> data = new HashMap<String, Object>();
-            List list = new ArrayList<>();
-            Map map = new HashMap();
-            map.put("name", "e融宝3");
-            map.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
-            map.put("rate", "50");
-            Map map1 = new HashMap();
-            map1.put("name", "e融宝4");
-            map1.put("icon", "https://bgp.reapal.com/images/login/logo.gif");
-            map1.put("rate", "60");
-
-            list.add(map);
-            list.add(map1);
-
+            List list = this.platformService.queryBanks(dto);
             data.put("platform", list);
             result.put("data", data );
             result.put("res", "0");

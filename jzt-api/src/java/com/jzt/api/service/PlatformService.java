@@ -103,4 +103,6 @@ public interface PlatformService {
      * @return
      */
 	Platform platformName(Platform platform);
+
+	List<Platform> queryBanks(Platform platform);
 }
