@@ -120,4 +120,11 @@ public interface PlatformService {
      * @return
      */
     Map description(Platform platform);
+    /**
+     * 信披报告
+     * @param platform
+     * @return
+     */
+    Map creditDisclosure(Platform platform);
+
 }

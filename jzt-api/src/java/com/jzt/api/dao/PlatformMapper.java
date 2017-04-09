@@ -128,5 +128,10 @@ public interface PlatformMapper {
      * 平台简介
      */
     Map description(Integer id);
+    /**
+     * 信披报告
+     */
+    Map creditDisclosure(Integer id);
+
     
 }

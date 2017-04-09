@@ -413,4 +413,35 @@ public class PlatformController extends BaseController {
 
         return result;
     }
+
+
+    /***
+     * 信披报告
+     * @param id   平台id
+     * @return
+     */
+    @RequestMapping(value = "/creditDisclosure/{id}")
+    @ResponseBody
+    public Map<String, Object> creditDisclosure(@PathVariable(value="id") int id){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Platform platform = new Platform();
+            platform.setId(id);
+            Map creditDisclosure = platformService.creditDisclosure(platform);
+
+            data.put("platform", creditDisclosure);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
 }

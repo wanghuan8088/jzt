@@ -201,6 +201,27 @@
     where platform.id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="creditDisclosure" resultType="map" parameterType="java.lang.Integer" >
+      select
+      t1.id,t1.name,t1.icon,t1.start_time,
+      t3.registered_capital,t4.development_rate,
+      t2.total_turnover,
+      t2.total_unrepay_amount,
+      t2.avg_interest_rate,
+      t2.total_investment,
+      t2.total_borrower,
+      t2.avg_repay_period,
+      t2.borrow_amount,
+      t2.month_net_income,
+      t2.ivestment_amount_per_person
+      from platform t1
+      LEFT JOIN p2p_dynamic t2 ON t1.id=t2.plat_id
+      and t2.create_time=(select max(create_time) from p2p_dynamic where plat_id=#{id,jdbcType=INTEGER})
+      LEFT JOIN company t3 ON t1.company=t3.id
+      LEFT JOIN p2p_third_eval t4 ON t1.id=t4.plat_id
+      where t1.id=#{id,jdbcType=INTEGER}
+  </select>
+
   <select id="selectMoreTableByPrimaryKey" resultType="map" parameterType="java.lang.Integer" >
 
         select

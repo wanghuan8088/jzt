@@ -1,32 +1,15 @@
 package com.jzt.api.service.impl;
 
+import com.jzt.api.dao.*;
+import com.jzt.api.domain.*;
+import com.jzt.api.service.PlatformService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.jzt.api.dao.AdverContentNowMapper;
-import com.jzt.api.dao.BankProductMapper;
-import com.jzt.api.dao.BusinessmanMapper;
-import com.jzt.api.dao.NewsMapper;
-import com.jzt.api.dao.P2pLoanMapper;
-import com.jzt.api.dao.PlatformMapper;
-import com.jzt.api.domain.AdverContentNow;
-import com.jzt.api.domain.AdverContentNowExample;
-import com.jzt.api.domain.BankProduct;
-import com.jzt.api.domain.BankProductExample;
-import com.jzt.api.domain.Businessman;
-import com.jzt.api.domain.BusinessmanExample;
-import com.jzt.api.domain.News;
-import com.jzt.api.domain.NewsExample;
-import com.jzt.api.domain.P2pLoan;
-import com.jzt.api.domain.P2pLoanExample;
-import com.jzt.api.domain.Platform;
-import com.jzt.api.domain.PlatformExample;
-import com.jzt.api.service.PlatformService;
 
 /**
  *  平台业务层接口实现
@@ -52,6 +35,9 @@ public class PlatformServiceImpl implements PlatformService {
 
     @Autowired
     private AdverContentNowMapper adverContentNowMapper;
+
+    @Autowired
+    private P2pDynamicMapper p2pDynamicMapper;
 
     /**
      * 平台详细信息
@@ -352,5 +338,16 @@ public class PlatformServiceImpl implements PlatformService {
     @Override
     public Map description(Platform platform) {
         return platformMapper.description(platform.getId());
+    }
+
+    /**
+     * 信披报告
+     *
+     * @param platform
+     * @return
+     */
+    @Override
+    public Map creditDisclosure(Platform platform) {
+        return platformMapper.creditDisclosure(platform.getId());
     }
 }
