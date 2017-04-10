@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>金智塔</title>
+    <link rel="shortcut icon" href="static/image/favicon.ico" mce_href="//www.runoob.com/favicon.ico" type="image/x-icon">
+    <link href="static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="static/css/footer.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="static/css/head.css">
+    <script src="static/js/jquery/jquery-1.11.1.min.js"></script>
+    <script src="static/js/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .media a.pull-left img{
+            width: 168px;
+            height: 161px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="top_bg_new">
+    <div class="container" style="padding-right:0px;">
+        <div class="top_right">
+            <ul style="    margin-bottom: 0px;    margin-top: 3px;">
+                <li id="pingtairukou" style="margin-right: 0px;" class="topsize">
+                    <a href="#" onclick="eplat_enter()">平台入口</a>
+                </li>
+                <li id="xinpirukou" style="display:none">
+                    <a href="#" onclick="infodis_enter()">入口</a>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="header_bg">
+    <div class="container" style="padding-right:0px;padding-left:0px;">
+        <div class="row">
+            <div class="logo col-md-2 col-xs-2 col-sm-2">
+                <a href="/index/home"><img src="static/image/logo4.png" alt="" /> </a>
+            </div>
+
+            <div class="menu_bg col-md-7  col-sm-7  col-xs-7">
+
+                <ul class="nav nav-pills select_title" role="tablist">
+                    <li role="presentation" id="toolbar_index" class="tips select_item">
+                        <a href="/index/home" style="color:#333">首页</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+                    <li role="presentation" class="tips select_item">
+                        <a href="/product/navIndex" style="color:#333">查询</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+
+                    <li role="presentation" class="tips select_item">
+                        <a href="/product/map" style="color:#333">地图</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+                    <li role="presentation" id="toolbar_report" class="tips select_item">
+                        <a href="/report/index" style="color:#333">新榜</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+                    <li role="presentation" id="toolbar_product" class="tips select_item">
+                        <a href="/product/dangan" style="color:#333">信批</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+
+                    <li role="presentation" id="toolbar_news" class="tips select_item">
+                        <a href="/news/" style="color:#333">咨询</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+                    <li role="presentation" class="tips select_item">
+                        <a href="/exposure/list" style="color:#333">曝光</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+
+                    <li role="presentation" id="toolbar_exposure" class="tips select_item" style="width:140px;">
+                        <a href="/product/aboutus">关于我们</a>
+                        <div class="titlediv" style="display:none"></div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="menu_bg1 col-md-3  col-sm-3  col-xs-3" style="padding-right:10px;">
+
+                <ul class="loginnew " role="tablist">
+                    <li style="background: #ffffff; width:50px;height:29px;border-radius: 2px;text-align:center;line-height:29px;vertical-align:middle;">
+                        <a class="rea" href="/user/registerView">注册</a>
+                    </li>
+
+                    <li style="background: #ffffff; width:10px;height:29px;"></li>
+
+                    <li style="background: #1C8EE7; width:84px;height:29px;border-radius: 2px;text-align:center;line-height:29px;vertical-align:middle;">
+                        <a class="logina" href="" data-toggle="modal" data-target="#login_modal">登录</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" id="myModalLabel">登录</h4>
+            </div>
+            <div class="modal-body text-center">
+                <form class="form-horizontal" id="loginForm">
+                    <div class="form-group  text-center" id="login_username_block">
+                        <label class="col-lg-3 control-label">用户名或手机号</label>
+                        <div class="col-lg-5">
+                            <input type="text" class="form-control" name="username" id="username_login" />
+                        </div>
+                    </div>
+
+                    <div class="form-group  text-center" id="login_password_block">
+                        <label class="col-lg-3 control-label">密码</label>
+                        <div class="col-lg-5">
+                            <input type="password" class="form-control" name="password" id="password_login" />
+                        </div>
+                    </div>
+                    <small class="help-block" id="login_help">11</small>
+                    <div class="form-group modal-footer">
+                        <div class="col-lg-8 col-lg-offset-2  text-center">
+                            <button type="button" class="btn btn-default btn-primary" id="login_submit">登录</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--banner区域-->
+<div class="container-fluid c-banner">
+    <img src="img/信披banner.png" alt="">
+    <p>
+        关于我们
+        <span>线</span>
+    </p>
+</div>
+
+<!--内容区-->
+<div class="main about-main">
+    <div class="about-title">
+        <div class="row about-title-list">
+            <div class="col-md-3">
+                <a href="#">关于我们</a>
+            </div>
+            <div class="col-md-3 am-active">
+                <a href="#">团队成员</a>
+            </div>
+            <div class="col-md-3">
+                <a href="#">专家顾问</a>
+            </div>
+            <div class="col-md-3">
+                <a href="#">联系我们</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="media col-md-6">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/168x161">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                <!-- Nested media object -->
+                <div class="media">
+                    d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，按附件离开家里看电视打开房间，d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，
+                </div>
+            </div>
+        </div>
+        <div class="media col-md-6">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/168x161">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                <!-- Nested media object -->
+                <div class="media">
+                    d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，按附件离开家里看电视打开房间，d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="media col-md-6">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/168x161">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                <!-- Nested media object -->
+                <div class="media">
+                    d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，按附件离开家里看电视打开房间，d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了
+                </div>
+            </div>
+        </div>
+        <div class="media col-md-6">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/168x161">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                <!-- Nested media object -->
+                <div class="media">
+                    d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，按附件离开家里看电视打开房间，d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="media col-md-6">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/168x161">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                <!-- Nested media object -->
+                <div class="media">
+                    d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，按附件离开家里看电视打开房间，d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了
+                </div>
+            </div>
+        </div>
+        <div class="media col-md-6">
+            <a class="pull-left" href="#">
+                <img class="media-object" data-src="holder.js/168x161">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">Media heading</h4>
+                <!-- Nested media object -->
+                <div class="media">
+                    d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了，按附件离开家里看电视打开房间，d上来看等级分类数据，速度快解放路，爱上当减肥了空间，的手法来看的设计，多舒服就拉倒，都是开发经理速度开房间啊，是的发生了空间了
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container p-tb-20 clearfix">
+        <p style="text-align:center;">
+            版权所有： 杭州灵皓科技有限公司 Copyright © 2016~2017 www.jztdata.com . All Rights Reserved.
+            <br/> 战略支持：浙江大学互联网金融研究院、浙江大学人工智能研究所、科技部四方现代服务产业联盟
+            <br/>浙ICP备16046109号-1</p>
+    </div>
+</div>
+<script src="http://cdn.bootcss.com/holder/2.0/holder.min.js"></script>
+</body>
+</html>

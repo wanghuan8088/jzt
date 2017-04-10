@@ -1,0 +1,103 @@
+.pl-title-color{
+    color: #008EB7;
+}
+
+.pl-more{
+	padding-top: 4px;
+	font-size: 12px;
+    color: #7F7B82;
+}
+
+.border-table{
+	border: 2px solid #008EB7; 
+}
+
+.bg-head{
+	color: #FFF;
+	background-color: #008EB7; 
+}
+
+.tab-margin{
+	margin-bottom: 10px;
+}
+
+.no-bottom{
+	margin-bottom: 0px
+}
+
+.arrow-down{
+	width: 20px;
+}
+
+.syn-font{
+	color: OrangeRed;
+}
+
+.table-link a{color:#FFFFFF;}	
+.table-hover a:hover{color:#E6CAFF;text-decoration:none;}
+
+.adv-font{
+	color: red;
+}
+
+.pattr{
+    font-size: 15px;
+}
+
+.pattr2{
+    font-size: 15px;
+    color: #323232;
+}
+
+.pattrv2{
+    color: red;
+    font-size: 17px;
+}
+
+.pattrv{
+    color: red;
+    font-size: 28px;
+}
+
+.state{
+    color: grey;
+    font-size: 12px;
+    margin-left: 20px;
+}
+
+.assert{
+    font-size: 13px;
+    padding: 20px;
+}
+
+.ad-margin{
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+a
+{
+	color: #008EB7;
+	text-decoration:none;
+}
+a:hover{
+ text-decoration:none;
+}
+
+.nav-pills>li.active>a
+{
+	background-color: #008EB7;
+}
+
+.all_padding_left{
+	padding-left:0px;
+}
+
+.all_padding_right{
+	padding-right:0px;
+}
+
+
+
+
+

@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+.main_content{
+	
+}
+
+
+.confirm_info{
+	padding-top: 20px;
+}
+
+.plat_info_label{
+	margin-left:20px;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.plat_info_box .hd {
+    height: 40px;
+    background: #faf9f9;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.plat_info_box .hd h3, .mod-mbox .hd .h3.current, .mod-mbox .hd .h3:hover {
+    display: block;
+    float: left;
+    padding: 0 30px;
+    border-top: 2px solid #0080cc;
+    line-height: 39px;
+    height: 39px;
+    background: #fff;
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+    border-right: 1px solid #ebebeb;
+    text-decoration: none;
+    margin-top: 0;
+}
+
+.plat_info_box .bd {
+    padding-left: 15px;
+}
+.plat_info_box .platinfo {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.plat_info_box ol, ul, li {
+    list-style: none;
+}
+
+.plat_info_box .platinfo li {
+    width: 400px;
+    float: left;
+    font-size: 14px;
+    font-family: arial;
+    line-height: 45px;
+}
+
+.plat_info_box .platinfo li em{
+	margin-right: 10px;
+}
+
+
+.confirm_info img
+{
+	height:50px;margin-left:20px;margin-bottom: 5px;
+}
+
+#review_content{
+	display:inline-block;
+    width: 100%;
+    min-height: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    word-break: break-word; /* 文本行的任意字内断开 */  
+	word-wrap: break-word; /* IE */  
+	white-space: -moz-pre-wrap; /* Mozilla */ 
+	white-space: -hp-pre-wrap; /* HP printers */ 
+	white-space: -o-pre-wrap; /* Opera 7 */ 
+	white-space: -pre-wrap; /* Opera 4-6 */ 
+	white-space: pre; /* CSS2 */ 
+	white-space: pre-wrap; /* CSS 2.1 */ 
+	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */ 
+}
+
+.info_span {
+	margin: 20px;
+}
+
+.info_span span{
+	margin-left: 15px;
+}

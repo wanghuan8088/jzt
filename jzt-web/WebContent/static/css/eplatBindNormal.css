@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+h2{
+	font-family: "微软雅黑";
+	font-size: 26px;
+}
+
+h3{
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+
+
+
+#plat_user_select_plat_tab_div ul>li.active a{
+	font-weight: bold;
+	color: #f00;
+}
+
+#plat_user_select_plat_tab_div .tab-pane div{
+	min-height:100px;
+	padding:10px;
+	-webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
+}
+
+.form-button-group{
+	margin-top: 15px;
+}
+
+.form-button-group button{
+	margin-left:15px;
+	min-width: 120px;
+	font-weight: bold;
+}
+
+.info_title{
+	color: #000;
+	font-weight: bold;
+	margin-top: 50px;
+}
+
+.tab-pane label{
+	margin-left: 20px;
+	width: 160px;
+	overflow: hidden;
+}

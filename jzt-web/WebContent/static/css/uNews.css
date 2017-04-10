@@ -1,0 +1,54 @@
+.type-news-title
+{
+	width: 100%;
+	position: relative;
+  	min-height: 1px;
+  	padding-right: 15px;
+  	padding-left: 15px;
+  	padding-top: 10px;
+  	padding-bottom: 5px;
+  	float: left;
+}
+.type-news-abstracts
+{
+	font-size: 8px;
+	padding-top:10px;
+}
+.badge-color-pos{
+	background-color: DodgerBlue;
+}
+
+.badge-color-neg{
+	background-color: OrangeRed;
+}
+
+.badge-color-mid{
+	background-color: gray;
+}
+
+.badge-color-hot{
+	background-color: red;
+}
+.black a
+{
+	color:#000;
+	text-decoration: none; 
+}
+
+.black a:hover 
+{
+	color:#428bca;
+	text-decoration: none; 
+}
+
+
+.news-type>a
+{
+	background-color: #fff !important; 
+	color:#008EB7!important;
+}
+.news-type.active>a 
+{
+	background-color: #008EB7 !important; 
+	color:#fff!important;
+}

@@ -1,0 +1,11 @@
+.def_margin_top_15{
+		margin-top:15px;
+	}
+	.img_preview{ 
+		filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);
+		
+	}
+	.personImg{height:230px}
+	#tarImg{max-height:225px;}
+	#previewImgDiv{width:160px;height:160px;border:1px solid #000;overflow:hidden;text-align:center} 
+	#previewImg {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);} 

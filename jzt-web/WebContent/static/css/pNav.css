@@ -1,0 +1,339 @@
+#myNavPane{
+			border: 1px solid #dcdcdc;
+  			border-top: 2px solid #003a62;
+  			margin-top:15px;
+  			margin-bottom:15px;
+		}
+		.gray_back{background: #f4f4f4;}
+		.font_size_small{ font-size: 14px}
+		.padding_15{padding:15px;}
+		.float_right{float:right} 
+		
+		#product_NavPane{
+			text-align: left;
+			border: 1px solid #dcdcdc;
+			margin-bottom:15px;
+			min-width:960px;
+		}
+		
+		#product_Nav_tab{
+			background: #f4f4f4;
+		}
+		
+		#product_Nav_tab li{font-weight:bold;}
+		.product_tab_content{  
+			position:relative;
+			padding: 10px 0px;
+		}
+		
+		#product_sel_box{
+				min-width:330px;
+			position:absolute;
+			  top: 12px;
+			  right: 0px;
+			  z-index: 99999;
+			  float:right;
+		}
+		#product_sel_box .a_red{
+			 
+			  top: 0;
+			  left: -60px;
+			  height: 32px;
+			  line-height: 32px;
+			  color: #a40001 !important;
+		}
+		#product_nav_form{
+			width:70%;
+			display:inline-block;
+		}
+		
+		#navKeyWords{
+			display:inline;
+			width:85%;
+			min-width:180px;
+			height: 35px;
+			margin-right: -50px;
+			line-height: 32px;
+			border: 1px solid #E3E4E8;
+			padding: 2px 40px 2px 10px;
+			vertical-align: middle;
+		}
+		#nav_sel_button{
+			display:inline;
+			vertical-align:middle;
+			padding:0px;
+			
+			position:relative;
+			margin-right:-40px;
+			height: 32px;
+			width: 40px;
+			border: 0px;
+			cursor: pointer;
+			background: url(../image/icon_v1.png) 10px -529px no-repeat #fff;
+			vertical-align: middle;
+		}
+		
+		.product_sx_pane{
+		}
+		
+		.product_sx_pane ol, ul {
+		  list-style: none;
+		}
+		
+		.product_sx_ul{
+			overflow: hidden;
+			padding:0px;
+		}
+		 .product_sx_ul li {
+		  position: relative;
+		  overflow: hidden;
+		  padding: 5px 0;
+		}
+		
+		.product_sx_ul li .title_span {
+		  position: absolute;
+		  left: 0;
+		  top: 7px;
+		  width: 130px;
+		  padding: 0 10px;
+		  color: #000;
+		}
+		.title_span i{
+		  font-style: normal;
+			display: inline-block;
+		  width: 100%;
+		  text-align: right;
+		  font-size: 18px;
+		  font-weight:bold;
+		}
+		.product_sx_ul .cur {
+		  background: #2f8bcd;
+		  color: #fff;
+		}
+		
+		.product_sx_ul2{
+			width: 905px;
+			  float: left;
+			  padding-left: 130px;
+		}
+		
+		.product_sx_ul2 li{
+			display: inline-block;
+			padding: 0 10px;
+			margin: 2px;
+			height: 24px;
+			line-height: 24px;
+			cursor: pointer;
+			white-space: nowrap;
+		}
+		.product_sx_ul2 li:hover{
+			background: #2f8bcd;
+		  	color: #fff;
+		}
+		.rnav {
+		  overflow: hidden;
+		  padding: 10px 0;
+		  border-top: 1px dashed #d0d0d0;
+		}
+		.til {
+		  float: left;
+		  width: 85px;
+		  padding: 0 15px;
+		  text-align: center;
+		  font-size: 16px;
+		  font-weight: bold;
+		  color: #000;
+		  padding-top: 10px;
+		}
+		.til p{
+			margin:0px;
+		} 
+		.til .til_num {
+		  font-weight: 500;
+		  color: #2f8bcd;
+		  font-size: 14px;
+		}
+		.til_cn {
+		  
+		  float: left;
+		  overflow: hidden;
+		}
+		.til_cn li {
+		  float: left;
+		  width: 150px;
+		  padding: 10px;
+		}
+		.til_cn a {
+		  padding-left: 12px;
+		  display: inline-block;
+		  font-size: 14px;
+		  line-height: 20px;
+		  position: relative;
+		}
+		.til_cn img {
+		  position: absolute;
+		  top: 2px;
+		  left: -10px;
+		  width: 16px;
+		  height: 16px;
+		}
+		.my_nav {
+		  
+		  padding: 15px;
+		  font-size: 14px;
+		  overflow: hidden;
+		}
+		.my_nav li a {
+		  line-height: 30px;
+		  padding-left: 0;
+		}
+		.broad li {
+		  width: 139px !important;
+		  height: 38px;
+		  overflow: hidden;
+		  background: url(../image/icon_v1.png) no-repeat 0 -800px;
+		}
+		.my_nav li {
+		  padding: 0 10px !important;
+		  float: left;
+
+		}
+		.mn_lay2 {
+		  z-index: 9999999;
+		  width: 100px;
+		  height: 105px;
+		  padding-top: 12px;
+		  overflow: hidden;
+		  position: absolute;
+		  background: url(../image/focus_back.png) 0 0px no-repeat;
+		}
+		.mn_lay2 .files {
+		  background: url(../image/icon_v1.png) 8px -683px no-repeat;
+		  margin-top:4px;
+		}
+		a#findda {
+		  background: url(../image/icon_v1.png) 5px -703px no-repeat;
+		  height:28px;
+		  
+		}
+		a#official {
+		  background: url(../image/icon_v1.png) 5px -703px no-repeat;
+		  height:28px;
+		  
+		}
+		.mn_lay2 a {
+			margin:0px;!important;
+		  width: 100%;
+		  height: 30px;
+		  line-height: 30px;
+		  display: block;
+		  padding-left: 25px;
+		  color: #fff;
+		  font-size: 12px;
+		  text-decoration: none;
+		}
+		
+		.autoulsj {
+		
+		  display: none;
+		  position: absolute;
+		  top: 37px;
+		  left: 74px;;
+		  padding-left:0px;
+		  text-align:center;
+		  z-index: 9999999;
+		  border: 1px solid #E3E4E8;
+		  background: #fff;
+		  max-height: 270px;
+		  border-radius: 0 0 3px 3px;
+		  overflow: auto;
+		  overflow-x: hidden;
+		  padding-top: -1px;
+		}
+		.autoulsj li {
+		  line-height: 23px;
+		  border-bottom: 1px solid #ececec;
+		}
+		.autoulsj li .cur {
+		  background: #f0f0f0;
+		}
+		.autoulsj li a {
+		  display: block;
+		  padding: 5px 8px;
+		}
+		.top {
+		  display: none;
+		  position: fixed;
+	
+		  bottom: 230px;
+		  width: 40px;
+		  height: 38px;
+		  border: 1px solid #cecece;
+		  line-height: 40px;
+		  text-align: center;
+		  background: url("../image/icon_v2.png") no-repeat 10px -120px #eee;
+		  z-index: 9999;
+		  cursor: pointer;
+		}
+		.sx_bx {
+		  position: fixed;
+		  top: 0;
+		  width: 45px;
+		  height: 75px;
+		  display: none;
+		  background: url("../image/sx.png") no-repeat;
+		  color: #fff !important;
+		  cursor: pointer;
+		  z-index: 999997;
+		}
+		.product_tab_content .fixed{
+		
+			position: fixed;
+			top:-130px;
+			z-index:1000;
+			background: #fff; 
+			*border-bottom:0; 
+			box-shadow: 0 5px 5px #CCCCCC; 
+			*background:url(../image/box_show_bot.png) 0 bottom repeat-x #fff;
+		}
+		.fixed2{
+		
+			position: fixed !important;
+			top:-45px;
+			z-index:99999;
+		}
+		
+		h1#map_sx_title{
+			font-size:18px;
+			color:#fff;
+			background-color:#437bb8;
+			padding:4px;
+			display:none;
+		}
+				
+		#topLoader {
+	        width: 256px;
+	        height: 256px;
+	        margin:32px;
+	      }
+	      
+	      .chart_title{
+	      	font-size:18px;
+			color:#fff;
+			background-color:#437bb8;
+			padding:4px;
+	      }
+	      .text-overflow{ 
+			display:block;/*内联对象需加*/ 
+			
+			width:6em; 
+			
+			word-break:keep-all;/* 不换行 */ 
+			
+			white-space:nowrap;/* 不换行 */ 
+			
+			overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
+			
+			text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+
+} 

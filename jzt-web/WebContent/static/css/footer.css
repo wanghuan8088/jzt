@@ -1,0 +1,44 @@
+body
+{
+	font-family: "微软雅黑";
+}
+	.footer{
+		background: #171D27;;
+		
+		margin-top:70px;
+	}
+	.footer .p-tb-20 {
+	  padding: 20px 0;
+	}
+	.footer .container {
+	  width: 1000px;
+	  margin: 0 auto;
+	}
+	
+	.footer .fore1, .footer .fore2, .footer .fore3, .footer .fore4, .footer .fore5 {
+	  float: left;
+	  padding-right: 75px;
+	}
+	.fore1 {
+	  background: url(/wdzj/images/front/icon_v1.png) no-repeat 0px -335px;
+	  padding-left: 75px;
+	}
+	
+	.footer .fore1,.footer .fore2,.footer .fore3,.footer .fore4,.footer .fore5{float: left;padding-right: 75px;}
+	.fore1{background: url(/wdzj/images/front/icon_v1.png) no-repeat 0px -335px;padding-left: 75px;}
+	.fore1 strong{font: 20px/30px "Microsoft Yahei";display: inline-block;padding-top: 15px;}
+	.footer a{color: #666;line-height: 24px;}
+	.footer p{color: #999;line-height: 24px;text-align: left;}
+	.footer h3{font: 20px/58px "Microsoft Yahei";}
+	
+	
+	.bot-nav .container{
+		width: 1000px;
+	}
+	.layer_l {
+	  float: left;
+	}
+	.layer_r {
+	  float: right;
+	}
+	

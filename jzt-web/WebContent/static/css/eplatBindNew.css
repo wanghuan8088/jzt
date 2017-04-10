@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+.bind_new_input label{
+	width:80px;
+	text-align: right;
+	padding-right: 15px;
+}
+
+.bind_new_input .form-control{
+	width:390px;
+	display: inline-block !important;
+}
+
+.bind_submit_btn{
+	margin-top:30px;
+	width:200px;
+}

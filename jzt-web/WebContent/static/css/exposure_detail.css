@@ -1,0 +1,102 @@
+.head-div-margin {
+	margin-bottom: 20px;
+}
+
+.btn-margin-right {
+	margin-right: 20px;
+}
+
+.black a
+{
+	color:#3B3B3B;
+	text-decoration: none; 
+}
+
+.black a:hover 
+{
+	color:#050505;
+	text-decoration: none; 
+	font-weight:bold
+}
+
+.bd{
+	border: 1px solid #000;
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+
+.bd-div{
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-bottom: 40px;
+}
+
+.pname{
+	margin-left: 10px;
+    font-size: 20px;
+}
+
+.plink{
+	margin-left: 10px;
+    font-size: 18px;
+    color: red;
+}
+
+.lattr{
+	height: 35px;
+}
+
+/*ÕýÎÄ*/
+.news_content
+{
+  text-indent: 2em;
+  color: #000;
+  font-size: 14px;
+  line-height: 28px;
+  padding-bottom: 10px;
+  font-family: "ËÎÌå";
+}
+
+.news_tip
+{
+	font-family: KaiTi;
+  	font-size: 16px;
+  	color: #666666;
+}
+
+ ul {
+  list-style: none;
+}
+
+.img-thumb {
+	width: 30px;
+	height: 30px;
+}
+
+.red {
+	color:red;
+}
+
+.support-style
+{
+	font-family: KaiTi;
+  	font-size: 14px;
+  	margin: 5px;
+}
+
+.title-div{
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 20px;
+	background-color: #008EB7;
+}
+
+.theme-color {
+	background-color: #008EB7;
+	color: white;
+}
+
+.newpag {
+	padding-left:40px;
+}

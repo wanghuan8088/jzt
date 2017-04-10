@@ -1,0 +1,77 @@
+.remain{
+	color: red;
+	font-size: 15px;
+}
+
+.remain-hint{
+	font-size: 12px;
+}
+
+.screen-div{
+	border:1px solid #000;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.time_sel_ul{
+	overflow: hidden;
+	padding:0px;
+}
+
+.time_sel_ul li {
+    position: relative;
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+.time_sel_ul li .time_sel_span {
+    position: absolute;
+    left: 0;
+    width: 130px;
+    padding: 0 0px;
+    color: #000;
+}
+.time_sel_span i{
+    font-style: normal;
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+}
+.time_sel_ul .cur {
+    background: #2f8bcd;
+    color: #fff;
+}
+
+.time_sel_ul2{
+	width: 905px;
+	float: left;
+	padding-left: 70px;
+}
+
+.time_sel_ul2 li{
+	display: inline-block;
+	padding: 0 10px;
+	margin: 2px;
+	height: 24px;
+	line-height: 24px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+.time_sel_ul2 li:hover{
+	background: #2f8bcd;
+  	color: #fff;
+}
+
+li #month_select{
+  	height: 24px;
+}
+
+#month_select .cur{
+	background: #2f8bcd;
+  	color: #fff;
+}
+
+theme_color{
+  	color: #008EB7;
+}

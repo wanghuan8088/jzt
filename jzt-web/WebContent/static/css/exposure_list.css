@@ -1,0 +1,46 @@
+.head-div-margin {
+	margin-bottom: 20px;
+}
+
+.btn-margin-right {
+	margin-right: 20px;
+}
+
+.black a
+{
+	color:#008EB7;
+	text-decoration: none; 
+}
+
+.black a:hover 
+{
+	color:#058EB7;
+	text-decoration: none; 
+	font-weight:bold
+}
+
+.img-thumb {
+	width: 20px;
+	height: 20px;
+}
+
+.red {
+	color:red;
+	vertical-align: middle;
+}
+
+.blue {
+	color:#008EB7;
+}
+
+.small {
+	front-size:16sp;
+}
+
+.table>tbody>tr>td.table-style {
+	vertical-align: middle;
+}
+
+.newpag {
+	padding-left:40px;
+}

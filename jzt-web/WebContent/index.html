@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<ctx value=""></ctx>
+		<link rel="shortcut icon" href="static/image/favicon.ico" mce_href="//www.runoob.com/favicon.ico" type="image/x-icon">
+		<link href="static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+		<link href="static/css/footer.css" rel='stylesheet' type='text/css' />
+		<link href="static/css/ad.css" rel='stylesheet' type='text/css' />
+		<link href="static/css/common.css" rel='stylesheet' type='text/css' />
+		<script src="static/js/jquery/jquery-1.11.1.min.js"></script>
+		<script src="static/js/jquery/jquery.cookie.js"></script>
+		<script src="static/js/bootstrap/bootstrap.min.js"></script>
+		<script src="static/js/common.js"></script>
+		<script src="static/js/login.js"></script>
+		<link rel="shortcut icon" href="//www.runoob.com/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="http://minjiang-pic.b0.upaiyun.com/assets/index/css/idangerous.swiper.css">
+    <link rel="stylesheet" href="http://minjiang-pic.b0.upaiyun.com/assets/index/css/style.css">
+    <link rel="stylesheet" href="http://minjiang-pic.b0.upaiyun.com/assets/index/css/animate.min.css">
+    <script src="http://minjiang-pic.b0.upaiyun.com/assets/index/js/idangerous.swiper.min.js"></script>
+    <script src="http://minjiang-pic.b0.upaiyun.com/assets/index/js/jPages.js"></script>
+		<title>金智塔</title>
+		<style>
+		.shang {
+            width: 1201px;
+            margin: 0 auto;
+            padding-top: 14px;
+        }
+			.shop-show {
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .arrow-left, .arrow-left1 {
+            width: 33px;
+            height: 95px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #eeeeee url(static/image/arrow_left.png) no-repeat center;
+        }
+
+        .arrow-right, .arrow-right1 {
+            width: 33px;
+            height: 95px;
+            position: absolute;
+            right: 2px;
+            top: 0;
+            background: #eeeeee url(static/image/arrow_right.png) no-repeat center;
+        }
+		</style>
+	</head>
+
+	<link href="static/css/common.css" rel='stylesheet' type='text/css' />
+	<link href="static/css/home.css" rel='stylesheet' type='text/css' />
+	<link href="static/css/news.css" rel='stylesheet' type='text/css' />
+	</head>
+    
+	<body>
+		<link rel="stylesheet" type="text/css" href="static/css/head.css">
+		<script src="static/js/toolbar.js" type="text/javascript"></script>
+		<script src="static/js/search.js" type="text/javascript"></script>
+		<script src="static/js/ad.js" type="text/javascript"></script>
+		<script src="static/js/eplat_enter.js" type="text/javascript"></script>
+		<div id="cxt" style="display:none"></div>
+		<div class="top_bg_new">
+			<div class="container" style="padding-right:0px;">
+				<div class="top_right">
+					<ul style="    margin-bottom: 0px;    margin-top: 3px;">
+						<li id="pingtairukou" style="margin-right: 0px;" class="topsize">
+							<a href="#" onclick="eplat_enter()">平台入口</a>
+						</li>
+						<li id="xinpirukou" style="display:none">
+							<a href="#" onclick="infodis_enter()">入口</a>
+						</li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="header_bg">
+			<div class="container" style="padding-right:0px;padding-left:0px;">
+				<div class="row">
+					<div class="logo col-md-2 col-xs-2 col-sm-2">
+						<a href="/index/home"><img src="static/image/logo4.png" alt="" /> </a>
+					</div>
+
+					<div class="menu_bg col-md-7  col-sm-7  col-xs-7">
+
+						<ul class="nav nav-pills select_title" role="tablist">
+							<li role="presentation" id="toolbar_index" class="tips select_item">
+								<a href="/index/home">首页</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+							<li role="presentation" id="toolbar_map" class="tips select_item">
+								<a href="/product/navIndex" style="color:#333">查询</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+
+							<li role="presentation" id="toolbar_map" class="tips select_item">
+								<a href="/product/map" style="color:#333">地图</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+							<li role="presentation" id="toolbar_report" class="tips select_item">
+								<a href="/report/index" style="color:#333">新榜</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+							<li role="presentation" id="toolbar_product" class="tips select_item">
+								<a href="/product/dangan" style="color:#333">信批</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+
+							<li role="presentation" id="toolbar_news" class="tips select_item">
+								<a href="/news/" style="color:#333">咨询</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+							<li role="presentation" id="toolbar_exposure" class="tips select_item">
+								<a href="/exposure/list" style="color:#333">曝光</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+
+							<li role="presentation" id="toolbar_exposure" class="tips select_item" style="width:140px;">
+								<a href="/product/aboutus" style="color:#333">关于我们</a>
+								<div class="titlediv" style="display:none"></div>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="menu_bg1 col-md-3  col-sm-3  col-xs-3" style="padding-right:10px;">
+
+						<ul class="loginnew " role="tablist">
+							<li style="background: #ffffff; width:50px;height:29px;border-radius: 2px;text-align:center;line-height:29px;vertical-align:middle;">
+								<a class="rea" href="/user/registerView">注册</a>
+							</li>
+
+							<li style="background: #ffffff; width:10px;height:29px;"></li>
+
+							<li style="background: #1C8EE7; width:84px;height:29px;border-radius: 2px;text-align:center;line-height:29px;vertical-align:middle;">
+								<a class="logina" href="" data-toggle="modal" data-target="#login_modal">登录</a>
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- start header_right -->
+
+		<div class="container">
+			<div class="row text-center ad" id="ad1">
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title text-center" id="myModalLabel">登录</h4>
+					</div>
+					<div class="modal-body text-center">
+						<form class="form-horizontal" id="loginForm">
+							<div class="form-group  text-center" id="login_username_block">
+								<label class="col-lg-3 control-label">用户名或手机号</label>
+								<div class="col-lg-5">
+									<input type="text" class="form-control" name="username" id="username_login" />
+								</div>
+							</div>
+
+							<div class="form-group  text-center" id="login_password_block">
+								<label class="col-lg-3 control-label">密码</label>
+								<div class="col-lg-5">
+									<input type="password" class="form-control" name="password" id="password_login" />
+								</div>
+							</div>
+							<small class="help-block" id="login_help">11</small>
+							<div class="form-group modal-footer">
+								<div class="col-lg-8 col-lg-offset-2  text-center">
+									<button type="button" class="btn btn-default btn-primary" id="login_submit">登录</button>
+									<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+								</div>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<img src="static/image/ours.png" style="    width: 100%; height: 100%;" alt="上海鲜花港 - 郁金香" />
+		<div class="top_bg_center">
+			<div class="container">
+				<div class="row" style="padding-top: 20px;">
+					<div class="col-md-6 all_padding_left" style="padding-top: 10px;">
+						<div class="col-md-1 all_padding_left">
+							<div class="newsearch1">
+								搜
+								<br>
+								 平
+								<br>
+								 台
+								<br>
+							</div>
+							<div class="newsearch2">
+								搜
+								<br>
+								 资
+								<br>
+								 讯
+								<br>
+							</div>
+						</div>
+						<div class="col-md-11 all_padding_right">
+							<div style="width:500px;height:285px; background: #FFFFFF;">
+								<form style="padding-top:40px;padding-left:50px;">
+
+									<div class="search comm">
+										<input id="key" type="text" name="keyword" value="" placeholder="请输入平台名称" onblur="noFocus()" onfocus="yesFocus()" />
+										<input style="display:none;" type="button" value="" onclick="search_submit()" style="padding-right:30px;">
+										<input type="text" id="pageNum" name="pageNum" value="1" hidden="hidden" />
+										<input type="text" id="topk" name="topk" value="100" hidden="hidden" />
+										<a href="#" class="dropdown-toggle" id="hint-toggle"></a>
+										<ul class="dropdown-menu dropdown-menu-right" role="menu" style=" position: inherit;float:right;" id="search-hint" onmouseover="hintOver()" onmouseout="hintOut()">
+										</ul>
+									</div>
+									<div class="styled-select" onclick="search_submit()" style="padding-left:20px;padding-top:10px;">
+										<select id="type" name="type" style="display:none;">
+											<option value="2">搜平台</option>
+
+										</select>
+
+										搜平台
+									</div>
+
+								</form>
+								<div class="row" style="display:block;width: 450px; height: 200px;margin-left:50px;margin-top:60px;">
+									<p>
+										<img src="img/p2.png" style="width: 20px; height: 20px;" alt="上海鲜花港 - 郁金香" /> 平台背景&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<img src="img/p1.png" style="width: 20px; height: 20px;" alt="上海鲜花港 - 郁金香" /> 平均收益&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<img src="img/p3.png" style="width: 20px; height: 20px;" alt="上海鲜花港 - 郁金香" /> 投资期限&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<img src="img/p4.png" style="width: 20px; height: 20px;" alt="上海鲜花港 - 郁金香" /> 热门方案
+									</p>
+									<ul style="padding-left: 0px;">
+
+										<li>
+											<a href="/product/pDetail/21078" class="hotpla ">陆金所</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/21084" class="hotpla ">宜人贷</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/21097" class="hotpla ">微贷网</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/89234" class="hotpla2 ">中网国投</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/23096" class="hotpla ">鑫合汇</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/22456" class="hotpla ">浙金网</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/21075" class="hotpla ">拍拍贷</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/89390" class="hotpla2 ">点点搜财</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/21093" class="hotpla ">投哪网</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/89394" class="hotpla ">铜板街</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/89391" class="hotpla ">华赢贷</a>
+										</li>
+										<li>
+											<a href="/product/pDetail/89393" class="hotpla2 ">佐助金服</a>
+										</li>
+									</ul>
+
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+					<div class="col-md-6 all_padding_right" style="padding-top: 10px;">
+
+						<script src="static/js/pRank2.js"></script>
+						<link href="static/css/prank.css" rel='stylesheet' type='text/css' />
+						<div id="rankpath" style="display:none"></div>
+						<div class="panel">
+							<div class="panel-heading bottomtitle">
+								<label class="panel-title pl-title-color1">本期</label>
+								<ul id="timerank" class="product-select-rank">
+									<li class="select-focus-rank" var="1"><b>昨日</b> </li>
+									<li var="2"><b>本周</b> </li>
+									<li var="3"><b>本月</b> </li>
+								</ul>
+							</div>
+							<div id="mains" style="width: 450px;height:250px;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+		<img class="top_bg_market" src="static/image/market.png" style="    width: 100%; height: 570px;" alt="上海鲜花港 - 郁金香" />
+		<div class="container" style="height: 570px;padding-left:0px;padding-right:0px;">
+			<div class="col-md-12 all_padding_right all_padding_left">
+				<p class="bigtitle">市场行情</p>
+			<div class="shop-show">
+            <a class="arrow-left" href="#"></a>
+            <a class="arrow-right" href="#"></a>
+            <div class="swiper-container1" style="width:1133px;margin:0 auto;height:95px;overflow: hidden;">
+                <div class="swiper-wrapper" style="width:1213px;margin:0 auto;height:95px;">
+                    <div class="swiper-slide">
+                        <div class="title" style="height:95px;">
+                            <img style="height:95px;width:220px;margin-left:10px;"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz00.png" border='0'
+                                 alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz2.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz3.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz4.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz5.png" border='0' alt=''/>
+                        </div>
+
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="title" style="height:95px;">
+                            <img style="height:95px;width:220px;margin-left:10px;"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz6.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz7.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz8.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz9.png" border='0' alt=''/>
+                            <img style="height:95px;width:220px"
+                                 src="http://minjiang-pic.b0.upaiyun.com/assets/index/index/xz1.png" border='0' alt=''/>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="pagination"></div>
+        </div>
+				<div class="row" style="padding-left: 15px;padding-right: 15px;">
+
+					<div class="col-md-6 all_padding_left" >
+
+						<div class="panel " style="margin-bottom: 10px;">
+
+							<div class="panel-body " style=" width:500;height: 300px;">
+                                  <div id="main3" style="width: 450px;height:250px;"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-md-6 all_padding_right" >
+
+						<div class="panel " style="margin-bottom: 10px;">
+
+							<div class="panel-body " style=" width:500;height: 300px;">
+								<div id="main2" style="width: 450px;height:250px;"></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="top_bg_xinpi">
+			<div class="container all_padding_right all_padding_left">
+				<div class="col-md-12 all_padding_right all_padding_left">
+
+					<p class="bigtitle2">信息披露</p>
+					<ul style=" padding-left:0px;padding-right:0px;">
+						<li class="mostp2">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/微贷网.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/21097" style="color:#0A7FD9;">微贷网</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">收益高</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">9%</p>
+							</div>
+						</li>
+						<li class="mostp2">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/点点搜财.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/89390" style="color:#0A7FD9;white-space:nowrap;">点点搜财</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">收益高</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">9%</p>
+							</div>
+						</li>
+						<li class="mostp2">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/华赢贷.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/89391" style="color:#0A7FD9;white-space:nowrap;">华赢贷</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">收益高</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">9%</p>
+							</div>
+						</li>
+						<li class="mostp2" style=" margin-right:0px;">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/佐助金服.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/89393" style="color:#0A7FD9;white-space:nowrap;">佐助金服</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">流动性大</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">8%</p>
+							</div>
+						</li>
+					</ul>
+
+					<ul style=" padding-left:0px;padding-right:0px;padding-top:150px;">
+						<li class="mostp2">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/铜板街.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/89394" style="color:#0A7FD9;">铜板街</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">风险较小</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">7%</p>
+							</div>
+
+						</li>
+						<li class="mostp2">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/鑫合汇.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/23096" style="color:#0A7FD9;">鑫合汇</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">流动性强</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">6%</p>
+							</div>
+						</li>
+						<li class="mostp2">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/浙金网.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/22456" style="color:#0A7FD9;">浙金网</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">风险低</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">8%</p>
+							</div>
+						</li>
+						<li class="mostp2" style=" margin-right:0px;">
+							<div class="col-md-5">
+								<img class="top_bg_market" src="static/files/prologo/中网国投.png" style="padding-left:0px;padding-top:20px; width:90px;height: 90px;" alt="" />
+
+							</div>
+							<div class="col-md-4">
+								<p class="pname1">
+									<a href="/product/pDetail/89234" style="color:#0A7FD9;white-space:nowrap;">中网国投</a>
+								</p>
+								<img class="top_bg_market" src="static/image/bang.png" style="width:18px;height: 18px;" alt="上海鲜花港 - 郁金香" />
+								<p style="margin-left:30px;white-space:nowrap;color: #666666;">收益高</p>
+							</div>
+							<div class="col-md-3">
+								<img class="top_bg_market" src="static/image/xpll.png" style="position: absolute; width:49px;height: 49px;" alt="上海鲜花港 - 郁金香" />
+								<p class="baifen" style="padding-left:25px;padding-top:5px;position: absolute;">9%</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="container all_padding_right all_padding_left">
+			<div class="col-md-12 all_padding_right all_padding_left">
+				<p class="bigtitle2">新闻资讯</p>
+				<div class="col-md-4 all_padding_left">
+					<img class="top_bg_news" src="static/image/newslogo.png" style="    width: 95%; height: 150px;" alt="上海鲜花港 - 郁金香" />
+					<div class="container" style="   width: 100%; height: 150px;">
+						<div class="col-md-12 all_padding_right all_padding_left">
+							<img class="newssp" src="static/image/homenews1.png" alt="上海鲜花港 - 郁金香" />
+							<p class="newsti">热点聚焦</p>
+						</div>
+					</div>
+					<div class="" style="    width: 100%;">
+						<ul class="list-group no-bottom " id="hot_news">
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-4 " style="padding-left:0px; padding-right:0px; ">
+					<img class="top_bg_news" src="static/image/newslogo.png" style="    width: 100%; height: 150px;" alt="上海鲜花港 - 郁金香" />
+					<div class="container" style="   width: 100%; height: 150px;">
+						<div class="col-md-12 all_padding_right all_padding_left">
+							<img class="newssp" src="static/image/homenews2.png" alt="上海鲜花港 - 郁金香" />
+							<p class="newsti">最新资讯</p>
+						</div>
+					</div>
+					<div class="" style="    width: 100%;">
+						<ul class="list-group no-bottom " id="new_news">
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-4 " style="padding-left:20px; padding-right:0px; ">
+					<img class="top_bg_news" src="static/image/newslogo.png" style="    width: 95%; height: 150px;" alt="上海鲜花港 - 郁金香" />
+					<div class="container" style="   width: 100%; height: 150px;">
+						<div class="col-md-12 all_padding_right all_padding_left">
+							<img class="newssp" src="static/image/homenews3.png" alt="上海鲜花港 - 郁金香" />
+							<p class="newsti">平台报告</p>
+						</div>
+					</div>
+					<div class="" style="    width: 100%;">
+						<ul class="list-group no-bottom " id="platreport">
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="container p-tb-20 clearfix">
+				<!-- 		<p style="text-align:center;">网贷咨询热线 0571-87951453 服务时间 9:00-18:00 </p> -->
+				<p style="text-align:center;">
+					版权所有： 杭州灵皓科技有限公司 Copyright © 2016~2017 www.jztdata.com . All Rights Reserved.
+					<br/> 战略支持：浙江大学互联网金融研究院、浙江大学人工智能研究所、科技部四方现代服务产业联盟
+					<br/>浙ICP备16046109号-1</p>
+				<!-- 		<div align="center"> -->
+				<!--             <a href="https://ss.knet.cn/verifyseal.dll?sn=e13072631010041791remp000000&ct=df&a=1&pa=0.4312725148629397" target="_blank"> -->
+
+				<!--             <a href="http://www.anquan.org/authenticate/cert/?site=www.wangdaizhijia.com&at=realname" target="_blank"> -->
+
+				<!--         </div> -->
+			</div>
+		</div>
+
+		<script src="js/echarts.js"></script>
+		<script>
+			var myChart = echarts.init(document.getElementById('mains'));
+			var myChart2 = echarts.init(document.getElementById('main2'));
+			var myChart3 = echarts.init(document.getElementById('main3'));
+			option = {
+				color: ['#3398DB'],
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: { // 坐标轴指示器，坐标轴触发有效
+						type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				grid: {
+					left: '3%',
+					right: '4%',
+					bottom: '3%',
+					containLabel: true
+				},
+				xAxis: [{
+					type: 'category',
+					data: ['2016-01', '2016-02', '2016-03', '2016-04', '2016-05', '2016-06', '2017-07'],
+					axisTick: {
+						alignWithLabel: true
+					}
+				}],
+				yAxis: [{
+					type: 'value'
+				}],
+				series: [{
+					name: '直接访问',
+					type: 'bar',
+					barWidth: '60%',
+					data: [10, 52, 200, 334, 390, 330, 220]
+				}]
+			};
+			myChart.setOption(option);
+			myChart3.setOption(option);
+			var mySwiper1 = new Swiper('.swiper-container1', {
+            paginationClickable: true,
+            slidesPerView: 1,
+            loop: true
+        });
+        $('.arrow-left').on('click', function (e) {
+            e.preventDefault()
+            mySwiper1.swipePrev()
+        })
+        $('.arrow-right').on('click', function (e) {
+            e.preventDefault()
+            mySwiper1.swipeNext()
+        });
+        //折线图
+        option2 = {
+    title: {
+        text: '成交量'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:[]
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'成交量',
+            type:'line',
+            stack: '总量',
+            data:[820, 932, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+};
+myChart2.setOption(option2);
+
+
+			$(function () {
+
+				$("#login_submit").click(function() {
+
+					$.post("/jzt-api/rest/v1/userinformation/login",
+							{
+								para: '{ "phone": "13606706704","userName": "123" ,"password": "123" }'
+							},
+							function(data,status){
+								alert("Data: " + data + "\nStatus: " + status);
+
+							});
+				});
+
+			});
+</script>
+
+	</body>
+
+</html>
