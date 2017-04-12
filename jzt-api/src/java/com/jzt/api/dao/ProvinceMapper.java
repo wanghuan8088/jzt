@@ -93,4 +93,14 @@ public interface ProvinceMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(Province record);
+    
+    
+    /**  
+	* 用途：后台管理查询省份列表
+	* 作者：廖凯红
+	* 时间：20170408
+	*/
+    public List<Province> selectProvinceList(@Param("startRow")Integer startRow,@Param("pageSize")Integer pageSize );
+    
+    
 }

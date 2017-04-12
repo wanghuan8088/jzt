@@ -205,4 +205,16 @@ public class ProvinceServiceImpl extends BaseService implements ProvinceService 
 		return provinceMapper.updateByPrimaryKey(record);
 	}
 	
+	
+	/**  
+	* 用途：后台管理查询省份列表
+	* 作者：廖凯红
+	* 时间：20170408
+	*/
+	@Override
+	public List<Province> selectProvinceList(int startRow,int pageSize)
+    {
+		return provinceMapper.selectProvinceList(startRow, pageSize);
+    }
+	
 }
