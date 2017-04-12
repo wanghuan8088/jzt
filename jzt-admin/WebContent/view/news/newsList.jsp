@@ -242,7 +242,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <a class="btn btn-primary btn-lg" href="/woo-web/page/article/add.jsp"> 新 增  </a>
+                        <a class="btn btn-primary btn-lg" href="/jzt-admin/view/news/newsAdd.jsp"> 新 增  </a>
                         <br><br>
 
                         <!-- 模态框（Modal） -->
@@ -338,7 +338,7 @@
                     "targets": [0], // 目标列位置，下标从0开始
                     "data": "nid", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.nid + "'>"+data+"</a>";
+                        return "<a href='/jzt-admin/view/news/newsEdit.jsp?id=" + full.nid + "'>"+data+"</a>";
                     }
                 },
                 {
