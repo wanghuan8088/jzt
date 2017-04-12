@@ -207,8 +207,8 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="active"><a href="/view/position/provinceList.jsp"><i class="fa fa-circle-o"></i> 省份表管理</a></li>
-            <li><a href="/view/position/cityList.jsp"><i class="fa fa-circle-o"></i> 城市管理</a></li>
+            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 省份表管理</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> 城市管理</a></li>
         </ul>
     </li>
 
