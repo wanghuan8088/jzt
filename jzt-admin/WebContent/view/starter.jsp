@@ -106,7 +106,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 曝光信息列表</a></li>
+            <li class="active"><a href="/view/exposure/exposureList.jsp"><i class="fa fa-circle-o"></i> 曝光信息列表</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
         </ul>
     </li>
