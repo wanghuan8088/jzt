@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../jzt-admin/jzt-admin.iml" filepath="$PROJECT_DIR$/../jzt-admin/jzt-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jzt-api.iml" filepath="$PROJECT_DIR$/jzt-api.iml" />
+    </modules>
+  </component>
+</project>

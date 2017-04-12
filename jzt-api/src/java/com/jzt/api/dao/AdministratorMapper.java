@@ -93,4 +93,6 @@ public interface AdministratorMapper {
      * @mbggenerated Sun Mar 12 23:14:31 CST 2017
      */
     int updateByPrimaryKey(Administrator record);
+
+    int removeByPrimaryKey(Administrator record);
 }

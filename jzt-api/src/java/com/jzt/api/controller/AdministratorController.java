@@ -1,0 +1,94 @@
+package com.jzt.api.controller;
+
+/**
+ * Created by yangyuming on 2017/4/12.
+ */
+
+import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.Administrator;
+import com.jzt.api.service.AdministratorService;
+import com.jzt.api.domain.Administrator;
+import com.jzt.api.service.AdministratorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * 管理员接口
+ * jzt-web后台 增删改查
+ */
+
+@Controller
+@RequestMapping("/rest/{version}/admins")
+public class AdministratorController extends BaseController {
+
+    @Autowired
+    private AdministratorService administratorService;
+
+    /***
+     * 管理员列表
+     * @param startRow   起始页码
+     * @param pageSize   显示多少结果
+     * @return
+     */
+    @RequestMapping(value = "/list/{startRow}/{pageSize}")
+    @ResponseBody
+    public Map<String, Object> list(@PathVariable(value="startRow") int startRow,
+                                    @PathVariable(value="pageSize") int pageSize){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Administrator administrator = new Administrator();
+            administrator.setStartRow(startRow);
+            administrator.setPageSize(pageSize);
+            List<Administrator> list = administratorService.list(administrator);
+
+            data.put("administrator", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
+    /***
+     * 删除新闻
+     * @param nid   新闻id
+     * @return
+     */
+    @RequestMapping(value = "/delete/{uid}")
+    @ResponseBody
+    public Map<String, Object> delete(@PathVariable(value="uid") int uid){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Administrator administrator = new Administrator();
+            administrator.setUid(uid);
+            administratorService.delete(administrator);
+
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+}
