@@ -173,6 +173,9 @@
     from p2p_plat
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated
@@ -540,6 +543,34 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id = "listP2pPlatWithPlatform" resultType="map" >
+    select
+    IFNULL(p1.plat_id,'') as id,
+    IFNULL(p2.name,'') as name,
+    IFNULL(p2.icon,'') as icon,
+    IFNULL(state.description,'') as state,
+    IFNULL(pro.name,'') as province,
+    IFNULL(ci.name,'') as city,
+    IFNULL(p2.start_time,'') as start_time,
+    IFNULL(p2.is_delete,'') as is_delete,
+    IFNULL(p1.create_time,'') as create_time,
+    IFNULL(p1.update_time,'') as update_time
+    from p2p_plat p1
+    LEFT JOIN platform p2 ON p1.plat_id=p2.id
+    LEFT JOIN plat_state state ON p2.state = state.id
+    LEFT JOIN province pro ON p2.province = pro.id
+    LEFT JOIN city ci ON p2.city = ci.id
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <update id="removeByPrimaryKey" parameterType="com.jzt.api.domain.P2pPlat" >
+    update p2p_plat
+    set is_delete = #{isDelete,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

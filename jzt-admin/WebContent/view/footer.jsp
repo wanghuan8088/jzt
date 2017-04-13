@@ -94,31 +94,31 @@
      fixed layout. -->
 
   <!-- jQuery 2.2.3 -->
-  <script src="/page/plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <script src="/jzt-admin/page/plugins/jQuery/jquery-2.2.3.min.js"></script>
   <!-- Bootstrap 3.3.6 -->
-  <script src="/page/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/jzt-admin/page/bootstrap/js/bootstrap.min.js"></script>
   <!-- FastClick -->
-  <script src="/page/plugins/fastclick/fastclick.js"></script>
+  <script src="/jzt-admin/page/plugins/fastclick/fastclick.js"></script>
   <!-- AdminLTE App -->
-  <script src="/page/dist/js/app.min.js"></script>
+  <script src="/jzt-admin/page/dist/js/app.min.js"></script>
   <!-- Sparkline -->
-  <script src="/page/plugins/sparkline/jquery.sparkline.min.js"></script>
+  <script src="/jzt-admin/page/plugins/sparkline/jquery.sparkline.min.js"></script>
   <!-- jvectormap -->
-  <script src="/page/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-  <script src="/page/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+  <script src="/jzt-admin/page/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+  <script src="/jzt-admin/page/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
   <!-- SlimScroll 1.3.0 -->
-  <script src="/page/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <script src="/jzt-admin/page/plugins/slimScroll/jquery.slimscroll.min.js"></script>
   <!-- ChartJS 1.0.1 -->
-  <script src="/page/plugins/chartjs/Chart.min.js"></script>
+  <script src="/jzt-admin/page/plugins/chartjs/Chart.min.js"></script>
 
   <!-- AdminLTE dashboard demo (This is only for demo purposes)
   <script src="/page/dist/js/pages/dashboard2.js"></script> -->
 
   <!-- AdminLTE for demo purposes -->
-  <script src="/page/dist/js/demo.js"></script>
-  <script src="/page/dist/js/showTip.js"></script>
-  <script src="/page/plugins/lightbox/lightbox.min.js"></script>
+  <script src="/jzt-admin/page/dist/js/demo.js"></script>
+  <script src="/jzt-admin/page/dist/js/showTip.js"></script>
+  <script src="/jzt-admin/page/plugins/lightbox/lightbox.min.js"></script>
   <!-- DataTables -->
-  <script src="/page/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="/page/plugins/datatables/dataTables.bootstrap.min.js"></script>
+  <script src="/jzt-admin/page/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="/jzt-admin/page/plugins/datatables/dataTables.bootstrap.min.js"></script>
 </body>
