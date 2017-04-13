@@ -20,4 +20,20 @@ public interface CityService {
 	*/
 	public void deleteById(int id);
 	
+	
+	/**  
+	* 用途：后台管理指定城市详情
+	* 作者：廖凯红
+	* 时间：20170413
+	*/
+	public City selectById(int id);
+	
+	
+	/**  
+	* 用途：后台管理新增或者修改城市
+	* 作者：廖凯红
+	* 时间：20170413
+	*/
+	public void saveOrUpdate(City record);
+	
 }

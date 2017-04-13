@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,6 +80,76 @@ public class CityController extends BaseController{
 
         return result;
 	}
+	
+	
+	/**  
+	* 用途：后台管理指定城市详情
+	* 作者：廖凯红
+	* 时间：20170413
+	*/
+	@RequestMapping(value="/cityDetail/{id}")
+	@ResponseBody
+	public Map<String, Object> cityDetail(@PathVariable(value="id") int id)
+	{
+		Map<String, Object> result = new HashMap<>();
+		
+		try 
+        {
+        	City city= cityService.selectById(id);
+
+            Map<String, Object> data = new HashMap<String, Object>();
+            data.put("city", city);
+            
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+		
+		
+		
+		return result;
+		
+	}
+	
+	
+	/**  
+	* 用途：后台管理新增或者修改城市
+	* 作者：廖凯红
+	* 时间：20170413
+	*/
+	@RequestMapping(value="/saveOrUpdate")
+	@ResponseBody
+	public Map<String, Object> saveOrUpdate(@PathVariable(value="para")String para)
+	{
+		Map<String, Object> result = new HashMap<>();
+		
+		JSONObject jsStr = JSONObject.fromObject(para);
+		City record = (City) JSONObject.toBean(jsStr, City.class);
+		
+		try 
+        {
+        	cityService.saveOrUpdate(record);
+
+            Map<String, Object> data = new HashMap<String, Object>();
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+		
+		
+		
+		
+		
+		return result;
+	}
+	
+	
 	
 	
 
