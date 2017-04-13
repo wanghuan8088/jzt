@@ -102,4 +102,5 @@ public interface CityMapper {
 	*/
     public List<City> selectCityList(@Param("startRow")Integer startRow,@Param("pageSize")Integer pageSize);
     
+    
 }
