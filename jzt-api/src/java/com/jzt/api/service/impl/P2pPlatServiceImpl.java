@@ -4,7 +4,6 @@ import com.jzt.api.dao.P2pPlatMapper;
 import com.jzt.api.domain.P2pPlatExample;
 import com.jzt.api.domain.P2pPlat;
 import com.jzt.api.service.P2pPlatService;
-import com.sun.javafx.collections.MappingChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
