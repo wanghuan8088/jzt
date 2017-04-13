@@ -34,9 +34,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
   <style>
-	table td{white-space:nowrap;overflow:hidden; text-overflow:ellipsis;}
-	table {table-layout:fixed;}
-	</style>
+    table td{white-space:nowrap;overflow:hidden; text-overflow:ellipsis;}
+    table {table-layout:fixed;}
+  </style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -46,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/page/index2.html" class="logo">
+    <a href="/jzt-admin/page/index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>jzt</b>后台管理</span>
       <!-- logo for regular state and mobile devices -->
@@ -231,7 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="搜索...">
-              <span class="input-group-btn">
+          <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>

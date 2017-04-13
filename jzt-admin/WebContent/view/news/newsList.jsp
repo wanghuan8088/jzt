@@ -351,7 +351,7 @@
             ],
 
             "ajax": {
-                "url": "/jzt-api/rest/v1/news/list/0/10",
+                "url": "/jzt-api/rest/v1/news/list/0/100",
                 "type": "GET",
                 "dataSrc": function ( json ) {
                     return json.data.news;
