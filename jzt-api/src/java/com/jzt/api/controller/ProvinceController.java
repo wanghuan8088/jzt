@@ -152,7 +152,7 @@ public class ProvinceController extends BaseController {
 	
 	
 	/**  
-	* 用途：后台管理删除制定省份
+	* 用途：后台管理删除指定省份
 	* 作者：廖凯红
 	* 时间：20170408
 	*/
