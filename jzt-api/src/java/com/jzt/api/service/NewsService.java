@@ -1,6 +1,7 @@
 package com.jzt.api.service;
 
 import com.jzt.api.domain.News;
+import com.jzt.api.domain.NewsWithBLOBs;
 
 import java.util.List;
 
@@ -9,6 +10,13 @@ import java.util.List;
  */
 
 public interface NewsService {
+
+    /**
+     * 新增新闻
+     * @param news
+     * @return
+     */
+    void add(NewsWithBLOBs news);
 
     /**
      * 新闻列表
@@ -23,4 +31,11 @@ public interface NewsService {
      * @return
      */
     void delete(News news);
+
+    /**
+     * 新闻详细
+     * @param news
+     * @return
+     */
+    News detail(News news);
 }

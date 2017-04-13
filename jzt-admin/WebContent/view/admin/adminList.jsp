@@ -1,6 +1,11 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/view/header.jsp"%>
-
+<%--
+  Created by IntelliJ IDEA.
+  User: yangyuming
+  Date: 2017/4/12
+  Time: 上午11:19
+--%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ include file="/view/header.jsp" %>
 
 <!-- Sidebar Menu -->
 <ul class="sidebar-menu">
@@ -16,7 +21,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 账户管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/admin/adminList.jsp"><i class="fa fa-circle-o"></i> 账户管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 权限管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 日志管理</a></li>
         </ul>
@@ -77,7 +82,7 @@
         <ul class="treeview-menu" >
             <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 轮播广告图管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 推广平台管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 热门新闻管理</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> 热门管理员管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 热门平台管理</a></li>
         </ul>
     </li>
@@ -214,58 +219,21 @@
 
 </ul>
 <!-- /.sidebar-menu -->
-
 </section>
 <!-- /.sidebar -->
 </aside>
-
-<style>
-    table.dataTable.display tbody tr.selected {
-        background-color: #acbad4;
-    }
-</style>
-
-<!-- 模态框（Modal） -->
-<div  class="modal fade"  id="myModal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:1000px;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-
-                </h4>
-            </div>
-            <div class="modal-body">
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary" onclick='confirmData(this);' >
-                    确定
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
-
-
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            平台文章
-            <small>新 增</small>
+            管理员
+            <small>列表</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 平台管理</a></li>
-            <li class="active">新 增</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> 管理员管理</a></li>
+            <li class="active">管理员</li>
         </ol>
     </section>
 
@@ -280,92 +248,48 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <div class="box box-success">
+                        <a class="btn btn-primary btn-lg" href="/woo-web/page/article/add.jsp"> 新 增  </a>
+                        <br><br>
 
-                            <div class="box-header with-border">
-                                <h3 class="box-title">第一步:上传平台首要图片(1)</h3>
-                            </div>
+                        <!-- 模态框（Modal） -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">
 
-                            <div id="imgdivpri" class="row">
-                                <div id="imgpri">
-                                    <div class="col-md-2 form-group">
-                                        <label for="exampleInputFile">平台首要图片(建议上传750*380比例)</label><br>
-                                        <form id="imageform" method="post" enctype="multipart/form-data">
-                                            <input id="imageform_key" name="key" type="hidden">
-                                            <input name="x:jzt" type="hidden" value="jzt">
-                                            <input id="token" name="token" type="hidden" value="">
-                                            <input id="imageform_file" name="file" type="file" />
-                                            <input name="accept" type="hidden" />
-                                        </form>
-                                        <div class="box-footer">
-                                            <button type="button" class="btn btn-primary" onClick="uploadFile(this);">上传</button>
-                                        </div>
+                                        </h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        <a href="" data-lightbox="example-1" id="orginimage">
-                                            <img id="formimage" src="" width="250" height="250" alt="750*380" />
-                                        </a>
-                                        <p class="help-block" id="imgname"></p>
-                                        <p class="help-block" id="imgtype"></p>
-                                        <p class="help-block" id="imgsize"></p>
+                                    <div class="modal-body">
+                                        确定删除吗
                                     </div>
-                                </div>
-                            </div>
-
-                        <div class="box box-primary">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">第二步:填写内容</h3>
-                            </div>
-
-                            <form role="form">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>新闻标题</label>
-                                    <input type="text" id="title" class="form-control" placeholder="请输入 ...">
-                                </div>
-                                <div class="form-group">
-                                    <label>新闻摘要</label>
-                                    <input type="text" id="abstracts" class="form-control" placeholder="请输入 ...">
-                                </div>
-                                <div class="form-group">
-                                    <label>新闻作者</label>
-                                    <input type="text" id="author" class="form-control" placeholder="请输入 ...">
-                                </div>
-                                <div class="form-group">
-                                    <label>新闻来源</label>
-                                    <input type="text" id="sourceSite" class="form-control" placeholder="请输入 ...">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>新闻类别</label>
-                                    <select class="form-control" name="categoryId" id="categoryId" onchange="showMsg(this)">
-
-                                        <option value="1">政策</option>
-                                        <option value="2">平台</option>
-                                        <option value="3">数据</option>
-                                        <option value="4">观点</option>
-                                        <option value="5">曝光台</option>
-                                        <option value="6">理财</option>
-                                        <option value="6">研究</option>
-                                        <option value="6">国外</option>
-                                        <option value="6">首页滚动</option>
-                                    </select>
-                                </div>
-
-                                <!-- textarea -->
-                                <div class="form-group">
-                                    <label>新闻内容</label>
-                                    <textarea class="form-control" id="content" rows="15" placeholder="请输入 ..."></textarea>
-                                </div>
-
-                                <div class="box-footer">
-                                    <button type="button" class="btn btn-primary" onClick="submitForm();">提交</button>
-                                </div>
-                            </form>
-
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick='deleteData(this);' id="mbid">
+                                            确定
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
                         </div>
 
-
+                        <table id="tableobject" class="table table-bordered table-striped" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>密码</th>
+                                <th>权限</th>
+                                <th>创建时间</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -387,45 +311,99 @@
 
 
 
-
 <script>
 
-function submitForm() {
+    $(document).ready(function() {
 
-var data=new Object();
-    data.title=$("#title").val();
-    data.abstracts=$("#abstracts").val();
-    data.author=$("#author").val();
-    data.sourceSite=$("#sourceSite").val();
-    data.categoryId=$("#categoryId").val();
-    data.content=$("#content").val();
+        $('#tableobject').DataTable( {
 
-var datafstr=JSON.stringify(data);
-var requestData = datafstr;
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                },
+                "sZeroRecords": "没有检索到数据",
+                "sProcessing":   "加载中...",
+                "sLoadingRecords": "加载中..."
+            },
 
-$.ajax({
-url: '/jzt-api/rest/1/news/add/',
-type: 'POST',
-data: "para="+encodeURIComponent(requestData),
-async: true,
-cache: false,
-// contentType: false,
-contentType: 'application/x-www-form-urlencoded',
-processData: false,
-success: function (responseStr) {
-    alert("保存成功!");
-},
-error: function (responseStr) {
-alert("error:" + JSON.stringify(responseStr));
-}
-});
+            "searching":false,
+            "aoColumnDefs": [
+                { "sWidth": "10%", "aTargets": [ 0 ] },
+                { "sWidth": "10%", "aTargets": [ 1 ] },
+                { "sWidth": "10%", "aTargets": [ 2 ] },
+                { "sWidth": "10%", "aTargets": [ 3 ] },
+                { "sWidth": "15%", "aTargets": [ 4 ] },
+                { "sWidth": "15%", "aTargets": [ 5 ] },
+                { "sWidth": "10%", "aTargets": [ 6 ] },
+                {
+                    "targets": [0], // uid
+                    "data": "uid",
+                    "render": function(data, type, full) { // 返回自定义内容
+                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.nid + "'>"+data+"</a>";
+                    }
+                },
+                {
+                    "targets": [6], // 目标列位置，下标从0开始
+                    "data": "uid",
+                    "render": function(data, type, full) { // 返回自定义内容
+                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.nid + ");'>删除</button>";
+                    }
+                }
+            ],
+
+            "ajax": {
+                "url": "/jzt-api/rest/v1/admins/list/0/10",
+                "type": "GET",
+                "dataSrc": function ( json ) {
+                    return json.data.administrator;
+                }
+            },
+
+            "columns":[
+                { "data": "uid" },
+                { "data": "userName" },
+                { "data": "password" },
+                { "data": "permission" },
+                { "data": "createTime" },
+                { "data": "updateTime" }
+            ]
+
+        } );
+
+    } );
 
 
-}
+    function transferData(id) {
+        $('#mbid').val(id);
+    }
+
+    function deleteData(obj) {
+        var id = $('#mbid').val();
+        $.ajax({
+            url: '/jzt-api/rest/v1/news/delete/'+id,
+            type: 'GET',
+            async: true,
+            cache: false,
+            processData: false,
+            success: function (responseStr) {
+                ShowSuccess("删除成功!");
+                $('#myModal').modal('hide')
+                $('#tableobject').DataTable().clear().draw().ajax.reload();
+            },
+            error: function (responseStr) {
+                alert("error:" + JSON.stringify(responseStr));
+            }
+        });
+    }
+
 
 </script>
-
-
-
 
 </html>

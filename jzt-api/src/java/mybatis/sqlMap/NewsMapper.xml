@@ -266,10 +266,10 @@
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="abstracts != null" >
-        #{abstracts,jdbcType=LONGVARCHAR},
+        #{abstracts,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
+        #{content,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
