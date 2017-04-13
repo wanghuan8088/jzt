@@ -12,6 +12,8 @@ public interface ExposureService {
 
     List<Exposure> listByPlatform(Exposure exposure);
 
+    List<Exposure> listByUser(Exposure exposure);
+
     Exposure detail(Exposure exposure);
 
     Exposure platform(Exposure exposure);
