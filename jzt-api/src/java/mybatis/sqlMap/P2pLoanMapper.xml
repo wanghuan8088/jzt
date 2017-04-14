@@ -699,4 +699,102 @@
     </if>
     
   </select>
+
+  <select id = "listByExample" resultType="map" parameterType="com.jzt.api.domain.P2pLoanExample">
+    select
+    IFNULL(l.id,'') as loanId,
+    IFNULL(p.id,'') as platId,
+    IFNULL(p.name,'') as platName,
+    IFNULL(l.name,'') as loanName,
+    IFNULL(l.is_delete,'') as isDelete,
+    IFNULL(l.amount,'') as amount,
+    IFNULL(l.interest_rate,'') as interestRate,
+    IFNULL(l.limit_time,'') as limitTime,
+    IFNULL(l.schedule,'') as schedule,
+    IFNULL(l.firstday_interest,'') as firstdayInterest,
+    IFNULL(l.mode_of_payment,'') as modeOfPayment,
+    IFNULL(l.purchase_amount,'') as purchaseAmount,
+    IFNULL(l.limit_amount,'') as limitAmount,
+    IFNULL(l.dock_product,'') as dockProduct,
+    IFNULL(l.protection_means,'') as protectionMeans,
+    IFNULL(l.is_transfer,'') as isTransfer,
+    IFNULL(l.state,'') as state,
+    IFNULL(l.product_url,'') as productUrl,
+    IFNULL(l.des,'') as des,
+    IFNULL(l.protocol,'') as protocol,
+    IFNULL(l.start_time,'') as startTime,
+    IFNULL(l.create_time,'') as createTime,
+    IFNULL(l.update_time,'') as updateTime
+    from p2p_loan l
+    LEFT JOIN platform p ON l.plat_id = p.id
+    <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+
+  <update id="removeByPrimaryKey" parameterType="com.jzt.api.domain.P2pLoan" >
+    update p2p_loan
+    set is_delete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByPrimaryKeyWithPlatformName" resultType="map" parameterType="java.lang.Integer" >
+    select
+    IFNULL(l.id,'') as id,
+    IFNULL(p.id,'') as platId,
+    IFNULL(l.name,'') as name,
+    IFNULL(l.is_delete,'') as isDelete,
+    IFNULL(l.amount,'') as amount,
+    IFNULL(l.interest_rate,'') as interestRate,
+    IFNULL(l.limit_time,'') as limitTime,
+    IFNULL(l.schedule,'') as schedule,
+    IFNULL(l.firstday_interest,'') as firstdayInterest,
+    IFNULL(l.mode_of_payment,'') as modeOfPayment,
+    IFNULL(l.purchase_amount,'') as purchaseAmount,
+    IFNULL(l.limit_amount,'') as limitAmount,
+    IFNULL(l.dock_product,'') as dockProduct,
+    IFNULL(l.protection_means,'') as protectionMeans,
+    IFNULL(l.is_transfer,'') as isTransfer,
+    IFNULL(l.state,'') as state,
+    IFNULL(l.product_url,'') as productUrl,
+    IFNULL(l.des,'') as des,
+    IFNULL(l.protocol,'') as protocol,
+    IFNULL(l.start_time,'') as startTime,
+    IFNULL(l.create_time,'') as createTime,
+    IFNULL(l.update_time,'') as updateTime,
+    IFNULL(p.name,'') as platName
+    from p2p_loan l
+    LEFT JOIN platform p ON l.plat_id = p.id
+    where l.id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="test" resultType="map" parameterType="java.lang.Integer" >
+    select
+    IFNULL(l.id,'') as id,
+    IFNULL(p.id,'') as platId,
+    IFNULL(l.name,'') as name,
+    IFNULL(l.is_delete,'') as isDelete,
+    IFNULL(l.amount,'') as amount,
+    IFNULL(l.interest_rate,'') as interestRate,
+    IFNULL(l.limit_time,'') as limitTime,
+    IFNULL(l.schedule,'') as schedule,
+    IFNULL(l.firstday_interest,'') as firstdayInterest,
+    IFNULL(l.mode_of_payment,'') as modeOfPayment,
+    IFNULL(l.purchase_amount,'') as purchaseAmount,
+    IFNULL(l.limit_amount,'') as limitAmount,
+    IFNULL(l.dock_product,'') as dockProduct,
+    IFNULL(l.protection_means,'') as protectionMeans,
+    IFNULL(l.is_transfer,'') as isTransfer,
+    IFNULL(l.state,'') as state,
+    IFNULL(l.product_url,'') as productUrl,
+    IFNULL(l.des,'') as des,
+    IFNULL(l.protocol,'') as protocol,
+    IFNULL(l.start_time,'') as startTime,
+    IFNULL(l.create_time,'') as createTime,
+    IFNULL(l.update_time,'') as updateTime,
+    IFNULL(p.name,'') as platName
+    from p2p_loan l
+    LEFT JOIN platform p ON l.plat_id = p.id
+    where l.id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

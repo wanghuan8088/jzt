@@ -136,4 +136,39 @@ public class ExposureController extends BaseController {
         return result;
     }
 
+    /**
+     * 我的曝光
+     * @param id
+     * @param startRow
+     * @param pageSize
+     * @return
+     */
+    @RequestMapping(value = "/user/{id}/{startRow}/{pageSize}")
+    @ResponseBody
+    public Map<String, Object> listByUser(@PathVariable(value="id") int id,
+                                              @PathVariable(value="startRow") int startRow,
+                                              @PathVariable(value="pageSize") int pageSize){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            Exposure exposure = new Exposure();
+            exposure.setStartRow(startRow);
+            exposure.setPageSize(pageSize);
+            exposure.setAuthorId(id);
+            List<Exposure> list = exposureService.listByUser(exposure);
+
+            data.put("exposure", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
+
 }

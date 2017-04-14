@@ -5,11 +5,11 @@
       <ul class="sidebar-menu">
         <li class="header">导航</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
-        <li><a href="/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
-        <li><a href="/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
-        <li><a href="/page/topic/list.jsp"><i class="fa fa-dashboard"></i> <span>公司管理</span></a></li>
-        <li><a href="/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
+        <li class="active"><a href="/jzt-admin/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
+        <li><a href="/jzt-admin/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
+        <li><a href="/jzt-admin/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
+        <li><a href="/jzt-admin/page/topic/list.jsp"><i class="fa fa-dashboard"></i> <span>公司管理</span></a></li>
+        <li><a href="/jzt-admin/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -22,11 +22,11 @@
           <!-- Content Header (Page header) -->
           <section class="content-header">
               <h1>
-                  平台列表
+                  p2p标的列表
                   <small>列表</small>
               </h1>
               <ol class="breadcrumb">
-                  <li><a href="#"><i class="fa fa-dashboard"></i> 平台管理</a></li>
+                  <li><a href="#"><i class="fa fa-dashboard"></i> p2p标的列表</a></li>
                   <li class="active">列表</li>
               </ol>
           </section>
@@ -74,13 +74,15 @@
                               <table id="tableobject" class="table table-bordered table-striped" cellspacing="0" width="100%">
                                   <thead>
                                   <tr>
-                                      <th>平台Id</th>
+                                      <th>平台ID</th>
                                       <th>平台名称</th>
-                                      <th>平台图标</th>
-                                      <th>平台状态</th>
-                                      <th>省</th>
-                                      <th>市</th>
-                                      <th>上线时间</th>
+                                      <th>产品名称</th>
+                                      <th>开标时间</th>
+                                      <th>借款金额</th>
+                                      <th>年化收益</th>
+                                      <th>对接产品</th>
+                                      <th>保障方式</th>
+                                      <th>还款方式</th>
                                       <th>创建时间</th>
                                       <th>修改时间</th>
                                       <th>操作</th>
@@ -134,23 +136,25 @@
             "aoColumnDefs": [
                 { "sWidth": "5%", "aTargets": [ 0 ] },
                 { "sWidth": "10%", "aTargets": [ 1 ] },
-                { "sWidth": "10%", "aTargets": [ 2 ] },
+                { "sWidth": "13%", "aTargets": [ 2 ] },
                 { "sWidth": "10%", "aTargets": [ 3 ] },
-                { "sWidth": "5%", "aTargets": [ 4 ] },
-                { "sWidth": "7%", "aTargets": [ 5 ] },
-                { "sWidth": "10%", "aTargets": [ 6 ] },
+                { "sWidth": "6%", "aTargets": [ 4 ] },
+                { "sWidth": "6%", "aTargets": [ 5] },
+                { "sWidth": "15%", "aTargets": [ 6 ] },
                 { "sWidth": "10%", "aTargets": [ 7 ] },
                 { "sWidth": "10%", "aTargets": [ 8 ] },
                 { "sWidth": "10%", "aTargets": [ 9 ] },
+                { "sWidth": "10%", "aTargets": [ 10 ] },
+                { "sWidth": "10%", "aTargets": [ 11 ] },
                 {
-                    "targets": [1], // 目标列位置，下标从0开始
+                    "targets": [2], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.id + "'>"+data+"</a>";
+                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.loanId + "'>"+data+"</a>";
                     }
                 },
                 {
-                    "targets": [9], // 目标列位置，下标从0开始
+                    "targets": [11], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
                         return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.id + ");'>删除</button>";
@@ -159,24 +163,26 @@
             ],
 
             "ajax": {
-                "url": "/jzt-api/rest/v1/p2pplat/list/0/10",
+                "url": "/jzt-api/rest/v1/p2ploan/list/0/10",
                 "type": "GET",
                 "dataSrc": function ( json ) {
-                    return json.data.p2pplat;
+                    return json.data.p2ploan;
                 }
             },
 
             "columns":[
-                { "data": "id" },
-                { "data": "name" },
-                { "data": "icon" },
-                { "data": "state" },
-                { "data": "province" },
-                { "data": "city" },
-                { "data": "start_time" },
-                { "data": "create_time" },
-                { "data": "update_time" },
-                { "data": "id" }
+                { "data": "platId" },
+                { "data": "platName" },
+                { "data": "loanName" },
+                { "data": "startTime" },
+                { "data": "amount" },
+                { "data": "interestRate" },
+                { "data": "dockProduct" },
+                { "data": "protectionMeans" },
+                { "data": "modeOfPayment" },
+                { "data": "updateTime" },
+                { "data": "createTime" },
+                { "data": "platId" }
             ]
 
         } );
@@ -191,7 +197,7 @@
     function deleteData(obj) {
         var id = $('#mbid').val();
         $.ajax({
-            url: '/jzt-api/rest/v1/p2pplat/delete/'+id,
+            url: '/jzt-api/rest/v1/p2ploan/delete/'+id,
             type: 'GET',
             async: true,
             cache: false,

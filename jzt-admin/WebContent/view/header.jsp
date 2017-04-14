@@ -8,35 +8,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="shortcut icon" href="/page/jzt-icon.png">
+  <link rel="shortcut icon" href="/jzt-admin/page/jzt-icon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>jzt后台管理</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="/page/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/jzt-admin/page/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/page/plugins/font-awesome-4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/jzt-admin/page/plugins/font-awesome-4.6.3/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="/page/plugins/ionicons-2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="/jzt-admin/page/plugins/ionicons-2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/page/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="/jzt-admin/page/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
   -->
-  <link rel="stylesheet" href="/page/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="/jzt-admin/page/dist/css/skins/skin-blue.min.css">
 
-  <link rel="stylesheet" href="/page/plugins/lightbox/lightbox.min.css">
+  <link rel="stylesheet" href="/jzt-admin/page/plugins/lightbox/lightbox.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
 
   <style>
-	table td{white-space:nowrap;overflow:hidden; text-overflow:ellipsis;}
-	table {table-layout:fixed;}
-	</style>
+    table td{white-space:nowrap;overflow:hidden; text-overflow:ellipsis;}
+    table {table-layout:fixed;}
+  </style>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -46,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/page/index2.html" class="logo">
+    <a href="/jzt-admin/page/index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>jzt</b>后台管理</span>
       <!-- logo for regular state and mobile devices -->
@@ -78,7 +78,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="/page/dist/img/Admin-icon.png" class="img-circle" alt="User Image">
+                        <img src="/jzt-admin/page/dist/img/Admin-icon.png" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -162,14 +162,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/page/dist/img/Admin-icon.png" class="user-image" alt="User Image">
+              <img src="/jzt-admin/page/dist/img/Admin-icon.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">管理员</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/page/dist/img/Admin-icon.png" class="img-circle" alt="User Image">
+                <img src="/jzt-admin/page/dist/img/Admin-icon.png" class="img-circle" alt="User Image">
 
                 <p>管理员 - Web Admin
                   <small>Member since Nov. 2012</small>
@@ -196,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="/page/sessionDelete.jsp" class="btn btn-default btn-flat">退 出</a>
+                  <a href="/jzt-admin/page/sessionDelete.jsp" class="btn btn-default btn-flat">退 出</a>
                 </div>
               </li>
             </ul>
@@ -218,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/page/dist/img/Admin-icon.png" class="img-circle" alt="User Image">
+          <img src="/jzt-admin/page/dist/img/Admin-icon.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>管理员</p>
@@ -231,7 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="搜索...">
-              <span class="input-group-btn">
+          <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>

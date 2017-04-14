@@ -21,7 +21,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/admin/adminList.jsp"><i class="fa fa-circle-o"></i> 账户管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/admin/adminList.jsp"><i class="fa fa-circle-o"></i> 账户管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 权限管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 日志管理</a></li>
         </ul>
@@ -36,7 +36,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 用户</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 用户</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 短信验证码</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 权限管理</a></li>
         </ul>
@@ -51,7 +51,7 @@
             </span>
         </a>
         <ul class="treeview-menu menu-open" style="display: block;">
-            <li class="active"><a href="/view/news/newsList.jsp"><i class="fa fa-circle-o"></i> 新闻</a></li>
+            <li class="active"><a href="/jzt-admin/view/news/newsList.jsp"><i class="fa fa-circle-o"></i> 新闻</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 新闻类别管理</a></li>
         </ul>
     </li>
@@ -65,7 +65,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台统计数据管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台统计数据管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 平台第三方评级管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 平台每日运营数据管理</a></li>
         </ul>
@@ -80,7 +80,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 轮播广告图管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 轮播广告图管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 推广平台管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 热门管理员管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 热门平台管理</a></li>
@@ -96,7 +96,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 每日访问量管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 每日访问量管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 每周访问量管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 每月访问量管理</a></li>
         </ul>
@@ -111,7 +111,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 曝光信息列表</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 曝光信息列表</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
         </ul>
     </li>
@@ -125,7 +125,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 信息管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 信息管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 曝光预警</a></li>
         </ul>
     </li>
@@ -139,7 +139,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台报告</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台报告</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 第三方报告</a></li>
         </ul>
     </li>
@@ -153,7 +153,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 敏感词管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 敏感词管理</a></li>
         </ul>
     </li>
 
@@ -166,7 +166,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 银行理财能力</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 银行理财能力</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 银行财务报告</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 银行基本信息</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 理财产品标的</a></li>
@@ -183,7 +183,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
         </ul>
     </li>
@@ -197,7 +197,7 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台状态管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台状态管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> tag汇总管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 安全认证管理</a></li>
         </ul>
@@ -212,7 +212,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="active"><a href="/view/starter.jsp"><i class="fa fa-circle-o"></i> 省份表管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 省份表管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 城市管理</a></li>
         </ul>
     </li>

@@ -93,4 +93,14 @@ public interface CityMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(City record);
+    
+    
+    /**  
+	* 用途：后台管理查询城市列表
+	* 作者：廖凯红
+	* 时间：20170408
+	*/
+    public List<City> selectCityList(@Param("startRow")Integer startRow,@Param("pageSize")Integer pageSize);
+    
+    
 }

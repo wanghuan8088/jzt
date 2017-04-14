@@ -5,9 +5,9 @@
       <ul class="sidebar-menu">
         <li class="header">导航</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
-        <li><a href="/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
-        <li><a href="/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
+        <li><a href="/jzt-admin/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
+        <li><a href="/jzt-admin/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
+        <li><a href="/jzt-admin/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
         
         
 		<li class="treeview active">
@@ -19,13 +19,13 @@
             </span>
           </a>
           <ul class="treeview-menu menu-open" style="display: block;">
-            <li><a href="/page/topic/list.jsp"><i class="fa fa-table"></i> 文章管理</a></li>
-            <li class="active"><a href="/page/topic/category.jsp"><i class="fa fa-table"></i> 分类管理</a></li>
-            <li><a href="/page/topic/scroll.jsp"><i class="fa fa-table"></i> 轮播图片</a></li>
+            <li><a href="/jzt-admin/page/topic/list.jsp"><i class="fa fa-table"></i> 文章管理</a></li>
+            <li class="active"><a href="/jzt-admin/page/topic/category.jsp"><i class="fa fa-table"></i> 分类管理</a></li>
+            <li><a href="/jzt-admin/page/topic/scroll.jsp"><i class="fa fa-table"></i> 轮播图片</a></li>
           </ul>
         </li>
 
-        <li><a href="/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
+        <li><a href="/jzt-admin/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
