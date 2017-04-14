@@ -45,7 +45,7 @@
             </span>
         </a>
         <ul class="treeview-menu menu-open" style="display: block;">
-            <li class="active"><a href="/view/news/newsList.jsp"><i class="fa fa-circle-o"></i> 新闻</a></li>
+            <li class="active"><a href="/jzt-admin/view/news/newsList.jsp"><i class="fa fa-circle-o"></i> 新闻</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 新闻类别管理</a></li>
         </ul>
     </li>
@@ -191,9 +191,9 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/view/platSupport/stateList.jsp"><i class="fa fa-circle-o"></i> 平台状态管理</a></li>
-            <li><a href="/view/platSupport/tagList.jsp"><i class="fa fa-circle-o"></i> tag汇总管理</a></li>
-            <li><a href="/view/platSupport/safeCertList.jsp"><i class="fa fa-circle-o"></i> 安全认证管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/platSupport/stateList.jsp"><i class="fa fa-circle-o"></i> 平台状态管理</a></li>
+            <li><a href="/jzt-admin/view/platSupport/tagList.jsp"><i class="fa fa-circle-o"></i> tag汇总管理</a></li>
+            <li><a href="/jzt-admin/view/platSupport/safeCertList.jsp"><i class="fa fa-circle-o"></i> 安全认证管理</a></li>
         </ul>
     </li>
 
