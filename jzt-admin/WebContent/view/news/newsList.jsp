@@ -328,11 +328,11 @@
 
             "searching":false,
             "aoColumnDefs": [
-                { "sWidth": "40%", "aTargets": [ 0 ] },
+                { "sWidth": "30%", "aTargets": [ 0 ] },
                 { "sWidth": "10%", "aTargets": [ 1 ] },
                 { "sWidth": "10%", "aTargets": [ 2 ] },
-                { "sWidth": "10%", "aTargets": [ 3 ] },
-                { "sWidth": "10%", "aTargets": [ 4 ] },
+                { "sWidth": "15%", "aTargets": [ 3 ] },
+                { "sWidth": "15%", "aTargets": [ 4 ] },
                 { "sWidth": "10%", "aTargets": [ 5 ] },
                 {
                     "targets": [0], // 目标列位置，下标从0开始
