@@ -552,9 +552,25 @@ public class UserInformationController extends BaseController {
 		}
 		return result;
 	}
-	
-	
 
+	@RequestMapping(value = "/detail/{id}")
+    @ResponseBody
+    public Map<String, Object> detail(@PathVariable(value="id") int id){
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			UserInformation record = new UserInformation();
+			record.setUid(id);
+			
+			Map<String, Object> data = new HashMap<String, Object>();
+			result = userInformationService.selectByPrimaryKey(record.getUid());
+		} catch (Exception e) {
+			result.put("res", "1");
+			result.put("message", "Error-"+e.getMessage());
+		}
+		return result;
+	}
 
 
 }

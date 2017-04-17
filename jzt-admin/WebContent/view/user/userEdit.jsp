@@ -68,7 +68,12 @@ table.dataTable.display tbody tr.selected {
 
 						<div class="box box-success">
 
+
+
 							<div class="box box-primary">
+								<div class="box-header with-border">
+									<h3 class="box-title">第二步:填写内容</h3>
+								</div>
 
 								<form role="form">
 									<!-- text input -->
@@ -77,7 +82,7 @@ table.dataTable.display tbody tr.selected {
 											class="form-control" placeholder="请输入 ...">
 									</div>
 									<div class="form-group">
-										<label>密码</label> <input type="text" id="password"
+										<label>用户密码</label> <input type="text" id="password"
 											class="form-control" placeholder="请输入 ...">
 									</div>
 									<div class="form-group">
@@ -85,11 +90,11 @@ table.dataTable.display tbody tr.selected {
 											class="form-control" placeholder="请输入 ...">
 									</div>
 									<div class="form-group">
-										<label>郵箱</label> <input type="text" id="email"
+										<label>邮箱</label> <input type="text" id="email"
 											class="form-control" placeholder="请输入 ...">
 									</div>
 									<div class="form-group">
-										<label>用户电话号码</label> <input type="text" id="phone"
+										<label>电话号码</label> <input type="text" id="phone"
 											class="form-control" placeholder="请输入 ...">
 									</div>
 
@@ -130,46 +135,79 @@ table.dataTable.display tbody tr.selected {
 <%@ include file="/view/footer.jsp"%>
 
 
-
-
+<%
+    String id = request.getParameter("id");
+%>
 <script>
 
-function submitForm() {
+    $(document).ready(function() {
+        var id = <%=id%>;
+        getData(id);
 
-var data=new Object();
-    data.userName=$("#userName").val();
-    data.userDspName=$("#userDspName").val();
-    data.email=$("#email").val();
-    data.phone=$("#phone").val();
-    data.sex=$("#sex").val();
-    data.password=$("#password").val();
+    } );
 
-var datafstr=JSON.stringify(data);
-var requestData = datafstr;
+function getData(id) {
 
 $.ajax({
-	url: '/jzt-api/rest/1/userinformation/save/',
-	type: 'POST',
-	data: "para="+encodeURIComponent(requestData),
-	async: true,
-	cache: false,
-	// contentType: false,
-	contentType: 'application/x-www-form-urlencoded',
-	processData: false,
-	success: function (responseStr) {
-	    alert("保存成功!");
-	},
-	error: function (responseStr) {
-		alert("error:" + JSON.stringify(responseStr));
-	}
-});
+url: '/jzt-api/rest/1/userinformation/detail/' + id,
+type: 'GET',
+async: true,
+cache: false,
+// contentType: false,
+//contentType: 'application/x-www-form-urlencoded',
+processData: false,
+success: function (responseStr) {
 
+$("#userName").val(responseStr.data.record.userName);
+$("#password").val(responseStr.data.record.password);
+$("#userDspName").val(responseStr.data.record.userDspName);
+$("#email").val(responseStr.data.record.email);
+$("#phone").val(responseStr.data.record.phone);
+$("#sex").val(responseStr.data.record.sex);
+
+},
+error: function (responseStr) {
+alert("error:" + JSON.stringify(responseStr));
+}
+});
 
 }
 
+
+	function submitForm() {
+
+		var data = new Object();
+		data.uid = <%=id%>;
+		data.userName = $("#userName").val();
+		data.userDspName = $("#userDspName").val();
+		data.email = $("#email").val();
+		data.phone = $("#phone").val();
+		data.sex = $("#sex").val();
+		data.password = $("#password").val();
+
+		alert(data.uid);
+		var datafstr = JSON.stringify(data);
+		alert(datafstr);
+		var requestData = datafstr;
+
+		$.ajax({
+			url : '/jzt-api/rest/1/userinformation/saveOrUpdate/',
+			type : 'POST',
+			data : "para=" + encodeURIComponent(requestData),
+			async : true,
+			cache : false,
+			// contentType: false,
+			contentType : 'application/x-www-form-urlencoded',
+			processData : false,
+			success : function(responseStr) {
+				alert("更新成功!");
+			},
+			error : function(responseStr) {
+				alert("error:" + JSON.stringify(responseStr));
+			}
+		});
+
+	}
 </script>
-
-
-
 
 </html>
