@@ -10,6 +10,8 @@ public class AdministratorExample {
 
     protected int pageSize;
 
+    protected int is_delete;
+
     public int getStartRow() {
         return startRow;
     }
@@ -24,6 +26,14 @@ public class AdministratorExample {
 
     public void setPageSize(int pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public void setIs_delete(int is_delete) {
+        this.is_delete = is_delete;
+    }
+
+    public int getIs_delete(int is_delete) {
+        return this.is_delete;
     }
 
 

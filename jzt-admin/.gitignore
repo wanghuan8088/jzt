@@ -1,4 +1,5 @@
 .gitignore
 /bin/
 jzt-admin.iml
+.idea
 

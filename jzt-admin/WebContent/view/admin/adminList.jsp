@@ -10,7 +10,6 @@
 <!-- Sidebar Menu -->
 <%@ include file="/view/menu.jsp" %>
 <!-- /.sidebar-menu -->
-
 </section>
 <!-- /.sidebar -->
 </aside>
@@ -25,7 +24,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 管理员管理</a></li>
-            <li class="active">管理员</li>
+            <li class="active">账户</li>
         </ol>
     </section>
 
@@ -40,7 +39,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <a class="btn btn-primary btn-lg" href="/woo-web/page/article/add.jsp"> 新 增  </a>
+                        <a class="btn btn-primary btn-lg" href="/jzt-admin/view/admin/adminAdd.jsp"> 新 增  </a>
                         <br><br>
 
                         <!-- 模态框（Modal） -->
@@ -74,10 +73,9 @@
                             <tr>
                                 <th>ID</th>
                                 <th>用户名</th>
-                                <th>密码</th>
                                 <th>权限</th>
                                 <th>创建时间</th>
-                                <th>更新时间</th>
+                                <th>修改时间</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -128,30 +126,29 @@
             "searching":false,
             "aoColumnDefs": [
                 { "sWidth": "10%", "aTargets": [ 0 ] },
-                { "sWidth": "10%", "aTargets": [ 1 ] },
+                { "sWidth": "15%", "aTargets": [ 1 ] },
                 { "sWidth": "10%", "aTargets": [ 2 ] },
-                { "sWidth": "10%", "aTargets": [ 3 ] },
+                { "sWidth": "15%", "aTargets": [ 3 ] },
                 { "sWidth": "15%", "aTargets": [ 4 ] },
-                { "sWidth": "15%", "aTargets": [ 5 ] },
-                { "sWidth": "10%", "aTargets": [ 6 ] },
+                { "sWidth": "10%", "aTargets": [ 5 ] },
+//                {
+//                    "targets": [0], // uid
+//                    "data": "uid",
+//                    "render": function(data, type, full) { // 返回自定义内容
+//                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.uid + "'>"+data+"</a>";
+//                    }
+//                },
                 {
-                    "targets": [0], // uid
+                    "targets": [5], // 目标列位置，下标从0开始
                     "data": "uid",
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.nid + "'>"+data+"</a>";
-                    }
-                },
-                {
-                    "targets": [6], // 目标列位置，下标从0开始
-                    "data": "uid",
-                    "render": function(data, type, full) { // 返回自定义内容
-                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.nid + ");'>删除</button>";
+                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.uid + ");'>删除</button>";
                     }
                 }
             ],
 
             "ajax": {
-                "url": "/jzt-api/rest/v1/admins/list/0/10",
+                "url": "/jzt-api/rest/v1/administrator/list/0/100",
                 "type": "GET",
                 "dataSrc": function ( json ) {
                     return json.data.administrator;
@@ -161,7 +158,6 @@
             "columns":[
                 { "data": "uid" },
                 { "data": "userName" },
-                { "data": "password" },
                 { "data": "permission" },
                 { "data": "createTime" },
                 { "data": "updateTime" }
@@ -179,7 +175,7 @@
     function deleteData(obj) {
         var id = $('#mbid').val();
         $.ajax({
-            url: '/jzt-api/rest/v1/news/delete/'+id,
+            url: '/jzt-api/rest/v1/administrator/delete/'+ id,
             type: 'GET',
             async: true,
             cache: false,

@@ -181,6 +181,29 @@ public class ProvinceController extends BaseController {
 	}
 	
 	
+	/**  
+	* 用途：后台管理查询指定省份
+	* 作者：廖凯红
+	* 时间：20170417
+	*/
+	@RequestMapping(value="/selectById/{id}")
+	@ResponseBody
+	public Map<String, Object> selectById(@PathVariable(value="id") int id)
+	{
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		try 
+		{
+			result = provinceService.selectOneByPrimaryKey(id);
+		} catch (Exception e) 
+		{
+			result = generateErrorResult(e);
+		}
+		return result;
+		
+	}
+	
+	
 	
 	
 
