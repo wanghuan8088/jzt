@@ -60,7 +60,7 @@ public class P2pLoanServiceImpl implements P2pLoanService {
      */
     @Override
     public Map get(Integer id) {
-        return p2pLoanMapper.selectByPrimaryKeyWithPlatformName(id);
+            return p2pLoanMapper.selectByPrimaryKeyWithPlatformName(id);
     }
 
     /**

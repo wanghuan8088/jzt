@@ -127,4 +127,10 @@ public interface PlatformService {
      */
     Map creditDisclosure(Platform platform);
 
+    /**
+     * p2p平台列表（仅包含名字和id）
+     * @param
+     * @return
+     */
+    List<Map> listOfP2pPlat();
 }
