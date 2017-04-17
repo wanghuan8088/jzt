@@ -149,8 +149,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 敏感词管理</a></li>
+        <ul <% if(v.equals("sensitiveword_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li class="active"><a href="/jzt-admin/view/sensitiveword/sensitivewordList.jsp?v=sensitiveword_menu"><i class="fa fa-circle-o"></i> 敏感词管理</a></li>
         </ul>
     </li>
 
