@@ -40,5 +40,46 @@ public class CityServiceImpl implements CityService{
 	{
 		cityMapper.deleteByPrimaryKey(id);
 	}
+	
+	
+	/**  
+	* 用途：后台管理指定城市详情
+	* 作者：廖凯红
+	* 时间：20170413
+	*/
+	public City selectById(int id)
+	{
+		return cityMapper.selectByPrimaryKey(id);
+	}
+	
+	
+	/**  
+	* 用途：后台管理新增或者修改城市
+	* 作者：廖凯红
+	* 时间：20170413
+	*/
+	public void saveOrUpdate(City record)
+	{
+		if(record.getId()!=null && record.getId()!=0)//update
+		{
+			City old = cityMapper.selectByPrimaryKey(record.getId());
+			if(old==null)
+			{
+				cityMapper.insertSelective(record);
+			}
+			else 
+			{
+				cityMapper.updateByPrimaryKeySelective(record);
+			}
+			
+		}
+		else //insert
+		{
+			cityMapper.insertSelective(record);
+		}
+		
+		
+		
+	}
 
 }

@@ -4,6 +4,8 @@ import com.jzt.api.domain.P2pPlat;
 import com.jzt.api.domain.P2pPlatExample;
 import com.jzt.api.domain.P2pPlatWithBLOBs;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface P2pPlatMapper {
@@ -118,4 +120,14 @@ public interface P2pPlatMapper {
      * @mbggenerated Sun Mar 12 23:14:32 CST 2017
      */
     int updateByPrimaryKey(P2pPlat record);
+
+    int removeByPrimaryKey(P2pPlat record);
+
+    /**
+     *
+     * @param startRow,pageSize
+     * @return 返回包含基本信息的p2p平台列表
+     */
+
+    List<Map> listP2pPlatWithPlatform(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
 }

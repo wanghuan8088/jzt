@@ -1,17 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/view/header.jsp"%>
 
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">导航</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
-        <li><a href="/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
-        <li><a href="/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
-        <li><a href="/page/topic/list.jsp"><i class="fa fa-dashboard"></i> <span>公司管理</span></a></li>
-        <li><a href="/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
-      </ul>
-      <!-- /.sidebar-menu -->
+<!-- Sidebar Menu -->
+<%@ include file="/view/menu.jsp" %>
+<!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -193,11 +185,11 @@ String id = request.getParameter("id");
 		                  <p class="help-block" id="productId" style="display:none;"></p>
 		            </div>
 		            <div class="col-md-4" form-group>
-		                  <img src="/page/dist/img/cancelImage.png" style="cursor:pointer" width="100" height="100" alt="删除" onclick="delDiv(this);" />
+		                  <img src="/jzt-admin/page/dist/img/cancelImage.png" style="cursor:pointer" width="100" height="100" alt="删除" onclick="delDiv(this);" />
 		            </div>
 	            </div>
             </div>
-            <img src="/page/dist/img/upload.png" style="cursor:pointer" onclick="copyDiv();" />
+            <img src="/jzt-admin/page/dist/img/upload.png" style="cursor:pointer" onclick="copyDiv();" />
 
 
 </div>

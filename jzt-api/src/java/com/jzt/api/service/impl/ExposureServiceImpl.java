@@ -46,6 +46,17 @@ public class ExposureServiceImpl implements ExposureService {
     }
 
     @Override
+    public List<Exposure> listByUser(Exposure exposure) {
+        ExposureExample example = new ExposureExample();
+        example.createCriteria().andAuthorIdEqualTo(exposure.getAuthorId());
+        example.setStartRow(exposure.getStartRow() * exposure.getPageSize());
+        example.setPageSize(exposure.getPageSize());
+        example.setOrderByClause("created_date desc");
+
+        return exposureMapper.selectByExample(example);
+    }
+
+    @Override
     public Exposure detail(Exposure exposure) {
         return exposureMapper.selectByPrimaryKey(exposure.getEid());
     }

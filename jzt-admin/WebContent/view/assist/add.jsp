@@ -394,11 +394,11 @@ table.dataTable.display tbody tr.selected {
 		                  <p class="help-block" id="productId" style="display:none;"></p>
 		            </div>
 		            <div class="col-md-4" form-group>
-		                  <img src="/page/dist/img/cancelImage.png" style="cursor:pointer" width="100" height="100" alt="删除" onclick="delDiv(this);" />
+		                  <img src="/jzt-admin/page/dist/img/cancelImage.png" style="cursor:pointer" width="100" height="100" alt="删除" onclick="delDiv(this);" />
 		            </div>
 	            </div>
             </div>
-            <img src="/page/dist/img/upload.png" style="cursor:pointer" onclick="copyDiv();" />
+            <img src="/jzt-admin/page/dist/img/upload.png" style="cursor:pointer" onclick="copyDiv();" />
  </div>
             
 <div class="box box-primary">

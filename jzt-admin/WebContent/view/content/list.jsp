@@ -5,13 +5,13 @@
       <ul class="sidebar-menu">
         <li class="header">导航</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
-        <li><a href="/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
-        <li><a href="/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
+        <li class="active"><a href="/jzt-admin/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
+        <li><a href="/jzt-admin/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
+        <li><a href="/jzt-admin/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
 
 
           <li class="treeview">
-              <a href="/page/topic/list.jsp">
+              <a href="/jzt-admin/page/topic/list.jsp">
                   <i class="fa fa-pie-chart"></i>
                   <span>公司管理</span>
                   <span class="pull-right-container">
@@ -25,7 +25,7 @@
               </ul>
           </li>
 
-        <li><a href="/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
+        <li><a href="/jzt-admin/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -57,7 +57,7 @@
             <!-- /.box-header -->
             <div class="box-body">
             
-            <a class="btn btn-primary btn-lg" href="/page/topic/add.jsp"> 新 增  </a>
+            <a class="btn btn-primary btn-lg" href="/jzt-admin/page/topic/add.jsp"> 新 增  </a>
             <br><br>
             
 <!-- 模态框（Modal） -->

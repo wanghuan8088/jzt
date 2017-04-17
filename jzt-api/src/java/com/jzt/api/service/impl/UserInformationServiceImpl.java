@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jzt.api.dao.UserInformationMapper;
+import com.jzt.api.domain.MessageInfoExample;
 import com.jzt.api.domain.UserInformation;
 import com.jzt.api.domain.UserInformationExample;
 import com.jzt.api.service.UserInformationService;
@@ -247,6 +248,33 @@ public class UserInformationServiceImpl extends BaseService implements UserInfor
 	public void updateByExampleSelective(UserInformation record,
 			UserInformationExample example) {
 		userInformationMapper.updateByExampleSelective(record, example);
+	}
+	
+	/**  
+	* @Title: queryListByPage  
+	* @Description: queryListByPage 
+	* @param @param record
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
+	@Override
+	public Map<String, Object> queryListByPage(UserInformation record) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			UserInformationExample example = new UserInformationExample();
+			if(record.getPageSize()>0 && record.getStartPage()>0){
+				setOrderByClause(record, example, " uid desc ");
+			}
+			List<UserInformation> list = userInformationMapper.selectByExample(example);
+			if(list!=null ){
+				result = generateNomalResult(list);
+			}
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		
+		return result;
 	}
 	
 	

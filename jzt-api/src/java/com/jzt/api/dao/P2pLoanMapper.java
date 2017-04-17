@@ -123,4 +123,20 @@ public interface P2pLoanMapper {
     int updateByPrimaryKey(P2pLoan record);
     
     List<P2pLoan> selectByUserId(@Param("uId")Integer uId, @Param("startRow")Integer startRow, @Param("pageSize")Integer pageSize);
+
+    int removeByPrimaryKey(P2pLoan record);
+
+    /**
+     * @author hjw
+     * @param example
+     * @return 返回带有平台信息的标的列表
+     */
+    List<Map> listByExample(P2pLoanExample example);
+
+    /**
+     * @author hjw
+     * @param id
+     * @return 返回带有平台名称的标的
+     */
+    Map selectByPrimaryKeyWithPlatformName(Integer id);
 }

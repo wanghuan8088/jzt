@@ -86,7 +86,7 @@ public class ChargeController extends BaseController {
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/receive")
 	@ResponseBody
-	public Map<String, Object> receive(@RequestBody String para) {
+	public Map<String, Object> receive(@RequestParam(value = "para", required = true) String para) {
 		Pingpp.apiKey = PingppConstant.apiKey;
 
 		try {
