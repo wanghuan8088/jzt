@@ -9,6 +9,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -484,8 +485,8 @@ public class UserInformationController extends BaseController {
 	}
 	
 	/**  
-	* @Title: query  
-	* @Description: query 
+	* @Title: queryList  
+	* @Description: queryList 这个暂时不用了，使用同名的pathvariable的方式
 	* @param @param para
 	* @param @return    设定文件  
 	* @return Map<String,Object>    返回类型  
@@ -507,6 +508,35 @@ public class UserInformationController extends BaseController {
 		}
 		return result;
 	}
+
+	/**  
+	* @Title: queryList  
+	* @Description: queryList 
+	* @param @param para
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
+	@RequestMapping(value = "/queryList/{startRow}/{pageSize}")
+	@ResponseBody
+	public Map<String, Object> queryList(@PathVariable(value="startRow") int startRow,
+            @PathVariable(value="pageSize") int pageSize){
+
+		UserInformation record = new UserInformation();
+		record.setStartRow(startRow);
+		record.setPageSize(pageSize);
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			
+			UserInformationExample example = new UserInformationExample();
+			result = userInformationService.queryListByPage(record);
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		return result;
+	}
+
 
 
 
