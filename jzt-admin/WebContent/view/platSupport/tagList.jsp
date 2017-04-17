@@ -4,8 +4,6 @@
 <!-- Sidebar Menu -->
 <%@ include file="/view/menu.jsp" %>
 <!-- /.sidebar-menu -->
-
-
 </section>
 <!-- /.sidebar -->
 </aside>
@@ -15,12 +13,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            省份
+            Tag
             <small>列表</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 地理位置管理</a></li>
-            <li class="active">省份表管理</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Tag管理</a></li>
+            <li class="active">Tag</li>
         </ol>
     </section>
 
@@ -67,10 +65,8 @@
                         <table id="tableobject" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                            	<th>省份ID</th>
-                                <th>省份名称</th>
-                                <th>平台数量</th>
-                                <th>国内生产总值</th>
+                                <th>类型</th>
+                                <th>名称</th>
                                 <th>创建时间</th>
                                 <th>修改时间</th>
                                 <th>操作</th>
@@ -122,44 +118,33 @@
 
             "searching":false,
             "aoColumnDefs": [
-                { "sWidth": "10%", "aTargets": [ 0 ] },
-                { "sWidth": "10%", "aTargets": [ 1 ] },
+                { "sWidth": "20%", "aTargets": [ 0 ] },
+                { "sWidth": "20%", "aTargets": [ 1 ] },
                 { "sWidth": "20%", "aTargets": [ 2 ] },
-                { "sWidth": "10%", "aTargets": [ 3 ] },
+                { "sWidth": "20%", "aTargets": [ 3 ] },
                 { "sWidth": "20%", "aTargets": [ 4 ] },
-                { "sWidth": "20%", "aTargets": [ 5 ] },
-                { "sWidth": "10%", "aTargets": [ 6 ] },
                 {
-                    "targets": [1], // 目标列位置，下标从0开始
-                    "data": "id", // 数据列名
+                    "targets": [4], // 目标列位置，下标从0开始
+                    "data": "nid", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.id + "'>"+data+"</a>";
-                    }
-                },
-                {
-                    "targets": [6], // 目标列位置，下标从0开始
-                    "data": "id", // 数据列名
-                    "render": function(data, type, full) { // 返回自定义内容
-                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.id + ");'>删除</button>";
+                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.nid + ");'>删除</button>";
                     }
                 }
             ],
 
             "ajax": {
-                "url": "/jzt-api/province/plist/0/50",
+                "url": "/jzt-api/rest/v1/platSupport/tagList/0/10",
                 "type": "GET",
                 "dataSrc": function ( json ) {
-                    return json.data.province;
+                    return json.data.record;
                 }
             },
 
             "columns":[
-            	{ "data": "id" },
+                { "data": "type" },
                 { "data": "name" },
-                { "data": "platNum" },
-                { "data": "gdp" },
-                { "data": "createTime" },
                 { "data": "updateTime" },
+                { "data": "createTime" },
                 { "data": "id" }
             ]
 
@@ -175,7 +160,7 @@
     function deleteData(obj) {
         var id = $('#mbid').val();
         $.ajax({
-            url: '/jzt-api/province/deleteById/'+id,
+            url: '/jzt-api/rest/v1/platSupport/deleteTag/'+id,
             type: 'GET',
             async: true,
             cache: false,

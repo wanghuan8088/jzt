@@ -1,31 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/view/header.jsp"%>
 
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">导航</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/jzt-admin/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
+<!-- Sidebar Menu -->
+<%@ include file="/view/menu.jsp" %>
+<!-- /.sidebar-menu -->
 
-          <li class="treeview">
-              <a href="/jzt-admin/page/product/list.jsp">
-                  <i class="fa fa-pie-chart"></i>
-                  <span>标的管理</span>
-                  <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-              </a>
-              <ul class="treeview-menu">
-                  <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 银行系</a></li>
-                  <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 互金系</a></li>
-              </ul>
-          </li>
-
-        <li><a href="/jzt-admin/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
-        <li><a href="/jzt-admin/page/topic/list.jsp"><i class="fa fa-dashboard"></i> <span>公司管理</span></a></li>
-        <li><a href="/jzt-admin/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
-      </ul>
-      <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
   </aside>

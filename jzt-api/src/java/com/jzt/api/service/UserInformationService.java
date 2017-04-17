@@ -39,4 +39,6 @@ public interface UserInformationService {
 
 	Map<String, Object> checkLoginThird(UserInformation record);
 
+	Map<String, Object> queryListByPage(UserInformation record);
+
 }

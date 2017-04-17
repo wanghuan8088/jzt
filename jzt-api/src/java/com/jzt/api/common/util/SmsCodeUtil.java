@@ -25,8 +25,8 @@ public class SmsCodeUtil {
 	public static String smsurl = "https://api.netease.im/sms/sendcode.action";
 	public static String verifyurl = "https://api.netease.im/sms/verifycode.action";
 	
-	public static String appKey = "1270608b457c1bae23495e021b02c2cb";
-	public static String appSecret = "59bdd272e190";
+	public static String appKey = "ed3ea5ef498d0cbf95a77847947cfd10";
+	public static String appSecret = "a52a591cbfcd";
 	public static String nonce =  "12345";
 	
 	public static String sendSms(String mobileNo) throws Exception {
@@ -77,7 +77,7 @@ public class SmsCodeUtil {
 		        //设置请求的的参数
 		        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 		        //								模板id			
-				nvps.add(new BasicNameValuePair("templateid", ""));
+				nvps.add(new BasicNameValuePair("templateid", "3064219"));
 				//								参数			jsonArray形式
 				nvps.add(new BasicNameValuePair("mobiles", "['"+mobileNo+"']"));
 				
