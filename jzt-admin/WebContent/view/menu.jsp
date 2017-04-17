@@ -193,10 +193,10 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 平台状态管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> tag汇总管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 安全认证管理</a></li>
+        <ul <% if(v.equals("state_menu") || v.equals("tag_menu") || v.equals("safeCert_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li id="state_menu" <% if(v.equals("state_menu")) {%> class="active" <%} %>><a href="/jzt-admin/view/platSupport/stateList.jsp?v=state_menu"><i class="fa fa-circle-o"></i> 平台状态管理</a></li>
+            <li id="tag_menu" <% if(v.equals("tag_menu")) {%> class="active" <%} %>><a href="/jzt-admin/view/platSupport/tagList.jsp?v=tag_menu"><i class="fa fa-circle-o"></i> tag汇总管理</a></li>
+            <li id="safeCert_menu" <% if(v.equals("safeCert_menu")) {%> class="active" <%} %>><a href="/jzt-admin/view/platSupport/safeCertList.jsp?v=safeCert_menu"><i class="fa fa-circle-o"></i> 安全认证管理</a></li>
         </ul>
     </li>
 
