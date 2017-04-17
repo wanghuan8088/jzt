@@ -9,6 +9,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,7 @@ import com.jzt.api.common.util.PrivacyEncryptionUtil;
 import com.jzt.api.common.util.ShareCodeUtil;
 import com.jzt.api.common.util.SmsCodeUtil;
 import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.News;
 import com.jzt.api.domain.UserInformation;
 import com.jzt.api.domain.UserInformationExample;
 import com.jzt.api.service.UserInformationService;
@@ -484,8 +486,8 @@ public class UserInformationController extends BaseController {
 	}
 	
 	/**  
-	* @Title: query  
-	* @Description: query 
+	* @Title: queryList  
+	* @Description: queryList 这个暂时不用了，使用同名的pathvariable的方式
 	* @param @param para
 	* @param @return    设定文件  
 	* @return Map<String,Object>    返回类型  
@@ -507,6 +509,51 @@ public class UserInformationController extends BaseController {
 		}
 		return result;
 	}
+
+	/**  
+	* @Title: queryList  
+	* @Description: queryList 
+	* @param @param para
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
+	@RequestMapping(value = "/queryList/{startPage}/{pageSize}")
+	@ResponseBody
+	public Map<String, Object> queryList(@PathVariable(value="startPage") int startPage,
+            @PathVariable(value="pageSize") int pageSize){
+
+		UserInformation record = new UserInformation();
+		record.setStartPage(startPage);
+		record.setPageSize(pageSize);
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			
+			UserInformationExample example = new UserInformationExample();
+			result = userInformationService.queryListByPage(record);
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/delete/{id}")
+    @ResponseBody
+    public Map<String, Object> delete(@PathVariable(value="id") int id){
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			UserInformation record = new UserInformation();
+			record.setUid(id);
+			result = userInformationService.delete(record);
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		return result;
+	}
+	
+	
 
 
 

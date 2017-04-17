@@ -16,8 +16,8 @@
             </span>
         </a>
 
-        <ul  <% if(v.equals("user_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
-            <li id="user_menu" <% if(v.equals("user_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/admin/adminList.jsp?v=user_menu"><i class="fa fa-circle-o"></i> 账户管理</a></li>
+        <ul  <% if(v.equals("admin_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li id="admin_menu" <% if(v.equals("admin_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/admin/adminList.jsp?v=admin_menu"><i class="fa fa-circle-o"></i> 账户管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 权限管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 日志管理</a></li>
         </ul>
@@ -31,8 +31,7 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <ul  <% if(v.equals("user_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+        <ul  <% if(v.equals("user_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
             <li id="user_menu" <% if(v.equals("user_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/user/userList.jsp?v=user_menu"><i class="fa fa-circle-o"></i> 用户</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 短信验证码</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 权限管理</a></li>
@@ -150,8 +149,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 敏感词管理</a></li>
+        <ul <% if(v.equals("sensitiveword_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li class="active"><a href="/jzt-admin/view/sensitiveword/sensitivewordList.jsp?v=sensitiveword_menu"><i class="fa fa-circle-o"></i> 敏感词管理</a></li>
         </ul>
     </li>
 
