@@ -517,13 +517,13 @@ public class UserInformationController extends BaseController {
 	* @return Map<String,Object>    返回类型  
 	* @throws  
 	*/
-	@RequestMapping(value = "/queryList/{startRow}/{pageSize}")
+	@RequestMapping(value = "/queryList/{startPage}/{pageSize}")
 	@ResponseBody
-	public Map<String, Object> queryList(@PathVariable(value="startRow") int startRow,
+	public Map<String, Object> queryList(@PathVariable(value="startPage") int startPage,
             @PathVariable(value="pageSize") int pageSize){
 
 		UserInformation record = new UserInformation();
-		record.setStartRow(startRow);
+		record.setStartPage(startPage);
 		record.setPageSize(pageSize);
 		Map<String, Object> result = new HashMap<String, Object>();
 		
