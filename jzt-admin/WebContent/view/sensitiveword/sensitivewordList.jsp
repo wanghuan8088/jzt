@@ -4,8 +4,6 @@
 <!-- Sidebar Menu -->
 <%@ include file="/view/menu.jsp" %>
 <!-- /.sidebar-menu -->
-
-
 </section>
 <!-- /.sidebar -->
 </aside>
@@ -15,12 +13,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            省份
+            敏感词
             <small>列表</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 地理位置管理</a></li>
-            <li class="active">省份表管理</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> 敏感词管理</a></li>
+            <li class="active">敏感词管理</li>
         </ol>
     </section>
 
@@ -35,7 +33,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <a class="btn btn-primary btn-lg" href="/jzt-admin/view/position/provinceAdd.jsp"> 新 增  </a>
+                        <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal2"> 新 增  </a>
                         <br><br>
 
                         <!-- 模态框（Modal） -->
@@ -63,14 +61,37 @@
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal -->
                         </div>
+                        
+                        <!-- 模态框（Modal） -->
+                        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">
+
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                    <textarea class="form-control" rows="10" id="word" placeholder="输入敏感词"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick='addData(this);'>
+                                            确定
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
 
                         <table id="tableobject" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                            	<th>省份ID</th>
-                                <th>省份名称</th>
-                                <th>平台数量</th>
-                                <th>国内生产总值</th>
+                                <th>关键字</th>
                                 <th>创建时间</th>
                                 <th>修改时间</th>
                                 <th>操作</th>
@@ -122,44 +143,45 @@
 
             "searching":false,
             "aoColumnDefs": [
-                { "sWidth": "10%", "aTargets": [ 0 ] },
-                { "sWidth": "10%", "aTargets": [ 1 ] },
+                { "sWidth": "30%", "aTargets": [ 0 ] },
+                { "sWidth": "20%", "aTargets": [ 1 ] },
                 { "sWidth": "20%", "aTargets": [ 2 ] },
-                { "sWidth": "10%", "aTargets": [ 3 ] },
-                { "sWidth": "20%", "aTargets": [ 4 ] },
-                { "sWidth": "20%", "aTargets": [ 5 ] },
-                { "sWidth": "10%", "aTargets": [ 6 ] },
+                { "sWidth": "20%", "aTargets": [ 3 ] },
                 {
-                    "targets": [1], // 目标列位置，下标从0开始
-                    "data": "id", // 数据列名
-                    "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/jzt-admin/view/position/provinceEdit.jsp?id=" + full.id + "'>"+data+"</a>";
-                    }
-                },
-                {
-                    "targets": [6], // 目标列位置，下标从0开始
+                    "targets": [3], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
                         return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.id + ");'>删除</button>";
+                    }
+                },
+                {
+                    "targets": [1], // 目标列位置，下标从0开始
+                    "data": "updateTime", // 数据列名
+                    "render": function(data, type, full) { // 返回自定义内容
+                        return new Date(parseInt(full.updateTime)).toLocaleString();
+                    }
+                },
+                {
+                    "targets": [2], // 目标列位置，下标从0开始
+                    "data": "createTime", // 数据列名
+                    "render": function(data, type, full) { // 返回自定义内容
+                        return new Date(parseInt(full.createTime)).toLocaleString();
                     }
                 }
             ],
 
             "ajax": {
-                "url": "/jzt-api/province/plist/0/50",
+                "url": "/jzt-api/rest/v1/sensitiveword/list/0/10",
                 "type": "GET",
                 "dataSrc": function ( json ) {
-                    return json.data.province;
+                    return json.data.sensitiveword;
                 }
             },
 
             "columns":[
-            	{ "data": "id" },
-                { "data": "name" },
-                { "data": "platNum" },
-                { "data": "gdp" },
-                { "data": "createTime" },
+                { "data": "word" },
                 { "data": "updateTime" },
+                { "data": "createTime" },
                 { "data": "id" }
             ]
 
@@ -175,7 +197,7 @@
     function deleteData(obj) {
         var id = $('#mbid').val();
         $.ajax({
-            url: '/jzt-api/province/deleteById/'+id,
+            url: '/jzt-api/rest/v1/sensitiveword/delete/'+id,
             type: 'GET',
             async: true,
             cache: false,
@@ -187,6 +209,33 @@
             },
             error: function (responseStr) {
                 alert("error:" + JSON.stringify(responseStr));
+            }
+        });
+    }
+    
+    function addData(obj) {
+    	
+    	var data=new Object();
+        data.word=$("#word").val();
+
+    	var datafstr=JSON.stringify(data);
+    	var requestData = datafstr;
+    	
+        $.ajax({
+            url: '/jzt-api/rest/v1/sensitiveword/add/',
+            type: 'POST',
+            data: "para="+encodeURIComponent(requestData),
+            async: true,
+            cache: false,
+            // contentType: false,
+            contentType: 'application/x-www-form-urlencoded',
+            processData: false,
+            success: function (responseStr) {
+                alert("保存成功!");
+                window.location.reload();  
+            },
+            error: function (responseStr) {
+            	alert("error:" + JSON.stringify(responseStr));
             }
         });
     }
