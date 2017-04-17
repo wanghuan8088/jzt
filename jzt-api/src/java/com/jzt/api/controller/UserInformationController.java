@@ -482,6 +482,31 @@ public class UserInformationController extends BaseController {
 		result = userInformationService.checkLoginThird(dto);
 		return result;
 	}
+	
+	/**  
+	* @Title: query  
+	* @Description: query 
+	* @param @param para
+	* @param @return    设定文件  
+	* @return Map<String,Object>    返回类型  
+	* @throws  
+	*/
+	@RequestMapping(value = "/queryList")
+	@ResponseBody
+	public Map<String, Object> queryList(@RequestParam(value="para", required=true) String para){
+		JSONObject jsStr = JSONObject.fromObject(para);
+		UserInformation record = (UserInformation) JSONObject.toBean(jsStr, UserInformation.class);
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			
+			UserInformationExample example = new UserInformationExample();
+			result = userInformationService.queryListByPage(record);
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		return result;
+	}
 
 
 

@@ -2,6 +2,7 @@ package com.jzt.api.service.impl;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import com.jzt.api.common.util.CommonUtil;
 import com.jzt.api.dao.ChargeMapper;
 import com.jzt.api.dao.OrdersMapper;
 import com.jzt.api.domain.Charge;
+import com.jzt.api.domain.ChargeExample;
 import com.jzt.api.domain.Orders;
+import com.jzt.api.domain.OrdersExample;
 import com.jzt.api.service.ChargeService;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.PingppException;
@@ -54,7 +57,7 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 			order.setProductId(Integer.valueOf(dto.getProductid()));
 			order.setChargeId(charge.getId());
 			order.setAmount(charge.getAmount());
-			order.setStatus(1);
+			order.setStatus(0);
 			order.setUserId(Integer.valueOf(dto.getUserId()));
 			
 			orderMapper.insertSelective(order);
@@ -101,18 +104,42 @@ public class ChargeServiceImpl extends BaseService implements ChargeService {
 	public Map<String, Object> receive(String chargeId, String paid) {
 		Map<String, Object> result = new HashMap<String, Object>();
 
-		Charge dto = new Charge();
-		dto.setChargeid(chargeId);
-		dto.setPaid(paid);
-
+		ChargeExample chargeExample = new ChargeExample();
+		chargeExample.createCriteria().andChargeidEqualTo(chargeId);
 		// update charge table
-		chargeMapper.updateByPrimaryKeySelective(dto);
+		List<Charge> chargeList = chargeMapper.selectByExample(chargeExample);
+		int chargeResult = 0;
+		int orderResult = 0;
+		if (chargeList == null || chargeList.size() < 1) {
+			result.put("status", "500");
+		} else {
+			Charge dto = new Charge();
+			dto.setChargeid(chargeId);
+			dto.setPaid(paid);
+			chargeResult = chargeMapper.updateByExampleSelective(dto,
+					chargeExample);
+		}
 
 		// update order table
-		Orders orderDTO = new Orders();
-		orderDTO.setChargeId(chargeId);
-		orderMapper.updateByPrimaryKeySelective(orderDTO);
-		result.put("status", "200");
+		OrdersExample ordersExample = new OrdersExample();
+		ordersExample.createCriteria().andChargeIdEqualTo(chargeId);
+		List<Orders> orderList = orderMapper.selectByExample(ordersExample);
+		if (orderList == null || orderList.size() < 1) {
+			result.put("status", "500");
+		} else {
+			Orders orderDTO = new Orders();
+			orderDTO.setChargeId(chargeId);
+			orderDTO.setStatus(1);
+			orderResult = orderMapper.updateByExampleSelective(orderDTO,
+					ordersExample);
+		}
+
+		if (chargeResult + orderResult == 2) {
+			result.put("status", "200");
+		} else {
+			result.put("status", "500");
+		}
+
 		return result;
 	}
 
