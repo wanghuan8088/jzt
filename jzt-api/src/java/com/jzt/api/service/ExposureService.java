@@ -17,4 +17,7 @@ public interface ExposureService {
     Exposure detail(Exposure exposure);
 
     Exposure platform(Exposure exposure);
+    
+    void delete(Exposure exposure);
+    void update(Exposure exposure);
 }
