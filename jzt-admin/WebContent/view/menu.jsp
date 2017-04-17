@@ -32,7 +32,8 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 用户</a></li>
+            <ul  <% if(v.equals("user_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li id="user_menu" <% if(v.equals("user_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/user/userList.jsp?v=user_menu"><i class="fa fa-circle-o"></i> 用户</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 短信验证码</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 权限管理</a></li>
         </ul>
