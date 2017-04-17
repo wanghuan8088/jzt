@@ -19,6 +19,7 @@ import com.jzt.api.common.util.PrivacyEncryptionUtil;
 import com.jzt.api.common.util.ShareCodeUtil;
 import com.jzt.api.common.util.SmsCodeUtil;
 import com.jzt.api.controller.base.BaseController;
+import com.jzt.api.domain.News;
 import com.jzt.api.domain.UserInformation;
 import com.jzt.api.domain.UserInformationExample;
 import com.jzt.api.service.UserInformationService;
@@ -537,6 +538,22 @@ public class UserInformationController extends BaseController {
 		return result;
 	}
 
+	@RequestMapping(value = "/delete/{id}")
+    @ResponseBody
+    public Map<String, Object> delete(@PathVariable(value="id") int id){
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		try {
+			UserInformation record = new UserInformation();
+			record.setUid(id);
+			result = userInformationService.delete(record);
+		} catch (Exception e) {
+			result = generateErrorResult(e);
+		}
+		return result;
+	}
+	
+	
 
 
 
