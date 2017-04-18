@@ -26,7 +26,7 @@ public class SmsCodeUtil {
 	public static String verifyurl = "https://api.netease.im/sms/verifycode.action";
 	
 	public static String appKey = "ed3ea5ef498d0cbf95a77847947cfd10";
-	public static String appSecret = "a52a591cbfcd";
+	public static String appSecret = "c00e46e31821";
 	public static String nonce =  "12345";
 	
 	public static String sendSms(String mobileNo) throws Exception {
@@ -47,6 +47,38 @@ public class SmsCodeUtil {
         // 设置请求的参数
         List<NameValuePair> nvps = new ArrayList<NameValuePair>();
         nvps.add(new BasicNameValuePair("mobile", mobileNo));
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps, "utf-8"));
+
+        // 执行请求
+        HttpResponse response = httpClient.execute(httpPost);
+
+        String strSmsRes = EntityUtils.toString(response.getEntity(), "utf-8");
+
+		// 打印执行结果
+		System.out.println(strSmsRes);
+		return strSmsRes;
+    
+	}
+	
+	public static String sendSmsVerifyCodeTemplate(String mobileNo) throws Exception {
+
+        DefaultHttpClient httpClient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(smsurl);
+
+        String curTime = String.valueOf((new Date()).getTime() / 1000L);
+        String checkSum = CheckSumBuilder.getCheckSum(appSecret, nonce ,curTime);//参考 计算CheckSum的java代码
+
+        // 设置请求的header
+        httpPost.addHeader("AppKey", appKey);
+        httpPost.addHeader("Nonce", nonce);
+        httpPost.addHeader("CurTime", curTime);
+        httpPost.addHeader("CheckSum", checkSum);
+        httpPost.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        // 设置请求的参数
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("mobile", mobileNo));
+        nvps.add(new BasicNameValuePair("templateid", "3064219"));
         httpPost.setEntity(new UrlEncodedFormEntity(nvps, "utf-8"));
 
         // 执行请求
@@ -139,7 +171,7 @@ public class SmsCodeUtil {
 		try {
 			
 			//----------------send normal sms
-			String strSmsRes = SmsCodeUtil.sendSms(mobileNo);
+			String strSmsRes = SmsCodeUtil.sendSmsVerifyCodeTemplate(mobileNo);
 			System.out.println("strSmsRes="+strSmsRes);
 			
 			//----------------send template sms
