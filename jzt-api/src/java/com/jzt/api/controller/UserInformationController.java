@@ -428,7 +428,7 @@ public class UserInformationController extends BaseController {
 //			data.put("code", "9999");
 //			result.put("data", data );
 			
-			String strSmsRes = SmsCodeUtil.sendSms(dto.getPhone());
+			String strSmsRes = SmsCodeUtil.sendSmsVerifyCodeTemplate(dto.getPhone());
 			JSONObject jsonObj = JSONObject.fromObject(strSmsRes);
 			result.put("res", "0");
 			Map<String, Object> data = new HashMap<String, Object>();
