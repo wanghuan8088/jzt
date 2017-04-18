@@ -107,9 +107,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-           <ul  <% if(v.equals("news_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+           <ul  <% if(v.equals("exposureList_menu") || v.equals("exposureState_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
             <li id="exposureList_menu" <% if(v.equals("exposureList_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/exposure/exposureList.jsp?v=exposureList_menu"><i class="fa fa-circle-o"></i>曝光信息列表</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
+            <li id="exposureState_menu" <% if(v.equals("exposureState_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/exposure/exposureState.jsp?v=exposureState_menu"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
         </ul>
     </li>
 

@@ -18,7 +18,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 曝光管理</a></li>
-            <li class="active">曝光信息列表</li>
+            <li class="active">曝光审核</li>
         </ol>
     </section>
 
@@ -33,8 +33,6 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <a class="btn btn-primary btn-lg" href="/jzt-admin/view/exposure/exposureAdd.jsp"> 新 增  </a>
-                        <br><br>
 
                         <!-- 模态框（Modal） -->
                         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -68,9 +66,7 @@
                                 <th>标题</th>
                                 <th>平台名称</th>
                                 <th>作者id</th>
-                                <th>创建时间</th>
-                                <th>修改时间</th>
-                                <th>操作</th>
+                                <th>审核状态</th>
                             </tr>
                             </thead>
                         </table>
@@ -123,22 +119,14 @@
                 { "sWidth": "10%", "aTargets": [ 1 ] },
                 { "sWidth": "10%", "aTargets": [ 2 ] },
                 { "sWidth": "10%", "aTargets": [ 3 ] },
-                { "sWidth": "10%", "aTargets": [ 4 ] },
-                { "sWidth": "10%", "aTargets": [ 5 ] },
                 {
                     "targets": [0], // 目标列位置，下标从0开始
                     "data": "eid", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                    	 return "<a href='/jzt-admin/view/exposure/exposureEdit.jsp?id=" + full.eid + "'>"+data+"</a>";
+                    	 return "<a href='/jzt-admin/view/exposure/stateEdit.jsp?id=" + full.eid + "'>"+data+"</a>";
                     }
                 },
-                {
-                    "targets": [5], // 目标列位置，下标从0开始
-                    "data": "eid", // 数据列名
-                    "render": function(data, type, full) { // 返回自定义内容
-                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.eid + ");'>删除</button>";
-                    }
-                }
+              
             ],
 
             "ajax": {
@@ -154,9 +142,7 @@
                 { "data": "title" },
                 { "data": "productName" },
                 { "data": "authorId" },
-                { "data": "createdDate" },
-                { "data": "lastUpdate" },
-                { "data": "eid" }
+                { "data": "state" }
             ]
 
         } );
