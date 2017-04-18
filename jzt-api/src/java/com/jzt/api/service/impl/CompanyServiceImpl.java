@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.jzt.api.dao.CompanyMapper;
 import com.jzt.api.domain.Company;
 import com.jzt.api.service.CompanyService;
+
+import java.util.List;
+
 /**
  *  公司法人信息
  * @author hzlihonglin
@@ -33,6 +36,8 @@ public class CompanyServiceImpl  extends BaseService implements CompanyService {
 	@Override
 	public Company detail(Company company){
 		return companyMapper.selectByPrimaryKey(company.getId());
-	} 
+	}
+
+
 
 }

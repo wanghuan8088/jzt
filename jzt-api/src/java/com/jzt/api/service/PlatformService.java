@@ -133,4 +133,11 @@ public interface PlatformService {
      * @return
      */
     List<Map> listOfP2pPlat();
+
+    /**
+     * 更新平台基本信息
+     * @param
+     * @return
+     */
+    int update(Platform dto);
 }

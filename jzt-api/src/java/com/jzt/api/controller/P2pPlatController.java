@@ -1,8 +1,8 @@
 package com.jzt.api.controller;
 
 import com.jzt.api.controller.base.BaseController;
-import com.jzt.api.domain.P2pPlat;
-import com.jzt.api.service.P2pPlatService;
+import com.jzt.api.domain.*;
+import com.jzt.api.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +25,41 @@ public class P2pPlatController extends BaseController {
     @Autowired
     private P2pPlatService p2pPlatService;
 
+    @Autowired
+    private PlatformService platformService;
+
+/*    @Autowired
+    private P2pSecurityService p2pSecurityService;
+
+    @Autowired
+    private PlatAppService platAppService;
+
+    @Autowired
+    private PlatContactService platContactService;
+
+    @Autowired
+    private  PlatRelTagService platRelTagService;
+
+    @Autowired
+    private  PlatWebService platWebService;
+
+    @Autowired
+    private  CompanyService companyService;
+
+    @Autowired
+    private  CompanyStructureService companyStructureService;
+
+    @Autowired
+    private  BusinessmanService businessmanService ;
+
+    @Autowired
+    private  StockholderService stockholderService ;
+
+    @Autowired
+    private  SafeRelWebService safeRelWebService ;
+
+    @Autowired
+    private  PartnerRelCompanyService partnerRelCompanyService ;*/
     /***
      * p2p平台列表
      * @param startRow   起始页码
@@ -85,31 +120,5 @@ public class P2pPlatController extends BaseController {
         return result;
     }
 
-    /***
-     * p2p平台具体信息编辑
-     * @param id :  p2p平台id
-     * @return
-     */
-    @RequestMapping(value = "/detail/{id}")
-    @ResponseBody
-    public Map<String, Object> detail(@PathVariable(value = "id") int id) {
 
-        Map<String, Object> result = new HashMap<String, Object>();
-
-        try {
-            Map<String, Object> data = new HashMap<String, Object>();
-            P2pPlat p2pPlat = new P2pPlat();
-            List<Map> record = p2pPlatService.list(p2pPlat);
-
-            data.put("p2pplat", record);
-            result.put("data", data);
-            result.put("res", "0");
-            result.put("message", "Success");
-        } catch (Exception e) {
-            result.put("res", "1");
-            result.put("message", "Error-" + e.getMessage());
-        }
-
-        return result;
-    }
 }

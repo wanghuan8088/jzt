@@ -34,7 +34,7 @@
                           <!-- /.box-header -->
                           <div class="box-body">
 
-                              <a class="btn btn-primary btn-lg" href="/woo-web/page/article/add.jsp"> 新 增  </a>
+                              <a class="btn btn-primary btn-lg" href="/jzt-admin/view/p2pplatform/add.jsp"> 新 增  </a>
                               <br><br>
 
                               <!-- 模态框（Modal） -->
@@ -126,7 +126,7 @@
             "aoColumnDefs": [
                 { "sWidth": "5%", "aTargets": [ 0 ] },
                 { "sWidth": "10%", "aTargets": [ 1 ] },
-                { "sWidth": "10%", "aTargets": [ 2 ] },
+                { "sWidth": "15%", "aTargets": [ 2 ] },
                 { "sWidth": "10%", "aTargets": [ 3 ] },
                 { "sWidth": "5%", "aTargets": [ 4 ] },
                 { "sWidth": "7%", "aTargets": [ 5 ] },
@@ -138,7 +138,15 @@
                     "targets": [1], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.id + "'>"+data+"</a>";
+                        return "<a href='/jzt-admin/view/p2pplatform/detail.jsp?id=" + full.id + "'>"+data+"</a>";
+                    }
+
+                },
+                {
+                    "targets": [2], // 目标列位置，下标从0开始
+                    "data": "platIcon", // 数据列名
+                    "render": function(data, type, full) { // 返回自定义内容
+                        return "<img src=' " + full.icon + "'/>";
                     }
                 },
                 {

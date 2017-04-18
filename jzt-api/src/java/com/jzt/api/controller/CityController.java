@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jzt.api.dao.CityMapper;
+import com.jzt.api.domain.CityExample;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,9 @@ public class CityController extends BaseController{
 	
 	@Autowired
 	CityService cityService;
-	
+
+	@Autowired
+	CityMapper cityMapper;
 	
 	
 	/**  
@@ -148,8 +152,34 @@ public class CityController extends BaseController{
 		
 		return result;
 	}
-	
-	
+
+	/**
+	 * 用途：返回指定省份的城市
+	 * 时间：20170418
+	 */
+	@RequestMapping(value="/{province}")
+	@ResponseBody
+	public Map<String, Object> cityOfProvince(@PathVariable(value="province")int province)
+	{
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		try {
+			Map<String, Object> data = new HashMap<String, Object>();
+			CityExample example = new CityExample();
+			CityExample.Criteria criteria = example.createCriteria();
+			criteria.andProvinceEqualTo(province);
+			List<City> list = cityMapper.selectByExample(example);
+			data.put("city", list);
+			result.put("data", data );
+			result.put("res", "0");
+			result.put("message", "Success");
+		} catch (Exception e) {
+			result.put("res", "1");
+			result.put("message", "Error-"+e.getMessage());
+		}
+
+		return result;
+	}
 	
 	
 

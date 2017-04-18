@@ -84,7 +84,7 @@ table.dataTable.display tbody tr.selected {
                                     </div>
                                     <div class="form-group">
                                         <label>所属p2p平台</label>
-                                        <select class="form-control" name="platId" id="platId" onchange="showMsg(this)">
+                                        <select class="form-control" name="platId" id="platId"  onchange="showMsg(this)">
                                         </select>
                                     </div>
                                     <div class="form-group">

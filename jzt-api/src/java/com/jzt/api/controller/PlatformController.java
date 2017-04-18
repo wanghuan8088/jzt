@@ -470,4 +470,57 @@ public class PlatformController extends BaseController {
 
         return result;
     }
+
+    /***
+     * 平台的基本信息（不包含关联表查询）
+     * @param id :  平台id
+     * @return
+     */
+    @RequestMapping(value = "/detail/{id}")
+    @ResponseBody
+    public Map<String, Object> basicInfo(@PathVariable(value = "id") int id) {
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+
+            //获取平台基本信息
+            Platform platform = new Platform();
+            platform.setId(id);
+            platform = platformService.detail(platform);
+
+            data.put("platform", platform);
+            result.put("data", data);
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-" + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /***
+     * 平台的基本信息（不包含关联表查询）
+     * @param : new record
+     * @return
+     */
+    @RequestMapping(value = "/edit/")
+    @ResponseBody
+    public Map<String, Object> editBasicInfo(@RequestParam(value = "para", required = true) String para) {
+        Map<String, Object> result;
+        JSONObject jsStr = JSONObject.fromObject(para);
+        Platform dto = (Platform) JSONObject.toBean(jsStr, Platform.class);
+
+        try {
+            platformService.update(dto);
+            result = generateNomalResult(dto);
+        } catch (Exception e) {
+            result = generateErrorResult(e);
+        }
+
+        return result;
+    }
 }

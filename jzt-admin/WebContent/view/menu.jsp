@@ -181,7 +181,7 @@
         </a>
         <ul class="treeview-menu" >
             <li class="active"><a href="/jzt-admin/view/p2ploan/list.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
-            <li><a href="/jzt-admin/view/p2pplat/list.jsp"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
+            <li><a href="/jzt-admin/view/p2pplatform/list.jsp"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
         </ul>
     </li>
 
