@@ -107,8 +107,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 曝光信息列表</a></li>
+           <ul  <% if(v.equals("news_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li id="exposureList_menu" <% if(v.equals("exposureList_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/exposure/exposureList.jsp?v=exposureList_menu"><i class="fa fa-circle-o"></i>曝光信息列表</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
         </ul>
     </li>
@@ -180,8 +180,8 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/p2ploan/list.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
+            <li><a href="/jzt-admin/view/p2pplat/list.jsp"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
         </ul>
     </li>
 

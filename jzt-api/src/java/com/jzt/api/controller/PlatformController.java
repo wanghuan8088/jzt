@@ -444,4 +444,30 @@ public class PlatformController extends BaseController {
         return result;
     }
 
+    /***
+     * p2p平台列表
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/p2pplat/")
+    @ResponseBody
+    public Map<String, Object> getP2pPlat(){
+
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            List<Map> p2pplat = platformService.listOfP2pPlat();
+
+            data.put("p2pplat", p2pplat);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+    }
 }

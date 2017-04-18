@@ -2,6 +2,7 @@
 <%@ include file="/view/header.jsp" %>
 
 <!-- Sidebar Menu -->
+
 <%@ include file="/view/menu.jsp" %>
 <!-- /.sidebar-menu -->
 

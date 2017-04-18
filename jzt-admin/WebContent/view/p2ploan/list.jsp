@@ -1,20 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/view/header.jsp"%>
 
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">导航</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="/jzt-admin/page/starter.jsp"><i class="fa fa-edit"></i> <span>平台管理</span></a></li>
-        <li><a href="/jzt-admin/page/product/list.jsp"><i class="fa fa-circle-o"></i> <span>标的管理</span></a></li>
-        <li><a href="/jzt-admin/page/order/list.jsp"><i class="fa fa-th"></i> <span>订单管理</span></a></li>
-        <li><a href="/jzt-admin/page/topic/list.jsp"><i class="fa fa-dashboard"></i> <span>公司管理</span></a></li>
-        <li><a href="/jzt-admin/page/user/list.jsp"><i class="fa fa-laptop"></i> <span>用户管理</span></a></li>
-      </ul>
-      <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-  </aside>
+<!-- Sidebar Menu -->
+<%@ include file="/view/menu.jsp" %>
+<!-- /.sidebar-menu -->
+</section>
+<!-- /.sidebar -->
+</aside>
 
 
       <!-- Content Wrapper. Contains page content -->
@@ -42,7 +34,7 @@
                           <!-- /.box-header -->
                           <div class="box-body">
 
-                              <a class="btn btn-primary btn-lg" href="/woo-web/page/article/add.jsp"> 新 增  </a>
+                              <a class="btn btn-primary btn-lg" href="/jzt-admin/view/p2ploan/add.jsp"> 新 增  </a>
                               <br><br>
 
                               <!-- 模态框（Modal） -->
@@ -150,7 +142,7 @@
                     "targets": [2], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.loanId + "'>"+data+"</a>";
+                        return "<a href='/jzt-admin/view/p2ploan/detail.jsp?id=" + full.loanId + "'>"+data+"</a>";
                     }
                 },
                 {

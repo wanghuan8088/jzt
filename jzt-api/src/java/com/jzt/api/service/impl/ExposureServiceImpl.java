@@ -64,14 +64,32 @@ public class ExposureServiceImpl implements ExposureService {
     @Override
     public Exposure platform(Exposure exposure) {
 
-        exposureMapper.insert(exposure);
+        exposureMapper.insertSelective(exposure);
 
         List<ExposureImage> list = exposure.getExposureImage();
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setEid(exposure.getEid());
-            exposureImageMapper.insert(list.get(i));
-        }
+        if(list!=null)
+        {
+        	  for (int i = 0; i < list.size(); i++) {
+                  list.get(i).setEid(exposure.getEid());
+                  exposureImageMapper.insert(list.get(i));
+              }
 
+        }
+      
         return exposure;
     }
+
+	@Override
+	public void delete(Exposure exposure) {
+		// TODO Auto-generated method stub
+		exposureMapper.deleteByPrimaryKey(exposure.getEid());
+		
+	}
+
+	@Override
+	public void update(Exposure exposure) {
+		// TODO Auto-generated method stub
+		exposureMapper.updateByPrimaryKeySelective(exposure);
+		
+	}
 }

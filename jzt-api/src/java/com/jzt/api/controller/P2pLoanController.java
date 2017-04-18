@@ -117,7 +117,7 @@ public class P2pLoanController extends BaseController {
      * @param para： 修改后的标的内容
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/edit")
+    @RequestMapping(method = RequestMethod.POST, value = "/edit/")
     @ResponseBody
     public Map<String, Object> edit(@RequestParam(value = "para", required = true) String para) {
 
@@ -145,7 +145,7 @@ public class P2pLoanController extends BaseController {
      * @param  para
      * @return
      */
-    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    @RequestMapping(method = RequestMethod.POST, value = "/add/")
     @ResponseBody
     public Map<String, Object> add(@RequestParam(value = "para", required = true) String para) {
         JSONObject jsStr = JSONObject.fromObject(para);
