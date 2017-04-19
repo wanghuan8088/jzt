@@ -162,11 +162,11 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 银行理财能力</a></li>
+            <li class="active"><a href="/jzt-admin/view/bankplatform/bankEvalList.jsp"><i class="fa fa-circle-o"></i> 银行理财能力</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 银行财务报告</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 银行基本信息</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 理财产品标的</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 银行类型管理</a></li>
+            <li><a href="/jzt-admin/view/bankplatform/bankTypeList.jsp"><i class="fa fa-circle-o"></i> 银行类型管理</a></li>
         </ul>
     </li>
 
