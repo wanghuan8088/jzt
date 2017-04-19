@@ -35,7 +35,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
 
-                        <a class="btn btn-primary btn-lg" href="/woo-web/page/article/add.jsp"> 新 增  </a>
+                        <a class="btn btn-primary btn-lg" href="/jzt-admin/view/position/cityAdd.jsp"> 新 增  </a>
                         <br><br>
 
                         <!-- 模态框（Modal） -->
@@ -133,7 +133,7 @@
                     "targets": [1], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.id + "'>"+data+"</a>";
+                        return "<a href='/jzt-admin/view/position/cityEdit.jsp?id=" + full.id + "'>"+data+"</a>";
                     }
                 },
                 {
@@ -146,7 +146,7 @@
             ],
 
             "ajax": {
-                "url": "/jzt-api/rest/v1/city/list/0/1000",
+                "url": "/jzt-api/rest/v1/city/list2/0/1000",
                 "type": "GET",
                 "dataSrc": function ( json ) {
                     return json.data.city;
