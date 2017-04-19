@@ -9,6 +9,7 @@
 </section>
 <!-- /.sidebar -->
 </aside>
+
 <style>
     table.dataTable.display tbody tr.selected {
         background-color: #acbad4;
@@ -50,12 +51,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            曝光管理
-            <small>曝光信息审核</small>
+            报告管理
+            <small>新 增</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> 曝光管理</a></li>
-            <li class="active">曝光信息审核</li>
+            <li class="active">新增报告</li>
         </ol>
     </section>
 
@@ -102,45 +103,42 @@
                                 </div>
                             </div>
 
-                            <div class="box box-primary">
+                        <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title">第二步:填写内容</h3>
                             </div>
 
                             <form role="form">
                                 <!-- text input -->
-                                <div class="form-group">
-                                    <label>曝光标题</label>
-                                    <input type="text" id="title" class="form-control"  readOnly="true" placeholder="请输入 ...">
+                               <div class="form-group">
+                                    <label>报告标题</label>
+                                    <input type="text" id="title" class="form-control" placeholder="请输入 ...">
                                 </div>
                                 <div class="form-group">
-                                    <label>平台名称</label>
-                                    <input type="text" id="platform" class="form-control" readOnly="true"  placeholder="请输入 ...">
+                                    <label>报告来源</label>
+                                    <input type="text" id="source" class="form-control" placeholder="请输入 ...">
                                 </div>
                                 <div class="form-group">
-                                    <label>作者id</label>
-                                    <input type="text" id="author" class="form-control" readOnly="true" placeholder="请输入 ...">
+                                    <label>链接地址</label>
+                                    <input type="text" id="link" class="form-control" placeholder="请输入 ...">
                                 </div>
                                 <div class="form-group">
-                                    <label>平台地址</label>
-                                    <input type="text" id="sourceSite" class="form-control" readOnly="true"placeholder="请输入 ...">
-                                </div>
-								<div class="form-group">
-                                        <label>审核状态</label>
-                                        <select class="form-control" name="state" id="state" onchange="showMsg(this)">
+                                        <label>报告类型</label>
+                                        <select class="form-control" name="state" id="type" onchange="showMsg(this)">
 
-                                            <option value="0">待审核</option>
-                                            <option value="1">审核通过</option>
-                                            <option value="-1">审核不通过</option>     
+                                            <option value="1">平台报告</option>
+                                            <option value="2">第三方报告</option>                                                 
                                         </select>
-                                    </div>
+                                 </div>
 
                                 <!-- textarea -->
                                 <div class="form-group">
-                                    <label>曝光内容</label>
-                                    <textarea class="form-control" id="content" rows="15" readOnly="true" placeholder="请输入 ..."></textarea>
+                                    <label>文章内容</label>
+                                    <textarea class="form-control" id="content" rows="15" placeholder="请输入 ..."></textarea>
                                 </div>
 
+
+                               
                                 <div class="box-footer">
                                     <button type="button" class="btn btn-primary" onClick="submitForm();">提交</button>
                                 </div>
@@ -149,14 +147,14 @@
                         </div>
 
 
-                        </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.col -->
+                <!-- /.box -->
             </div>
-            <!-- /.row -->
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
     </section>
     <!-- /.content -->
 
@@ -169,83 +167,45 @@
 <%@ include file="/view/footer.jsp"%>
 
 
-<%
-    String id = request.getParameter("id");
-%>
+
+
 <script>
 
-    $(document).ready(function() {
-        var id = <%=id%>;
-        getData(id);
+function submitForm() {
 
-    } );
+var data=new Object();
+    data.title=$("#title").val();
+    data.source=$("#source").val();
+    data.link=$("#link").val();
+    data.type=$("#type").val();
+    data.content=$("#content").val();  
 
-function getData(id) {
+var datafstr=JSON.stringify(data);
+var requestData = datafstr;
 
 $.ajax({
-url: '/jzt-api/rest/1/exposure/' + id,
-type: 'GET',
+url: '/jzt-api/rest/1/report/add/',
+type: 'POST',
+data: "para="+encodeURIComponent(requestData),
 async: true,
 cache: false,
 // contentType: false,
-//contentType: 'application/x-www-form-urlencoded',
+contentType: 'application/x-www-form-urlencoded',
 processData: false,
 success: function (responseStr) {
-
-$("#title").val(responseStr.data.exposure.title);
-$("#platform").val(responseStr.data.exposure.productName);
-$("#author").val(responseStr.data.exposure.authorId);
-$("#sourceSite").val(responseStr.data.exposure.productUrl);
-$("#content").val(responseStr.data.exposure.content);
-$("#state").val(responseStr.data.exposure.state);
-
+    alert("保存成功!");
 },
 error: function (responseStr) {
-	
 alert("error:" + JSON.stringify(responseStr));
-console.log(responseStr);
 }
 });
 
+
 }
 
-function submitForm() {
-	var id = <%=id%>;
-	var data=new Object();
-	    data.title=$("#title").val();
-	    data.productName=$("#platform").val();
-	    data.authorId=$("#author").val();
-	    data.productUrl=$("#sourceSite").val();
-	    data.content=$("#content").val();
-	    data.state=$("#state").val();
-	    data.eid=id;
-	    
-
-	var datafstr=JSON.stringify(data);
-	var requestData = datafstr;
-
-	$.ajax({
-	url: '/jzt-api/rest/1/exposure/update/',
-	type: 'POST',
-	data: "para="+encodeURIComponent(requestData),
-	async: true,
-	cache: false,
-	// contentType: false,
-	contentType: 'application/x-www-form-urlencoded',
-	processData: false,
-	success: function (responseStr) {
-	    alert("保存成功!");
-	},
-	error: function (responseStr) {
-	alert("error:" + JSON.stringify(responseStr));
-	}
-	});
-
-
-	}
-
-
-
 </script>
+
+
+
 
 </html>

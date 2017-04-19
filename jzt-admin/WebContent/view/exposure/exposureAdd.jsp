@@ -51,12 +51,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            平台文章
+            曝光信息列表
             <small>新 增</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 平台管理</a></li>
-            <li class="active">新 增</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> 曝光管理</a></li>
+            <li class="active">曝光信息列表</li>
         </ol>
     </section>
 
