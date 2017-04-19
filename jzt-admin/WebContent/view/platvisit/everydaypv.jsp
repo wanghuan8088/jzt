@@ -71,13 +71,22 @@
                                             &times;
                                         </button>
                                         <h4 class="modal-title" id="myModalLabel">
-
+                                        新增平台访问量
                                         </h4>
                                     </div>
                                     <div class="modal-body">
-                                    <input class="form-control" type="text" id="platid" placeholder="输入平台id"></input>
-                                    <input class="form-control" type="text" id="platpv" placeholder="输入平台pv"></input>
-                                    <input class="form-control" type="text" id="pvchange" placeholder="输入平台pv变化量"></input>
+                                    	<div class="form-group">
+                                    		<label>平台PID</label>
+                                    		<input class="form-control" type="text" id="platid" placeholder="输入平台pid"></input>
+                                    	</div>
+                                    	<div class="form-group">
+                                    		<label>平台每日访问量</label>
+                                   			<input class="form-control" type="text" id="platpv" placeholder="输入平台每日访问量"></input>
+                                        </div>
+                                    	<div class="form-group">
+                                    		<label>平台每日访问变化量</label>
+                                    		<input class="form-control" type="text" id="pvchange" placeholder="输入平台每日访问变化量"></input>
+                                    	</div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -89,14 +98,53 @@
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal -->
                         </div>
+                        
+                        <!-- 模态框（Modal） -->
+                        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                        修改平台访问量
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                    	<input class="form-control" type="hidden" id="platid2" disabled="true"></input>
+                                    	<div class="form-group">
+                                    		<label>平台PID</label>
+                                    		<input class="form-control" type="text" id="platpid2" placeholder="输入平台pid" disabled="true"></input>
+                                    	</div>
+                                    	<div class="form-group">
+                                    		<label>平台每日访问量</label>
+                                   			 <input class="form-control" type="text" id="platpv2" placeholder="输入每日访问量"></input>
+                                        </div>
+                                    	<div class="form-group">
+                                    		<label>平台每日访问变化量</label>
+                                    		<input class="form-control" type="text" id="pvchange2" placeholder="输入每日访问变化量"></input>
+                                    	</div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick='updateData(this);'>
+                                            确定
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
 
                         <table id="tableobject" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>平台ID</th>
+                                <th>平台PID</th>
                                 <th>点击量</th>
                                 <th>点击变化量</th>
                                 <th>更新时间</th>
+                                <th>操作</th>
                             </tr>
                             </thead>
                         </table>
@@ -150,40 +198,34 @@
                 { "sWidth": "20%", "aTargets": [ 2 ] },
                 { "sWidth": "20%", "aTargets": [ 3 ] },
                 {
-                    "targets": [3], // 目标列位置，下标从0开始
+                    "targets": [0], // 目标列位置，下标从0开始
+                    "data": "nid", // 数据列名
+                    "render": function(data, type, full) { // 返回自定义内容
+                        return "<a href='#' data-toggle='modal' data-target='#myModal3' onclick='transferUpdateData(" + full.id +","+full.pid+","+full.numClick+","+full.numChange+ ");'>"+data+"</a>";
+                    }
+                },
+                {
+                    "targets": [4], // 目标列位置，下标从0开始
                     "data": "id", // 数据列名
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.id + ");'>删除</button>";
-                    }
-                },
-                {
-                    "targets": [1], // 目标列位置，下标从0开始
-                    "data": "updateTime", // 数据列名
-                    "render": function(data, type, full) { // 返回自定义内容
-                        return new Date(parseInt(full.updateTime)).toLocaleString();
-                    }
-                },
-                {
-                    "targets": [2], // 目标列位置，下标从0开始
-                    "data": "createTime", // 数据列名
-                    "render": function(data, type, full) { // 返回自定义内容
-                        return new Date(parseInt(full.createTime)).toLocaleString();
+                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferDelData(" + full.id + ");'>删除</button>";
                     }
                 }
             ],
 
             "ajax": {
-                "url": "/jzt-api/rest/v1/sensitiveword/list/0/10",
+                "url": "/jzt-api/rest/v1/everydaypv/list/0/10",
                 "type": "GET",
                 "dataSrc": function ( json ) {
-                    return json.data.sensitiveword;
+                    return json.data.everydayplatvisit;
                 }
             },
 
             "columns":[
-                { "data": "word" },
+                { "data": "pid" },
+                { "data": "numClick" },
+                { "data": "numChange" },
                 { "data": "updateTime" },
-                { "data": "createTime" },
                 { "data": "id" }
             ]
 
@@ -192,21 +234,28 @@
     } );
 
 
-    function transferData(id) {
+    function transferDelData(id) {
         $('#mbid').val(id);
+    }
+    
+    function transferUpdateData(id,pid,numClick,numChange) {
+        $('#platid2').val(id);
+        $('#platpid2').val(pid);
+        $('#platpv2').val(numClick);
+        $('#pvchange2').val(numChange);
     }
 
     function deleteData(obj) {
         var id = $('#mbid').val();
         $.ajax({
-            url: '/jzt-api/rest/v1/sensitiveword/delete/'+id,
+            url: '/jzt-api/rest/v1/everydaypv/delete/'+id,
             type: 'GET',
             async: true,
             cache: false,
             processData: false,
             success: function (responseStr) {
                 ShowSuccess("删除成功!");
-                $('#myModal').modal('hide')
+                $('#myModal').modal('hide');
                 $('#tableobject').DataTable().clear().draw().ajax.reload();
             },
             error: function (responseStr) {
@@ -215,16 +264,50 @@
         });
     }
     
+    function updateData(obj) {
+
+        var data=new Object();
+        data.id=$('#platid2').val();;
+        data.pid=$("#platpid2").val();
+        data.numClick=$("#platpv2").val();
+        data.numChange=$("#pvchange2").val();
+
+        var datafstr=JSON.stringify(data);
+        var requestData = datafstr;
+
+        $.ajax({
+            url: '/jzt-api/rest/1/everydaypv/modify/',
+            type: 'POST',
+            data: "para="+encodeURIComponent(requestData),
+            async: true,
+            cache: false,
+            contentType: 'application/x-www-form-urlencoded',
+            processData: false,
+            success: function (responseStr) {
+                ShowSuccess("保存成功!");
+                $('#myModal3').modal('hide');
+                $('#tableobject').DataTable().clear().draw().ajax.reload();
+            },
+            error: function (responseStr) {
+                alert("error:" + JSON.stringify(responseStr));
+            }
+        });
+
+
+    }
+    
     function addData(obj) {
     	
     	var data=new Object();
-        data.word=$("#word").val();
+        data.pid=$("#platid").val();
+        data.numClick=$("#platpv").val();
+        data.numChange=$("#pvchange").val();
 
     	var datafstr=JSON.stringify(data);
     	var requestData = datafstr;
     	
         $.ajax({
-            url: '/jzt-api/rest/v1/sensitiveword/add/',
+            url: '/jzt-api/rest/v1/everydaypv/add/',
             type: 'POST',
             data: "para="+encodeURIComponent(requestData),
             async: true,
@@ -234,7 +317,10 @@
             processData: false,
             success: function (responseStr) {
                 ShowSuccess("保存成功!");
-                $('#myModal2').modal('hide')
+                $('#myModal2').modal('hide');
+                $("#platid").val("");
+                $("#platpv").val("");
+                $("#pvchange").val("");
                 $('#tableobject').DataTable().clear().draw().ajax.reload();
             },
             error: function (responseStr) {
