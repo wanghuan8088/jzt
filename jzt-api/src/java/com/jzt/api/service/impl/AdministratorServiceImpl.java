@@ -65,4 +65,16 @@ public class AdministratorServiceImpl implements AdministratorService {
         administratorMapper.removeByPrimaryKey(administrator);
 //        administratorMapper.deleteByPrimaryKey(administrator.getUid());
     }
+
+    /**
+     * 修改管理员
+     *
+     * @param administrator
+     * @return
+     */
+    @Override
+    public void update(Administrator administrator) {
+        administratorMapper.updateByPrimaryKeySelective(administrator);
+    }
+
 }

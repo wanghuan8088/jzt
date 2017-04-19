@@ -43,7 +43,7 @@
                         <br><br>
 
                         <!-- 模态框（Modal） -->
-                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="delete_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -51,7 +51,7 @@
                                             &times;
                                         </button>
                                         <h4 class="modal-title" id="myModalLabel">
-
+                                            删除管理员
                                         </h4>
                                     </div>
                                     <div class="modal-body">
@@ -61,6 +61,35 @@
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
                                         </button>
                                         <button type="button" class="btn btn-primary" onclick='deleteData(this);' id="mbid">
+                                            确定
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
+
+                        <div class="modal fade" id="permission_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title">修改管理员权限</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <select class="form-control" name="categoryId" id="permission"
+                                                onchange="showMsg(this)">
+                                            <option selected disabled hidden>选择权限</option>
+                                            <option value="1">浏览</option>
+                                            <option value="2">修改</option>
+                                            <option value="3">删除</option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                        </button>
+                                        <button type="button" class="btn btn-primary" onclick='modifyPermission(this);' id="mbid2">
                                             确定
                                         </button>
                                     </div>
@@ -125,24 +154,28 @@
 
             "searching":false,
             "aoColumnDefs": [
-                { "sWidth": "10%", "aTargets": [ 0 ] },
+                { "sWidth": "15%", "aTargets": [ 0 ] },
                 { "sWidth": "15%", "aTargets": [ 1 ] },
-                { "sWidth": "10%", "aTargets": [ 2 ] },
-                { "sWidth": "15%", "aTargets": [ 3 ] },
-                { "sWidth": "15%", "aTargets": [ 4 ] },
-                { "sWidth": "10%", "aTargets": [ 5 ] },
-//                {
-//                    "targets": [0], // uid
-//                    "data": "uid",
-//                    "render": function(data, type, full) { // 返回自定义内容
-//                        return "<a href='/woo-web/page/topic/detail.jsp?id=" + full.uid + "'>"+data+"</a>";
-//                    }
-//                },
+                { "sWidth": "15%", "aTargets": [ 2 ] },
+                { "sWidth": "20%", "aTargets": [ 3 ] },
+                { "sWidth": "20%", "aTargets": [ 4 ] },
+                { "sWidth": "20%", "aTargets": [ 5 ] },
+                {
+                    "targets": [2],
+                    "data": "uid",
+                    "render": function(data, type, full) { // 返回自定义内容
+                        permission_list = ['浏览','修改','删除'];
+                        return permission_list[full.permission];
+                    }
+                },
                 {
                     "targets": [5], // 目标列位置，下标从0开始
                     "data": "uid",
                     "render": function(data, type, full) { // 返回自定义内容
-                        return "<button type='button' class='btn btn-block btn-danger btn-flat' data-toggle='modal' data-target='#myModal' onclick='transferData(" + full.uid + ");'>删除</button>";
+                        return "<div class='btn-group' style = 'width:100%'>" +
+                                "<button type='button' style = 'width:50%' class='btn btn-default' data-toggle='modal' data-target='#permission_modal' onclick='transferData2(" + full.uid + ");'>权限</button>" +
+                                "<button type='button' style = 'width:50%' class='btn btn-danger btn-flat' data-toggle='modal' data-target='#delete_modal' onclick='transferData(" + full.uid + ");'>删除</button>" +
+                        "</div>";
                     }
                 }
             ],
@@ -172,6 +205,10 @@
         $('#mbid').val(id);
     }
 
+    function transferData2(id) {
+        $('#mbid2').val(id);
+    }
+
     function deleteData(obj) {
         var id = $('#mbid').val();
         $.ajax({
@@ -182,7 +219,35 @@
             processData: false,
             success: function (responseStr) {
                 ShowSuccess("删除成功!");
-                $('#myModal').modal('hide')
+                $('#delete_modal').modal('hide')
+                $('#tableobject').DataTable().clear().draw().ajax.reload();
+            },
+            error: function (responseStr) {
+                alert("error:" + JSON.stringify(responseStr));
+            }
+        });
+    }
+
+    function modifyPermission(obj) {
+        var data=new Object();
+        data.uid = $('#mbid2').val();
+        data.permission = $('#permission').val();
+
+        var datafstr = JSON.stringify(data);
+        var requestData = datafstr;
+
+        $.ajax({
+            url: '/jzt-api/rest/1/administrator/modify/',
+            type: 'POST',
+            data: "para=" + encodeURIComponent(requestData),
+            async: true,
+            cache: false,
+            // contentType: false,
+            contentType: 'application/x-www-form-urlencoded',
+            processData: false,
+            success: function (responseStr) {
+                ShowSuccess("修改成功!");
+                $('#permission_modal').modal('hide')
                 $('#tableobject').DataTable().clear().draw().ajax.reload();
             },
             error: function (responseStr) {
