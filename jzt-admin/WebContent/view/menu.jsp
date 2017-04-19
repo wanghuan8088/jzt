@@ -92,10 +92,10 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 每日访问量管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 每周访问量管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 每月访问量管理</a></li>
+        <ul <% if(v.equals("everydaypv_menu") || v.equals("everyweekpv_menu") || v.equals("everymonthpv_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li id="everydaypv_menu" <% if(v.equals("everydaypv_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/platvisit/everydaypv.jsp?v=everydaypv_menu"><i class="fa fa-circle-o"></i> 每日访问量管理</a></li>
+            <li id="everyweekpv_menu" <% if(v.equals("everyweekpv_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/platvisit/everyweekpv.jsp?v=everyweekpv_menu"><i class="fa fa-circle-o"></i> 每周访问量管理</a></li>
+            <li id="everymonthpv_menu" <% if(v.equals("everymonthpv_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/platvisit/everymonthpv.jsp?v=everymonthpv_menu"><i class="fa fa-circle-o"></i> 每月访问量管理</a></li>
         </ul>
     </li>
 
