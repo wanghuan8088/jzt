@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jzt.api.controller.base.BaseController;
@@ -122,7 +123,7 @@ public class CityController extends BaseController{
 	*/
 	@RequestMapping(value="/saveOrUpdate")
 	@ResponseBody
-	public Map<String, Object> saveOrUpdate(@PathVariable(value="para")String para)
+	public Map<String, Object> saveOrUpdate(@RequestParam(value="para") String para)
 	{
 		Map<String, Object> result = new HashMap<>();
 		
@@ -149,6 +150,34 @@ public class CityController extends BaseController{
 		return result;
 	}
 	
+
+	
+	/**  
+	* 用途：后台管理查询城市列表2  包含外键province名称
+	* 作者：廖凯红
+	* 时间：20170418
+	*/
+	@RequestMapping(value="/list2/{startRow}/{pageSize}")
+	@ResponseBody
+	public Map<String, Object> list2(@PathVariable(value="startRow")int startRow,@PathVariable(value="pageSize")int pageSize)
+	{
+		Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            
+            List<Map> list = cityService.selectCityMapList(startRow,pageSize);
+            data.put("city", list);
+            result.put("data", data );
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-"+e.getMessage());
+        }
+
+        return result;
+	}
 	
 	
 	

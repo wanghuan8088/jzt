@@ -328,6 +328,20 @@
     </if>
   </select>
   
+  
+  <!-- 
+	* 用途：后台管理查询城市列表2  包含外键province名称
+	* 作者：廖凯红
+	* 时间：20170418
+    -->
+  <select id="selectCityMapList" resultType="map" >
+  select c.id, c.name, p.name province, c.product_num productNum,c.create_time createTime,c.update_time updateTime 
+  from city c, province p
+  where c.province = p.id
+   <if test="startRow != null and pageSize != null and pageSize != 0" >
+      limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
 
   
 </mapper>

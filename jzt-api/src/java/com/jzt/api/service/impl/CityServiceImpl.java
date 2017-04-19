@@ -1,6 +1,7 @@
 package com.jzt.api.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,16 @@ public class CityServiceImpl implements CityService{
 	public List<City> selectCityList(int startRow,int pageSize)
 	{
 		return cityMapper.selectCityList(startRow,pageSize);
+	}
+	
+	/**  
+	* 用途：后台管理查询城市列表2  包含外键province名称
+	* 作者：廖凯红
+	* 时间：20170418
+	*/
+	public List<Map> selectCityMapList(int startRow,int pageSize)
+	{
+		return cityMapper.selectCityMapList(startRow,pageSize);
 	}
 	
 	

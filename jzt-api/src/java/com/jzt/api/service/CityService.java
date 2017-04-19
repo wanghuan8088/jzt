@@ -1,6 +1,7 @@
 package com.jzt.api.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.jzt.api.domain.City;
 
@@ -12,6 +13,15 @@ public interface CityService {
 	* 时间：20170408
 	*/
 	public List<City> selectCityList(int startRow,int pageSize);
+	
+	
+	/**  
+	* 用途：后台管理查询城市列表2  包含外键province名称
+	* 作者：廖凯红
+	* 时间：20170418
+	*/
+	public List<Map> selectCityMapList(int startRow,int pageSize);
+	
 	
 	/**  
 	* 用途：后台管理删除制定城市

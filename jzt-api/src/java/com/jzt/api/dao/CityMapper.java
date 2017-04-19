@@ -3,6 +3,8 @@ package com.jzt.api.dao;
 import com.jzt.api.domain.City;
 import com.jzt.api.domain.CityExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CityMapper {
@@ -102,5 +104,11 @@ public interface CityMapper {
 	*/
     public List<City> selectCityList(@Param("startRow")Integer startRow,@Param("pageSize")Integer pageSize);
     
+    /**  
+	* 用途：后台管理查询城市列表2  包含外键province名称
+	* 作者：廖凯红
+	* 时间：20170418
+	*/
+	public List<Map> selectCityMapList(@Param("startRow") Integer startRow,@Param("pageSize") Integer pageSize);  
     
 }
