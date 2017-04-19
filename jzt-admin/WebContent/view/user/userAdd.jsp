@@ -96,8 +96,8 @@ table.dataTable.display tbody tr.selected {
 									<div class="form-group">
 										<label>性别</label> <select class="form-control"
 											name="sex" id="sex" onchange="showMsg(this)">
-											<option value="1">男</option>
-											<option value="2">女</option>
+											<option value="男">男</option>
+											<option value="女">女</option>
 										</select>
 									</div>
 

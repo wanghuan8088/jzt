@@ -18,6 +18,7 @@ import java.util.List;
 @Service
 public class NewsServiceImpl implements NewsService {
 
+
     @Autowired
     private NewsMapper newsMapper;
 
@@ -62,6 +63,17 @@ public class NewsServiceImpl implements NewsService {
     public void delete(News news) {
         news.setIsDelete(1);
         newsMapper.removeByPrimaryKey(news);
+    }
+
+    /**
+     * 修改新闻
+     *
+     * @param news
+     * @return
+     */
+    @Override
+    public void update(NewsWithBLOBs news) {
+        newsMapper.updateByPrimaryKeySelective(news);
     }
 
     /**

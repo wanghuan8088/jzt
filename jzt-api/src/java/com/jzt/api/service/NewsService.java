@@ -33,6 +33,13 @@ public interface NewsService {
     void delete(News news);
 
     /**
+     * 修改新闻
+     * @param news
+     * @return
+     */
+    void update(NewsWithBLOBs news);
+
+    /**
      * 新闻详细
      * @param news
      * @return

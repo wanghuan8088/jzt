@@ -43,13 +43,13 @@ public class NewsController extends BaseController {
             Map<String, Object> data = new HashMap<String, Object>();
             newsService.add(dto);
 
-          //  data.put("platform", list);
-            result.put("data", data );
+            //  data.put("platform", list);
+            result.put("data", data);
             result.put("res", "0");
             result.put("message", "Success");
         } catch (Exception e) {
             result.put("res", "1");
-            result.put("message", "Error-"+e.getMessage());
+            result.put("message", "Error-" + e.getMessage());
         }
 
         return result;
@@ -63,8 +63,8 @@ public class NewsController extends BaseController {
      */
     @RequestMapping(value = "/list/{startRow}/{pageSize}")
     @ResponseBody
-    public Map<String, Object> list(@PathVariable(value="startRow") int startRow,
-                                    @PathVariable(value="pageSize") int pageSize){
+    public Map<String, Object> list(@PathVariable(value = "startRow") int startRow,
+                                    @PathVariable(value = "pageSize") int pageSize) {
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -76,12 +76,12 @@ public class NewsController extends BaseController {
             List<News> list = newsService.list(news);
 
             data.put("news", list);
-            result.put("data", data );
+            result.put("data", data);
             result.put("res", "0");
             result.put("message", "Success");
         } catch (Exception e) {
             result.put("res", "1");
-            result.put("message", "Error-"+e.getMessage());
+            result.put("message", "Error-" + e.getMessage());
         }
 
         return result;
@@ -94,7 +94,7 @@ public class NewsController extends BaseController {
      */
     @RequestMapping(value = "/delete/{nid}")
     @ResponseBody
-    public Map<String, Object> delete(@PathVariable(value="nid") int nid){
+    public Map<String, Object> delete(@PathVariable(value = "nid") int nid) {
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -104,18 +104,43 @@ public class NewsController extends BaseController {
             news.setNid(nid);
             newsService.delete(news);
 
-            result.put("data", data );
+            result.put("data", data);
             result.put("res", "0");
             result.put("message", "Success");
         } catch (Exception e) {
             result.put("res", "1");
-            result.put("message", "Error-"+e.getMessage());
+            result.put("message", "Error-" + e.getMessage());
         }
 
         return result;
     }
 
+    /***
+     * 修改新闻
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/modify")
+    @ResponseBody
+    public Map<String, Object> modify(@RequestParam(value = "para", required = true) String para) {
+        JSONObject jsStr = JSONObject.fromObject(para);
+        NewsWithBLOBs dto = (NewsWithBLOBs) JSONObject.toBean(jsStr, NewsWithBLOBs.class);
+        Map<String, Object> result = new HashMap<String, Object>();
 
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            newsService.update(dto);
+
+            result.put("data", data);
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-" + e.getMessage());
+        }
+
+        return result;
+    }
 
     /***
      * 新闻详细
@@ -124,7 +149,7 @@ public class NewsController extends BaseController {
      */
     @RequestMapping(value = "/detail/{nid}")
     @ResponseBody
-    public Map<String, Object> detail(@PathVariable(value="nid") int nid){
+    public Map<String, Object> detail(@PathVariable(value = "nid") int nid) {
 
         Map<String, Object> result = new HashMap<String, Object>();
 
@@ -135,17 +160,16 @@ public class NewsController extends BaseController {
             News record = newsService.detail(news);
 
             data.put("news", record);
-            result.put("data", data );
+            result.put("data", data);
             result.put("res", "0");
             result.put("message", "Success");
         } catch (Exception e) {
             result.put("res", "1");
-            result.put("message", "Error-"+e.getMessage());
+            result.put("message", "Error-" + e.getMessage());
         }
 
         return result;
     }
-
 
 
 }

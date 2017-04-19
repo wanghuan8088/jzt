@@ -8,14 +8,14 @@ public class PingppConstant {
 	  /**
      * Pingpp 管理平台对应的 API Key，api_key 获取方式：登录 [Dashboard](https://dashboard.pingxx.com)->点击管理平台右上角公司名称->开发信息-> Secret Key
      */
-	//public final static String apiKey = "sk_test_ibbTe5jLGCi5rzfH4OqPW9KC";
-	public final static String apiKey = "sk_live_LW5mr9Dazb9GWvvLqD9uTejD";
+	//public final static String apiKey = "sk_test_HKSuX14iDu1GfTuLSOeDKW1O";
+	public final static String apiKey = "sk_live_4CW1K0rz9iv5qPuXbLyb1SSG";
 
     /**
      * Pingpp 管理平台对应的应用 ID，app_id 获取方式：登录 [Dashboard](https://dashboard.pingxx.com)->点击你创建的应用->应用首页->应用 ID(App ID)
      */
    // public final static String appId = "app_1Gqj58ynP0mHeX1q";
-	public final static String appId = "app_PWr54GujTinP4yn1";
+	public final static String appId = "app_qfLOmDzX1SaPOCyf";
 
     /**
      * 设置请求签名密钥，密钥对需要你自己用 openssl 工具生成，如何生成可以参考帮助中心：https://help.pingxx.com/article/123161；

@@ -190,31 +190,65 @@
 
 function getData(id) {
 
-$.ajax({
-url: '/jzt-api/rest/1/news/detail/' + id,
-type: 'GET',
-async: true,
-cache: false,
-// contentType: false,
-//contentType: 'application/x-www-form-urlencoded',
-processData: false,
-success: function (responseStr) {
+    $.ajax({
+        url: '/jzt-api/rest/1/news/detail/' + id,
+        type: 'GET',
+        async: true,
+        cache: false,
+        // contentType: false,
+        //contentType: 'application/x-www-form-urlencoded',
+        processData: false,
+        success: function (responseStr) {
 
-$("#title").val(responseStr.data.news.title);
-$("#abstracts").val(responseStr.data.news.subTitle);
-$("#author").val(responseStr.data.news.category);
-$("#sourceSite").val(responseStr.data.news.content);
-    $("#categoryId").val(responseStr.data.news.content);
-    $("#content").val(responseStr.data.news.content);
+        $("#title").val(responseStr.data.news.title);
+        $("#abstracts").val(responseStr.data.news.subTitle);
+        $("#author").val(responseStr.data.news.category);
+        $("#sourceSite").val(responseStr.data.news.content);
+            $("#categoryId").val(responseStr.data.news.content);
+            $("#content").val(responseStr.data.news.content);
 
-},
-error: function (responseStr) {
-alert("error:" + JSON.stringify(responseStr));
+        },
+        error: function (responseStr) {
+        alert("error:" + JSON.stringify(responseStr));
+        }
+    });
+
 }
-});
 
-}
 
+
+    function submitForm() {
+
+        var data=new Object();
+        data.id=<%=id%>;
+        data.title=$("#title").val();
+        data.abstracts=$("#abstracts").val();
+        data.author=$("#author").val();
+        data.sourceSite=$("#sourceSite").val();
+        data.categoryId=$("#categoryId").val();
+        data.content=$("#content").val();
+
+        var datafstr=JSON.stringify(data);
+        var requestData = datafstr;
+
+        $.ajax({
+            url: '/jzt-api/rest/1/news/modify/',
+            type: 'POST',
+            data: "para="+encodeURIComponent(requestData),
+            async: true,
+            cache: false,
+            contentType: 'application/x-www-form-urlencoded',
+            processData: false,
+            success: function (responseStr) {
+                alert("修改成功!");
+            },
+            error: function (responseStr) {
+                alert("error:" + JSON.stringify(responseStr));
+            }
+        });
+
+
+    }
 
 </script>
 

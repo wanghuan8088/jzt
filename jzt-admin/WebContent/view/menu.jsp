@@ -76,8 +76,8 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 轮播广告图管理</a></li>
+        <ul  <% if(v.equals("ads_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li class="active" ><a href="/jzt-admin/view/ads/adsList.jsp?v=ads_menu"><i class="fa fa-circle-o"></i> 轮播广告图管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 推广平台管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 热门新闻管理</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> 热门平台管理</a></li>
@@ -107,9 +107,9 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
         </a>
-        <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> 曝光信息列表</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
+           <ul  <% if(v.equals("exposureList_menu") || v.equals("exposureState_menu")) {%> class="treeview-menu menu-open" style="display: block;" <%}else{ %> class="treeview-menu" <%} %> >
+            <li id="exposureList_menu" <% if(v.equals("exposureList_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/exposure/exposureList.jsp?v=exposureList_menu"><i class="fa fa-circle-o"></i>曝光信息列表</a></li>
+            <li id="exposureState_menu" <% if(v.equals("exposureState_menu")) {%> class="active" <%} %> ><a href="/jzt-admin/view/exposure/exposureState.jsp?v=exposureState_menu"><i class="fa fa-circle-o"></i> 曝光信息审核</a></li>
         </ul>
     </li>
 
@@ -180,8 +180,8 @@
             </span>
         </a>
         <ul class="treeview-menu" >
-            <li class="active"><a href="/jzt-admin/view/starter.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
+            <li class="active"><a href="/jzt-admin/view/p2ploan/list.jsp"><i class="fa fa-circle-o"></i> P2P标的管理</a></li>
+            <li><a href="/jzt-admin/view/p2pplatform/list.jsp"><i class="fa fa-circle-o"></i> P2P平台管理</a></li>
         </ul>
     </li>
 

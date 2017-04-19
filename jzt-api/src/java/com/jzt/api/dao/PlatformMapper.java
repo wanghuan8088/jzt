@@ -133,5 +133,8 @@ public interface PlatformMapper {
      */
     Map creditDisclosure(Integer id);
 
-    
+    /**
+     * p2p平台列表（仅包含名字和id）
+     */
+    List<Map> listP2pPlat();
 }

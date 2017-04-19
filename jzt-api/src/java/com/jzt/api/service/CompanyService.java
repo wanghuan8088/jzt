@@ -2,6 +2,8 @@ package com.jzt.api.service;
 
 import com.jzt.api.domain.Company;
 
+import java.util.List;
+
 /**
  * 公司法人service
  * @author hzlihonglin
@@ -22,4 +24,5 @@ public interface CompanyService {
 	 * @return
 	 */
 	Company detail(Company company);
+
 }

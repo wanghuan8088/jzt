@@ -350,4 +350,24 @@ public class PlatformServiceImpl implements PlatformService {
     public Map creditDisclosure(Platform platform) {
         return platformMapper.creditDisclosure(platform.getId());
     }
+
+    /**
+     * p2p平台列表（仅包含名字和id）
+     * @param
+     * @return
+     */
+    @Override
+    public List<Map> listOfP2pPlat() {
+        return platformMapper.listP2pPlat();
+    }
+
+    /**
+     * 更新平台基本信息
+     * @param
+     * @return
+     */
+    @Override
+    public int update(Platform record) {
+        return platformMapper.updateByPrimaryKeySelective(record);
+    }
 }
