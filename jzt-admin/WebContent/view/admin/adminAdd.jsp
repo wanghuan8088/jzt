@@ -108,13 +108,13 @@
                                     <h3 class="box-title">填写管理员信息</h3>
                                 </div>
 
-                                <form role="form">
+                                <form>
                                     <div class="form-group has-feedback">
                                         <input type="text" id="username" class="form-control" placeholder="用户名">
                                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <input type="email" id="email" class="form-control" placeholder="Email">
+                                        <input type="text" id="email" class="form-control" placeholder="Email">
                                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                     </div>
                                     <div class="form-group has-feedback">
@@ -128,15 +128,14 @@
                                     <div class="form-group has-feedback">
                                         <select class="form-control" name="categoryId" id="permission"
                                                 onchange="showMsg(this)">
-                                            <option selected disabled hidden>权限</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
+                                            <option selected disabled hidden>选择管理员权限</option>
+                                            <option value="1">浏览</option>
+                                            <option value="2">修改</option>
+                                            <option value="3">删除</option>
                                         </select>
                                     </div>
                                     <div class="box-footer">
-                                        <button type="submit" class="btn btn-primary" onClick="submitForm();">提交
+                                        <button type="button" id="btn_register" class="btn btn-primary">提交
                                         </button>
                                     </div>
                                 </form>
@@ -164,23 +163,87 @@
 
 <script>
 
-    function submitForm() {
+    $('#btn_register').click(function () {
+        var pwd = $('#password').val();
+        var user = $('#username').val();
+        var email = $('#email').val();
 
+        if (user == "") {
+            $('#username').attr({
+                "value": "",
+                "placeholder": "用户名不能为空"
+            });
+            $('#username').focus();
+            return false;
+        }
+
+        if (user.length < 3 || user.length > 20) {
+            $('#username').attr({
+                "value": "",
+                "placeholder": "长度不符合要求，必须为3-20位"
+            });
+            $('#username').focus();
+            return false;
+        }
+
+        var pattern = /^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/;
+        if (!pattern.test(email) && email != "") {
+            $('#email').val("");
+            $('#email').attr({
+                "placeholder": "email格式不正确"
+            });
+            $('#email').focus();
+            return false;
+        }
+
+        if (pwd == "") {
+            $('#password').val("");
+            $('#password').attr({
+                "placeholder": "密码不能为空"
+            });
+            $('#password').focus();
+            return false;
+        }
+
+        var pattern = /^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*$/;
+        if (!pattern.test(pwd)) {
+            $('#password').val("");
+            $('#password').attr({
+                "placeholder": "只能由字母或数字组成"
+            });
+            $('#password').focus();
+            return false;
+        }
+
+        if (pwd.length < 4 || pwd.length > 12) {
+            $('#password').val("");
+            $('#password').attr({
+                "placeholder": "长度不符合要求，必须为4-12位"
+            });
+            $('#password').focus();
+            return false;
+        }
+
+
+        if (pwd != $("#retype").val()) {
+            $('#password').val("");
+            $('#retype').val("");
+            $('#password').attr({
+                "placeholder": "两次输入不一致"
+            });
+            $('#password').focus();
+            return false;
+        }
+
+        submitForm();
+    })
+
+
+    function submitForm() {
         var data = new Object();
         data.userName = $("#username").val();
         data.password = $("#password").val();
         data.permission = $("#permission").val();
-
-//        var email = $('#email').val();
-//        var pattern = /^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z]+\.)+[a-zA-Z]{2,3}$/;
-//        if (!pattern.test(email) && email != "") {
-//            $('#email').val("");
-//            $('#email').attr({
-//                "placeholder": "email格式不正确"
-//            });
-//            $('#email').focus();
-//            return false;
-//        }
 
         var datafstr = JSON.stringify(data);
         var requestData = datafstr;
@@ -191,17 +254,19 @@
             data: "para=" + encodeURIComponent(requestData),
             async: true,
             cache: false,
-// contentType: false,
+            // contentType: false,
             contentType: 'application/x-www-form-urlencoded',
             processData: false,
             success: function (responseStr) {
-                alert("保存成功!");
-                window.location.href = '/jzt-admin/view/admin/adminList.jsp';
+                //                window.location.href = '/jzt-admin/view/admin/adminList.jsp';
             },
             error: function (responseStr) {
-                alert("error:" + JSON.stringify(responseStr));
+//                    alert("error:" + JSON.stringify(responseStr));
+                //                error:{"readyState":0,"status":0,"statusText":"error"}
             }
         });
+        alert("保存成功!");
+        window.location.href = '/jzt-admin/view/admin/adminList.jsp';
     }
 
 </script>

@@ -86,7 +86,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>所属省份</label>
-                                        <input type="text" id="province" class="form-control" placeholder="请输入 ...">
+                                        <select class="form-control" id="province"  onchange="showMsg(this)">
+            							</select>
                                     </div>
                                     
                                     <div class="box-footer">
@@ -120,6 +121,12 @@
 
 <script>
 
+$(document).ready(function() {
+	fillProvinceOption();
+} );
+
+
+
 function submitForm() {
 
 	var data=new Object();
@@ -151,6 +158,34 @@ function submitForm() {
 
 
 	}
+	
+	
+	
+function fillProvinceOption() {
+    $.ajax({
+        url: '/jzt-api/province/plist/0/40',
+        type: 'GET',
+        async: true,
+        cache: false,
+        processData: false,
+        success: function (responseStr) {
+            $("#province").empty();
+            $("#province").append("<option value=0>请选择</option>");
+            for (var one in responseStr.data.province)
+            {
+                var text = responseStr.data.province[one].name;
+                var value = responseStr.data.province[one].id;
+                $("#province").append("<option value="+value+">"+text+"</option>");
+            }
+            
+            $("#province").val("1");//default
+
+        },
+        error: function (responseStr) {
+            alert("error:" + JSON.stringify(responseStr));
+        }
+    });
+}
 
 
 </script>

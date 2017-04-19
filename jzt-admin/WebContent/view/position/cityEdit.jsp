@@ -86,7 +86,42 @@
                                     </div>
                                     <div class="form-group">
                                         <label>所属省份</label>
-                                        <input type="text" id="province" class="form-control" placeholder="请输入 ...">
+                                        <select class="form-control" id="province"  name="province">
+            								<option value="1">安徽</option>
+                                            <option value="2">北京</option>
+                                            <option value="3">重庆</option>
+                                            <option value="4">福建</option>
+                                            <option value="5">甘肃</option>
+                                            <option value="6">广东</option>
+                                            <option value="7">广西</option>
+                                            <option value="8">贵州</option>
+                                            <option value="9">海南</option>
+                                            <option value="10">河北</option>
+                                            <option value="11">河南</option>
+                                            <option value="12">黑龙江</option>
+                                            <option value="13">湖北</option>
+                                            <option value="14">湖南</option>
+                                            <option value="15">吉林</option>
+                                            <option value="16">江苏</option>
+                                            <option value="17">江西</option>
+                                            <option value="18">辽宁</option>
+                                            <option value="19">内蒙古</option>
+                                            <option value="20">宁夏</option>
+                                            <option value="21">青海</option>
+                                            <option value="22">山东</option>
+                                            <option value="23">山西</option>
+                                            <option value="24">陕西</option>
+                                            <option value="25">上海</option>
+                                            <option value="26">四川</option>
+                                            <option value="27">天津</option>
+                                            <option value="28">西藏</option>
+                                            <option value="29">新疆</option>
+                                            <option value="30">云南</option>
+                                            <option value="31">浙江</option>
+                                            <option value="32">香港</option>
+                                            <option value="33">澳门</option>
+                                            <option value="34">台湾</option>
+            							</select>
                                     </div>
                                     
                                     <div class="box-footer">
@@ -125,11 +160,11 @@
 
 <script>
 
-    $(document).ready(function() {
-        var id = <%=id%>;
-        getData(id);
+$(document).ready(function() {
+    var id = <%=id%>;
+    getData(id);
 
-    } );
+} );
 
 function getData(id) {
 
@@ -190,6 +225,10 @@ function submitForm() {
 
 
 	}
+	
+	
+
+
 
 
 </script>
