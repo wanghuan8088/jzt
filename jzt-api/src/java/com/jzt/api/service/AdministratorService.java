@@ -28,4 +28,11 @@ public interface AdministratorService {
      * @return
      */
     void delete(Administrator administrator);
+
+    /**
+     * 修改管理员
+     * @param administrator
+     * @return
+     */
+    void update(Administrator administrator);
 }

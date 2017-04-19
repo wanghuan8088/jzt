@@ -13,12 +13,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            敏感词
+            平台每日访问量
             <small>列表</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 敏感词管理</a></li>
-            <li class="active">敏感词管理</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> 平台每日访问量管理</a></li>
+            <li class="active">平台每日访问量管理</li>
         </ol>
     </section>
 
@@ -71,11 +71,13 @@
                                             &times;
                                         </button>
                                         <h4 class="modal-title" id="myModalLabel">
-                                        新增敏感词
+
                                         </h4>
                                     </div>
                                     <div class="modal-body">
-                                    <input class="form-control" type="text" id="word" placeholder="输入敏感词"></input>
+                                    <input class="form-control" type="text" id="platid" placeholder="输入平台id"></input>
+                                    <input class="form-control" type="text" id="platpv" placeholder="输入平台pv"></input>
+                                    <input class="form-control" type="text" id="pvchange" placeholder="输入平台pv变化量"></input>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -91,10 +93,10 @@
                         <table id="tableobject" class="table table-bordered table-striped" cellspacing="0" width="100%">
                             <thead>
                             <tr>
-                                <th>关键字</th>
-                                <th>创建时间</th>
-                                <th>修改时间</th>
-                                <th>操作</th>
+                                <th>平台ID</th>
+                                <th>点击量</th>
+                                <th>点击变化量</th>
+                                <th>更新时间</th>
                             </tr>
                             </thead>
                         </table>

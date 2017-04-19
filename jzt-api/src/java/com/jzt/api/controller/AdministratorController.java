@@ -121,5 +121,33 @@ public class AdministratorController extends BaseController {
 
         return result;
     }
+
+    /***
+     * 修改管理员
+     * @param
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/modify")
+    @ResponseBody
+    public Map<String, Object> modify(@RequestParam(value = "para", required = true) String para) {
+        JSONObject jsStr = JSONObject.fromObject(para);
+        Administrator dto = (Administrator) JSONObject.toBean(jsStr, Administrator.class);
+        Map<String, Object> result = new HashMap<String, Object>();
+
+        try {
+            Map<String, Object> data = new HashMap<String, Object>();
+            administratorService.update(dto);
+
+            result.put("data", data);
+            result.put("res", "0");
+            result.put("message", "Success");
+        } catch (Exception e) {
+            result.put("res", "1");
+            result.put("message", "Error-" + e.getMessage());
+        }
+
+        return result;
+    }
+
 }
 
